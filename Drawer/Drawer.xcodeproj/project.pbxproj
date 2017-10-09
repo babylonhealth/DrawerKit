@@ -1,0 +1,607 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CB25569F1F7B479A00C7E2FF /* DrawerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB25569E1F7B479A00C7E2FF /* DrawerTests.swift */; };
+		CB2556A11F7B479A00C7E2FF /* Drawer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB49247B1F7849DF00C27365 /* Drawer.framework */; };
+		CB4924801F7849DF00C27365 /* Drawer.h in Headers */ = {isa = PBXBuildFile; fileRef = CB49247E1F7849DF00C27365 /* Drawer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB7B56C01F7B1CBD00E1C2F1 /* DrawerPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7B56BF1F7B1CBC00E1C2F1 /* DrawerPresentable.swift */; };
+		CB896DE51F87FAE80088404C /* DrawerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896DE21F87FAE80088404C /* DrawerState.swift */; };
+		CB896DE61F87FAE80088404C /* TransitionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896DE31F87FAE80088404C /* TransitionDirection.swift */; };
+		CB896DE71F87FAE80088404C /* TransitionTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896DE41F87FAE80088404C /* TransitionTrigger.swift */; };
+		CB896DEF1F87FD380088404C /* TransitionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896DEB1F87FD380088404C /* TransitionActions.swift */; };
+		CB896DF01F87FD380088404C /* TransitionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896DEC1F87FD380088404C /* TransitionConfiguration.swift */; };
+		CB896DF11F87FD380088404C /* TransitionGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896DED1F87FD380088404C /* TransitionGeometry.swift */; };
+		CB896DF21F87FD380088404C /* TransitionInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896DEE1F87FD380088404C /* TransitionInformation.swift */; };
+		CB896DF61F88011F0088404C /* TransitionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896DF51F88011F0088404C /* TransitionState.swift */; };
+		CB896DF81F885E440088404C /* TransitionController+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896DF71F885E440088404C /* TransitionController+Configuration.swift */; };
+		CB896DFA1F886D210088404C /* DrawerViewController+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896DF91F886D210088404C /* DrawerViewController+State.swift */; };
+		CB896DFC1F886E450088404C /* DrawerViewController+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896DFB1F886E450088404C /* DrawerViewController+Configuration.swift */; };
+		CB896E071F887D7B0088404C /* DrawerViewController+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896E041F887D7B0088404C /* DrawerViewController+AutoLayout.swift */; };
+		CB896E081F887D7B0088404C /* DrawerViewController+Static.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896E051F887D7B0088404C /* DrawerViewController+Static.swift */; };
+		CB896E091F887D7B0088404C /* DrawerViewController+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896E061F887D7B0088404C /* DrawerViewController+Geometry.swift */; };
+		CB896E0C1F887F8E0088404C /* DrawerViewController+ViewSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896E0B1F887F8E0088404C /* DrawerViewController+ViewSetup.swift */; };
+		CB896E0E1F887FDD0088404C /* DrawerViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896E0D1F887FDD0088404C /* DrawerViewController+Transition.swift */; };
+		CB896E101F8896BC0088404C /* ViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896E0F1F8896BC0088404C /* ViewAnimator.swift */; };
+		CB896E121F88C8130088404C /* DrawerViewController+Interactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896E111F88C8130088404C /* DrawerViewController+Interactive.swift */; };
+		CB896E161F88DF2F0088404C /* UIPanGestureRecognizer+Dragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896E151F88DF2F0088404C /* UIPanGestureRecognizer+Dragging.swift */; };
+		CB896E191F8921E40088404C /* DrawerState+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896E181F8921E40088404C /* DrawerState+Internal.swift */; };
+		CB896E1B1F892CEA0088404C /* TransitionGeometry+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB896E1A1F892CEA0088404C /* TransitionGeometry+Internal.swift */; };
+		CB9808E51F784FE200F45D15 /* TransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9808C31F784A1300F45D15 /* TransitionController.swift */; };
+		CB9EFC9E1F78D8300047D83C /* DrawerPresenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9EFC9C1F78D8300047D83C /* DrawerPresenting.swift */; };
+		CBB5A5DF1F8798AD00D40FEE /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB5A5DE1F8798AD00D40FEE /* DrawerViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CB2556A21F7B479A00C7E2FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB4924721F7849DF00C27365 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB49247A1F7849DF00C27365;
+			remoteInfo = Drawer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CB25569C1F7B479A00C7E2FF /* DrawerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB25569E1F7B479A00C7E2FF /* DrawerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTests.swift; sourceTree = "<group>"; };
+		CB2556A01F7B479A00C7E2FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB49247B1F7849DF00C27365 /* Drawer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Drawer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB49247E1F7849DF00C27365 /* Drawer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Drawer.h; sourceTree = "<group>"; };
+		CB49247F1F7849DF00C27365 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB7B56BF1F7B1CBC00E1C2F1 /* DrawerPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerPresentable.swift; sourceTree = "<group>"; };
+		CB896DE21F87FAE80088404C /* DrawerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerState.swift; sourceTree = "<group>"; };
+		CB896DE31F87FAE80088404C /* TransitionDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDirection.swift; sourceTree = "<group>"; };
+		CB896DE41F87FAE80088404C /* TransitionTrigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionTrigger.swift; sourceTree = "<group>"; };
+		CB896DEB1F87FD380088404C /* TransitionActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionActions.swift; sourceTree = "<group>"; };
+		CB896DEC1F87FD380088404C /* TransitionConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionConfiguration.swift; sourceTree = "<group>"; };
+		CB896DED1F87FD380088404C /* TransitionGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionGeometry.swift; sourceTree = "<group>"; };
+		CB896DEE1F87FD380088404C /* TransitionInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionInformation.swift; sourceTree = "<group>"; };
+		CB896DF51F88011F0088404C /* TransitionState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionState.swift; sourceTree = "<group>"; };
+		CB896DF71F885E440088404C /* TransitionController+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TransitionController+Configuration.swift"; sourceTree = "<group>"; };
+		CB896DF91F886D210088404C /* DrawerViewController+State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DrawerViewController+State.swift"; sourceTree = "<group>"; };
+		CB896DFB1F886E450088404C /* DrawerViewController+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DrawerViewController+Configuration.swift"; sourceTree = "<group>"; };
+		CB896E041F887D7B0088404C /* DrawerViewController+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DrawerViewController+AutoLayout.swift"; sourceTree = "<group>"; };
+		CB896E051F887D7B0088404C /* DrawerViewController+Static.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DrawerViewController+Static.swift"; sourceTree = "<group>"; };
+		CB896E061F887D7B0088404C /* DrawerViewController+Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DrawerViewController+Geometry.swift"; sourceTree = "<group>"; };
+		CB896E0B1F887F8E0088404C /* DrawerViewController+ViewSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DrawerViewController+ViewSetup.swift"; sourceTree = "<group>"; };
+		CB896E0D1F887FDD0088404C /* DrawerViewController+Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DrawerViewController+Transition.swift"; sourceTree = "<group>"; };
+		CB896E0F1F8896BC0088404C /* ViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAnimator.swift; sourceTree = "<group>"; };
+		CB896E111F88C8130088404C /* DrawerViewController+Interactive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DrawerViewController+Interactive.swift"; sourceTree = "<group>"; };
+		CB896E151F88DF2F0088404C /* UIPanGestureRecognizer+Dragging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+Dragging.swift"; sourceTree = "<group>"; };
+		CB896E181F8921E40088404C /* DrawerState+Internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DrawerState+Internal.swift"; sourceTree = "<group>"; };
+		CB896E1A1F892CEA0088404C /* TransitionGeometry+Internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TransitionGeometry+Internal.swift"; sourceTree = "<group>"; };
+		CB9808C31F784A1300F45D15 /* TransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionController.swift; sourceTree = "<group>"; };
+		CB9EFC9C1F78D8300047D83C /* DrawerPresenting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerPresenting.swift; sourceTree = "<group>"; };
+		CBB5A5DE1F8798AD00D40FEE /* DrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CB2556991F7B479A00C7E2FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB2556A11F7B479A00C7E2FF /* Drawer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB4924771F7849DF00C27365 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CB25569D1F7B479A00C7E2FF /* DrawerTests */ = {
+			isa = PBXGroup;
+			children = (
+				CB25569E1F7B479A00C7E2FF /* DrawerTests.swift */,
+				CB2556A01F7B479A00C7E2FF /* Info.plist */,
+			);
+			path = DrawerTests;
+			sourceTree = "<group>";
+		};
+		CB4924711F7849DF00C27365 = {
+			isa = PBXGroup;
+			children = (
+				CB49247D1F7849DF00C27365 /* Drawer */,
+				CB25569D1F7B479A00C7E2FF /* DrawerTests */,
+				CB49247C1F7849DF00C27365 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CB49247C1F7849DF00C27365 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB49247B1F7849DF00C27365 /* Drawer.framework */,
+				CB25569C1F7B479A00C7E2FF /* DrawerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB49247D1F7849DF00C27365 /* Drawer */ = {
+			isa = PBXGroup;
+			children = (
+				CB896DFE1F8870630088404C /* Public API */,
+				CB896E031F8871230088404C /* Internal API */,
+				CB49247E1F7849DF00C27365 /* Drawer.h */,
+				CB49247F1F7849DF00C27365 /* Info.plist */,
+			);
+			path = Drawer;
+			sourceTree = "<group>";
+		};
+		CB896DE11F87FAE80088404C /* Enumerations */ = {
+			isa = PBXGroup;
+			children = (
+				CB896E181F8921E40088404C /* DrawerState+Internal.swift */,
+				CB896DE41F87FAE80088404C /* TransitionTrigger.swift */,
+			);
+			path = Enumerations;
+			sourceTree = "<group>";
+		};
+		CB896DEA1F87FD380088404C /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				CB896DF51F88011F0088404C /* TransitionState.swift */,
+				CB896E1A1F892CEA0088404C /* TransitionGeometry+Internal.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
+		CB896DFE1F8870630088404C /* Public API */ = {
+			isa = PBXGroup;
+			children = (
+				CB9808C31F784A1300F45D15 /* TransitionController.swift */,
+				CB896DF71F885E440088404C /* TransitionController+Configuration.swift */,
+				CB896DFF1F8870AA0088404C /* Structs */,
+				CB896E001F8870B90088404C /* Enumerations */,
+				CB896E011F8870C50088404C /* Protocols */,
+			);
+			path = "Public API";
+			sourceTree = "<group>";
+		};
+		CB896DFF1F8870AA0088404C /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				CB896DEC1F87FD380088404C /* TransitionConfiguration.swift */,
+				CB896DED1F87FD380088404C /* TransitionGeometry.swift */,
+				CB896DEE1F87FD380088404C /* TransitionInformation.swift */,
+				CB896DEB1F87FD380088404C /* TransitionActions.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
+		CB896E001F8870B90088404C /* Enumerations */ = {
+			isa = PBXGroup;
+			children = (
+				CB896DE21F87FAE80088404C /* DrawerState.swift */,
+				CB896DE31F87FAE80088404C /* TransitionDirection.swift */,
+			);
+			path = Enumerations;
+			sourceTree = "<group>";
+		};
+		CB896E011F8870C50088404C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CB9EFC9C1F78D8300047D83C /* DrawerPresenting.swift */,
+				CB7B56BF1F7B1CBC00E1C2F1 /* DrawerPresentable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		CB896E031F8871230088404C /* Internal API */ = {
+			isa = PBXGroup;
+			children = (
+				CBB5A5DE1F8798AD00D40FEE /* DrawerViewController.swift */,
+				CB896E0F1F8896BC0088404C /* ViewAnimator.swift */,
+				CB896E0A1F887D9F0088404C /* Extensions */,
+				CB896DEA1F87FD380088404C /* Structs */,
+				CB896DE11F87FAE80088404C /* Enumerations */,
+			);
+			path = "Internal API";
+			sourceTree = "<group>";
+		};
+		CB896E0A1F887D9F0088404C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CB896E0B1F887F8E0088404C /* DrawerViewController+ViewSetup.swift */,
+				CB896E041F887D7B0088404C /* DrawerViewController+AutoLayout.swift */,
+				CB896E061F887D7B0088404C /* DrawerViewController+Geometry.swift */,
+				CB896E0D1F887FDD0088404C /* DrawerViewController+Transition.swift */,
+				CB896E111F88C8130088404C /* DrawerViewController+Interactive.swift */,
+				CB896E051F887D7B0088404C /* DrawerViewController+Static.swift */,
+				CB896DFB1F886E450088404C /* DrawerViewController+Configuration.swift */,
+				CB896DF91F886D210088404C /* DrawerViewController+State.swift */,
+				CB896E151F88DF2F0088404C /* UIPanGestureRecognizer+Dragging.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		CB4924781F7849DF00C27365 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB4924801F7849DF00C27365 /* Drawer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		CB25569B1F7B479A00C7E2FF /* DrawerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB2556A61F7B479A00C7E2FF /* Build configuration list for PBXNativeTarget "DrawerTests" */;
+			buildPhases = (
+				CB2556981F7B479A00C7E2FF /* Sources */,
+				CB2556991F7B479A00C7E2FF /* Frameworks */,
+				CB25569A1F7B479A00C7E2FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB2556A31F7B479A00C7E2FF /* PBXTargetDependency */,
+			);
+			name = DrawerTests;
+			productName = DrawerTests;
+			productReference = CB25569C1F7B479A00C7E2FF /* DrawerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CB49247A1F7849DF00C27365 /* Drawer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB4924831F7849DF00C27365 /* Build configuration list for PBXNativeTarget "Drawer" */;
+			buildPhases = (
+				CB4924761F7849DF00C27365 /* Sources */,
+				CB4924771F7849DF00C27365 /* Frameworks */,
+				CB4924781F7849DF00C27365 /* Headers */,
+				CB4924791F7849DF00C27365 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Drawer;
+			productName = Drawer;
+			productReference = CB49247B1F7849DF00C27365 /* Drawer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CB4924721F7849DF00C27365 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Wagner Truppel";
+				TargetAttributes = {
+					CB25569B1F7B479A00C7E2FF = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					CB49247A1F7849DF00C27365 = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = CB4924751F7849DF00C27365 /* Build configuration list for PBXProject "Drawer" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CB4924711F7849DF00C27365;
+			productRefGroup = CB49247C1F7849DF00C27365 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CB49247A1F7849DF00C27365 /* Drawer */,
+				CB25569B1F7B479A00C7E2FF /* DrawerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CB25569A1F7B479A00C7E2FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB4924791F7849DF00C27365 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CB2556981F7B479A00C7E2FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB25569F1F7B479A00C7E2FF /* DrawerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB4924761F7849DF00C27365 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB896DFA1F886D210088404C /* DrawerViewController+State.swift in Sources */,
+				CBB5A5DF1F8798AD00D40FEE /* DrawerViewController.swift in Sources */,
+				CB7B56C01F7B1CBD00E1C2F1 /* DrawerPresentable.swift in Sources */,
+				CB896E161F88DF2F0088404C /* UIPanGestureRecognizer+Dragging.swift in Sources */,
+				CB896DE71F87FAE80088404C /* TransitionTrigger.swift in Sources */,
+				CB896DF61F88011F0088404C /* TransitionState.swift in Sources */,
+				CB896DE51F87FAE80088404C /* DrawerState.swift in Sources */,
+				CB896E191F8921E40088404C /* DrawerState+Internal.swift in Sources */,
+				CB896DF11F87FD380088404C /* TransitionGeometry.swift in Sources */,
+				CB896E101F8896BC0088404C /* ViewAnimator.swift in Sources */,
+				CB9EFC9E1F78D8300047D83C /* DrawerPresenting.swift in Sources */,
+				CB896DF21F87FD380088404C /* TransitionInformation.swift in Sources */,
+				CB896E071F887D7B0088404C /* DrawerViewController+AutoLayout.swift in Sources */,
+				CB896DE61F87FAE80088404C /* TransitionDirection.swift in Sources */,
+				CB896E091F887D7B0088404C /* DrawerViewController+Geometry.swift in Sources */,
+				CB896DEF1F87FD380088404C /* TransitionActions.swift in Sources */,
+				CB896DFC1F886E450088404C /* DrawerViewController+Configuration.swift in Sources */,
+				CB896E0C1F887F8E0088404C /* DrawerViewController+ViewSetup.swift in Sources */,
+				CB896E0E1F887FDD0088404C /* DrawerViewController+Transition.swift in Sources */,
+				CB896E081F887D7B0088404C /* DrawerViewController+Static.swift in Sources */,
+				CB896DF81F885E440088404C /* TransitionController+Configuration.swift in Sources */,
+				CB896DF01F87FD380088404C /* TransitionConfiguration.swift in Sources */,
+				CB896E121F88C8130088404C /* DrawerViewController+Interactive.swift in Sources */,
+				CB896E1B1F892CEA0088404C /* TransitionGeometry+Internal.swift in Sources */,
+				CB9808E51F784FE200F45D15 /* TransitionController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CB2556A31F7B479A00C7E2FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CB49247A1F7849DF00C27365 /* Drawer */;
+			targetProxy = CB2556A21F7B479A00C7E2FF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CB2556A41F7B479A00C7E2FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TK5G2RYR3R;
+				INFOPLIST_FILE = DrawerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wltruppel.DrawerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CB2556A51F7B479A00C7E2FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TK5G2RYR3R;
+				INFOPLIST_FILE = DrawerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wltruppel.DrawerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CB4924811F7849DF00C27365 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CB4924821F7849DF00C27365 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CB4924841F7849DF00C27365 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TK5G2RYR3R;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Drawer/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wltruppel.Drawer;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CB4924851F7849DF00C27365 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TK5G2RYR3R;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Drawer/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wltruppel.Drawer;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CB2556A61F7B479A00C7E2FF /* Build configuration list for PBXNativeTarget "DrawerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB2556A41F7B479A00C7E2FF /* Debug */,
+				CB2556A51F7B479A00C7E2FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB4924751F7849DF00C27365 /* Build configuration list for PBXProject "Drawer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB4924811F7849DF00C27365 /* Debug */,
+				CB4924821F7849DF00C27365 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB4924831F7849DF00C27365 /* Build configuration list for PBXNativeTarget "Drawer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB4924841F7849DF00C27365 /* Debug */,
+				CB4924851F7849DF00C27365 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CB4924721F7849DF00C27365 /* Project object */;
+}
