@@ -13,6 +13,7 @@ import UIKit
 final class DrawerViewController: UIViewController {
     weak var presenterVC: (UIViewController & DrawerPresenting)?
     /* strong */ var contentVC: (UIViewController & DrawerPresentable)?
+    weak var contentVCParentVC: UIViewController?
 
     var contextView = UIView() // dummy view, replaced by self.view in viewDidLoad
     let nonDrawerView = UIView() // the part of contextView that isn't the drawerView

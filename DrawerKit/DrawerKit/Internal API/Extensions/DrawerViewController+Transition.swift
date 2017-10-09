@@ -156,7 +156,7 @@ private extension DrawerViewController {
     func cleanupIfReachingCollapsedState() {
         guard currentDrawerState == .collapsed else { return }
         removeGestureRecognizers()
-        removeContentFromDrawer()
+        removeContentFromDrawerAndAddItBackWhereItCameFrom()
         self.dismiss(animated: false)
     }
 
