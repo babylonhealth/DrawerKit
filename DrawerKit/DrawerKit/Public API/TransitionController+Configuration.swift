@@ -2,7 +2,7 @@ import UIKit
 
 // Convenience functions to get the transition configuration
 // parameters directly from the transition controller, purely
-// for the benefit of clients to the Drawer library.
+// for the benefit of clients to the DrawerKit library.
 
 extension TransitionController {
     public var totalDurationInSeconds: TimeInterval {

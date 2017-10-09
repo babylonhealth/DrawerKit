@@ -12,7 +12,7 @@ class PresentedViewController: UIViewController, DrawerPresentable {
     var fixedHeightConstraint: NSLayoutConstraint!
     var hasFixedHeight = false
 
-//    I expected this to be called by it isn't!
+//    I expected this to be called but it isn't!
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
 //        view.heightAnchor.constraint(equalToConstant: 300).isActive = hasFixedHeight
