@@ -1,8 +1,8 @@
 import UIKit
 
-// Data passed to view controllers to prepare, animate along, and/or cleanup
-// their views before, during, and/or after a drawer transition, and to perform
-// completion closures when a drawer transition ends.
+// Data passed to view controllers to prepare and/or cleanup their views before
+// and/or after a drawer transition, and to perform completion closures when a
+// drawer transition ends.
 
 public struct TransitionInformation {
     public let configuration: TransitionConfiguration
