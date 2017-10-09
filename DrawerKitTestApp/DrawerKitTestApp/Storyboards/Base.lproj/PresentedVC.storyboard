@@ -12,12 +12,12 @@
         <!--Presented-->
         <scene sceneID="IPy-73-crh">
             <objects>
-                <viewController storyboardIdentifier="presented" title="Presented" id="WAL-1L-LEs" customClass="PresentedViewController" customModule="DrawerTestApp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="presented" title="Presented" id="WAL-1L-LEs" customClass="PresentedViewController" customModule="DrawerKitTestApp" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g2e-7J-C8x"/>
                         <viewControllerLayoutGuide type="bottom" id="8Ub-HK-54v"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="btB-V6-MUi" customClass="PresentedView" customModule="DrawerTestApp">
+                    <view key="view" contentMode="scaleToFill" id="btB-V6-MUi" customClass="PresentedView" customModule="DrawerKitTestApp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

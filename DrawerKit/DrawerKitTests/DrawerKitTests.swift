@@ -1,14 +1,15 @@
 //
-//  DrawerTests.swift
-//  DrawerTests
+//  DrawerKitTests.swift
+//  DrawerKitTests
 //
-//  Created by Wagner Truppel on 27/09/2017.
-//  Copyright © 2017 Wagner Truppel. All rights reserved.
+//  Created by Wagner Truppel on 09/10/2017.
+//  Copyright © 2017 Babylon Health. All rights reserved.
 //
 
 import XCTest
+@testable import DrawerKit
 
-class DrawerTests: XCTestCase {
+class DrawerKitTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

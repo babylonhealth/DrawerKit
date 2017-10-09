@@ -11,24 +11,24 @@
 		CB884E191F77644100B7EB72 /* PresenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB884E171F77644100B7EB72 /* PresenterView.swift */; };
 		CB884E3E1F77F1DC00B7EB72 /* PresentedVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB884E391F77ECDF00B7EB72 /* PresentedVC.storyboard */; };
 		CB884E411F77FDDF00B7EB72 /* PresenterVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB884E3F1F77F55E00B7EB72 /* PresenterVC.storyboard */; };
-		CB9809161F7880DD00F45D15 /* Drawer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9809151F7880DD00F45D15 /* Drawer.framework */; };
-		CB9809171F7880DD00F45D15 /* Drawer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CB9809151F7880DD00F45D15 /* Drawer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CBB876231F75AABA009BC050 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB876221F75AABA009BC050 /* AppDelegate.swift */; };
 		CBB876251F75AABA009BC050 /* PresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB876241F75AABA009BC050 /* PresenterViewController.swift */; };
 		CBB876281F75AABA009BC050 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB876261F75AABA009BC050 /* Main.storyboard */; };
 		CBB8762A1F75AABA009BC050 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB876291F75AABA009BC050 /* Assets.xcassets */; };
 		CBB8762D1F75AABA009BC050 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB8762B1F75AABA009BC050 /* LaunchScreen.storyboard */; };
 		CBB8764A1F75AFAE009BC050 /* PresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB876491F75AFAE009BC050 /* PresentedViewController.swift */; };
+		CBE1FE991F8B998B00FF39E6 /* DrawerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBE1FE981F8B998B00FF39E6 /* DrawerKit.framework */; };
+		CBE1FE9A1F8B998B00FF39E6 /* DrawerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBE1FE981F8B998B00FF39E6 /* DrawerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CBB876501F75B6BC009BC050 /* Embed Frameworks */ = {
+		CBE1FE971F8B976A00FF39E6 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CB9809171F7880DD00F45D15 /* Drawer.framework in Embed Frameworks */,
+				CBE1FE9A1F8B998B00FF39E6 /* DrawerKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -40,8 +40,7 @@
 		CB884E171F77644100B7EB72 /* PresenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterView.swift; sourceTree = "<group>"; };
 		CB884E3A1F77ECDF00B7EB72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PresentedVC.storyboard; sourceTree = "<group>"; };
 		CB884E401F77F55E00B7EB72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PresenterVC.storyboard; sourceTree = "<group>"; };
-		CB9809151F7880DD00F45D15 /* Drawer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Drawer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CBB8761F1F75AABA009BC050 /* DrawerTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawerTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBB8761F1F75AABA009BC050 /* DrawerKitTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawerKitTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBB876221F75AABA009BC050 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBB876241F75AABA009BC050 /* PresenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterViewController.swift; sourceTree = "<group>"; };
 		CBB876271F75AABA009BC050 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		CBB8762C1F75AABA009BC050 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBB8762E1F75AABA009BC050 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBB876491F75AFAE009BC050 /* PresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedViewController.swift; sourceTree = "<group>"; };
+		CBE1FE981F8B998B00FF39E6 /* DrawerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DrawerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB9809161F7880DD00F45D15 /* Drawer.framework in Frameworks */,
+				CBE1FE991F8B998B00FF39E6 /* DrawerKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,21 +77,21 @@
 		CBB876161F75AABA009BC050 = {
 			isa = PBXGroup;
 			children = (
-				CBB876211F75AABA009BC050 /* DrawerTestApp */,
+				CBB876211F75AABA009BC050 /* DrawerKitTestApp */,
 				CBB876201F75AABA009BC050 /* Products */,
-				CB9809151F7880DD00F45D15 /* Drawer.framework */,
+				CBE1FE981F8B998B00FF39E6 /* DrawerKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
 		CBB876201F75AABA009BC050 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CBB8761F1F75AABA009BC050 /* DrawerTestApp.app */,
+				CBB8761F1F75AABA009BC050 /* DrawerKitTestApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CBB876211F75AABA009BC050 /* DrawerTestApp */ = {
+		CBB876211F75AABA009BC050 /* DrawerKitTestApp */ = {
 			isa = PBXGroup;
 			children = (
 				CBB876221F75AABA009BC050 /* AppDelegate.swift */,
@@ -103,28 +103,28 @@
 				CB884E371F77E75E00B7EB72 /* Storyboards */,
 				CBB8762E1F75AABA009BC050 /* Info.plist */,
 			);
-			path = DrawerTestApp;
+			path = DrawerKitTestApp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CBB8761E1F75AABA009BC050 /* DrawerTestApp */ = {
+		CBB8761E1F75AABA009BC050 /* DrawerKitTestApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CBB876311F75AABA009BC050 /* Build configuration list for PBXNativeTarget "DrawerTestApp" */;
+			buildConfigurationList = CBB876311F75AABA009BC050 /* Build configuration list for PBXNativeTarget "DrawerKitTestApp" */;
 			buildPhases = (
 				CBB8761B1F75AABA009BC050 /* Sources */,
 				CBB8761C1F75AABA009BC050 /* Frameworks */,
 				CBB8761D1F75AABA009BC050 /* Resources */,
-				CBB876501F75B6BC009BC050 /* Embed Frameworks */,
+				CBE1FE971F8B976A00FF39E6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = DrawerTestApp;
-			productName = DrawerTestApp;
-			productReference = CBB8761F1F75AABA009BC050 /* DrawerTestApp.app */;
+			name = DrawerKitTestApp;
+			productName = DrawerKitTestApp;
+			productReference = CBB8761F1F75AABA009BC050 /* DrawerKitTestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -143,7 +143,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CBB8761A1F75AABA009BC050 /* Build configuration list for PBXProject "DrawerTestApp" */;
+			buildConfigurationList = CBB8761A1F75AABA009BC050 /* Build configuration list for PBXProject "DrawerKitTestApp" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -156,7 +156,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CBB8761E1F75AABA009BC050 /* DrawerTestApp */,
+				CBB8761E1F75AABA009BC050 /* DrawerKitTestApp */,
 			);
 		};
 /* End PBXProject section */
@@ -340,10 +340,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 33CV9PF9C4;
-				INFOPLIST_FILE = DrawerTestApp/Info.plist;
+				INFOPLIST_FILE = DrawerKitTestApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wltruppel.DrawerTestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wltruppel.DrawerKitTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -356,10 +356,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 33CV9PF9C4;
-				INFOPLIST_FILE = DrawerTestApp/Info.plist;
+				INFOPLIST_FILE = DrawerKitTestApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wltruppel.DrawerTestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wltruppel.DrawerKitTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -369,7 +369,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CBB8761A1F75AABA009BC050 /* Build configuration list for PBXProject "DrawerTestApp" */ = {
+		CBB8761A1F75AABA009BC050 /* Build configuration list for PBXProject "DrawerKitTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB8762F1F75AABA009BC050 /* Debug */,
@@ -378,7 +378,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CBB876311F75AABA009BC050 /* Build configuration list for PBXNativeTarget "DrawerTestApp" */ = {
+		CBB876311F75AABA009BC050 /* Build configuration list for PBXNativeTarget "DrawerKitTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB876321F75AABA009BC050 /* Debug */,

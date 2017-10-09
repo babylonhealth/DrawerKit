@@ -12,12 +12,12 @@
         <!--Presenter-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="presenter" title="Presenter" id="BYZ-38-t0r" customClass="PresenterViewController" customModule="DrawerTestApp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="presenter" title="Presenter" id="BYZ-38-t0r" customClass="PresenterViewController" customModule="DrawerKitTestApp" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="PresenterView" customModule="DrawerTestApp">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="PresenterView" customModule="DrawerKitTestApp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

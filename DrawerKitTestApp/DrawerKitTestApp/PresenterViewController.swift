@@ -1,5 +1,5 @@
 import UIKit
-import Drawer
+import DrawerKit
 
 // Search for the string 'THIS IS THE IMPORTANT PART' in both view controllers
 // to see how to show the drawer. There may be more than one important part in
@@ -7,7 +7,7 @@ import Drawer
 
 // ======== THIS IS THE IMPORTANT PART ======== //
 class PresenterViewController: UIViewController, DrawerPresenting {
-    /* strong */ var drawerTransitionController: Drawer.TransitionController?
+    /* strong */ var drawerTransitionController: DrawerKit.TransitionController?
     // ============================================ //
 
     private static let defaultDuration: Float = 0.8
@@ -73,7 +73,7 @@ extension PresenterViewController {
 
         // ======== THIS IS THE IMPORTANT PART ======== //
         // we can provide the configuration values in the initialiser...
-        var configuration = TransitionConfiguration( /* ..., ..., ..., */
+        var configuration = DrawerKit.TransitionConfiguration( /* ..., ..., ..., */
             numberOfTapsForOutsideDrawerDismissal: numberOfTapsForOutsideDrawerDismissal)
 
         // ... or after initialisation
@@ -85,9 +85,9 @@ extension PresenterViewController {
         configuration.isDrawerDraggable = isDrawerDraggable
         configuration.isDismissableByOutsideDrawerTaps = isDismissableByOutsideDrawerTaps
 
-        drawerTransitionController = Drawer.TransitionController(presenter: self,
-                                                                 presented: vc,
-                                                                 configuration: configuration)
+        drawerTransitionController = DrawerKit.TransitionController(presenter: self,
+                                                                    presented: vc,
+                                                                    configuration: configuration)
 
         // Instead of
         //        present(vc, animated: true, completion: nil)

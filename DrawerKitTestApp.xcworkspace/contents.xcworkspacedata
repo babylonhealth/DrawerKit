@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:DrawerTestApp/DrawerTestApp.xcodeproj">
+      location = "group:DrawerKitTestApp/DrawerKitTestApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Drawer/Drawer.xcodeproj">
+      location = "group:DrawerKit/DrawerKit.xcodeproj">
    </FileRef>
 </Workspace>

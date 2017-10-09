@@ -1,5 +1,5 @@
 import UIKit
-import Drawer
+import DrawerKit
 
 // Search for the string 'THIS IS THE IMPORTANT PART' in both view controllers
 // to see how to show the drawer. There may be more than one important part in
@@ -7,7 +7,7 @@ import Drawer
 
 // ======== THIS IS THE IMPORTANT PART ======== //
 class PresentedViewController: UIViewController, DrawerPresentable {
-    weak var drawerTransitionController: Drawer.TransitionController?
+    weak var drawerTransitionController: DrawerKit.TransitionController?
     // ============================================ //
     var fixedHeightConstraint: NSLayoutConstraint!
     var hasFixedHeight = false
