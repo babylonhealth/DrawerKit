@@ -10,7 +10,7 @@ public struct TransitionInformation {
     public let presenting: Bool
     public let startDrawerState: DrawerState
     public let endDrawerState: DrawerState
-    public var endPosition: UIViewAnimatingPosition? // intentionally mutable
+    public internal(set) var endPosition: UIViewAnimatingPosition?
     public let actualDurationInSeconds: TimeInterval
 
     internal init(configuration: TransitionConfiguration,
