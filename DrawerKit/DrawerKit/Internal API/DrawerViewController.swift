@@ -61,12 +61,6 @@ extension DrawerViewController {
         addContentToDrawer()
         setupGestureRecognizers()
     }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        removeGestureRecognizers()
-        removeContentFromDrawer()
-        super.viewDidDisappear(animated)
-    }
 }
 
 extension DrawerViewController {
