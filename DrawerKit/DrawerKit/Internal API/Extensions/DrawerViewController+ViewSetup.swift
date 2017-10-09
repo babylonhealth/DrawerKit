@@ -30,6 +30,8 @@ extension DrawerViewController {
 
         guard let contentView = contentVC.view else { return }
 
+        contentVCParentVC = contentVC.parent
+
         self.addChildViewController(contentVC)
         drawerView.addSubview(contentView)
         contentVC.didMove(toParentViewController: self)
@@ -40,10 +42,12 @@ extension DrawerViewController {
         drawerView.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
     }
 
-    func removeContentFromDrawer() {
-        contentVC?.willMove(toParentViewController: nil)
-        contentVC?.view.removeFromSuperview()
-        contentVC?.removeFromParentViewController()
+    func removeContentFromDrawerAndAddItBackWhereItCameFrom() {
+        guard let contentVC = self.contentVC else { return }
+
+        contentVCParentVC?.addChildViewController(contentVC)
+        contentVCParentVC?.view.addSubview(contentVC.view)
+        contentVC.didMove(toParentViewController: contentVCParentVC)
     }
 }
 
