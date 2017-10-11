@@ -6,7 +6,7 @@ final class PresentationController: UIPresentationController {
     private var containerViewDismissalTapGR: UITapGestureRecognizer?
     private var presentedViewDragGR: UIPanGestureRecognizer?
 
-    init(presentingVC: UIViewController, presentedVC: UIViewController,
+    init(presentingVC: UIViewController?, presentedVC: UIViewController,
          configuration: DrawerConfiguration) {
         self.configuration = configuration
         super.init(presentedViewController: presentedVC, presenting: presentingVC)

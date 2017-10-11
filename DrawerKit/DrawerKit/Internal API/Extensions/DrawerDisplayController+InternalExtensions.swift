@@ -4,7 +4,6 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
     public func presentationController(forPresented presented: UIViewController,
                                        presenting: UIViewController?,
                                        source: UIViewController) -> UIPresentationController? {
-        guard let presentingVC = presenting else { return nil }
         let presentationController = PresentationController(presentingVC: presentingVC,
                                                             presentedVC: presented,
                                                             configuration: configuration)

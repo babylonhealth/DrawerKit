@@ -1,8 +1,14 @@
 import UIKit
 import DrawerKit
 
-class PresenterViewController: UIViewController {
+// Search for the string 'THIS IS THE IMPORTANT PART' in both view controllers
+// to see how to show the drawer. There may be more than one important part in
+// each view controller.
 
+// ======== THIS IS THE IMPORTANT PART ======== //
+class PresenterViewController: UIViewController, DrawerPresenting {
+    /* strong */ var drawerDisplayController: DrawerDisplayController?
+    // ============================================ //
     private static let defaultDuration: Float = 0.8
     private var _duration: TimeInterval = 0
     private var duration: Float {
@@ -52,6 +58,25 @@ extension PresenterViewController {
         guard let vc = sb.instantiateViewController(withIdentifier: "presented")
             as? PresentedViewController else { return }
         vc.hasFixedHeight = hasFixedHeight
+
+        // ======== THIS IS THE IMPORTANT PART ======== //
+        // you can provide the configuration values in the initialiser...
+        var configuration = DrawerConfiguration(/* ..., ..., ..., */)
+
+        // ... or after initialisation
+        //        configuration.totalDurationInSeconds = _duration // XXX
+        //        configuration.timingCurveProvider = UICubicTimingParameters(animationCurve: .easeInOut)
+        configuration.coversStatusBar = coversStatusBar
+        configuration.supportsPartialExpansion = supportsPartialExpansion
+        configuration.dismissesInStages = dismissesInStages
+        configuration.isDrawerDraggable = isDrawerDraggable
+        configuration.isDismissableByOutsideDrawerTaps = isDismissableByOutsideDrawerTaps
+
+        drawerDisplayController = DrawerDisplayController(presentingViewController: self,
+                                                          presentedViewController: vc,
+                                                          configuration: configuration)
+        // ============================================ //
+
         present(vc, animated: true)
     }
 }
@@ -166,3 +191,4 @@ private extension PresenterViewController {
         return Float(truncf(10 * value)) / 10
     }
 }
+
