@@ -3,12 +3,12 @@ import UIKit
 /// A collection of convenience getter functions to access the drawer
 /// configuration parameters directly from the drawer display controller.
 extension DrawerDisplayController {
-    public var fullTransitionTimingConfiguration: TimingConfiguration {
-        return configuration.fullTransitionTimingConfiguration
+    public var durationInSeconds: TimeInterval {
+        return configuration.durationInSeconds
     }
 
-    public var partialTransitionTimingConfiguration: TimingConfiguration {
-        return configuration.partialTransitionTimingConfiguration
+    public var timingCurveProvider: UITimingCurveProvider {
+        return configuration.timingCurveProvider
     }
 
     public var coversStatusBar: Bool {

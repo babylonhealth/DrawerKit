@@ -64,15 +64,8 @@ extension PresenterViewController {
         var configuration = DrawerConfiguration(/* ..., ..., ..., */)
 
         // ... or after initialisation
-        let partialTimingParams =
-            TimingConfiguration(durationInSeconds: 0.8,
-                                timingCurveProvider: UISpringTimingParameters(dampingRatio: 0.7))
-        let fullTimingParams =
-            TimingConfiguration(durationInSeconds: 0.8,
-                                timingCurveProvider: UISpringTimingParameters(dampingRatio: 0.2))
-        configuration.partialTransitionTimingConfiguration = partialTimingParams
-        configuration.fullTransitionTimingConfiguration = fullTimingParams
-
+        configuration.durationInSeconds = 0.8
+        configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.2)
         configuration.coversStatusBar = coversStatusBar
         configuration.supportsPartialExpansion = supportsPartialExpansion
         configuration.dismissesInStages = dismissesInStages

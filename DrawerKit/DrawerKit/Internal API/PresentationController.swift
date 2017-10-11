@@ -61,12 +61,12 @@ private extension PresentationController {
         return containerViewH - drawerPartialH
     }
 
-    var partialTransitionTimingConfiguration: TimingConfiguration {
-        return configuration.partialTransitionTimingConfiguration
+    var durationInSeconds: TimeInterval {
+        return configuration.durationInSeconds
     }
 
-    var fullTransitionTimingConfiguration: TimingConfiguration {
-        return configuration.fullTransitionTimingConfiguration
+    var timingCurveProvider: UITimingCurveProvider {
+        return configuration.timingCurveProvider
     }
 
     var supportsPartialExpansion: Bool {
@@ -191,7 +191,10 @@ private extension PresentationController {
         let endPosY = (clamping ? clamped(endPositionY) : endPositionY)
         guard endPosY != currentDrawerY else { return }
 
-        let animator = makeAnimator(to: endPosY)
+        let duration = configuration.durationInSeconds
+        let timingParams = configuration.timingCurveProvider
+        let animator = UIViewPropertyAnimator(duration: duration,
+                                              timingParameters: timingParams)
 
         animator.addAnimations { [weak self] in
             self?.currentDrawerY = endPosY
@@ -213,7 +216,10 @@ private extension PresentationController {
         let endPosY = (clamping ? clamped(endPositionY) : endPositionY)
         guard endPosY != currentDrawerY else { return }
 
-        let animator = makeAnimator(to: endPosY)
+        let duration = configuration.durationInSeconds
+        let timingParams = configuration.timingCurveProvider
+        let animator = UIViewPropertyAnimator(duration: duration,
+                                              timingParameters: timingParams)
 
         let endingCornerRadius = cornerRadius(at: endPosY)
         animator.addAnimations { [weak self] in
@@ -221,20 +227,6 @@ private extension PresentationController {
         }
 
         animator.startAnimation()
-    }
-
-    func makeAnimator(to endPositionY: CGFloat) -> UIViewPropertyAnimator {
-        let timingConfiguration: TimingConfiguration
-        if endPositionY == drawerPartialY {
-            timingConfiguration = partialTransitionTimingConfiguration
-        } else {
-            timingConfiguration = fullTransitionTimingConfiguration
-        }
-
-        let duration = timingConfiguration.durationInSeconds
-        let timingParams = timingConfiguration.timingCurveProvider
-        return UIViewPropertyAnimator(duration: duration,
-                                      timingParameters: timingParams)
     }
 
     func cornerRadius(at positionY: CGFloat) -> CGFloat {

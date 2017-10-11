@@ -2,8 +2,8 @@ import UIKit
 
 extension DrawerConfiguration {
     public static func ==(lhs: DrawerConfiguration, rhs: DrawerConfiguration) -> Bool {
-        return lhs.fullTransitionTimingConfiguration == rhs.fullTransitionTimingConfiguration
-            && lhs.partialTransitionTimingConfiguration == rhs.partialTransitionTimingConfiguration
+        return lhs.durationInSeconds == rhs.durationInSeconds
+            && lhs.timingCurveProvider === rhs.timingCurveProvider
             && lhs.coversStatusBar == rhs.coversStatusBar
             && lhs.supportsPartialExpansion == rhs.supportsPartialExpansion
             && lhs.dismissesInStages == rhs.dismissesInStages

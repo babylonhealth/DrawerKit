@@ -2,8 +2,8 @@ import UIKit
 
 /// All the configurable parameters in one place.
 public struct DrawerConfiguration: Equatable {
-    public var fullTransitionTimingConfiguration: TimingConfiguration
-    public var partialTransitionTimingConfiguration: TimingConfiguration
+    public var durationInSeconds: TimeInterval
+    public var timingCurveProvider: UITimingCurveProvider
 
     public var coversStatusBar: Bool
     public var supportsPartialExpansion: Bool
@@ -20,8 +20,8 @@ public struct DrawerConfiguration: Equatable {
 
     public var maximumCornerRadius: CGFloat
 
-    public init(fullTransitionTimingConfiguration: TimingConfiguration = TimingConfiguration(),
-                partialTransitionTimingConfiguration: TimingConfiguration = TimingConfiguration(),
+    public init(durationInSeconds: TimeInterval = 0.8,
+                timingCurveProvider: UITimingCurveProvider = UISpringTimingParameters(),
                 coversStatusBar: Bool = true,
                 supportsPartialExpansion: Bool = true,
                 dismissesInStages: Bool = true,
@@ -32,8 +32,8 @@ public struct DrawerConfiguration: Equatable {
                 upperMarkFraction: CGFloat = 0.5,
                 lowerMarkFraction: CGFloat = 0.5,
                 maximumCornerRadius: CGFloat = 15) {
-        self.fullTransitionTimingConfiguration = fullTransitionTimingConfiguration
-        self.partialTransitionTimingConfiguration = partialTransitionTimingConfiguration
+        self.durationInSeconds = durationInSeconds
+        self.timingCurveProvider = timingCurveProvider
         self.coversStatusBar = coversStatusBar
         self.supportsPartialExpansion = supportsPartialExpansion
         self.dismissesInStages = dismissesInStages
