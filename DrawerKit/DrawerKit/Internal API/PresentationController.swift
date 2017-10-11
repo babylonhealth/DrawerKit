@@ -124,10 +124,10 @@ private extension PresentationController {
 
         switch gr.state {
         case .began:
-            lastDrawerY = currentDrawerY // XXX
+            lastDrawerY = currentDrawerY
 
         case .changed:
-            lastDrawerY = currentDrawerY // XXX
+            lastDrawerY = currentDrawerY
             let positionY = currentDrawerY + offsetY
             currentDrawerY = min(max(positionY, 0), containerViewH)
             currentDrawerCornerRadius = cornerRadius(at: currentDrawerY)
@@ -139,7 +139,7 @@ private extension PresentationController {
             animateTransition(to: endPosY)
 
         case .cancelled:
-            animateTransition(to: lastDrawerY)
+            animateTransition(to: lastDrawerY, clamping: true)
 
         default:
             break
@@ -148,21 +148,24 @@ private extension PresentationController {
 }
 
 private extension PresentationController {
-    func animateTransition(to endPositionY: CGFloat) {
-        addPositionAnimationEnding(at: endPositionY)
-        addCornerRadiusAnimationEnding(at: endPositionY)
+    func animateTransition(to endPositionY: CGFloat, clamping: Bool = false) {
+        addPositionAnimationEnding(at: endPositionY, clamping: clamping)
+        addCornerRadiusAnimationEnding(at: endPositionY, clamping: clamping)
     }
 
-    func addPositionAnimationEnding(at endPositionY: CGFloat) {
+    func addPositionAnimationEnding(at endPositionY: CGFloat, clamping: Bool = false) {
         guard endPositionY != currentDrawerY else { return }
 
-        let animator = makeAnimator(to: endPositionY)
+        let endPosY = (clamping ? clamped(endPositionY) : endPositionY)
+        guard endPosY != currentDrawerY else { return }
+
+        let animator = makeAnimator(to: endPosY)
 
         animator.addAnimations { [weak self] in
-            self?.currentDrawerY = endPositionY
+            self?.currentDrawerY = endPosY
         }
 
-        if endPositionY == containerViewH {
+        if endPosY == containerViewH {
             animator.addCompletion { [weak self] _ in
                 self?.presentedViewController.dismiss(animated: true)
             }
@@ -171,13 +174,16 @@ private extension PresentationController {
         animator.startAnimation()
     }
 
-    func addCornerRadiusAnimationEnding(at endPositionY: CGFloat) {
+    func addCornerRadiusAnimationEnding(at endPositionY: CGFloat, clamping: Bool = false) {
         guard drawerPartialY > 0 else { return }
         guard endPositionY != currentDrawerY else { return }
 
-        let animator = makeAnimator(to: endPositionY)
+        let endPosY = (clamping ? clamped(endPositionY) : endPositionY)
+        guard endPosY != currentDrawerY else { return }
 
-        let endingCornerRadius = cornerRadius(at: endPositionY)
+        let animator = makeAnimator(to: endPosY)
+
+        let endingCornerRadius = cornerRadius(at: endPosY)
         animator.addAnimations { [weak self] in
             self?.currentDrawerCornerRadius = endingCornerRadius
         }
@@ -257,5 +263,15 @@ private extension PresentationController {
         }
 
         return containerViewH
+    }
+
+    func clamped(_ positionY: CGFloat) -> CGFloat {
+        if positionY < upperMarkY {
+            return 0
+        } else if positionY > lowerMarkY {
+            return containerViewH
+        } else {
+            return drawerPartialY
+        }
     }
 }
