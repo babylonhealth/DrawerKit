@@ -13,7 +13,23 @@
 		CBBA2D411F8E807400E0137F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D3F1F8E807400E0137F /* Main.storyboard */; };
 		CBBA2D431F8E807400E0137F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D421F8E807400E0137F /* Assets.xcassets */; };
 		CBBA2D461F8E807400E0137F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D441F8E807400E0137F /* LaunchScreen.storyboard */; };
+		CBBA2D631F8E817400E0137F /* DrawerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBBA2D621F8E817400E0137F /* DrawerKit.framework */; };
+		CBBA2D641F8E817400E0137F /* DrawerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBBA2D621F8E817400E0137F /* DrawerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CBBA2D651F8E817400E0137F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CBBA2D641F8E817400E0137F /* DrawerKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CBBA2D361F8E807400E0137F /* DrawerKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawerKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +40,7 @@
 		CBBA2D421F8E807400E0137F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBBA2D451F8E807400E0137F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBBA2D471F8E807400E0137F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CBBA2D621F8E817400E0137F /* DrawerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DrawerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBBA2D631F8E817400E0137F /* DrawerKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +60,7 @@
 			children = (
 				CBBA2D381F8E807400E0137F /* DrawerKitDemo */,
 				CBBA2D371F8E807400E0137F /* Products */,
+				CBBA2D621F8E817400E0137F /* DrawerKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +96,7 @@
 				CBBA2D321F8E807300E0137F /* Sources */,
 				CBBA2D331F8E807300E0137F /* Frameworks */,
 				CBBA2D341F8E807300E0137F /* Resources */,
+				CBBA2D651F8E817400E0137F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
