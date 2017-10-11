@@ -18,7 +18,7 @@ extension PresentationController {
         var frame: CGRect = .zero
         frame.size = size(forChildContentContainer: presentedViewController,
                           withParentContainerSize: containerViewSize)
-        frame.origin.y = drawerPartialY
+        frame.origin.y = (supportsPartialExpansion ? drawerPartialY : 0)
         return frame
     }
 
@@ -61,12 +61,44 @@ private extension PresentationController {
         return containerViewH - drawerPartialH
     }
 
+    var partialTransitionTimingConfiguration: TimingConfiguration {
+        return configuration.partialTransitionTimingConfiguration
+    }
+
+    var fullTransitionTimingConfiguration: TimingConfiguration {
+        return configuration.fullTransitionTimingConfiguration
+    }
+
+    var supportsPartialExpansion: Bool {
+        return configuration.supportsPartialExpansion
+    }
+
+    var dismissesInStages: Bool {
+        return configuration.dismissesInStages
+    }
+
+    var flickSpeedThreshold: CGFloat {
+        return configuration.flickSpeedThreshold
+    }
+
+    var upperMarkFraction: CGFloat {
+        return configuration.upperMarkFraction
+    }
+
     var upperMarkY: CGFloat {
-        return configuration.upperMarkFraction * (containerViewH - drawerPartialH)
+        return upperMarkFraction * (containerViewH - drawerPartialH)
+    }
+
+    var lowerMarkFraction: CGFloat {
+        return configuration.lowerMarkFraction
     }
 
     var lowerMarkY: CGFloat {
-        return drawerPartialY + configuration.lowerMarkFraction * drawerPartialH
+        return drawerPartialY + lowerMarkFraction * drawerPartialH
+    }
+
+    var maximumCornerRadius: CGFloat {
+        return configuration.maximumCornerRadius
     }
 
     var currentDrawerY: CGFloat {
@@ -194,9 +226,9 @@ private extension PresentationController {
     func makeAnimator(to endPositionY: CGFloat) -> UIViewPropertyAnimator {
         let timingConfiguration: TimingConfiguration
         if endPositionY == drawerPartialY {
-            timingConfiguration = configuration.partialTransitionTimingConfiguration
+            timingConfiguration = partialTransitionTimingConfiguration
         } else {
-            timingConfiguration = configuration.fullTransitionTimingConfiguration
+            timingConfiguration = fullTransitionTimingConfiguration
         }
 
         let duration = timingConfiguration.durationInSeconds
@@ -206,7 +238,6 @@ private extension PresentationController {
     }
 
     func cornerRadius(at positionY: CGFloat) -> CGFloat {
-        let maxCornerRadius = configuration.maximumCornerRadius
         guard drawerPartialY > 0 else { return 0 }
         let fraction: CGFloat
         if positionY <= drawerPartialY {
@@ -214,30 +245,16 @@ private extension PresentationController {
         } else {
             fraction = 1 - (positionY - drawerPartialY) / (containerViewH - drawerPartialY)
         }
-        return fraction * maxCornerRadius
+        return fraction * maximumCornerRadius
     }
 }
 
 private extension PresentationController {
     func endingPositionY(positionY: CGFloat, velocityY: CGFloat) -> CGFloat {
-        let velocityThresholdY = configuration.flickSpeedThreshold
-        let allowPartialExpansion = configuration.supportsPartialExpansion
-        let stagedDismissal = configuration.dismissesInStages
-        return endingPositionY(positionY: positionY,
-                               upperMarkY: upperMarkY,
-                               lowerMarkY: lowerMarkY,
-                               velocityY: velocityY,
-                               velocityThresholdY: velocityThresholdY,
-                               allowPartialExpansion: allowPartialExpansion,
-                               stagedDismissal: stagedDismissal)
-    }
-
-    func endingPositionY(positionY: CGFloat, upperMarkY: CGFloat, lowerMarkY: CGFloat,
-                         velocityY: CGFloat, velocityThresholdY: CGFloat,
-                         allowPartialExpansion: Bool, stagedDismissal: Bool) -> CGFloat {
+        let isNotMoving = (velocityY == 0)
         let isMovingUp = (velocityY < 0) // recall that Y-axis points down
-        let isMovingDown = !isMovingUp
-        let isMovingQuickly = (abs(velocityY) > velocityThresholdY)
+        let isMovingDown = (velocityY > 0)
+        let isMovingQuickly = (abs(velocityY) > flickSpeedThreshold)
         let isMovingUpQuickly = isMovingUp && isMovingQuickly
         let isMovingDownQuickly = isMovingDown && isMovingQuickly
         let isAboveUpperMark = (positionY < upperMarkY)
@@ -247,10 +264,11 @@ private extension PresentationController {
         guard !isMovingDownQuickly else { return containerViewH }
 
         guard !isAboveUpperMark else {
-            if isMovingUp {
+            if isMovingUp || isNotMoving {
                 return 0
             } else {
-                return stagedDismissal ? drawerPartialY : containerViewH
+                let inStages = supportsPartialExpansion && dismissesInStages
+                return inStages ? drawerPartialY : containerViewH
             }
         }
 
@@ -258,7 +276,7 @@ private extension PresentationController {
             if isMovingDown {
                 return containerViewH
             } else {
-                return (allowPartialExpansion ? drawerPartialY : 0)
+                return (supportsPartialExpansion ? drawerPartialY : 0)
             }
         }
 
@@ -271,7 +289,7 @@ private extension PresentationController {
         } else if positionY > lowerMarkY {
             return containerViewH
         } else {
-            return drawerPartialY
+            return (supportsPartialExpansion ? drawerPartialY : 0)
         }
     }
 }
