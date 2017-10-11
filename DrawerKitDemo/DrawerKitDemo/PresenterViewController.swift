@@ -64,13 +64,24 @@ extension PresenterViewController {
         var configuration = DrawerConfiguration(/* ..., ..., ..., */)
 
         // ... or after initialisation
-        //        configuration.totalDurationInSeconds = _duration // XXX
-        //        configuration.timingCurveProvider = UICubicTimingParameters(animationCurve: .easeInOut)
+        let partialTimingParams =
+            TimingConfiguration(durationInSeconds: 0.8,
+                                timingCurveProvider: UISpringTimingParameters(dampingRatio: 0.7))
+        let fullTimingParams =
+            TimingConfiguration(durationInSeconds: 0.8,
+                                timingCurveProvider: UISpringTimingParameters(dampingRatio: 0.2))
+        configuration.partialTransitionTimingConfiguration = partialTimingParams
+        configuration.fullTransitionTimingConfiguration = fullTimingParams
+
         configuration.coversStatusBar = coversStatusBar
         configuration.supportsPartialExpansion = supportsPartialExpansion
         configuration.dismissesInStages = dismissesInStages
         configuration.isDrawerDraggable = isDrawerDraggable
         configuration.isDismissableByOutsideDrawerTaps = isDismissableByOutsideDrawerTaps
+//        configuration.flickSpeedThreshold = flickSpeedThreshold // XXX
+//        configuration.upperMarkFraction = upperMarkFraction
+//        configuration.lowerMarkFraction = lowerMarkFraction
+//        configuration.maximumCornerRadius = maximumCornerRadius
 
         drawerDisplayController = DrawerDisplayController(presentingViewController: self,
                                                           presentedViewController: vc,
@@ -191,4 +202,3 @@ private extension PresenterViewController {
         return Float(truncf(10 * value)) / 10
     }
 }
-
