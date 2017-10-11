@@ -12,17 +12,17 @@
         <!--Presenter-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="presenter" title="Presenter" id="BYZ-38-t0r" customClass="PresenterViewController" customModule="DrawerTestApp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="presenter" title="Presenter" id="BYZ-38-t0r" customClass="PresenterViewController" customModule="DrawerKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="PresenterView" customModule="DrawerTestApp">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="PresenterView" customModule="DrawerKitDemo" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XOE-wL-Nop">
-                                <rect key="frame" x="10" y="30" width="355" height="226"/>
+                                <rect key="frame" x="10" y="70" width="355" height="226"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="sFT-kT-KTE">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="31"/>
@@ -38,6 +38,9 @@
                                                 <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="onTintColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="thumbTintColor" red="1" green="0.68627450980392157" blue="0.68627450980392157" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <connections>
+                                                    <action selector="switchToggledWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="9G8-cw-dyg"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -63,6 +66,9 @@
                                                 <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="onTintColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="thumbTintColor" red="1" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <connections>
+                                                    <action selector="switchToggledWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="HdI-eX-XRX"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -89,6 +95,9 @@
                                                 <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="onTintColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="thumbTintColor" red="1" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <connections>
+                                                    <action selector="switchToggledWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="CVS-nE-Rp0"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -123,6 +132,9 @@
                                                 <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="onTintColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="thumbTintColor" red="1" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <connections>
+                                                    <action selector="switchToggledWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="z7v-vO-XPt"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -151,6 +163,9 @@
                                                 <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="onTintColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="thumbTintColor" red="1" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <connections>
+                                                    <action selector="switchToggledWithSender:" destination="BYZ-38-t0r" eventType="valueChanged" id="LU6-Z4-fGv"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -181,6 +196,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="3"/>
+                                                <connections>
+                                                    <action selector="numberOfTapsButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6ud-Bq-RV3"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -219,6 +237,9 @@
                                     <constraint firstAttribute="height" constant="44" id="6wa-ew-Rfd"/>
                                     <constraint firstAttribute="width" constant="44" id="PQN-Jw-Fxz"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="sliderSideButtonTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pU2-Tx-9Pj"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="lastBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cf4-9E-t3v">
                                 <rect key="frame" x="89.5" y="582" width="196" height="24"/>
@@ -237,6 +258,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="T44-3g-B9s"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -252,12 +276,28 @@
                                     <constraint firstAttribute="width" constant="44" id="fe9-Df-eqd"/>
                                     <constraint firstAttribute="height" constant="44" id="rLg-Kg-Nyb"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="sliderSideButtonTappedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="drB-aF-3YZ"/>
+                                </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.29999999999999999" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="pxq-VQ-1Ry">
                                 <rect key="frame" x="18" y="622" width="339" height="31"/>
                                 <color key="minimumTrackTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="maximumTrackTintColor" red="1" green="0.0" blue="0.0" alpha="0.25" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="durationSliderChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="zSE-j5-xqn"/>
+                                </connections>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PC5-MO-2F6">
+                                <rect key="frame" x="153" y="30" width="69" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Tap me !">
+                                    <color key="titleColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="presentButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="def-sD-ejj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <gestureRecognizers/>
@@ -268,21 +308,31 @@
                             <constraint firstAttribute="trailing" secondItem="pxq-VQ-1Ry" secondAttribute="trailing" constant="20" id="D6f-l5-cgN"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pxq-VQ-1Ry" secondAttribute="bottom" constant="15" id="FVQ-gz-NhD"/>
                             <constraint firstItem="pxq-VQ-1Ry" firstAttribute="top" secondItem="ps1-ZE-5YB" secondAttribute="bottom" constant="10" id="Ghc-Kv-4JO"/>
+                            <constraint firstItem="PC5-MO-2F6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Jll-18-fnO"/>
                             <constraint firstItem="bM4-RI-eFj" firstAttribute="centerX" secondItem="6F3-bN-CXN" secondAttribute="centerX" id="U7o-rG-Hpt"/>
                             <constraint firstItem="pxq-VQ-1Ry" firstAttribute="leading" secondItem="YSg-nd-Zf9" secondAttribute="leading" id="UnT-Jg-ghk"/>
                             <constraint firstAttribute="trailing" secondItem="XOE-wL-Nop" secondAttribute="trailing" constant="10" id="WoS-qR-3nJ"/>
-                            <constraint firstAttribute="trailing" secondItem="XOE-wL-Nop" secondAttribute="trailing" constant="10" id="gBD-8p-9Df"/>
+                            <constraint firstItem="PC5-MO-2F6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gpN-C6-y4f"/>
                             <constraint firstItem="pxq-VQ-1Ry" firstAttribute="top" secondItem="YSg-nd-Zf9" secondAttribute="bottom" constant="5" id="gwH-Nv-yr8"/>
                             <constraint firstItem="bM4-RI-eFj" firstAttribute="trailing" secondItem="pxq-VQ-1Ry" secondAttribute="trailing" id="hXn-of-rfa"/>
                             <constraint firstItem="bM4-RI-eFj" firstAttribute="centerY" secondItem="6F3-bN-CXN" secondAttribute="centerY" id="iXR-gn-Eej"/>
                             <constraint firstItem="pxq-VQ-1Ry" firstAttribute="top" secondItem="bM4-RI-eFj" secondAttribute="bottom" constant="5" id="ke7-cM-TSw"/>
                             <constraint firstItem="YSg-nd-Zf9" firstAttribute="centerX" secondItem="Tbz-4e-kxt" secondAttribute="centerX" id="nQo-ph-QEk"/>
-                            <constraint firstItem="XOE-wL-Nop" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="tQ4-aA-HVY"/>
-                            <constraint firstItem="XOE-wL-Nop" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="tfI-eh-O8M"/>
+                            <constraint firstItem="XOE-wL-Nop" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="tQ4-aA-HVY"/>
                             <constraint firstItem="pxq-VQ-1Ry" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="u0N-PH-Dfs"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <connections>
+                        <outlet property="coversStatusBarSwitch" destination="rte-Cf-HyB" id="1qc-w2-tDY"/>
+                        <outlet property="dismissableByOutsideTapButton" destination="DCk-R8-xvp" id="2MC-zL-Iw7"/>
+                        <outlet property="dismissesInStagesSwitch" destination="43F-v8-Hs0" id="HY8-A5-8Hm"/>
+                        <outlet property="drawerDraggableSwitch" destination="2iC-JR-0Tt" id="6A7-Yb-9A5"/>
+                        <outlet property="durationField" destination="ps1-ZE-5YB" id="JK5-Le-90N"/>
+                        <outlet property="durationSlider" destination="pxq-VQ-1Ry" id="3NX-6Z-hTD"/>
+                        <outlet property="hasFixedHeightSwitch" destination="7pP-vs-fa6" id="5P4-yP-VrL"/>
+                        <outlet property="supportsPartialExpansionSwitch" destination="HVI-O7-7Ig" id="x4Q-T7-D5Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="TmO-Gv-wyG"/>

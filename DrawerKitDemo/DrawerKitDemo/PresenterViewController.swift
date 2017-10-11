@@ -72,7 +72,7 @@ extension PresenterViewController: UITextFieldDelegate {
 }
 
 extension PresenterViewController {
-    @IBAction func targetViewTapped() {
+    @IBAction func presentButtonTapped() {
         doModalPresentation()
     }
 
