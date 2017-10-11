@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ToU-xD-9zN">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--presenter-->
+        <scene sceneID="7TA-dt-s4J">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="PresenterVC-stack" storyboardName="PresenterVC" referencedIdentifier="presenter" id="HR2-O8-mOz" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Presenter" id="jzy-7C-2uc"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="359-l7-fuO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2572" y="-2546"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="JiK-XH-DuH">
+            <objects>
+                <tabBarController id="ToU-xD-9zN" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="YBr-QR-go5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ZCM-Ci-7IB" kind="relationship" relationship="viewControllers" id="qTA-Py-qZm"/>
+                        <segue destination="W12-tW-cGI" kind="relationship" relationship="viewControllers" id="E2E-lu-igN"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I9A-rA-ReR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4018" y="-2545"/>
+        </scene>
+        <!--Presenter (stack)-->
+        <scene sceneID="lcO-e0-0GQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W12-tW-cGI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Presenter (stack)" id="ygm-hc-dj0"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eXx-iG-idp">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HR2-O8-mOz" kind="relationship" relationship="rootViewController" id="1Ir-dF-k6q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qVU-lj-GSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3161" y="-2545"/>
+        </scene>
+        <!--presenter-->
+        <scene sceneID="ba8-DT-w4f">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="PresenterVC" storyboardName="PresenterVC" referencedIdentifier="presenter" id="ZCM-Ci-7IB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Presenter" id="HAf-l4-gNa">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="16"/>
+                    </tabBarItem>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PsT-iV-To6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4018" y="-2104"/>
+        </scene>
+    </scenes>
+</document>
