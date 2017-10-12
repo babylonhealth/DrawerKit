@@ -57,7 +57,7 @@ extension PresenterViewController {
 
         // ... or after initialisation
         configuration.durationInSeconds = 0.8 // TimeInterval(durationSliderView.value)
-        configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.7)
+        configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.8)
         configuration.coversStatusBar = coversStatusBar
         configuration.supportsPartialExpansion = supportsPartialExpansion
         configuration.dismissesInStages = dismissesInStages
@@ -65,9 +65,9 @@ extension PresenterViewController {
         configuration.isDismissableByOutsideDrawerTaps = isDismissableByOutsideDrawerTaps
         configuration.numberOfTapsForOutsideDrawerDismissal = numberOfTapsForOutsideDrawerDismissal
         configuration.flickSpeedThreshold = 3 // flickSpeedThresholdSliderView.value.cgFloat
-        configuration.upperMarkFraction = 0.8 // upperMarkFractionSliderView.value.cgFloat
-        configuration.lowerMarkFraction = 0.5 // lowerMarkFractionSliderView.value.cgFloat
-        configuration.maximumCornerRadius = 15 // maximumCornerRadiusSliderView.value.cgFloat
+        configuration.upperMarkFraction = 0.9 // upperMarkFractionSliderView.value.cgFloat
+        configuration.lowerMarkFraction = 0.2 // lowerMarkFractionSliderView.value.cgFloat
+        configuration.maximumCornerRadius = 20 // maximumCornerRadiusSliderView.value.cgFloat
 
         drawerDisplayController = DrawerDisplayController(presentingViewController: self,
                                                           presentedViewController: vc,
