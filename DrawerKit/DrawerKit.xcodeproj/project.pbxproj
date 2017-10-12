@@ -13,7 +13,7 @@
 		CB2CB79D1F8E951900AA152D /* DrawerDisplayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB79A1F8E951900AA152D /* DrawerDisplayController.swift */; };
 		CB2CB79E1F8E951900AA152D /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB79B1F8E951900AA152D /* PresentationController.swift */; };
 		CB2CB79F1F8E951900AA152D /* AnimatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB79C1F8E951900AA152D /* AnimatorController.swift */; };
-		CB2CB7AA1F8E9AC600AA152D /* TransitionConfiguration+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB7A61F8E98F100AA152D /* TransitionConfiguration+Equatable.swift */; };
+		CB2CB7AA1F8E9AC600AA152D /* DrawerConfiguration+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB7A61F8E98F100AA152D /* DrawerConfiguration+Equatable.swift */; };
 		CB2CB7AB1F8E9BB400AA152D /* TransitionGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB7921F8E934500AA152D /* TransitionGeometry.swift */; };
 		CB2CB7AD1F8E9D9900AA152D /* DrawerDisplayController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB7AC1F8E9D9900AA152D /* DrawerDisplayController+Extensions.swift */; };
 		CB2CB7AF1F8E9F4C00AA152D /* DrawerDisplayController+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB7AE1F8E9F4C00AA152D /* DrawerDisplayController+Configuration.swift */; };
@@ -30,7 +30,7 @@
 		CB2CB79A1F8E951900AA152D /* DrawerDisplayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerDisplayController.swift; sourceTree = "<group>"; };
 		CB2CB79B1F8E951900AA152D /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		CB2CB79C1F8E951900AA152D /* AnimatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorController.swift; sourceTree = "<group>"; };
-		CB2CB7A61F8E98F100AA152D /* TransitionConfiguration+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransitionConfiguration+Equatable.swift"; sourceTree = "<group>"; };
+		CB2CB7A61F8E98F100AA152D /* DrawerConfiguration+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawerConfiguration+Equatable.swift"; sourceTree = "<group>"; };
 		CB2CB7AC1F8E9D9900AA152D /* DrawerDisplayController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawerDisplayController+Extensions.swift"; sourceTree = "<group>"; };
 		CB2CB7AE1F8E9F4C00AA152D /* DrawerDisplayController+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawerDisplayController+Configuration.swift"; sourceTree = "<group>"; };
 		CB619CEB1F8FFBAD0076E1DE /* InteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionController.swift; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 			children = (
 				CB2CB7AC1F8E9D9900AA152D /* DrawerDisplayController+Extensions.swift */,
 				CB9101C51F8F791A000EAC41 /* PresentationController+Configuration.swift */,
-				CB2CB7A61F8E98F100AA152D /* TransitionConfiguration+Equatable.swift */,
+				CB2CB7A61F8E98F100AA152D /* DrawerConfiguration+Equatable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -200,7 +200,7 @@
 				CB2CB7AF1F8E9F4C00AA152D /* DrawerDisplayController+Configuration.swift in Sources */,
 				CB2CB7AB1F8E9BB400AA152D /* TransitionGeometry.swift in Sources */,
 				CB2CB7971F8E934500AA152D /* DrawerConfiguration.swift in Sources */,
-				CB2CB7AA1F8E9AC600AA152D /* TransitionConfiguration+Equatable.swift in Sources */,
+				CB2CB7AA1F8E9AC600AA152D /* DrawerConfiguration+Equatable.swift in Sources */,
 				CB2CB79D1F8E951900AA152D /* DrawerDisplayController.swift in Sources */,
 				CB9101C61F8F791A000EAC41 /* PresentationController+Configuration.swift in Sources */,
 				CB2CB79E1F8E951900AA152D /* PresentationController.swift in Sources */,
