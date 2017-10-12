@@ -32,6 +32,12 @@ extension PresentationController {
         addCornerRadiusAnimationEnding(at: drawerPartialY)
     }
 
+    override func presentationTransitionDidEnd(_ completed: Bool) {
+        if currentDrawerY == 0 || currentDrawerY == containerViewH {
+            currentDrawerCornerRadius = 0
+        }
+    }
+
     override func dismissalTransitionWillBegin() {
         addCornerRadiusAnimationEnding(at: containerViewH)
     }
