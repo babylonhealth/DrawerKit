@@ -101,6 +101,18 @@ private extension PresentationController {
         return configuration.maximumCornerRadius
     }
 
+    var isDrawerDraggable: Bool {
+        return configuration.isDrawerDraggable
+    }
+
+    var isDismissableByOutsideDrawerTaps: Bool {
+        return configuration.isDismissableByOutsideDrawerTaps
+    }
+
+    var numberOfTapsForOutsideDrawerDismissal: Int {
+        return configuration.numberOfTapsForOutsideDrawerDismissal
+    }
+
     var currentDrawerY: CGFloat {
         get { return presentedView?.frame.origin.y ?? 0 }
         set { presentedView?.frame.origin.y = newValue }
@@ -114,8 +126,14 @@ private extension PresentationController {
 
 private extension PresentationController {
     func setupContainerViewDismissalTapRecogniser() {
+        guard containerViewDismissalTapGR == nil else { return }
+        let isDismissable = isDismissableByOutsideDrawerTaps
+        let numTapsRequired = numberOfTapsForOutsideDrawerDismissal
+        guard isDismissable && numTapsRequired > 0 else { return }
         let gr = UITapGestureRecognizer(target: self,
                                         action: #selector(handleContainerViewDismissalTap))
+        gr.numberOfTouchesRequired = 1
+        gr.numberOfTapsRequired = numTapsRequired
         containerView?.addGestureRecognizer(gr)
         containerViewDismissalTapGR = gr
     }
@@ -136,6 +154,8 @@ private extension PresentationController {
 
 private extension PresentationController {
     func setupPresentedViewDragRecogniser() {
+        guard presentedViewDragGR == nil else { return }
+        guard isDrawerDraggable else { return }
         let gr = UIPanGestureRecognizer(target: self,
                                         action: #selector(handlePresentedViewDrag))
         presentedView?.addGestureRecognizer(gr)

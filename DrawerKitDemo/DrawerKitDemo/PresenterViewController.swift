@@ -71,6 +71,7 @@ extension PresenterViewController {
         configuration.dismissesInStages = dismissesInStages
         configuration.isDrawerDraggable = isDrawerDraggable
         configuration.isDismissableByOutsideDrawerTaps = isDismissableByOutsideDrawerTaps
+        configuration.numberOfTapsForOutsideDrawerDismissal = numberOfTapsForOutsideDrawerDismissal
 //        configuration.flickSpeedThreshold = flickSpeedThreshold // XXX
 //        configuration.upperMarkFraction = upperMarkFraction
 //        configuration.lowerMarkFraction = lowerMarkFraction
