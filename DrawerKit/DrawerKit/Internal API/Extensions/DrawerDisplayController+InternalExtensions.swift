@@ -23,4 +23,5 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
     }
 }
 
-extension DrawerDisplayController: UIAdaptivePresentationControllerDelegate {} // XXX
+// TODO: Implement support for adaptive presentations.
+extension DrawerDisplayController: UIAdaptivePresentationControllerDelegate {}

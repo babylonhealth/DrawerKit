@@ -1,6 +1,9 @@
 import UIKit
 import DrawerKit
 
+// TODO:
+// - add the remainder of configuration controls and hook them up
+
 // Search for the string 'THIS IS THE IMPORTANT PART' in both view controllers
 // to see how to show the drawer. There may be more than one important part in
 // each view controller.

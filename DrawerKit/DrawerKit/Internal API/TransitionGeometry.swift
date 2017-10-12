@@ -1,5 +1,8 @@
 import UIKit
 
+// TODO: Implement the features that depend on this struct.
+// For the moment, this is not being used anywhere.
+
 struct TransitionGeometry {
     var userInterfaceOrientation: UIInterfaceOrientation
     var actualStatusBarHeight: CGFloat
