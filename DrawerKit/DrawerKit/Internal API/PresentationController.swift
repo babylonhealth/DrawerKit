@@ -280,26 +280,20 @@ private extension PresentationController {
 
         let upperMarkYView = UIView()
         upperMarkYView.backgroundColor = .red
-        upperMarkYView.frame = CGRect(x: 0,
-                                      y: upperMarkY,
-                                      width: containerView.bounds.size.width,
-                                      height: 3)
+        upperMarkYView.frame = CGRect(x: 0, y: upperMarkY,
+                                      width: containerView.bounds.size.width, height: 3)
         containerView.addSubview(upperMarkYView)
 
         let lowerMarkYView = UIView()
         lowerMarkYView.backgroundColor = .red
-        lowerMarkYView.frame = CGRect(x: 0,
-                                      y: lowerMarkY,
-                                      width: containerView.bounds.size.width,
-                                      height: 3)
+        lowerMarkYView.frame = CGRect(x: 0, y: lowerMarkY,
+                                      width: containerView.bounds.size.width, height: 3)
         containerView.addSubview(lowerMarkYView)
 
         let drawerMarkView = UIView()
         drawerMarkView.backgroundColor = .white
-        drawerMarkView.frame = CGRect(x: 0,
-                                      y: drawerPartialY,
-                                      width: containerView.bounds.size.width,
-                                      height: 3)
+        drawerMarkView.frame = CGRect(x: 0, y: drawerPartialY,
+                                      width: containerView.bounds.size.width, height: 3)
         containerView.addSubview(drawerMarkView)
     }
 }
