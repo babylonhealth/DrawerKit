@@ -28,7 +28,7 @@ extension PresentationController {
         containerView?.backgroundColor = .clear
         setupContainerViewDismissalTapRecogniser()
         setupPresentedViewDragRecogniser()
-        setupHeightMarks()
+        setupDebugHeightMarks()
         addCornerRadiusAnimationEnding(at: drawerPartialY)
     }
 
@@ -310,7 +310,7 @@ private extension PresentationController {
 }
 
 private extension PresentationController {
-    func setupHeightMarks() {
+    func setupDebugHeightMarks() {
         guard inDebugMode else { return }
         guard let containerView = containerView else { return }
 
