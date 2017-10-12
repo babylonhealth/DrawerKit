@@ -1,7 +1,7 @@
 import UIKit
 
 final class PresentationController: UIPresentationController {
-    private let configuration: DrawerConfiguration // intentionally immutable
+    let configuration: DrawerConfiguration // intentionally internal and immutable
     private var lastDrawerY: CGFloat = 0
     private var containerViewDismissalTapGR: UITapGestureRecognizer?
     private var presentedViewDragGR: UIPanGestureRecognizer?
@@ -64,56 +64,12 @@ private extension PresentationController {
         return containerViewH - drawerPartialH
     }
 
-    var durationInSeconds: TimeInterval {
-        return configuration.durationInSeconds
-    }
-
-    var timingCurveProvider: UITimingCurveProvider {
-        return configuration.timingCurveProvider
-    }
-
-    var supportsPartialExpansion: Bool {
-        return configuration.supportsPartialExpansion
-    }
-
-    var dismissesInStages: Bool {
-        return configuration.dismissesInStages
-    }
-
-    var flickSpeedThreshold: CGFloat {
-        return configuration.flickSpeedThreshold
-    }
-
-    var upperMarkFraction: CGFloat {
-        return configuration.upperMarkFraction
-    }
-
     var upperMarkY: CGFloat {
         return upperMarkFraction * (containerViewH - drawerPartialH)
     }
 
-    var lowerMarkFraction: CGFloat {
-        return configuration.lowerMarkFraction
-    }
-
     var lowerMarkY: CGFloat {
         return drawerPartialY + lowerMarkFraction * drawerPartialH
-    }
-
-    var maximumCornerRadius: CGFloat {
-        return configuration.maximumCornerRadius
-    }
-
-    var isDrawerDraggable: Bool {
-        return configuration.isDrawerDraggable
-    }
-
-    var isDismissableByOutsideDrawerTaps: Bool {
-        return configuration.isDismissableByOutsideDrawerTaps
-    }
-
-    var numberOfTapsForOutsideDrawerDismissal: Int {
-        return configuration.numberOfTapsForOutsideDrawerDismissal
     }
 
     var currentDrawerY: CGFloat {
@@ -214,10 +170,8 @@ private extension PresentationController {
         let endPosY = (clamping ? clamped(endPositionY) : endPositionY)
         guard endPosY != currentDrawerY else { return }
 
-        let duration = configuration.durationInSeconds
-        let timingParams = configuration.timingCurveProvider
-        let animator = UIViewPropertyAnimator(duration: duration,
-                                              timingParameters: timingParams)
+        let animator = UIViewPropertyAnimator(duration: durationInSeconds,
+                                              timingParameters: timingCurveProvider)
 
         animator.addAnimations { [weak self] in
             self?.currentDrawerY = endPosY
@@ -239,10 +193,8 @@ private extension PresentationController {
         let endPosY = (clamping ? clamped(endPositionY) : endPositionY)
         guard endPosY != currentDrawerY else { return }
 
-        let duration = configuration.durationInSeconds
-        let timingParams = configuration.timingCurveProvider
-        let animator = UIViewPropertyAnimator(duration: duration,
-                                              timingParameters: timingParams)
+        let animator = UIViewPropertyAnimator(duration: durationInSeconds,
+                                              timingParameters: timingCurveProvider)
 
         let endingCornerRadius = cornerRadius(at: endPosY)
         animator.addAnimations { [weak self] in
