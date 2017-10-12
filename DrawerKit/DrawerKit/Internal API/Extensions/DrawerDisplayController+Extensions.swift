@@ -21,6 +21,14 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return TransitionAnimator(isPresentation: false, configuration: configuration)
     }
+
+    public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return InteractionController(isPresentation: true, configuration: configuration)
+    }
+
+    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return InteractionController(isPresentation: false, configuration: configuration)
+    }
 }
 
 // TODO: Implement support for adaptive presentations.
