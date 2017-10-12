@@ -1,11 +1,3 @@
-//
-//  DrawerKit.h
-//  DrawerKit
-//
-//  Created by Wagner Truppel on 11/10/2017.
-//  Copyright © 2017 Babylon Health. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 
 //! Project version number for DrawerKit.
