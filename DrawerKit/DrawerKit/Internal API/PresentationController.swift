@@ -240,10 +240,10 @@ private extension PresentationController {
         let isAboveUpperMark = (positionY < upperMarkY)
         let isAboveLowerMark = (positionY < lowerMarkY)
 
-        guard !isMovingUpQuickly else { return 0 }
-        guard !isMovingDownQuickly else { return containerViewH }
+        if isMovingUpQuickly { return 0 }
+        if isMovingDownQuickly { return containerViewH }
 
-        guard !isAboveUpperMark else {
+        if isAboveUpperMark {
             if isMovingUp || isNotMoving {
                 return 0
             } else {
@@ -252,7 +252,7 @@ private extension PresentationController {
             }
         }
 
-        guard !isAboveLowerMark else {
+        if isAboveLowerMark {
             if isMovingDown {
                 return containerViewH
             } else {
