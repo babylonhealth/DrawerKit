@@ -201,17 +201,30 @@ private extension PresentationController {
             self?.currentDrawerCornerRadius = endingCornerRadius
         }
 
+        if endPosY == 0 || endPosY == containerViewH {
+            animator.addCompletion { [weak self] _ in
+                self?.currentDrawerCornerRadius = 0
+            }
+        }
+
         animator.startAnimation()
     }
 
     func cornerRadius(at positionY: CGFloat) -> CGFloat {
-        guard drawerPartialY > 0 else { return 0 }
+        guard drawerPartialY > 0 && drawerPartialY < containerViewH else { return 0 }
+        guard positionY >= 0 && positionY <= containerViewH else { return 0 }
+
         let fraction: CGFloat
-        if positionY < drawerPartialY {
-            fraction = positionY / drawerPartialY
+        if supportsPartialExpansion {
+            if positionY < drawerPartialY {
+                fraction = positionY / drawerPartialY
+            } else {
+                fraction = 1 - (positionY - drawerPartialY) / (containerViewH - drawerPartialY)
+            }
         } else {
-            fraction = 1 - (positionY - drawerPartialY) / (containerViewH - drawerPartialY)
+            fraction = 1 - positionY / containerViewH
         }
+
         return fraction * maximumCornerRadius
     }
 }
