@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB2CB7B71F8EEDF400AA152D /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB7B61F8EEDF400AA152D /* SliderView.swift */; };
 		CBBA2D3A1F8E807400E0137F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBA2D391F8E807400E0137F /* AppDelegate.swift */; };
 		CBBA2D411F8E807400E0137F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D3F1F8E807400E0137F /* Main.storyboard */; };
 		CBBA2D431F8E807400E0137F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D421F8E807400E0137F /* Assets.xcassets */; };
@@ -36,6 +37,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CB2CB7B51F8EEB2500AA152D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SliderView.xib; sourceTree = "<group>"; };
+		CB2CB7B61F8EEDF400AA152D /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		CBBA2D361F8E807400E0137F /* DrawerKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawerKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBBA2D391F8E807400E0137F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBBA2D401F8E807400E0137F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +91,7 @@
 				CBBA2D6C1F8E83E300E0137F /* PresenterView.swift */,
 				CBBA2D6E1F8E83E300E0137F /* PresentedViewController.swift */,
 				CBBA2D6D1F8E83E300E0137F /* PresentedView.swift */,
+				CB2CB7B61F8EEDF400AA152D /* SliderView.swift */,
 				CBBA2D421F8E807400E0137F /* Assets.xcassets */,
 				CBBA2D6A1F8E839200E0137F /* Storyboards */,
 				CBBA2D471F8E807400E0137F /* Info.plist */,
@@ -101,6 +105,7 @@
 				CBBA2D3F1F8E807400E0137F /* Main.storyboard */,
 				CBBA2D661F8E836100E0137F /* PresenterVC.storyboard */,
 				CBBA2D681F8E836100E0137F /* PresentedVC.storyboard */,
+				CB2CB7B41F8EEB2500AA152D /* SliderView.xib */,
 				CBBA2D441F8E807400E0137F /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -184,6 +189,7 @@
 				CBBA2D3A1F8E807400E0137F /* AppDelegate.swift in Sources */,
 				CBBA2D721F8E83E300E0137F /* PresentedViewController.swift in Sources */,
 				CBBA2D711F8E83E300E0137F /* PresentedView.swift in Sources */,
+				CB2CB7B71F8EEDF400AA152D /* SliderView.swift in Sources */,
 				CBBA2D6F1F8E83E300E0137F /* PresenterViewController.swift in Sources */,
 				CBBA2D701F8E83E300E0137F /* PresenterView.swift in Sources */,
 			);
@@ -192,6 +198,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		CB2CB7B41F8EEB2500AA152D /* SliderView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB2CB7B51F8EEB2500AA152D /* Base */,
+			);
+			name = SliderView.xib;
+			sourceTree = "<group>";
+		};
 		CBBA2D3F1F8E807400E0137F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
