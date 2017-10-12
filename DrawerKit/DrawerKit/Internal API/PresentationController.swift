@@ -5,10 +5,12 @@ final class PresentationController: UIPresentationController {
     private var lastDrawerY: CGFloat = 0
     private var containerViewDismissalTapGR: UITapGestureRecognizer?
     private var presentedViewDragGR: UIPanGestureRecognizer?
+    private let inDebugMode: Bool
 
     init(presentingVC: UIViewController?, presentedVC: UIViewController,
-         configuration: DrawerConfiguration) {
+         configuration: DrawerConfiguration, inDebugMode: Bool = false) {
         self.configuration = configuration
+        self.inDebugMode = inDebugMode
         super.init(presentedViewController: presentedVC, presenting: presentingVC)
     }
 }
@@ -26,6 +28,7 @@ extension PresentationController {
         containerView?.backgroundColor = .clear
         setupContainerViewDismissalTapRecogniser()
         setupPresentedViewDragRecogniser()
+        setupHeightMarks()
         addCornerRadiusAnimationEnding(at: drawerPartialY)
     }
 
@@ -303,5 +306,36 @@ private extension PresentationController {
         } else {
             return (supportsPartialExpansion ? drawerPartialY : 0)
         }
+    }
+}
+
+private extension PresentationController {
+    func setupHeightMarks() {
+        guard inDebugMode else { return }
+        guard let containerView = containerView else { return }
+
+        let upperMarkYView = UIView()
+        upperMarkYView.backgroundColor = .red
+        upperMarkYView.frame = CGRect(x: 0,
+                                      y: upperMarkY,
+                                      width: containerView.bounds.size.width,
+                                      height: 3)
+        containerView.addSubview(upperMarkYView)
+
+        let lowerMarkYView = UIView()
+        lowerMarkYView.backgroundColor = .red
+        lowerMarkYView.frame = CGRect(x: 0,
+                                      y: lowerMarkY,
+                                      width: containerView.bounds.size.width,
+                                      height: 3)
+        containerView.addSubview(lowerMarkYView)
+
+        let drawerMarkView = UIView()
+        drawerMarkView.backgroundColor = .white
+        drawerMarkView.frame = CGRect(x: 0,
+                                      y: drawerPartialY,
+                                      width: containerView.bounds.size.width,
+                                      height: 3)
+        containerView.addSubview(drawerMarkView)
     }
 }

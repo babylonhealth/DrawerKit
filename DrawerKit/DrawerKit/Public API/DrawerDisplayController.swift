@@ -6,12 +6,16 @@ public final class DrawerDisplayController: NSObject {
     weak var presentingVC: (UIViewController & DrawerPresenting)?
     /* strong */ var presentedVC: (UIViewController & DrawerPresentable)
 
+    let inDebugMode: Bool
+
     public init(presentingViewController: (UIViewController & DrawerPresenting),
                 presentedViewController: (UIViewController & DrawerPresentable),
-                configuration: DrawerConfiguration = DrawerConfiguration()) {
+                configuration: DrawerConfiguration = DrawerConfiguration(),
+                inDebugMode: Bool = false) {
         self.presentingVC = presentingViewController
         self.presentedVC = presentedViewController
         self.configuration = configuration
+        self.inDebugMode = inDebugMode
         super.init()
         presentedViewController.transitioningDelegate = self
         presentedViewController.modalPresentationStyle = .custom

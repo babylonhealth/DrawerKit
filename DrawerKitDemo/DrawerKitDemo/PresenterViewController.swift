@@ -68,7 +68,8 @@ extension PresenterViewController {
 
         drawerDisplayController = DrawerDisplayController(presentingViewController: self,
                                                           presentedViewController: vc,
-                                                          configuration: configuration)
+                                                          configuration: configuration,
+                                                          inDebugMode: true)
         // ============================================ //
 
         present(vc, animated: true)

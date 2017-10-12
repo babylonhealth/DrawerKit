@@ -6,7 +6,8 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
                                        source: UIViewController) -> UIPresentationController? {
         let presentationController = PresentationController(presentingVC: presentingVC,
                                                             presentedVC: presented,
-                                                            configuration: configuration)
+                                                            configuration: configuration,
+                                                            inDebugMode: inDebugMode)
         presentationController.delegate = self
         return presentationController
     }
