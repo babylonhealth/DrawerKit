@@ -130,15 +130,14 @@ private extension PresentationController {
     @objc func handlePresentedViewDrag() {
         guard let gr = presentedViewDragGR, let view = gr.view else { return }
 
-        let offsetY = gr.translation(in: view).y
-        gr.setTranslation(.zero, in: view)
-
         switch gr.state {
         case .began:
             lastDrawerY = currentDrawerY
 
         case .changed:
             lastDrawerY = currentDrawerY
+            let offsetY = gr.translation(in: view).y
+            gr.setTranslation(.zero, in: view)
             let positionY = currentDrawerY + offsetY
             currentDrawerY = min(max(positionY, 0), containerViewH)
             currentDrawerCornerRadius = cornerRadius(at: currentDrawerY)
