@@ -15,19 +15,27 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
     public func animationController(forPresented presented: UIViewController,
                                     presenting: UIViewController,
                                     source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return AnimationController(isPresentation: true, configuration: configuration)
+        return AnimationController(isPresentation: true,
+                                   durationInSeconds: configuration.durationInSeconds,
+                                   timingCurveProvider: configuration.timingCurveProvider)
     }
 
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return AnimationController(isPresentation: false, configuration: configuration)
+        return AnimationController(isPresentation: false,
+                                   durationInSeconds: configuration.durationInSeconds,
+                                   timingCurveProvider: configuration.timingCurveProvider)
     }
 
     public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return InteractionController(isPresentation: true, configuration: configuration)
+        guard isDrawerDraggable else { return nil }
+        return InteractionController(isPresentation: true,
+                                     presentingVC: presentingVC!, presentedVC: presentedVC)
     }
 
     public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return InteractionController(isPresentation: false, configuration: configuration)
+        guard isDrawerDraggable else { return nil }
+        return InteractionController(isPresentation: true,
+                                     presentingVC: presentingVC!, presentedVC: presentedVC)
     }
 }
 

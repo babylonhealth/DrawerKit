@@ -1,19 +1,22 @@
 import UIKit
 
 final class AnimationController: NSObject {
-    private let configuration: DrawerConfiguration // intentionally immutable
     private let isPresentation: Bool
+    private let durationInSeconds: TimeInterval
+    private let timingCurveProvider: UITimingCurveProvider
 
-    init(isPresentation: Bool, configuration: DrawerConfiguration) {
-        self.configuration = configuration
+    init(isPresentation: Bool, durationInSeconds: TimeInterval,
+         timingCurveProvider: UITimingCurveProvider) {
         self.isPresentation = isPresentation
+        self.durationInSeconds = durationInSeconds
+        self.timingCurveProvider = timingCurveProvider
         super.init()
     }
 }
 
 extension AnimationController: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return configuration.durationInSeconds
+        return durationInSeconds
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -31,10 +34,8 @@ extension AnimationController: UIViewControllerAnimatedTransitioning {
         let initialFrame = (isPresentation ? dismissedFrame : presentedFrame)
         let finalFrame = (isPresentation ? presentedFrame : dismissedFrame)
 
-        let duration = configuration.durationInSeconds
-        let timingParams = configuration.timingCurveProvider
-        let animator = UIViewPropertyAnimator(duration: duration,
-                                              timingParameters: timingParams)
+        let animator = UIViewPropertyAnimator(duration: durationInSeconds,
+                                              timingParameters: timingCurveProvider)
 
         controller.view.frame = initialFrame
         animator.addAnimations { controller.view.frame = finalFrame }
