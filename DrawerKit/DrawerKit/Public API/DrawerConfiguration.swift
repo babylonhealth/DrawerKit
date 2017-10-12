@@ -15,8 +15,8 @@ public struct DrawerConfiguration: Equatable {
 
     public var flickSpeedThreshold: CGFloat
 
-    public var upperMarkFraction: CGFloat
-    public var lowerMarkFraction: CGFloat
+    public var upperMarkGap: CGFloat
+    public var lowerMarkGap: CGFloat
 
     public var maximumCornerRadius: CGFloat
 
@@ -29,8 +29,8 @@ public struct DrawerConfiguration: Equatable {
                 isDismissableByOutsideDrawerTaps: Bool = true,
                 numberOfTapsForOutsideDrawerDismissal: Int = 1,
                 flickSpeedThreshold: CGFloat = 3,
-                upperMarkFraction: CGFloat = 0.5,
-                lowerMarkFraction: CGFloat = 0.5,
+                upperMarkGap: CGFloat = 40,
+                lowerMarkGap: CGFloat = 40,
                 maximumCornerRadius: CGFloat = 15) {
         self.durationInSeconds = durationInSeconds
         self.timingCurveProvider = timingCurveProvider
@@ -41,8 +41,8 @@ public struct DrawerConfiguration: Equatable {
         self.isDismissableByOutsideDrawerTaps = isDismissableByOutsideDrawerTaps
         self.numberOfTapsForOutsideDrawerDismissal = numberOfTapsForOutsideDrawerDismissal
         self.flickSpeedThreshold = flickSpeedThreshold
-        self.upperMarkFraction = upperMarkFraction
-        self.lowerMarkFraction = lowerMarkFraction
+        self.upperMarkGap = upperMarkGap
+        self.upperMarkGap = upperMarkGap
         self.maximumCornerRadius = maximumCornerRadius
     }
 }

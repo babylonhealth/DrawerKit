@@ -22,8 +22,8 @@ class PresenterViewController: UIViewController, DrawerPresenting {
     private var isDismissableByOutsideDrawerTaps = true
     private var numberOfTapsForOutsideDrawerDismissal: Int = 1
     private var flickSpeedThreshold: CGFloat = 3
-    private var upperMarkFraction: CGFloat = 0.5
-    private var lowerMarkFraction: CGFloat = 0.5
+    private var upperMarkGap: CGFloat = 40
+    private var lowerMarkGap: CGFloat = 40
     private var maximumCornerRadius: CGFloat = 30
 
     @IBOutlet weak var hasFixedHeightSwitch: UISwitch!
@@ -34,8 +34,8 @@ class PresenterViewController: UIViewController, DrawerPresenting {
     @IBOutlet weak var dismissableByOutsideTapButton: UIButton!
     @IBOutlet weak var durationSliderView: SliderView!
     @IBOutlet weak var flickSpeedThresholdSliderView: SliderView!
-    @IBOutlet weak var upperMarkFractionSliderView: SliderView!
-    @IBOutlet weak var lowerMarkFractionSliderView: SliderView!
+    @IBOutlet weak var upperMarkGapSliderView: SliderView!
+    @IBOutlet weak var lowerMarkGapSliderView: SliderView!
     @IBOutlet weak var maximumCornerRadiusSliderView: SliderView!
 
     override func viewDidLoad() {
@@ -65,8 +65,10 @@ extension PresenterViewController {
         configuration.isDismissableByOutsideDrawerTaps = isDismissableByOutsideDrawerTaps
         configuration.numberOfTapsForOutsideDrawerDismissal = numberOfTapsForOutsideDrawerDismissal
         configuration.flickSpeedThreshold = 3 // flickSpeedThresholdSliderView.value.cgFloat
-        configuration.upperMarkFraction = 0.9 // upperMarkFractionSliderView.value.cgFloat
-        configuration.lowerMarkFraction = 0.2 // lowerMarkFractionSliderView.value.cgFloat
+        configuration.upperMarkGap = 0.9 // upperMarkGapSliderView.value.cgFloat
+        configuration.upperMarkGap = 30
+        configuration.lowerMarkGap = 0.2 // lowerMarkGapSliderView.value.cgFloat
+        configuration.lowerMarkGap = 30
         configuration.maximumCornerRadius = 20 // maximumCornerRadiusSliderView.value.cgFloat
 
         drawerDisplayController = DrawerDisplayController(presentingViewController: self,
@@ -101,11 +103,11 @@ private extension PresenterViewController {
 //        flickSpeedThresholdSliderView.configureWith(
 //            title: "Speed threshold", minValue: 1, maxValue: 5,
 //            initialValue: 3, defaultValue: 3)
-//        upperMarkFractionSliderView.configureWith(
-//            title: "Upper mark fraction", minValue: 0, maxValue: 1,
+//        upperMarkGapSliderView.configureWith(
+//            title: "Upper mark gap", minValue: 0, maxValue: 100,
 //            initialValue: 0.8, defaultValue: 0.8)
-//        lowerMarkFractionSliderView.configureWith(
-//            title: "Lower mark fraction", minValue: 0, maxValue: 1,
+//        lowerMarkGapSliderView.configureWith(
+//            title: "Lower mark gap", minValue: 0, maxValue: 100,
 //            initialValue: 0.5, defaultValue: 0.5)
 //        maximumCornerRadiusSliderView.configureWith(
 //            title: "Max corner radius", minValue: 0, maxValue: 30,

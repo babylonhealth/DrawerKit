@@ -39,12 +39,12 @@ extension DrawerDisplayController {
         return configuration.flickSpeedThreshold
     }
 
-    public var upperMarkFraction: CGFloat {
-        return configuration.upperMarkFraction
+    public var upperMarkGap: CGFloat {
+        return configuration.upperMarkGap
     }
 
-    public var lowerMarkFraction: CGFloat {
-        return configuration.lowerMarkFraction
+    public var lowerMarkGap: CGFloat {
+        return configuration.lowerMarkGap
     }
 
     public var maximumCornerRadius: CGFloat {

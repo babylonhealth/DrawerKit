@@ -11,8 +11,8 @@ extension DrawerConfiguration {
             && lhs.isDismissableByOutsideDrawerTaps == rhs.isDismissableByOutsideDrawerTaps
             && lhs.numberOfTapsForOutsideDrawerDismissal == rhs.numberOfTapsForOutsideDrawerDismissal
             && lhs.flickSpeedThreshold == rhs.flickSpeedThreshold
-            && lhs.upperMarkFraction == rhs.upperMarkFraction
-            && lhs.lowerMarkFraction == rhs.lowerMarkFraction
+            && lhs.lowerMarkGap == rhs.lowerMarkGap
+            && lhs.lowerMarkGap == rhs.lowerMarkGap
             && lhs.maximumCornerRadius == rhs.maximumCornerRadius
     }
 }

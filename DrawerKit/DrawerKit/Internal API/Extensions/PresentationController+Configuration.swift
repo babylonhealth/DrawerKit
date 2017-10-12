@@ -21,12 +21,12 @@ extension PresentationController {
         return configuration.flickSpeedThreshold
     }
 
-    var upperMarkFraction: CGFloat {
-        return configuration.upperMarkFraction
+    var upperMarkGap: CGFloat {
+        return configuration.upperMarkGap
     }
 
-    var lowerMarkFraction: CGFloat {
-        return configuration.lowerMarkFraction
+    var lowerMarkGap: CGFloat {
+        return configuration.lowerMarkGap
     }
 
     var maximumCornerRadius: CGFloat {

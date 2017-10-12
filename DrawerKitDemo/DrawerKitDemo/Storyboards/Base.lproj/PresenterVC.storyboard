@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13526" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,11 +14,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="PresenterView" customModule="DrawerKitDemo" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PC5-MO-2F6">
-                                <rect key="frame" x="153" y="30" width="69" height="34"/>
+                                <rect key="frame" x="265.5" y="30" width="69" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Tap me !">
                                     <color key="titleColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -32,19 +28,19 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XOE-wL-Nop">
-                                <rect key="frame" x="10" y="70" width="355" height="597"/>
+                                <rect key="frame" x="10" y="70" width="580" height="530"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="sFT-kT-KTE">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="54.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="580" height="48.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Fixed-height content" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfp-0i-Jy5">
-                                                <rect key="frame" x="0.0" y="17.5" width="160" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="14.5" width="160" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7pP-vs-fa6">
-                                                <rect key="frame" x="306" y="12" width="51" height="31"/>
+                                                <rect key="frame" x="531" y="9" width="51" height="31"/>
                                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="onTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -63,16 +59,16 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="L61-ni-cMF">
-                                        <rect key="frame" x="0.0" y="54.5" width="355" height="53.5"/>
+                                        <rect key="frame" x="0.0" y="48.5" width="580" height="47.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Covers status bar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fcs-As-Mdg">
-                                                <rect key="frame" x="0.0" y="16.5" width="134.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="13.5" width="134.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rte-Cf-HyB">
-                                                <rect key="frame" x="306" y="11.5" width="51" height="31"/>
+                                                <rect key="frame" x="531" y="8.5" width="51" height="31"/>
                                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="onTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,16 +87,16 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="WF5-Ek-oqh">
-                                        <rect key="frame" x="0.0" y="108" width="355" height="54"/>
+                                        <rect key="frame" x="0.0" y="96" width="580" height="48"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Supports partial expansion" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="066-oU-4Px">
-                                                <rect key="frame" x="0.0" y="17" width="205" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="14" width="205" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HVI-O7-7Ig">
-                                                <rect key="frame" x="306" y="12" width="51" height="31"/>
+                                                <rect key="frame" x="531" y="9" width="51" height="31"/>
                                                 <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="onTintColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="thumbTintColor" red="1" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -119,10 +115,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="k4F-V3-2wF">
-                                        <rect key="frame" x="0.0" y="162" width="355" height="54.5"/>
+                                        <rect key="frame" x="0.0" y="144" width="580" height="48"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tbC-t4-PXG">
-                                                <rect key="frame" x="0.0" y="22.5" width="20" height="10"/>
+                                                <rect key="frame" x="0.0" y="19.5" width="20" height="10"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="rRf-Rd-oKA"/>
@@ -130,13 +126,13 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Staged dismissal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujI-qm-7d1">
-                                                <rect key="frame" x="20" y="17" width="129.5" height="20.5"/>
+                                                <rect key="frame" x="20" y="14" width="129.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="43F-v8-Hs0">
-                                                <rect key="frame" x="306" y="12" width="51" height="31"/>
+                                                <rect key="frame" x="531" y="9" width="51" height="31"/>
                                                 <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="onTintColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="thumbTintColor" red="1" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -157,16 +153,16 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="LKl-Ja-zwR">
-                                        <rect key="frame" x="0.0" y="216.5" width="355" height="54.5"/>
+                                        <rect key="frame" x="0.0" y="192" width="580" height="48.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Drawer draggable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76D-9a-nNo">
-                                                <rect key="frame" x="0.0" y="17" width="136.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="14" width="136.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2iC-JR-0Tt">
-                                                <rect key="frame" x="306" y="12" width="51" height="31"/>
+                                                <rect key="frame" x="531" y="9" width="51" height="31"/>
                                                 <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="onTintColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="thumbTintColor" red="1" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -185,16 +181,16 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="FfG-EM-zbL">
-                                        <rect key="frame" x="0.0" y="271" width="355" height="54.5"/>
+                                        <rect key="frame" x="0.0" y="240.5" width="580" height="48.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Dismissable by taps outside drawer:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="saJ-Uc-7Wd">
-                                                <rect key="frame" x="0.0" y="17" width="275" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="14" width="275" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="0.039765733839999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCk-R8-xvp" userLabel="num taps">
-                                                <rect key="frame" x="315.5" y="11.5" width="30" height="30.5"/>
+                                                <rect key="frame" x="540.5" y="8.5" width="30" height="30.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="URp-ne-ZgP"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="dNr-Gs-EBa"/>
@@ -216,23 +212,23 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="fcS-dN-boF" customClass="SliderView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="325.5" width="355" height="53.5"/>
+                                        <rect key="frame" x="0.0" y="289" width="580" height="47.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="4yT-xX-rf4" customClass="SliderView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="379" width="355" height="54"/>
+                                        <rect key="frame" x="0.0" y="336.5" width="580" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="PPA-wJ-dLb" customClass="SliderView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="433" width="355" height="54.5"/>
+                                        <rect key="frame" x="0.0" y="384.5" width="580" height="48.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="2gs-u2-GT5" customClass="SliderView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="487.5" width="355" height="54"/>
+                                        <rect key="frame" x="0.0" y="433" width="580" height="47.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="AEC-4u-npX" customClass="SliderView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="541.5" width="355" height="55.5"/>
+                                        <rect key="frame" x="0.0" y="480.5" width="580" height="49.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
@@ -277,10 +273,10 @@
                         <outlet property="durationSliderView" destination="fcS-dN-boF" id="ZSh-Pe-9no"/>
                         <outlet property="flickSpeedThresholdSliderView" destination="4yT-xX-rf4" id="fJW-bF-wrt"/>
                         <outlet property="hasFixedHeightSwitch" destination="7pP-vs-fa6" id="5P4-yP-VrL"/>
-                        <outlet property="lowerMarkFractionSliderView" destination="2gs-u2-GT5" id="bIP-f2-ZLG"/>
+                        <outlet property="lowerMarkGapSliderView" destination="2gs-u2-GT5" id="bIP-f2-ZLG"/>
                         <outlet property="maximumCornerRadiusSliderView" destination="AEC-4u-npX" id="e2z-zD-z28"/>
                         <outlet property="supportsPartialExpansionSwitch" destination="HVI-O7-7Ig" id="x4Q-T7-D5Z"/>
-                        <outlet property="upperMarkFractionSliderView" destination="PPA-wJ-dLb" id="O3J-qu-u6H"/>
+                        <outlet property="upperMarkGapSliderView" destination="PPA-wJ-dLb" id="O3J-qu-u6H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
