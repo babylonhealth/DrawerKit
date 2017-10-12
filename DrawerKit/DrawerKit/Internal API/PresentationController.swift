@@ -252,7 +252,7 @@ private extension PresentationController {
     func cornerRadius(at positionY: CGFloat) -> CGFloat {
         guard drawerPartialY > 0 else { return 0 }
         let fraction: CGFloat
-        if positionY <= drawerPartialY {
+        if positionY < drawerPartialY {
             fraction = positionY / drawerPartialY
         } else {
             fraction = 1 - (positionY - drawerPartialY) / (containerViewH - drawerPartialY)
