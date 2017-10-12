@@ -1,6 +1,6 @@
 import UIKit
 
-final class AnimatorController: NSObject {
+final class AnimationController: NSObject {
     private let configuration: DrawerConfiguration // intentionally immutable
     private let isPresentation: Bool
 
@@ -11,7 +11,7 @@ final class AnimatorController: NSObject {
     }
 }
 
-extension AnimatorController: UIViewControllerAnimatedTransitioning {
+extension AnimationController: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return configuration.durationInSeconds
     }
