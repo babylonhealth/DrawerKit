@@ -16,14 +16,14 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
                                     presenting: UIViewController,
                                     source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return AnimationController(isPresentation: true,
-                                   durationInSeconds: configuration.durationInSeconds,
-                                   timingCurveProvider: configuration.timingCurveProvider)
+                                   durationInSeconds: durationInSeconds,
+                                   timingCurveProvider: timingCurveProvider)
     }
 
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return AnimationController(isPresentation: false,
-                                   durationInSeconds: configuration.durationInSeconds,
-                                   timingCurveProvider: configuration.timingCurveProvider)
+                                   durationInSeconds: durationInSeconds,
+                                   timingCurveProvider: timingCurveProvider)
     }
 
     public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
