@@ -112,13 +112,13 @@ private extension PresenterViewController {
 //        maximumCornerRadiusSliderView.configureWith(
 //            title: "Max corner radius", minValue: 0, maxValue: 30,
 //            initialValue: 15, defaultValue: 15)
-        hasFixedHeightSwitch.isOn = hasFixedHeight
-        coversStatusBarSwitch.isOn = coversStatusBar
-        supportsPartialExpansionSwitch.isOn = supportsPartialExpansion
-        dismissesInStagesSwitch.isEnabled = supportsPartialExpansion
-        dismissesInStagesSwitch.isOn = dismissesInStages
-        drawerDraggableSwitch.isOn = isDrawerDraggable
-        dismissableByOutsideTapButton.setTitle("\(numberOfTapsForOutsideDrawerDismissal)", for: .normal)
+//        hasFixedHeightSwitch.isOn = hasFixedHeight
+//        coversStatusBarSwitch.isOn = coversStatusBar
+//        supportsPartialExpansionSwitch.isOn = supportsPartialExpansion
+//        dismissesInStagesSwitch.isEnabled = supportsPartialExpansion
+//        dismissesInStagesSwitch.isOn = dismissesInStages
+//        drawerDraggableSwitch.isOn = isDrawerDraggable
+//        dismissableByOutsideTapButton.setTitle("\(numberOfTapsForOutsideDrawerDismissal)", for: .normal)
     }
 
     func handleSwitchToggled(_ toggler: UISwitch) {

@@ -285,13 +285,13 @@ private extension PresentationController {
         guard let containerView = containerView else { return }
 
         let upperMarkYView = UIView()
-        upperMarkYView.backgroundColor = .red
+        upperMarkYView.backgroundColor = .black
         upperMarkYView.frame = CGRect(x: 0, y: upperMarkY,
                                       width: containerView.bounds.size.width, height: 3)
         containerView.addSubview(upperMarkYView)
 
         let lowerMarkYView = UIView()
-        lowerMarkYView.backgroundColor = .red
+        lowerMarkYView.backgroundColor = .black
         lowerMarkYView.frame = CGRect(x: 0, y: lowerMarkY,
                                       width: containerView.bounds.size.width, height: 3)
         containerView.addSubview(lowerMarkYView)
