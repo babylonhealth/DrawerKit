@@ -40,6 +40,6 @@ public struct DrawerConfiguration: Equatable {
         self.flickSpeedThreshold = max(0, flickSpeedThreshold)
         self.upperMarkGap = max(0, upperMarkGap)
         self.lowerMarkGap = max(0, lowerMarkGap)
-        self.maximumCornerRadius = maximumCornerRadius
+        self.maximumCornerRadius = max(0, maximumCornerRadius)
     }
 }
