@@ -29,21 +29,11 @@ extension PresentationController {
         setupContainerViewDismissalTapRecogniser()
         setupPresentedViewDragRecogniser()
         setupDebugHeightMarks()
-        if maximumCornerRadius > 0 {
-            addCornerRadiusAnimationEnding(at: drawerPartialY)
-        }
-    }
-
-    override func presentationTransitionDidEnd(_ completed: Bool) {
-        if currentDrawerY == 0 || currentDrawerY == containerViewH {
-            currentDrawerCornerRadius = 0
-        }
+        addCornerRadiusAnimationEnding(at: drawerPartialY)
     }
 
     override func dismissalTransitionWillBegin() {
-        if maximumCornerRadius > 0 {
-            addCornerRadiusAnimationEnding(at: containerViewH)
-        }
+        addCornerRadiusAnimationEnding(at: containerViewH)
     }
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
@@ -89,7 +79,15 @@ private extension PresentationController {
 
     var currentDrawerCornerRadius: CGFloat {
         get { return presentedView?.layer.cornerRadius ?? 0 }
-        set { presentedView?.layer.cornerRadius = newValue }
+        set {
+            presentedView?.layer.cornerRadius = newValue
+            if #available(iOS 11.0, *) {
+                presentedView?.layer.maskedCorners =
+                    [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            } else {
+                presentedView?.roundCorners([.topLeft, .topRight], radius: newValue)
+            }
+        }
     }
 }
 
@@ -150,9 +148,7 @@ private extension PresentationController {
             gr.setTranslation(.zero, in: view)
             let positionY = currentDrawerY + offsetY
             currentDrawerY = min(max(positionY, 0), containerViewH)
-            if maximumCornerRadius > 0 {
-                currentDrawerCornerRadius = cornerRadius(at: currentDrawerY)
-            }
+            currentDrawerCornerRadius = cornerRadius(at: currentDrawerY)
 
         case .ended:
             let drawerVelocityY = gr.velocity(in: view).y / containerViewH
@@ -171,13 +167,6 @@ private extension PresentationController {
 
 private extension PresentationController {
     func animateTransition(to endPositionY: CGFloat, clamping: Bool = false) {
-        addPositionAnimationEnding(at: endPositionY, clamping: clamping)
-        if maximumCornerRadius > 0 {
-            addCornerRadiusAnimationEnding(at: endPositionY, clamping: clamping)
-        }
-    }
-
-    func addPositionAnimationEnding(at endPositionY: CGFloat, clamping: Bool = false) {
         guard endPositionY != currentDrawerY else { return }
 
         let endPosY = (clamping ? clamped(endPositionY) : endPositionY)
@@ -186,13 +175,24 @@ private extension PresentationController {
         let animator = UIViewPropertyAnimator(duration: durationInSeconds,
                                               timingParameters: timingCurveProvider)
 
+        let maxCornerRadius = maximumCornerRadius
+        let endingCornerRadius = cornerRadius(at: endPosY)
         animator.addAnimations { [weak self] in
             self?.currentDrawerY = endPosY
+            if maxCornerRadius > 0 {
+                self?.currentDrawerCornerRadius = endingCornerRadius
+            }
         }
 
         if endPosY == containerViewH {
             animator.addCompletion { [weak self] _ in
                 self?.presentedViewController.dismiss(animated: true)
+            }
+        }
+
+        if maxCornerRadius > 0 && endPosY != drawerPartialY {
+            animator.addCompletion { [weak self] _ in
+                self?.currentDrawerCornerRadius = 0
             }
         }
 
@@ -215,7 +215,7 @@ private extension PresentationController {
             self?.currentDrawerCornerRadius = endingCornerRadius
         }
 
-        if endPosY == 0 || endPosY == containerViewH {
+        if endPosY != drawerPartialY {
             animator.addCompletion { [weak self] _ in
                 self?.currentDrawerCornerRadius = 0
             }
@@ -317,5 +317,17 @@ private extension PresentationController {
         drawerMarkView.frame = CGRect(x: 0, y: drawerPartialY,
                                       width: containerView.bounds.size.width, height: 3)
         containerView.addSubview(drawerMarkView)
+    }
+}
+
+// For versions of iOS lower than  11.0
+extension UIView {
+    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: self.bounds,
+                                byRoundingCorners: corners,
+                                cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        self.layer.mask = mask
     }
 }
