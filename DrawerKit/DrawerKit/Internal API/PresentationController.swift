@@ -284,18 +284,23 @@ private extension PresentationController {
     func setupDebugHeightMarks() {
         guard inDebugMode else { return }
         guard let containerView = containerView else { return }
+        guard upperMarkGap > 0 || lowerMarkGap > 0 else { return }
 
-        let upperMarkYView = UIView()
-        upperMarkYView.backgroundColor = .black
-        upperMarkYView.frame = CGRect(x: 0, y: upperMarkY,
-                                      width: containerView.bounds.size.width, height: 3)
-        containerView.addSubview(upperMarkYView)
+        if upperMarkGap > 0 {
+            let upperMarkYView = UIView()
+            upperMarkYView.backgroundColor = .black
+            upperMarkYView.frame = CGRect(x: 0, y: upperMarkY,
+                                          width: containerView.bounds.size.width, height: 3)
+            containerView.addSubview(upperMarkYView)
+        }
 
-        let lowerMarkYView = UIView()
-        lowerMarkYView.backgroundColor = .black
-        lowerMarkYView.frame = CGRect(x: 0, y: lowerMarkY,
-                                      width: containerView.bounds.size.width, height: 3)
-        containerView.addSubview(lowerMarkYView)
+        if lowerMarkGap > 0 {
+            let lowerMarkYView = UIView()
+            lowerMarkYView.backgroundColor = .black
+            lowerMarkYView.frame = CGRect(x: 0, y: lowerMarkY,
+                                          width: containerView.bounds.size.width, height: 3)
+            containerView.addSubview(lowerMarkYView)
+        }
 
         let drawerMarkView = UIView()
         drawerMarkView.backgroundColor = .white
