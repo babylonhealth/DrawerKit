@@ -36,7 +36,7 @@ public struct DrawerConfiguration: Equatable {
         self.dismissesInStages = dismissesInStages
         self.isDrawerDraggable = isDrawerDraggable
         self.isDismissableByOutsideDrawerTaps = isDismissableByOutsideDrawerTaps
-        self.numberOfTapsForOutsideDrawerDismissal = numberOfTapsForOutsideDrawerDismissal
+        self.numberOfTapsForOutsideDrawerDismissal = max(0, numberOfTapsForOutsideDrawerDismissal)
         self.flickSpeedThreshold = max(0, flickSpeedThreshold)
         self.upperMarkGap = max(0, upperMarkGap)
         self.lowerMarkGap = max(0, lowerMarkGap)
