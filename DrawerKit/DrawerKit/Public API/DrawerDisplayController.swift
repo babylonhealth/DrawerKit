@@ -2,8 +2,8 @@ import UIKit
 
 // TODO:
 // - support device interface orientation changes
-// - support fixed height content
-// - support not-covering status bar and/or gap at top
+// - support insufficiently tall content
+// - support not-covering status bar and/or having a gap at the top
 
 public final class DrawerDisplayController: NSObject {
     public let configuration: DrawerConfiguration // intentionally immutable
