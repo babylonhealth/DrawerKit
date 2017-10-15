@@ -11,10 +11,6 @@ extension DrawerDisplayController {
         return configuration.timingCurveProvider
     }
 
-    public var coversStatusBar: Bool {
-        return configuration.coversStatusBar
-    }
-
     public var supportsPartialExpansion: Bool {
         return configuration.supportsPartialExpansion
     }

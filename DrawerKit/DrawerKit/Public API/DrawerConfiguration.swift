@@ -5,7 +5,6 @@ public struct DrawerConfiguration: Equatable {
     public var durationInSeconds: TimeInterval
     public var timingCurveProvider: UITimingCurveProvider
 
-    public var coversStatusBar: Bool
     public var supportsPartialExpansion: Bool
     public var dismissesInStages: Bool
     public var isDrawerDraggable: Bool
@@ -22,7 +21,6 @@ public struct DrawerConfiguration: Equatable {
 
     public init(durationInSeconds: TimeInterval = 0.8,
                 timingCurveProvider: UITimingCurveProvider = UISpringTimingParameters(),
-                coversStatusBar: Bool = true,
                 supportsPartialExpansion: Bool = true,
                 dismissesInStages: Bool = true,
                 isDrawerDraggable: Bool = true,
@@ -34,7 +32,6 @@ public struct DrawerConfiguration: Equatable {
                 maximumCornerRadius: CGFloat = 15) {
         self.durationInSeconds = (durationInSeconds > 0 ? durationInSeconds : 0.8)
         self.timingCurveProvider = timingCurveProvider
-        self.coversStatusBar = coversStatusBar
         self.supportsPartialExpansion = supportsPartialExpansion
         self.dismissesInStages = dismissesInStages
         self.isDrawerDraggable = isDrawerDraggable

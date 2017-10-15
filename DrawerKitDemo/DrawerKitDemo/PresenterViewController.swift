@@ -15,7 +15,6 @@ class PresenterViewController: UIViewController, DrawerPresenting {
 
     private var durationInSeconds: CGFloat = 0.8
     private var hasFixedHeight = false
-    private var coversStatusBar = true
     private var supportsPartialExpansion = true
     private var dismissesInStages = true
     private var isDrawerDraggable = true
@@ -27,7 +26,6 @@ class PresenterViewController: UIViewController, DrawerPresenting {
     private var maximumCornerRadius: CGFloat = 30
 
     @IBOutlet weak var hasFixedHeightSwitch: UISwitch!
-    @IBOutlet weak var coversStatusBarSwitch: UISwitch!
     @IBOutlet weak var supportsPartialExpansionSwitch: UISwitch!
     @IBOutlet weak var dismissesInStagesSwitch: UISwitch!
     @IBOutlet weak var drawerDraggableSwitch: UISwitch!
@@ -58,7 +56,6 @@ extension PresenterViewController {
         // ... or after initialisation
         configuration.durationInSeconds = 0.8 // TimeInterval(durationSliderView.value)
         configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.8)
-        configuration.coversStatusBar = coversStatusBar
         configuration.supportsPartialExpansion = supportsPartialExpansion
         configuration.dismissesInStages = dismissesInStages
         configuration.isDrawerDraggable = isDrawerDraggable
@@ -113,7 +110,6 @@ private extension PresenterViewController {
 //            title: "Max corner radius", minValue: 0, maxValue: 30,
 //            initialValue: 15, defaultValue: 15)
 //        hasFixedHeightSwitch.isOn = hasFixedHeight
-//        coversStatusBarSwitch.isOn = coversStatusBar
 //        supportsPartialExpansionSwitch.isOn = supportsPartialExpansion
 //        dismissesInStagesSwitch.isEnabled = supportsPartialExpansion
 //        dismissesInStagesSwitch.isOn = dismissesInStages
@@ -125,8 +121,6 @@ private extension PresenterViewController {
         switch toggler {
         case hasFixedHeightSwitch:
             hasFixedHeight = toggler.isOn
-        case coversStatusBarSwitch:
-            coversStatusBar = toggler.isOn
         case supportsPartialExpansionSwitch:
             supportsPartialExpansion = toggler.isOn
             dismissesInStagesSwitch.isEnabled = toggler.isOn
