@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB2CB7B71F8EEDF400AA152D /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB7B61F8EEDF400AA152D /* SliderView.swift */; };
-		CB3E51341F93528D00406C6A /* CubicBezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3E51331F93528D00406C6A /* CubicBezierView.swift */; };
-		CB7E08D11F8F9B9D004ACB07 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E08D01F8F9B9D004ACB07 /* SwitchView.swift */; };
 		CBBA2D3A1F8E807400E0137F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBA2D391F8E807400E0137F /* AppDelegate.swift */; };
 		CBBA2D411F8E807400E0137F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D3F1F8E807400E0137F /* Main.storyboard */; };
 		CBBA2D431F8E807400E0137F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D421F8E807400E0137F /* Assets.xcassets */; };
@@ -17,11 +14,8 @@
 		CBBA2D631F8E817400E0137F /* DrawerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBBA2D621F8E817400E0137F /* DrawerKit.framework */; };
 		CBBA2D641F8E817400E0137F /* DrawerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CBBA2D621F8E817400E0137F /* DrawerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CBBA2D6F1F8E83E300E0137F /* PresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBA2D6B1F8E83E300E0137F /* PresenterViewController.swift */; };
-		CBBA2D701F8E83E300E0137F /* PresenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBA2D6C1F8E83E300E0137F /* PresenterView.swift */; };
 		CBBA2D711F8E83E300E0137F /* PresentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBA2D6D1F8E83E300E0137F /* PresentedView.swift */; };
 		CBBA2D721F8E83E300E0137F /* PresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBA2D6E1F8E83E300E0137F /* PresentedViewController.swift */; };
-		CBBA2D731F8E855C00E0137F /* PresenterVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D661F8E836100E0137F /* PresenterVC.storyboard */; };
-		CBBA2D741F8E856100E0137F /* PresentedVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D681F8E836100E0137F /* PresentedVC.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,9 +33,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		CB2CB7B61F8EEDF400AA152D /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
-		CB3E51331F93528D00406C6A /* CubicBezierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubicBezierView.swift; sourceTree = "<group>"; };
-		CB7E08D01F8F9B9D004ACB07 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
 		CBBA2D361F8E807400E0137F /* DrawerKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawerKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBBA2D391F8E807400E0137F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBBA2D401F8E807400E0137F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,10 +40,7 @@
 		CBBA2D451F8E807400E0137F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBBA2D471F8E807400E0137F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBBA2D621F8E817400E0137F /* DrawerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DrawerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CBBA2D671F8E836100E0137F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PresenterVC.storyboard; sourceTree = "<group>"; };
-		CBBA2D691F8E836100E0137F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PresentedVC.storyboard; sourceTree = "<group>"; };
 		CBBA2D6B1F8E83E300E0137F /* PresenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterViewController.swift; sourceTree = "<group>"; };
-		CBBA2D6C1F8E83E300E0137F /* PresenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterView.swift; sourceTree = "<group>"; };
 		CBBA2D6D1F8E83E300E0137F /* PresentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedView.swift; sourceTree = "<group>"; };
 		CBBA2D6E1F8E83E300E0137F /* PresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,12 +79,8 @@
 			children = (
 				CBBA2D391F8E807400E0137F /* AppDelegate.swift */,
 				CBBA2D6B1F8E83E300E0137F /* PresenterViewController.swift */,
-				CBBA2D6C1F8E83E300E0137F /* PresenterView.swift */,
 				CBBA2D6E1F8E83E300E0137F /* PresentedViewController.swift */,
 				CBBA2D6D1F8E83E300E0137F /* PresentedView.swift */,
-				CB2CB7B61F8EEDF400AA152D /* SliderView.swift */,
-				CB7E08D01F8F9B9D004ACB07 /* SwitchView.swift */,
-				CB3E51331F93528D00406C6A /* CubicBezierView.swift */,
 				CBBA2D421F8E807400E0137F /* Assets.xcassets */,
 				CBBA2D6A1F8E839200E0137F /* Storyboards */,
 				CBBA2D471F8E807400E0137F /* Info.plist */,
@@ -108,8 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				CBBA2D3F1F8E807400E0137F /* Main.storyboard */,
-				CBBA2D661F8E836100E0137F /* PresenterVC.storyboard */,
-				CBBA2D681F8E836100E0137F /* PresentedVC.storyboard */,
 				CBBA2D441F8E807400E0137F /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -175,10 +157,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBBA2D741F8E856100E0137F /* PresentedVC.storyboard in Resources */,
 				CBBA2D461F8E807400E0137F /* LaunchScreen.storyboard in Resources */,
 				CBBA2D431F8E807400E0137F /* Assets.xcassets in Resources */,
-				CBBA2D731F8E855C00E0137F /* PresenterVC.storyboard in Resources */,
 				CBBA2D411F8E807400E0137F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,12 +172,8 @@
 			files = (
 				CBBA2D3A1F8E807400E0137F /* AppDelegate.swift in Sources */,
 				CBBA2D721F8E83E300E0137F /* PresentedViewController.swift in Sources */,
-				CB3E51341F93528D00406C6A /* CubicBezierView.swift in Sources */,
 				CBBA2D711F8E83E300E0137F /* PresentedView.swift in Sources */,
-				CB7E08D11F8F9B9D004ACB07 /* SwitchView.swift in Sources */,
-				CB2CB7B71F8EEDF400AA152D /* SliderView.swift in Sources */,
 				CBBA2D6F1F8E83E300E0137F /* PresenterViewController.swift in Sources */,
-				CBBA2D701F8E83E300E0137F /* PresenterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,22 +194,6 @@
 				CBBA2D451F8E807400E0137F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		CBBA2D661F8E836100E0137F /* PresenterVC.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CBBA2D671F8E836100E0137F /* Base */,
-			);
-			name = PresenterVC.storyboard;
-			sourceTree = "<group>";
-		};
-		CBBA2D681F8E836100E0137F /* PresentedVC.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CBBA2D691F8E836100E0137F /* Base */,
-			);
-			name = PresentedVC.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
