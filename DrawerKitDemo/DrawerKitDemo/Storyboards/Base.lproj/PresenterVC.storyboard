@@ -75,10 +75,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="LgV-eB-Sh0" userLabel="fixed height content" customClass="SwitchView" customModule="DrawerKitDemo" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="LgV-eB-Sh0" userLabel="insufficiently tall content" customClass="SwitchView" customModule="DrawerKitDemo" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="8" width="300" height="36"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Simulate fixed-height content:"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Simulate insufficiently tall content:"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                                                             <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
@@ -146,7 +146,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ShY-me-u9o" userLabel="leaves gap at the top" customClass="SwitchView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="8" width="300" height="36"/>
+                                                    <rect key="frame" x="20" y="8" width="280" height="36"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Leaves gap at the top:"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -166,7 +166,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="ShY-me-u9o" secondAttribute="bottom" id="Iqx-h5-bhZ"/>
-                                                <constraint firstItem="ShY-me-u9o" firstAttribute="leading" secondItem="hJs-nu-01p" secondAttribute="leading" id="K9U-nP-h7f"/>
+                                                <constraint firstItem="ShY-me-u9o" firstAttribute="leading" secondItem="hJs-nu-01p" secondAttribute="leading" constant="20" id="K9U-nP-h7f"/>
                                                 <constraint firstItem="ShY-me-u9o" firstAttribute="top" secondItem="hJs-nu-01p" secondAttribute="top" constant="8" id="Ocb-nn-lsM"/>
                                                 <constraint firstAttribute="trailing" secondItem="ShY-me-u9o" secondAttribute="trailing" id="ooV-ky-ZrB"/>
                                             </constraints>
@@ -181,7 +181,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="12U-we-hoy" userLabel="top gap" customClass="SliderView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="8" width="280" height="36"/>
+                                                    <rect key="frame" x="40" y="8" width="250" height="36"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -216,7 +216,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="12U-we-hoy" secondAttribute="trailing" constant="10" id="Hu1-AY-Pd7"/>
                                                 <constraint firstItem="12U-we-hoy" firstAttribute="top" secondItem="nHl-7Z-Pxk" secondAttribute="top" constant="8" id="NTE-FZ-ozm"/>
-                                                <constraint firstItem="12U-we-hoy" firstAttribute="leading" secondItem="nHl-7Z-Pxk" secondAttribute="leading" constant="10" id="iSa-7t-Za5"/>
+                                                <constraint firstItem="12U-we-hoy" firstAttribute="leading" secondItem="nHl-7Z-Pxk" secondAttribute="leading" constant="40" id="iSa-7t-Za5"/>
                                                 <constraint firstAttribute="bottom" secondItem="12U-we-hoy" secondAttribute="bottom" id="mhV-DP-GdP"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -230,7 +230,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="94G-aX-NIP" userLabel="supports partial expansion" customClass="SwitchView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="8" width="300" height="35.5"/>
+                                                    <rect key="frame" x="0.0" y="8" width="300" height="36"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Supports partial expansion:"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -265,7 +265,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="hhh-8C-TX6" userLabel="staged dismissal" customClass="SwitchView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="8" width="300" height="35.5"/>
+                                                    <rect key="frame" x="0.0" y="8" width="300" height="36"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Staged dismissal:"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="indented" value="YES"/>
@@ -303,7 +303,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="eYl-3e-RR7" userLabel="draggable drawer" customClass="SwitchView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="8" width="300" height="35.5"/>
+                                                    <rect key="frame" x="0.0" y="8" width="300" height="36"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Draggable drawer:"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -376,7 +376,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="SDf-U4-eLI" userLabel="animates corner-rounding" customClass="SwitchView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="8" width="300" height="35.5"/>
+                                                    <rect key="frame" x="0.0" y="8" width="300" height="36"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Animates corner-rounding:"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -411,7 +411,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="BHi-6X-XtV" userLabel="maximum corner radius" customClass="SliderView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="8" width="280" height="35.5"/>
+                                                    <rect key="frame" x="20" y="8" width="270" height="36"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -444,7 +444,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="BHi-6X-XtV" firstAttribute="leading" secondItem="EOH-7g-fjt" secondAttribute="leading" constant="10" id="1Us-SP-Vvw"/>
+                                                <constraint firstItem="BHi-6X-XtV" firstAttribute="leading" secondItem="EOH-7g-fjt" secondAttribute="leading" constant="20" id="1Us-SP-Vvw"/>
                                                 <constraint firstItem="BHi-6X-XtV" firstAttribute="top" secondItem="EOH-7g-fjt" secondAttribute="top" constant="8" id="1z5-Sn-Hg7"/>
                                                 <constraint firstAttribute="bottom" secondItem="BHi-6X-XtV" secondAttribute="bottom" id="ALk-TV-uLn"/>
                                                 <constraint firstAttribute="trailing" secondItem="BHi-6X-XtV" secondAttribute="trailing" constant="10" id="tXy-o6-exE"/>
@@ -460,7 +460,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Koi-Bf-hB0" userLabel="upper mark gap" customClass="SliderView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="8" width="290" height="35.5"/>
+                                                    <rect key="frame" x="0.0" y="8" width="290" height="36"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -509,7 +509,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="zni-QX-VQY" userLabel="lower mark gap" customClass="SliderView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="8" width="290" height="36.5"/>
+                                                    <rect key="frame" x="0.0" y="8" width="290" height="36"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -550,15 +550,50 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" id="c9O-ms-AHc">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" id="Rjd-EV-wcZ">
                                         <rect key="frame" x="0.0" y="528" width="300" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rjd-EV-wcZ" id="deO-Uq-VQ7">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="aDX-5o-uxR" userLabel="speed-dependent flicks" customClass="SwitchView" customModule="DrawerKitDemo" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="8" width="300" height="36"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Supports speed-dependent flicks:"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                            <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="onTint">
+                                                            <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="thumbTint">
+                                                            <color key="value" red="1" green="0.68627450980000004" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isOn" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="indented" value="NO"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="aDX-5o-uxR" secondAttribute="bottom" id="2UD-YQ-CZF"/>
+                                                <constraint firstItem="aDX-5o-uxR" firstAttribute="leading" secondItem="deO-Uq-VQ7" secondAttribute="leading" id="4ir-ji-Lzu"/>
+                                                <constraint firstItem="aDX-5o-uxR" firstAttribute="top" secondItem="deO-Uq-VQ7" secondAttribute="top" constant="8" id="KFF-NB-bSw"/>
+                                                <constraint firstAttribute="trailing" secondItem="aDX-5o-uxR" secondAttribute="trailing" id="Lja-Cf-FaR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" id="c9O-ms-AHc">
+                                        <rect key="frame" x="0.0" y="572" width="300" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c9O-ms-AHc" id="DaS-hn-Lhd">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="5Za-0y-MWY" userLabel="flick speed threshold:" customClass="SliderView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="8" width="290" height="36.5"/>
+                                                    <rect key="frame" x="20" y="8" width="270" height="36"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -591,7 +626,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="5Za-0y-MWY" firstAttribute="leading" secondItem="DaS-hn-Lhd" secondAttribute="leading" id="7T1-wz-8bs"/>
+                                                <constraint firstItem="5Za-0y-MWY" firstAttribute="leading" secondItem="DaS-hn-Lhd" secondAttribute="leading" constant="20" id="7T1-wz-8bs"/>
                                                 <constraint firstItem="5Za-0y-MWY" firstAttribute="top" secondItem="DaS-hn-Lhd" secondAttribute="top" constant="8" id="Tda-Mh-Dvc"/>
                                                 <constraint firstAttribute="bottom" secondItem="5Za-0y-MWY" secondAttribute="bottom" id="vXu-15-Vys"/>
                                                 <constraint firstAttribute="trailing" secondItem="5Za-0y-MWY" secondAttribute="trailing" constant="10" id="wJZ-dZ-p53"/>
@@ -600,7 +635,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" id="Iev-76-cwP">
-                                        <rect key="frame" x="0.0" y="572" width="300" height="44"/>
+                                        <rect key="frame" x="0.0" y="616" width="300" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Iev-76-cwP" id="Ky9-lo-4R4">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
@@ -641,14 +676,14 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" id="Gn1-mj-ULl">
-                                        <rect key="frame" x="0.0" y="616" width="300" height="44"/>
+                                        <rect key="frame" x="0.0" y="660" width="300" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gn1-mj-ULl" id="FKl-Mc-FpM">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="XAP-7Q-QaN" userLabel="duration in seconds" customClass="SliderView" customModule="DrawerKitDemo" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="8" width="280" height="28.5"/>
+                                                    <rect key="frame" x="20" y="8" width="270" height="28"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -684,7 +719,46 @@
                                                 <constraint firstAttribute="bottom" secondItem="XAP-7Q-QaN" secondAttribute="bottom" constant="8" id="GiU-hA-VMX"/>
                                                 <constraint firstAttribute="trailing" secondItem="XAP-7Q-QaN" secondAttribute="trailing" constant="10" id="iVa-he-7ab"/>
                                                 <constraint firstItem="XAP-7Q-QaN" firstAttribute="top" secondItem="FKl-Mc-FpM" secondAttribute="top" constant="8" id="vcE-N0-q6u"/>
-                                                <constraint firstItem="XAP-7Q-QaN" firstAttribute="leading" secondItem="FKl-Mc-FpM" secondAttribute="leading" constant="10" id="ywY-ca-GHR"/>
+                                                <constraint firstItem="XAP-7Q-QaN" firstAttribute="leading" secondItem="FKl-Mc-FpM" secondAttribute="leading" constant="20" id="ywY-ca-GHR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" shouldIndentWhileEditing="NO" rowHeight="160" id="Nrn-V7-0Xe">
+                                        <rect key="frame" x="0.0" y="704" width="300" height="160"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nrn-V7-0Xe" id="yKz-tl-Lug">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="160"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="goK-Lh-eOG" customClass="CubicBezierView" customModule="DrawerKitDemo" customModuleProvider="target">
+                                                    <rect key="frame" x="75" y="5" width="150" height="150"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="150" id="F5c-LB-7Pt"/>
+                                                        <constraint firstAttribute="width" constant="150" id="Vrl-cs-QHx"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="curveLineColor">
+                                                            <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="handleLineColor">
+                                                            <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="handleBorderColor">
+                                                            <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="handleInteriorColor">
+                                                            <color key="value" red="1" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="goK-Lh-eOG" firstAttribute="centerX" secondItem="yKz-tl-Lug" secondAttribute="centerX" id="c8w-6b-1UW"/>
+                                                <constraint firstAttribute="bottom" secondItem="goK-Lh-eOG" secondAttribute="bottom" constant="5" id="lZZ-Ke-Ola"/>
+                                                <constraint firstItem="goK-Lh-eOG" firstAttribute="top" secondItem="yKz-tl-Lug" secondAttribute="top" constant="5" id="mdx-sr-6Zw"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
