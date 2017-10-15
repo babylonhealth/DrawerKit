@@ -29,7 +29,9 @@ extension PresentationController {
         setupContainerViewDismissalTapRecogniser()
         setupPresentedViewDragRecogniser()
         setupDebugHeightMarks()
-        addCornerRadiusAnimationEnding(at: drawerPartialY)
+        if maximumCornerRadius > 0 {
+            addCornerRadiusAnimationEnding(at: drawerPartialY)
+        }
     }
 
     override func presentationTransitionDidEnd(_ completed: Bool) {
@@ -39,7 +41,9 @@ extension PresentationController {
     }
 
     override func dismissalTransitionWillBegin() {
-        addCornerRadiusAnimationEnding(at: containerViewH)
+        if maximumCornerRadius > 0 {
+            addCornerRadiusAnimationEnding(at: containerViewH)
+        }
     }
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
@@ -146,7 +150,9 @@ private extension PresentationController {
             gr.setTranslation(.zero, in: view)
             let positionY = currentDrawerY + offsetY
             currentDrawerY = min(max(positionY, 0), containerViewH)
-            currentDrawerCornerRadius = cornerRadius(at: currentDrawerY)
+            if maximumCornerRadius > 0 {
+                currentDrawerCornerRadius = cornerRadius(at: currentDrawerY)
+            }
 
         case .ended:
             let drawerVelocityY = gr.velocity(in: view).y / containerViewH
@@ -166,7 +172,9 @@ private extension PresentationController {
 private extension PresentationController {
     func animateTransition(to endPositionY: CGFloat, clamping: Bool = false) {
         addPositionAnimationEnding(at: endPositionY, clamping: clamping)
-        addCornerRadiusAnimationEnding(at: endPositionY, clamping: clamping)
+        if maximumCornerRadius > 0 {
+            addCornerRadiusAnimationEnding(at: endPositionY, clamping: clamping)
+        }
     }
 
     func addPositionAnimationEnding(at endPositionY: CGFloat, clamping: Bool = false) {
@@ -192,6 +200,7 @@ private extension PresentationController {
     }
 
     func addCornerRadiusAnimationEnding(at endPositionY: CGFloat, clamping: Bool = false) {
+        guard maximumCornerRadius > 0 else { return }
         guard drawerPartialY > 0 else { return }
         guard endPositionY != currentDrawerY else { return }
 
@@ -216,6 +225,7 @@ private extension PresentationController {
     }
 
     func cornerRadius(at positionY: CGFloat) -> CGFloat {
+        guard maximumCornerRadius > 0 else { return currentDrawerCornerRadius }
         guard drawerPartialY > 0 && drawerPartialY < containerViewH else { return 0 }
         guard positionY >= 0 && positionY <= containerViewH else { return 0 }
 
