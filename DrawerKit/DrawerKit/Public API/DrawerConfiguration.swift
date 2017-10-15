@@ -32,7 +32,7 @@ public struct DrawerConfiguration: Equatable {
                 upperMarkGap: CGFloat = 40,
                 lowerMarkGap: CGFloat = 40,
                 maximumCornerRadius: CGFloat = 15) {
-        self.durationInSeconds = durationInSeconds
+        self.durationInSeconds = (durationInSeconds > 0 ? durationInSeconds : 0.8)
         self.timingCurveProvider = timingCurveProvider
         self.coversStatusBar = coversStatusBar
         self.supportsPartialExpansion = supportsPartialExpansion
