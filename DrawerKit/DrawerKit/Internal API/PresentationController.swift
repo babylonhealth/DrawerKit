@@ -71,7 +71,7 @@ private extension PresentationController {
     }
 
     var upperMarkY: CGFloat {
-        return (containerViewH - drawerPartialH) - upperMarkGap
+        return drawerPartialY - upperMarkGap
     }
 
     var lowerMarkY: CGFloat {

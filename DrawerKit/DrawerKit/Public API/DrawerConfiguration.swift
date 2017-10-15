@@ -38,8 +38,8 @@ public struct DrawerConfiguration: Equatable {
         self.isDismissableByOutsideDrawerTaps = isDismissableByOutsideDrawerTaps
         self.numberOfTapsForOutsideDrawerDismissal = numberOfTapsForOutsideDrawerDismissal
         self.flickSpeedThreshold = max(0, flickSpeedThreshold)
-        self.upperMarkGap = upperMarkGap
-        self.lowerMarkGap = lowerMarkGap
+        self.upperMarkGap = max(0, upperMarkGap)
+        self.lowerMarkGap = max(0, lowerMarkGap)
         self.maximumCornerRadius = maximumCornerRadius
     }
 }
