@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CB2CB7B71F8EEDF400AA152D /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB7B61F8EEDF400AA152D /* SliderView.swift */; };
+		CB3E51341F93528D00406C6A /* CubicBezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3E51331F93528D00406C6A /* CubicBezierView.swift */; };
 		CB7E08D11F8F9B9D004ACB07 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E08D01F8F9B9D004ACB07 /* SwitchView.swift */; };
 		CBBA2D3A1F8E807400E0137F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBA2D391F8E807400E0137F /* AppDelegate.swift */; };
 		CBBA2D411F8E807400E0137F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D3F1F8E807400E0137F /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		CB2CB7B61F8EEDF400AA152D /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		CB3E51331F93528D00406C6A /* CubicBezierView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubicBezierView.swift; sourceTree = "<group>"; };
 		CB7E08D01F8F9B9D004ACB07 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
 		CBBA2D361F8E807400E0137F /* DrawerKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawerKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBBA2D391F8E807400E0137F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				CBBA2D6D1F8E83E300E0137F /* PresentedView.swift */,
 				CB2CB7B61F8EEDF400AA152D /* SliderView.swift */,
 				CB7E08D01F8F9B9D004ACB07 /* SwitchView.swift */,
+				CB3E51331F93528D00406C6A /* CubicBezierView.swift */,
 				CBBA2D421F8E807400E0137F /* Assets.xcassets */,
 				CBBA2D6A1F8E839200E0137F /* Storyboards */,
 				CBBA2D471F8E807400E0137F /* Info.plist */,
@@ -189,6 +192,7 @@
 			files = (
 				CBBA2D3A1F8E807400E0137F /* AppDelegate.swift in Sources */,
 				CBBA2D721F8E83E300E0137F /* PresentedViewController.swift in Sources */,
+				CB3E51341F93528D00406C6A /* CubicBezierView.swift in Sources */,
 				CBBA2D711F8E83E300E0137F /* PresentedView.swift in Sources */,
 				CB7E08D11F8F9B9D004ACB07 /* SwitchView.swift in Sources */,
 				CB2CB7B71F8EEDF400AA152D /* SliderView.swift in Sources */,
