@@ -21,7 +21,7 @@ public struct DrawerConfiguration: Equatable {
 
     public var maximumCornerRadius: CGFloat
 
-    public init(durationInSeconds: TimeInterval = 0.8,
+    public init(durationInSeconds: TimeInterval = 0.3,
                 timingCurveProvider: UITimingCurveProvider = UISpringTimingParameters(),
                 supportsPartialExpansion: Bool = true,
                 dismissesInStages: Bool = true,
