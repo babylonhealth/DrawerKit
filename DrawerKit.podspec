@@ -16,7 +16,6 @@ coming soon.
   s.author        = { "Wagner Truppel" => "wagner.truppel@babylonhealth.com" }
   s.platform      = :ios, "10.0"
   s.source        = { :git => "github.com/Babylonpartners/DrawerKit.git", :tag => "#{s.version}" }
-  s.source_files  = "Classes/**/*.{swift}"
-  s.exclude_files = "Classes/Exclude"
+  s.source_files  = "DrawerKit/**/*.{swift}"
 
 end
