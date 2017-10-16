@@ -179,22 +179,22 @@ private extension PresentationController {
 
         let maxCornerRadius = maximumCornerRadius
         let endingCornerRadius = cornerRadius(at: endPosY)
-        animator.addAnimations { [weak self] in
-            self?.currentDrawerY = endPosY
+        animator.addAnimations {
+            self.currentDrawerY = endPosY
             if maxCornerRadius > 0 {
-                self?.currentDrawerCornerRadius = endingCornerRadius
+                self.currentDrawerCornerRadius = endingCornerRadius
             }
         }
 
         if endPosY == containerViewH {
-            animator.addCompletion { [weak self] _ in
-                self?.presentedViewController.dismiss(animated: true)
+            animator.addCompletion { _ in
+                self.presentedViewController.dismiss(animated: true)
             }
         }
 
         if maxCornerRadius > 0 && endPosY != drawerPartialY {
-            animator.addCompletion { [weak self] _ in
-                self?.currentDrawerCornerRadius = 0
+            animator.addCompletion { _ in
+                self.currentDrawerCornerRadius = 0
             }
         }
 
@@ -213,13 +213,13 @@ private extension PresentationController {
                                               timingParameters: timingCurveProvider)
 
         let endingCornerRadius = cornerRadius(at: endPosY)
-        animator.addAnimations { [weak self] in
-            self?.currentDrawerCornerRadius = endingCornerRadius
+        animator.addAnimations {
+            self.currentDrawerCornerRadius = endingCornerRadius
         }
 
         if endPosY != drawerPartialY {
-            animator.addCompletion { [weak self] _ in
-                self?.currentDrawerCornerRadius = 0
+            animator.addCompletion { _ in
+                self.currentDrawerCornerRadius = 0
             }
         }
 
