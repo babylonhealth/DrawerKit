@@ -27,22 +27,22 @@ extension InteractionController {
 private extension InteractionController {
     func setupPresentedViewDragRecogniser() {
         guard presentedViewDragGR == nil else { return }
-        let gr = UIPanGestureRecognizer(target: self,
-                                        action: #selector(handlePresentedViewDrag))
-        presentedVC.view.addGestureRecognizer(gr)
-        presentedViewDragGR = gr
+        let panGesture = UIPanGestureRecognizer(target: self,
+                                                action: #selector(handlePresentedViewDrag))
+        presentedVC.view.addGestureRecognizer(panGesture)
+        presentedViewDragGR = panGesture
     }
 
     func removePresentedViewDragRecogniser() {
-        guard let gr = presentedViewDragGR else { return }
-        presentedVC.view.removeGestureRecognizer(gr)
+        guard let panGesture = presentedViewDragGR else { return }
+        presentedVC.view.removeGestureRecognizer(panGesture)
         presentedViewDragGR = nil
     }
 
     @objc func handlePresentedViewDrag() {
-        guard let gr = presentedViewDragGR, let view = gr.view else { return }
+        guard let panGesture = presentedViewDragGR, let view = panGesture.view else { return }
 
-        switch gr.state {
+        switch panGesture.state {
         case .began:
             if isPresentation {
                 presentingVC.present(presentedVC, animated: true)
@@ -51,8 +51,8 @@ private extension InteractionController {
             }
 
         case .changed:
-            let offsetY = gr.translation(in: view).y
-            gr.setTranslation(.zero, in: view)
+            let offsetY = panGesture.translation(in: view).y
+            panGesture.setTranslation(.zero, in: view)
             update(percentComplete + offsetY / containerH)
 
         case .ended:
