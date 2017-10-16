@@ -10,7 +10,7 @@ extension DrawerConfiguration {
             && lhs.isDismissableByOutsideDrawerTaps == rhs.isDismissableByOutsideDrawerTaps
             && lhs.numberOfTapsForOutsideDrawerDismissal == rhs.numberOfTapsForOutsideDrawerDismissal
             && lhs.flickSpeedThreshold == rhs.flickSpeedThreshold
-            && lhs.lowerMarkGap == rhs.lowerMarkGap
+            && lhs.upperMarkGap == rhs.upperMarkGap
             && lhs.lowerMarkGap == rhs.lowerMarkGap
             && lhs.maximumCornerRadius == rhs.maximumCornerRadius
     }
