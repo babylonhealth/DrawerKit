@@ -14,7 +14,7 @@ coming soon.
   s.homepage      = "https://github.com/Babylonpartners/DrawerKit/blob/master/README.md"
   s.license       = { :type => "MIT", :file => "LICENSE" }
   s.author        = { "Wagner Truppel" => "wagner.truppel@babylonhealth.com" }
-  s.platform      = :ios, "10.3"
+  s.platform      = :ios, "10.0"
   s.source        = { :git => "github.com/Babylonpartners/DrawerKit.git", :tag => "#{s.version}" }
   s.source_files  = "Classes/**/*.{swift}"
   s.exclude_files = "Classes/Exclude"
