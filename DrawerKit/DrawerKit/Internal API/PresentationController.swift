@@ -248,7 +248,6 @@ private extension PresentationController {
         let isNotMoving = (velocityY == 0)
         let isMovingUp = (velocityY < 0) // recall that Y-axis points down
         let isMovingDown = (velocityY > 0)
-        // flickSpeedThreshold == 0 disables speed-dependence
         let isMovingQuickly = (flickSpeedThreshold > 0) && (abs(velocityY) > flickSpeedThreshold)
         let isMovingUpQuickly = isMovingUp && isMovingQuickly
         let isMovingDownQuickly = isMovingDown && isMovingQuickly
