@@ -28,9 +28,9 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
 
     public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         if #available(iOS 11.0, *) {
-            guard isDrawerDraggable else { return nil }
+            guard isDrawerDraggable, let presentingVC = presentingVC else { return nil }
             return InteractionController(isPresentation: true,
-                                         presentingVC: presentingVC!,
+                                         presentingVC: presentingVC,
                                          presentedVC: presentedVC)
         } else {
             // On iOS 10, there seems to be a bug in UIKit that causes the interactive animation
@@ -44,9 +44,9 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
 
     public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         if #available(iOS 11.0, *) {
-            guard isDrawerDraggable else { return nil }
+            guard isDrawerDraggable, let presentingVC = presentingVC else { return nil }
             return InteractionController(isPresentation: false,
-                                         presentingVC: presentingVC!,
+                                         presentingVC: presentingVC,
                                          presentedVC: presentedVC)
         } else {
             // On iOS 10, there seems to be a bug in UIKit that causes the interactive animation
