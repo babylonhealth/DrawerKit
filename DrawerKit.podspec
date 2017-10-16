@@ -11,7 +11,7 @@ in the map when using the Apple Maps app. The library is highly configurable, wi
 coming soon.
                    DESC
 
-  s.homepage      = "https://github.com/Babylonpartners/DrawerKit/blob/master/README.md"
+  s.homepage      = "https://github.com/Babylonpartners/DrawerKit"
   s.license       = { :type => "MIT", :file => "LICENSE" }
   s.author        = { "Wagner Truppel" => "wagner.truppel@babylonhealth.com" }
   s.platform      = :ios, "10.0"
