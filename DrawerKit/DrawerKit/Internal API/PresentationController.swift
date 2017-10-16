@@ -59,7 +59,7 @@ private extension PresentationController {
 
     var drawerPartialH: CGFloat {
         guard let presentedVC = presentedViewController as? DrawerPresentable else { return 0 }
-        return presentedVC.heightOfPartiallyExpandedDrawer
+        return max(0, presentedVC.heightOfPartiallyExpandedDrawer)
     }
 
     var drawerPartialY: CGFloat {
