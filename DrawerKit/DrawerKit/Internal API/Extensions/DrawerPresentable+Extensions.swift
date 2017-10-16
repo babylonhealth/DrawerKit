@@ -1,18 +1,19 @@
 import UIKit
 
-// extension DrawerPresentable where Self: UIViewController {
-extension UIViewControllerTransitioningDelegate where Self: UIViewController & DrawerPresentable {
+extension UIViewControllerTransitioningDelegate where Self: DrawerController {
+    @objc
     public func presentationController(forPresented presented: UIViewController,
                                        presenting: UIViewController?,
                                        source: UIViewController) -> UIPresentationController? {
-        let presentationController = PresentationController(presentingVC: presentingViewController,
+        let presentationController = DrawerController(presentingVC: presentingViewController,
                                                             presentedVC: presented,
-                                                            configuration: drawerConfiguration,
-                                                            inDebugMode: inDrawerDebugMode)
+                                                            configuration: configuration,
+                                                            inDebugMode: inDebugMode)
         presentationController.delegate = self
         return presentationController
     }
 
+    @objc
     public func animationController(forPresented presented: UIViewController,
                                     presenting: UIViewController,
                                     source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -21,29 +22,29 @@ extension UIViewControllerTransitioningDelegate where Self: UIViewController & D
                                    timingCurveProvider: timingCurveProvider)
     }
 
+    @objc
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return AnimationController(isPresentation: false,
                                    durationInSeconds: durationInSeconds,
                                    timingCurveProvider: timingCurveProvider)
     }
 
+    @objc
     public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         guard isDrawerDraggable else { return nil }
-        guard let presentingVC = presentingViewController else { return nil }
         return InteractionController(isPresentation: true,
-                                     presentingVC: presentingVC,
-                                     presentedVC: self)
+                                     presentingVC: presentingViewController,
+                                     presentedVC: presentedVC)
     }
 
+    @objc
     public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         guard isDrawerDraggable else { return nil }
-        guard let presentingVC = presentingViewController else { return nil }
         return InteractionController(isPresentation: true,
-                                     presentingVC: presentingVC,
-                                     presentedVC: self)
+                                     presentingVC: presentingViewController,
+                                     presentedVC: presentedVC)
     }
 }
 
 // TODO: Implement support for adaptive presentations (UIAdaptivePresentationControllerDelegate).
-// extension DrawerPresentable where Self: UIViewController {}
-extension UIAdaptivePresentationControllerDelegate where Self: UIViewController & DrawerPresentable {}
+extension UIAdaptivePresentationControllerDelegate where Self: DrawerController {}

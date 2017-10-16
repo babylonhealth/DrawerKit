@@ -7,7 +7,7 @@ public extension DrawerPresentable {
     /// How long the animations that move the drawer up and down last.
     /// The default value is 0.8 seconds.
     public var durationInSeconds: TimeInterval {
-        return drawerConfiguration.durationInSeconds
+        return drawerController.durationInSeconds
     }
 
     /// The type of timing curve to use for the animations. The full set
@@ -17,14 +17,14 @@ public extension DrawerPresentable {
     /// specifics of the spring-based curve. The default is `UISpringTimingParameters()`,
     /// which is the system's global spring-based timing curve.
     public var timingCurveProvider: UITimingCurveProvider {
-        return drawerConfiguration.timingCurveProvider
+        return drawerController.timingCurveProvider
     }
 
     /// When `true`, the drawer is presented first in its partially expanded state.
     /// When `false`, the presentation is always to full screen and there is no
     /// partially expanded state. The default value is `true`.
     public var supportsPartialExpansion: Bool {
-        return drawerConfiguration.supportsPartialExpansion
+        return drawerController.supportsPartialExpansion
     }
 
     /// When `true`, dismissing the drawer from its fully expanded state can result
@@ -36,24 +36,24 @@ public extension DrawerPresentable {
     /// partially expanded state but all dismissals would be straight to the collapsed
     /// state. The default value is `true`.
     public var dismissesInStages: Bool {
-        return drawerConfiguration.dismissesInStages
+        return drawerController.dismissesInStages
     }
 
     /// Whether or not the drawer can be dragged up and down. The default value is `true`.
     public var isDrawerDraggable: Bool {
-        return drawerConfiguration.isDrawerDraggable
+        return drawerController.isDrawerDraggable
     }
 
     /// Whether or not the drawer can be dismissed by tapping anywhere outside of it.
     /// The default value is `true`.
     public var isDismissableByOutsideDrawerTaps: Bool {
-        return drawerConfiguration.isDismissableByOutsideDrawerTaps
+        return drawerController.isDismissableByOutsideDrawerTaps
     }
 
     /// How many taps are required for dismissing the drawer by tapping outside of it.
     /// The default value is 1.
     public var numberOfTapsForOutsideDrawerDismissal: Int {
-        return drawerConfiguration.numberOfTapsForOutsideDrawerDismissal
+        return drawerController.numberOfTapsForOutsideDrawerDismissal
     }
 
     /// How fast one needs to "flick" the drawer up or down to make it ignore the
@@ -62,7 +62,7 @@ public extension DrawerPresentable {
     /// is around 3 points per screen height per second, and that is also the default
     /// value of this property.
     public var flickSpeedThreshold: CGFloat {
-        return drawerConfiguration.flickSpeedThreshold
+        return drawerController.flickSpeedThreshold
     }
 
     /// There is a band around the partially expanded position of the drawer where
@@ -72,7 +72,7 @@ public extension DrawerPresentable {
     /// drawn at those positions. This value represents the gap *above* the partially
     /// expanded position. The default value is 40 points.
     public var upperMarkGap: CGFloat {
-        return drawerConfiguration.upperMarkGap
+        return drawerController.upperMarkGap
     }
 
     /// There is a band around the partially expanded position of the drawer where
@@ -82,13 +82,13 @@ public extension DrawerPresentable {
     /// drawn at those positions. This value represents the gap *below* the partially
     /// expanded position. The default value is 40 points.
     public var lowerMarkGap: CGFloat {
-        return drawerConfiguration.lowerMarkGap
+        return drawerController.lowerMarkGap
     }
 
     /// The animating drawer also animates the radius of its top left and top right
     /// corners, from 0 to the value of this property. Setting this to 0 prevents any
     /// corner animations from taking place. The default value is 15 points.
     public var maximumCornerRadius: CGFloat {
-        return drawerConfiguration.maximumCornerRadius
+        return drawerController.maximumCornerRadius
     }
 }

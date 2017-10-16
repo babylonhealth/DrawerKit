@@ -7,28 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB26C89A1F94B72100F52797 /* DrawerController+Implementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB26C8991F94B72100F52797 /* DrawerController+Implementation.swift */; };
 		CB2CB7941F8E934500AA152D /* DrawerPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB78D1F8E934500AA152D /* DrawerPresentable.swift */; };
 		CB2CB7971F8E934500AA152D /* DrawerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB7911F8E934500AA152D /* DrawerConfiguration.swift */; };
-		CB2CB79E1F8E951900AA152D /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB79B1F8E951900AA152D /* PresentationController.swift */; };
+		CB2CB79E1F8E951900AA152D /* DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB79B1F8E951900AA152D /* DrawerController.swift */; };
 		CB2CB79F1F8E951900AA152D /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB79C1F8E951900AA152D /* AnimationController.swift */; };
 		CB2CB7AA1F8E9AC600AA152D /* DrawerConfiguration+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB7A61F8E98F100AA152D /* DrawerConfiguration+Equatable.swift */; };
 		CB2CB7AD1F8E9D9900AA152D /* DrawerPresentable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB7AC1F8E9D9900AA152D /* DrawerPresentable+Extensions.swift */; };
 		CB2CB7AF1F8E9F4C00AA152D /* DrawerPresentable+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB7AE1F8E9F4C00AA152D /* DrawerPresentable+Configuration.swift */; };
 		CB619CEC1F8FFBAD0076E1DE /* InteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB619CEB1F8FFBAD0076E1DE /* InteractionController.swift */; };
-		CB9101C61F8F791A000EAC41 /* PresentationController+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9101C51F8F791A000EAC41 /* PresentationController+Configuration.swift */; };
+		CB9101C61F8F791A000EAC41 /* DrawerController+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9101C51F8F791A000EAC41 /* DrawerController+Configuration.swift */; };
 		CBBA2D5C1F8E815B00E0137F /* DrawerKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CBBA2D5A1F8E815B00E0137F /* DrawerKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CB26C8991F94B72100F52797 /* DrawerController+Implementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DrawerController+Implementation.swift"; sourceTree = "<group>"; };
 		CB2CB78D1F8E934500AA152D /* DrawerPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerPresentable.swift; sourceTree = "<group>"; };
 		CB2CB7911F8E934500AA152D /* DrawerConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerConfiguration.swift; sourceTree = "<group>"; };
-		CB2CB79B1F8E951900AA152D /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		CB2CB79B1F8E951900AA152D /* DrawerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerController.swift; sourceTree = "<group>"; };
 		CB2CB79C1F8E951900AA152D /* AnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
 		CB2CB7A61F8E98F100AA152D /* DrawerConfiguration+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawerConfiguration+Equatable.swift"; sourceTree = "<group>"; };
 		CB2CB7AC1F8E9D9900AA152D /* DrawerPresentable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawerPresentable+Extensions.swift"; sourceTree = "<group>"; };
 		CB2CB7AE1F8E9F4C00AA152D /* DrawerPresentable+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawerPresentable+Configuration.swift"; sourceTree = "<group>"; };
 		CB619CEB1F8FFBAD0076E1DE /* InteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionController.swift; sourceTree = "<group>"; };
-		CB9101C51F8F791A000EAC41 /* PresentationController+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PresentationController+Configuration.swift"; sourceTree = "<group>"; };
+		CB9101C51F8F791A000EAC41 /* DrawerController+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DrawerController+Configuration.swift"; sourceTree = "<group>"; };
 		CBBA2D571F8E815B00E0137F /* DrawerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DrawerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBBA2D5A1F8E815B00E0137F /* DrawerKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawerKit.h; sourceTree = "<group>"; };
 		CBBA2D5B1F8E815B00E0137F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,8 +51,9 @@
 			isa = PBXGroup;
 			children = (
 				CB2CB78D1F8E934500AA152D /* DrawerPresentable.swift */,
-				CB2CB7AE1F8E9F4C00AA152D /* DrawerPresentable+Configuration.swift */,
+				CB2CB79B1F8E951900AA152D /* DrawerController.swift */,
 				CB2CB7911F8E934500AA152D /* DrawerConfiguration.swift */,
+				CB2CB7AE1F8E9F4C00AA152D /* DrawerPresentable+Configuration.swift */,
 			);
 			path = "Public API";
 			sourceTree = "<group>";
@@ -58,7 +61,7 @@
 		CB2CB7A11F8E963000AA152D /* Internal API */ = {
 			isa = PBXGroup;
 			children = (
-				CB2CB79B1F8E951900AA152D /* PresentationController.swift */,
+				CB26C8991F94B72100F52797 /* DrawerController+Implementation.swift */,
 				CB619CEB1F8FFBAD0076E1DE /* InteractionController.swift */,
 				CB2CB79C1F8E951900AA152D /* AnimationController.swift */,
 				CB2CB7A41F8E98F100AA152D /* Extensions */,
@@ -70,7 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				CB2CB7AC1F8E9D9900AA152D /* DrawerPresentable+Extensions.swift */,
-				CB9101C51F8F791A000EAC41 /* PresentationController+Configuration.swift */,
+				CB9101C51F8F791A000EAC41 /* DrawerController+Configuration.swift */,
 				CB2CB7A61F8E98F100AA152D /* DrawerConfiguration+Equatable.swift */,
 			);
 			path = Extensions;
@@ -183,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB26C89A1F94B72100F52797 /* DrawerController+Implementation.swift in Sources */,
 				CB2CB7941F8E934500AA152D /* DrawerPresentable.swift in Sources */,
 				CB619CEC1F8FFBAD0076E1DE /* InteractionController.swift in Sources */,
 				CB2CB7AD1F8E9D9900AA152D /* DrawerPresentable+Extensions.swift in Sources */,
@@ -190,8 +194,8 @@
 				CB2CB7AF1F8E9F4C00AA152D /* DrawerPresentable+Configuration.swift in Sources */,
 				CB2CB7971F8E934500AA152D /* DrawerConfiguration.swift in Sources */,
 				CB2CB7AA1F8E9AC600AA152D /* DrawerConfiguration+Equatable.swift in Sources */,
-				CB9101C61F8F791A000EAC41 /* PresentationController+Configuration.swift in Sources */,
-				CB2CB79E1F8E951900AA152D /* PresentationController.swift in Sources */,
+				CB9101C61F8F791A000EAC41 /* DrawerController+Configuration.swift in Sources */,
+				CB2CB79E1F8E951900AA152D /* DrawerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

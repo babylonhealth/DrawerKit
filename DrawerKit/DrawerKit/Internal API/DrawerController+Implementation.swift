@@ -1,29 +1,7 @@
 import UIKit
 
-// TODO:
-// - support device interface orientation changes
-// - support insufficiently tall content
-// - support not-covering status bar and/or having a gap at the top
-
-final class PresentationController: UIPresentationController {
-    let configuration: DrawerConfiguration // intentionally internal and immutable
-    private var lastDrawerY: CGFloat = 0
-    private var containerViewDismissalTapGR: UITapGestureRecognizer?
-    private var presentedViewDragGR: UIPanGestureRecognizer?
-    private let inDebugMode: Bool
-
-    init(presentingVC: UIViewController?,
-         presentedVC: UIViewController,
-         configuration: DrawerConfiguration,
-         inDebugMode: Bool = false) {
-        self.configuration = configuration
-        self.inDebugMode = inDebugMode
-        super.init(presentedViewController: presentedVC, presenting: presentingVC)
-    }
-}
-
-extension PresentationController {
-    override var frameOfPresentedViewInContainerView: CGRect {
+public extension DrawerController {
+    public override var frameOfPresentedViewInContainerView: CGRect {
         var frame: CGRect = .zero
         frame.size = size(forChildContentContainer: presentedViewController,
                           withParentContainerSize: containerViewSize)
@@ -31,7 +9,7 @@ extension PresentationController {
         return frame
     }
 
-    override func presentationTransitionWillBegin() {
+    public override func presentationTransitionWillBegin() {
         containerView?.backgroundColor = .clear
         setupContainerViewDismissalTapRecogniser()
         setupPresentedViewDragRecogniser()
@@ -39,21 +17,21 @@ extension PresentationController {
         addCornerRadiusAnimationEnding(at: drawerPartialY)
     }
 
-    override func dismissalTransitionWillBegin() {
+    public override func dismissalTransitionWillBegin() {
         addCornerRadiusAnimationEnding(at: containerViewH)
     }
 
-    override func dismissalTransitionDidEnd(_ completed: Bool) {
+    public override func dismissalTransitionDidEnd(_ completed: Bool) {
         removeContainerViewDismissalTapRecogniser()
         removePresentedViewDragRecogniser()
     }
 
-    override func containerViewWillLayoutSubviews() {
+    public override func containerViewWillLayoutSubviews() {
         presentedView?.frame = frameOfPresentedViewInContainerView
     }
 }
 
-private extension PresentationController {
+private extension DrawerController {
     var containerViewSize: CGSize {
         return containerView?.bounds.size ?? .zero
     }
@@ -98,7 +76,7 @@ private extension PresentationController {
     }
 }
 
-private extension PresentationController {
+private extension DrawerController {
     func setupContainerViewDismissalTapRecogniser() {
         guard containerViewDismissalTapGR == nil else { return }
         let isDismissable = isDismissableByOutsideDrawerTaps
@@ -126,7 +104,7 @@ private extension PresentationController {
     }
 }
 
-private extension PresentationController {
+private extension DrawerController {
     func setupPresentedViewDragRecogniser() {
         guard presentedViewDragGR == nil else { return }
         guard isDrawerDraggable else { return }
@@ -172,7 +150,7 @@ private extension PresentationController {
     }
 }
 
-private extension PresentationController {
+private extension DrawerController {
     func animateTransition(to endPositionY: CGFloat, clamping: Bool = false) {
         guard endPositionY != currentDrawerY else { return }
 
@@ -251,7 +229,7 @@ private extension PresentationController {
     }
 }
 
-private extension PresentationController {
+private extension DrawerController {
     func endingPositionY(positionY: CGFloat, velocityY: CGFloat) -> CGFloat {
         let isNotMoving = (velocityY == 0)
         let isMovingUp = (velocityY < 0) // recall that Y-axis points down
@@ -297,7 +275,7 @@ private extension PresentationController {
     }
 }
 
-private extension PresentationController {
+private extension DrawerController {
     func setupDebugHeightMarks() {
         guard inDebugMode else { return }
         guard let containerView = containerView else { return }

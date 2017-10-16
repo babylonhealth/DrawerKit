@@ -1,8 +1,9 @@
 import UIKit
 
 /// Protocol that view controllers presented inside a drawer must conform to.
-public protocol DrawerPresentable: UIViewControllerTransitioningDelegate, UIAdaptivePresentationControllerDelegate {
-    var drawerConfiguration: DrawerConfiguration { get }
+@objc
+public protocol DrawerPresentable: class {
+    var drawerController: DrawerController { get }
     var heightOfPartiallyExpandedDrawer: CGFloat { get }
     var inDrawerDebugMode: Bool { get }
 }

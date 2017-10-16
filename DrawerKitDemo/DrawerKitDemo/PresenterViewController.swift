@@ -12,7 +12,6 @@ private extension PresenterViewController {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "presented")
             as? PresentedViewController else { return }
 
-        vc.transitioningDelegate = vc
         vc.modalPresentationStyle = .custom
         vc.modalTransitionStyle = .coverVertical
 

@@ -1,6 +1,6 @@
 import UIKit
 
-extension PresentationController {
+extension DrawerController {
     var durationInSeconds: TimeInterval {
         return configuration.durationInSeconds
     }
