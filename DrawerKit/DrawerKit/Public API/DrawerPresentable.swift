@@ -4,9 +4,3 @@ import UIKit
 public protocol DrawerPresentable: class {
     var heightOfPartiallyExpandedDrawer: CGFloat { get }
 }
-
-public extension DrawerPresentable where Self: UIViewController {
-    public var heightOfPartiallyExpandedDrawer: CGFloat {
-        return 0
-    }
-}
