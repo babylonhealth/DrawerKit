@@ -7,8 +7,10 @@ final class PresentationController: UIPresentationController {
     private var presentedViewDragGR: UIPanGestureRecognizer?
     private let inDebugMode: Bool
 
-    init(presentingVC: UIViewController?, presentedVC: UIViewController,
-         configuration: DrawerConfiguration, inDebugMode: Bool = false) {
+    init(presentingVC: UIViewController?,
+         presentedVC: UIViewController,
+         configuration: DrawerConfiguration,
+         inDebugMode: Bool = false) {
         self.configuration = configuration
         self.inDebugMode = inDebugMode
         super.init(presentedViewController: presentedVC, presenting: presentingVC)
