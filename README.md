@@ -67,3 +67,31 @@
     /// corner animations from taking place. The default value is 15 points.
     public var maximumCornerRadius: CGFloat
 ```
+
+
+```swift
+    if isMovingUpQuickly { show fully expanded }
+    if isMovingDownQuickly { collapse all the way (ie, dismiss) }
+
+    if isAboveUpperMark {
+        if isMovingUp || isNotMoving {
+            show fully expanded
+        } else { // is moving down
+            collapse to the partially expanded state or all the way (ie, dismiss),
+            depending on the values of `supportsPartialExpansion` and `dismissesInStages`
+        }
+    }
+
+    if isAboveLowerMark { // ie, in the band surrounding the partially expanded state
+        if isMovingDown {
+            collapse all the way (ie, dismiss)
+        } else { // not moving or moving up
+            expand to the partially expanded state or all the way (ie, full-screen),
+            depending on the value of `supportsPartialExpansion`
+        }
+    }
+
+    // below the band surrounding the partially expanded state
+    collapse all the way (ie, dismiss)
+    }
+```
