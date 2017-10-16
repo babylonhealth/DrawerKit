@@ -25,7 +25,7 @@ that limitation.
 
 ## What version of iOS does it require or support?
 
-__DrawerKit__ is compatible with iOS 11 but only requires iOS 10.
+__DrawerKit__ is compatible with iOS 10 and above.
 
 ## How to use it?
 
