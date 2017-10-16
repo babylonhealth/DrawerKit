@@ -1,7 +1,7 @@
 import UIKit
 
 /// All the configurable parameters in one place.
-/// See `DrawerDisplayController+Configuration.swift` for documentation on
+/// See `DrawerPresentable+Configuration.swift` for documentation on
 /// what the various parameters are used for.
 public struct DrawerConfiguration: Equatable {
     public var durationInSeconds: TimeInterval

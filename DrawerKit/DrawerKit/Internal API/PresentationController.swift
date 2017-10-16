@@ -1,5 +1,10 @@
 import UIKit
 
+// TODO:
+// - support device interface orientation changes
+// - support insufficiently tall content
+// - support not-covering status bar and/or having a gap at the top
+
 final class PresentationController: UIPresentationController {
     let configuration: DrawerConfiguration // intentionally internal and immutable
     private var lastDrawerY: CGFloat = 0
