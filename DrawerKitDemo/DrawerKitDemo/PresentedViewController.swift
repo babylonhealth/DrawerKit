@@ -2,6 +2,19 @@ import UIKit
 import DrawerKit
 
 class PresentedViewController: UIViewController {
+    var _drawerController: DrawerController!
+    var drawerController: DrawerController {
+        return _drawerController
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        modalPresentationStyle = .custom
+        _drawerController = DrawerController(presentingVC: nil, presentedVC: self, configuration: drawerConfiguration)
+        transitioningDelegate = _drawerController
+    }
+
     @IBAction func dismissButtonTapped() {
         dismiss(animated: true)
     }

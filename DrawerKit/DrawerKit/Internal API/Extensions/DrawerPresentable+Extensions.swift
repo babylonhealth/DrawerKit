@@ -1,6 +1,6 @@
 import UIKit
 
-extension UIViewControllerTransitioningDelegate where Self: DrawerController {
+extension DrawerController: UIViewControllerTransitioningDelegate {
     @objc
     public func presentationController(forPresented presented: UIViewController,
                                        presenting: UIViewController?,

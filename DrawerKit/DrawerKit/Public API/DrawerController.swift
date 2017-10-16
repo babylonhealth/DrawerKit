@@ -5,8 +5,7 @@ import UIKit
 // - support insufficiently tall content
 // - support not-covering status bar and/or having a gap at the top
 
-public final class DrawerController: UIPresentationController,
-UIViewControllerTransitioningDelegate, UIAdaptivePresentationControllerDelegate {
+public final class DrawerController: UIPresentationController, UIAdaptivePresentationControllerDelegate {
     public let configuration: DrawerConfiguration
     public var inDebugMode: Bool
 
