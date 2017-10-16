@@ -5,7 +5,8 @@ final class AnimationController: NSObject {
     private let durationInSeconds: TimeInterval
     private let timingCurveProvider: UITimingCurveProvider
 
-    init(isPresentation: Bool, durationInSeconds: TimeInterval,
+    init(isPresentation: Bool,
+         durationInSeconds: TimeInterval,
          timingCurveProvider: UITimingCurveProvider) {
         self.isPresentation = isPresentation
         self.durationInSeconds = durationInSeconds
