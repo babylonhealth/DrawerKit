@@ -27,15 +27,33 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
     }
 
     public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        guard isDrawerDraggable else { return nil }
-        return InteractionController(isPresentation: true,
-                                     presentingVC: presentingVC!, presentedVC: presentedVC)
+        if #available(iOS 11.0, *) {
+            guard isDrawerDraggable else { return nil }
+            return InteractionController(isPresentation: true,
+                                         presentingVC: presentingVC!, presentedVC: presentedVC)
+        } else {
+            // On iOS 10, there seems to be a bug in UIKit that causes the interactive animation
+            // not to complete under the conditions we have here, in which case viewDidAppear
+            // doesn't get called and the drawer isn't visible. An easy work-around is to return
+            // nil here, but that means the initial presentation and dismissal aren't going to
+            // be interactive.
+            return nil
+        }
     }
 
     public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        guard isDrawerDraggable else { return nil }
-        return InteractionController(isPresentation: true,
-                                     presentingVC: presentingVC!, presentedVC: presentedVC)
+        if #available(iOS 11.0, *) {
+            guard isDrawerDraggable else { return nil }
+            return InteractionController(isPresentation: false,
+                                         presentingVC: presentingVC!, presentedVC: presentedVC)
+        } else {
+            // On iOS 10, there seems to be a bug in UIKit that causes the interactive animation
+            // not to complete under the conditions we have here, in which case viewDidAppear
+            // doesn't get called and the drawer isn't visible. An easy work-around is to return
+            // nil here, but that means the initial presentation and dismissal aren't going to
+            // be interactive.
+            return nil
+        }
     }
 }
 
