@@ -2,13 +2,11 @@ import UIKit
 import DrawerKit
 
 class PresentedViewController: UIViewController {
-    @IBAction func dismissButtonTapped() {
-        dismiss(animated: true)
-    }
-}
+    private var drawerController: DrawerController!
 
-extension PresentedViewController: DrawerPresentable {
-    var drawerConfiguration: DrawerConfiguration {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
         // you can provide the configuration values in the initialiser...
         var configuration = DrawerConfiguration(/* ..., ..., ..., */)
 
@@ -25,16 +23,20 @@ extension PresentedViewController: DrawerPresentable {
         configuration.lowerMarkGap = 30
         configuration.maximumCornerRadius = 20
 
-        return configuration
+        drawerController = DrawerController(configuration: configuration, inDebugMode: true)
+        modalPresentationStyle = .custom
+        transitioningDelegate = drawerController
     }
-    
+
+    @IBAction func dismissButtonTapped() {
+        dismiss(animated: true)
+    }
+}
+
+extension PresentedViewController: PartiallyExpandableDrawer {
     var heightOfPartiallyExpandedDrawer: CGFloat {
         guard let view = self.view as? PresentedView else { return 0 }
         return view.dividerView.frame.origin.y
-    }
-
-    var inDrawerDebugMode: Bool {
-        return true
     }
 }
 
