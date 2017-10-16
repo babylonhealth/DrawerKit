@@ -1,8 +1,121 @@
 # DrawerKit
 
+<!--
+<p align="center">
+	<a href="https://github.com/DrawerKit/DrawerKit/"><img src="Logo/PNG/logo.png" alt="DrawerKit" /></a><br /><br />
+	Reactive extensions to Cocoa frameworks, built on top of <a href="https://github.com/DrawerKit/ReactiveSwift/">ReactiveSwift</a>.<br /><br />
+	<a href="http://reactivecocoa.io/slack/"><img src="Logo/PNG/JoinSlack.png" alt="Join the ReactiveSwift Slack community." width="143" height="40" /></a>
+</p>
+<br />
+ -->
+
+[![Version](https://img.shields.io/cocoapods/v/DrawerKit.svg?style=flat)](http://cocoapods.org/pods/DrawerKit)
+[![Platform](https://img.shields.io/cocoapods/p/DrawerKit.svg?style=flat)](http://cocoapods.org/pods/DrawerKit)
+[![Swift 4.0.x](https://img.shields.io/badge/Swift-4.0.x-orange.svg)](https://swift.org)
+[![Xcode](https://img.shields.io/badge/Xcode-9.x-blue.svg)](https://developer.apple.com/xcode)
+[![License](https://img.shields.io/cocoapods/l/DrawerKit.svg?style=flat)](http://cocoapods.org/pods/DrawerKit)
+
+## What is DrawerKit?
+__DrawerKit__ is a custom view controller presentation mimicking the kind of behaviour you see in the Apple Maps app.
+It lets any view controller modally present another arbitrary view controller in such a way that the presented content
+is only partially shown at first, then allowing the user to interact with it by showing more or less of that content
+until it's fully presented or fully dismissed. It's *not* (yet) a complete implementation of the behaviour you see in
+the Maps app simply because our specific needs dictated something else. We intend to continue working on it to address
+that limitation.
+
+## What version of iOS does it require or support?
+
+__DrawerKit__ is compatible with iOS 11 but only requires iOS 10.
+
+## How to use it?
+
+In order for the _presenting_ view controller to present another view controller (the _presented_ view controller)
+as a drawer, both view controllers need to conform to specific protocols, as follows.
+
+The presenting view controller needs to conform to the `DrawerPresenting` protocol,
+
+```swift
+public protocol DrawerPresenting: class {
+    /// An object vended by the presenting view controller, whose responsibility
+    /// is to coordinate the presentation, animation, and interactivity of/with
+    /// the drawer.
+    var drawerDisplayController: DrawerDisplayController? { get }
+}
+```
+
+and the presented view controller needs to conform to the `DrawerPresentable` protocol,
+
+```swift
+public protocol DrawerPresentable: class {
+    /// The height at which the drawer must be presented when it's in its
+    /// partially expanded state. If negative, its value is clamped to zero.
+    var heightOfPartiallyExpandedDrawer: CGFloat { get }
+}
+```
+
+After that, it's essentially business as usual in regards to presenting a view controller modally. Here's the basic
+code to get a view controller to present another as a drawer:
+
+```swift
+extension PresenterViewController {
+    func doModalPresentation() {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "presented")
+            as? PresentedViewController else { return }
+
+        // you can provide the configuration values in the initialiser...
+        var configuration = DrawerConfiguration(/* ..., ..., ..., */)
+
+        // ... or after initialisation
+        configuration.durationInSeconds = 0.8
+        configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.8)
+        configuration.supportsPartialExpansion = true
+        configuration.dismissesInStages = true
+        configuration.isDrawerDraggable = true
+        configuration.isDismissableByOutsideDrawerTaps = true
+        configuration.numberOfTapsForOutsideDrawerDismissal = 1
+        configuration.flickSpeedThreshold = 3
+        configuration.upperMarkGap = 30
+        configuration.lowerMarkGap = 30
+        configuration.maximumCornerRadius = 20
+
+        drawerDisplayController = DrawerDisplayController(presentingViewController: self,
+                                                          presentedViewController: vc,
+                                                          configuration: configuration)
+
+        present(vc, animated: true)
+    }
+}
+```
+
+and here's one way to implement the corresponding presented view controller:
+
+```swift
+extension PresentedViewController: DrawerPresentable {
+    var heightOfPartiallyExpandedDrawer: CGFloat {
+        guard let view = self.view as? PresentedView else { return 0 }
+        return view.dividerView.frame.origin.y
+    }
+}
+```
+
+Naturally, the presented view controller can dismiss itself at any time, following the usual approach:
+
+```swift
+extension PresentedViewController {
+    @IBAction func dismissButtonTapped() {
+        dismiss(animated: true)
+    }
+}
+```
+
+## How configurable is it?
+
+__DrawerKit__ has a number of configurable properties, conveniently collected together into a struct,
+`DrawerConfiguration`. Here's a list of all the currently supported configuration options:
+
 ```swift
     /// How long the animations that move the drawer up and down last.
-    /// The default value is 0.8 seconds.
+    /// The default value is 0.3 seconds.
     public var durationInSeconds: TimeInterval
 
     /// The type of timing curve to use for the animations. The full set
@@ -68,6 +181,10 @@
     public var maximumCornerRadius: CGFloat
 ```
 
+## What's the actual drawer behaviour logic?
+
+The behaviour of how and under what situations the drawer gets fully presented, partially presented, or
+collapsed (dismissed) is summarised by the pseudo-code below:
 
 ```swift
     if isMovingUpQuickly { show fully expanded }
@@ -93,5 +210,14 @@
 
     // below the band surrounding the partially expanded state
     collapse all the way (ie, dismiss)
-    }
 ```
+
+#### CocoaPods
+
+If you use [CocoaPods][] to manage your dependencies, simply add DrawerKit to your `Podfile`:
+
+```
+pod 'DrawerKit', '~> 0.0.1'
+```
+
+[CocoaPods]: https://cocoapods.org/
