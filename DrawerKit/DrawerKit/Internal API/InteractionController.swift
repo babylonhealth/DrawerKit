@@ -40,7 +40,10 @@ private extension InteractionController {
     }
 
     @objc func handlePresentedViewDrag() {
-        guard let panGesture = presentedViewDragGR, let view = panGesture.view else { return }
+        guard
+            let panGesture = presentedViewDragGR,
+            let view = panGesture.view
+            else { return }
 
         switch panGesture.state {
         case .began:

@@ -123,8 +123,7 @@ private extension PresentationController {
 
 private extension PresentationController {
     func setupPresentedViewDragRecogniser() {
-        guard presentedViewDragGR == nil else { return }
-        guard isDrawerDraggable else { return }
+        guard presentedViewDragGR == nil && isDrawerDraggable else { return }
         let panGesture = UIPanGestureRecognizer(target: self,
                                                 action: #selector(handlePresentedViewDrag))
         presentedView?.addGestureRecognizer(panGesture)
@@ -202,9 +201,7 @@ private extension PresentationController {
     }
 
     func addCornerRadiusAnimationEnding(at endPositionY: CGFloat, clamping: Bool = false) {
-        guard maximumCornerRadius > 0 else { return }
-        guard drawerPartialY > 0 else { return }
-        guard endPositionY != currentDrawerY else { return }
+        guard maximumCornerRadius > 0 && drawerPartialY > 0 && endPositionY != currentDrawerY else { return }
 
         let endPosY = (clamping ? clamped(endPositionY) : endPositionY)
         guard endPosY != currentDrawerY else { return }
@@ -294,9 +291,8 @@ private extension PresentationController {
 
 private extension PresentationController {
     func setupDebugHeightMarks() {
-        guard inDebugMode else { return }
-        guard let containerView = containerView else { return }
-        guard upperMarkGap > 0 || lowerMarkGap > 0 else { return }
+        guard inDebugMode && (upperMarkGap > 0 || lowerMarkGap > 0),
+            let containerView = containerView else { return }
 
         if upperMarkGap > 0 {
             let upperMarkYView = UIView()
