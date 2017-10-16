@@ -4,7 +4,7 @@ import UIKit
 /// configuration parameters directly from the drawer display controller.
 extension DrawerDisplayController {
     /// How long the animations that move the drawer up and down last.
-    /// The default value is 0.8 seconds.
+    /// The default value is 0.3 seconds.
     public var durationInSeconds: TimeInterval {
         return configuration.durationInSeconds
     }

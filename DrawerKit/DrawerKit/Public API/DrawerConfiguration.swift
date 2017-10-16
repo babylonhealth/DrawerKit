@@ -5,7 +5,7 @@ import UIKit
 /// what the various parameters are used for.
 public struct DrawerConfiguration: Equatable {
     /// How long the animations that move the drawer up and down last.
-    /// The default value is 0.8 seconds.
+    /// The default value is 0.3 seconds.
     public var durationInSeconds: TimeInterval
 
     /// The type of timing curve to use for the animations. The full set
