@@ -30,7 +30,8 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
         if #available(iOS 11.0, *) {
             guard isDrawerDraggable else { return nil }
             return InteractionController(isPresentation: true,
-                                         presentingVC: presentingVC!, presentedVC: presentedVC)
+                                         presentingVC: presentingVC!,
+                                         presentedVC: presentedVC)
         } else {
             // On iOS 10, there seems to be a bug in UIKit that causes the interactive animation
             // not to complete under the conditions we have here, in which case viewDidAppear
@@ -45,7 +46,8 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
         if #available(iOS 11.0, *) {
             guard isDrawerDraggable else { return nil }
             return InteractionController(isPresentation: false,
-                                         presentingVC: presentingVC!, presentedVC: presentedVC)
+                                         presentingVC: presentingVC!,
+                                         presentedVC: presentedVC)
         } else {
             // On iOS 10, there seems to be a bug in UIKit that causes the interactive animation
             // not to complete under the conditions we have here, in which case viewDidAppear
