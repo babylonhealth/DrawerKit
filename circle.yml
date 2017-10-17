@@ -8,4 +8,4 @@ dependencies:
 
 test:
   override:
-    - test iphonesimulator "platform=iOS Simulator,name=iPhone 6s" DrawerKit build
+    - iphonesimulator "platform=iOS Simulator,name=iPhone 6s" DrawerKit build
