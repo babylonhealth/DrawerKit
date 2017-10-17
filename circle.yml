@@ -9,4 +9,4 @@ dependencies:
 
 test:
   override:
-    - echo "done"
+    - script/test iphonesimulator "platform=iOS Simulator,name=iPhone 6s" DrawerKit
