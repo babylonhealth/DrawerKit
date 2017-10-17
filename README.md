@@ -9,6 +9,7 @@
 <br />
  -->
 
+[![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/DrawerKit.svg?style=flat)](http://cocoapods.org/pods/DrawerKit)
 [![Platform](https://img.shields.io/cocoapods/p/DrawerKit.svg?style=flat)](http://cocoapods.org/pods/DrawerKit)
 [![Swift 4.0.x](https://img.shields.io/badge/Swift-4.0.x-orange.svg)](https://swift.org)
@@ -211,6 +212,19 @@ collapsed (dismissed) is summarised by the pseudo-code below:
     // below the band surrounding the partially expanded state
     collapse all the way (ie, dismiss)
 ```
+
+#### Carthage
+
+If you use [Carthage][] to manage your dependencies, simply add
+DrawerKit to your `Cartfile`:
+
+```
+github "DrawerKit/DrawerKit" ~> 0.0.1
+```
+
+If you use Carthage to build your dependencies, make sure you have added `DrawerKit.framework`
+to the "_Linked Frameworks and Libraries_" section of your target, and have included them in
+your Carthage framework copying build phase.
 
 #### CocoaPods
 
