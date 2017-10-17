@@ -1,14 +1,5 @@
 # DrawerKit
 
-<!--
-<p align="center">
-	<a href="https://github.com/DrawerKit/DrawerKit/"><img src="Logo/PNG/logo.png" alt="DrawerKit" /></a><br /><br />
-	Reactive extensions to Cocoa frameworks, built on top of <a href="https://github.com/DrawerKit/ReactiveSwift/">ReactiveSwift</a>.<br /><br />
-	<a href="http://reactivecocoa.io/slack/"><img src="Logo/PNG/JoinSlack.png" alt="Join the ReactiveSwift Slack community." width="143" height="40" /></a>
-</p>
-<br />
- -->
-
 [![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/DrawerKit.svg?style=flat)](http://cocoapods.org/pods/DrawerKit)
 [![Platform](https://img.shields.io/cocoapods/p/DrawerKit.svg?style=flat)](http://cocoapods.org/pods/DrawerKit)
