@@ -1,12 +1,5 @@
 # DrawerKit
 
-<p align="center">
-	<a href="https://github.com/Babylonpartners/DrawerKit/">
-	    <img src="drawers.gif" alt="DrawerKit" />
-	</a>
-</p>
-<br /><br />
-
 [![circleci](https://circleci.com/gh/Babylonpartners/DrawerKit/tree/master.svg?style=svg)](https://circleci.com)
 [![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/DrawerKit.svg?style=flat)](http://cocoapods.org/pods/DrawerKit)
@@ -22,6 +15,13 @@ is only partially shown at first, then allowing the user to interact with it by 
 until it's fully presented or fully dismissed. It's *not* (yet) a complete implementation of the behaviour you see in
 the Maps app simply because our specific needs dictated something else. We intend to continue working on it to address
 that limitation.
+
+<p align="center">
+	<a href="https://github.com/Babylonpartners/DrawerKit/">
+	    <img src="drawers.gif" alt="DrawerKit" />
+	</a>
+</p>
+<br /><br />
 
 ## What version of iOS does it require or support?
 
