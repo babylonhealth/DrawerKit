@@ -21,7 +21,6 @@ that limitation.
 	    <img src="drawers.gif" alt="DrawerKit" />
 	</a>
 </p>
-<br /><br />
 
 ## What version of iOS does it require or support?
 
