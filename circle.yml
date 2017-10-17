@@ -13,3 +13,5 @@ test:
       -destination 'platform=iOS Simulator,OS=10.3.1,name=iPhone 6s'
       -workspace DrawerKit.xcworkspace -scheme "DrawerKit"
       clean build
+    - pod lib lint
+    - carthage build --no-skip-current --cache-builds
