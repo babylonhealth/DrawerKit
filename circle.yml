@@ -10,7 +10,7 @@ test:
   override:
     - set -o pipefail && xcodebuild CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=
       PROVISIONING_PROFILE= -sdk iphonesimulator
-      -destination 'platform=iOS Simulator,OS=9.0,name=iPhone 6'
+      -destination 'platform=iOS Simulator,OS=10.3.1,name=iPhone 6s'
       -workspace DrawerKit.xcworkspace -scheme "DrawerKit"
       clean build |
       tee $CIRCLE_ARTIFACTS/xcode_raw.log |
