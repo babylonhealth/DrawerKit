@@ -9,4 +9,4 @@ dependencies:
 
 test:
   override:
-    - script/test iphonesimulator "platform=iOS Simulator,name=iPhone 6s" DrawerKit
+    - script/test iphonesimulator "platform=iOS Simulator,name=iPhone 6s" DrawerKit build
