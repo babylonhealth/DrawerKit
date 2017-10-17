@@ -15,7 +15,7 @@ coming soon.
   s.license       = { :type => "MIT", :file => "LICENSE" }
   s.author        = { "Wagner Truppel" => "ios-developers@babylonhealth.com" }
   s.platform      = :ios, "10.0"
-  s.source        = { :git => "github.com/Babylonpartners/DrawerKit.git", :tag => "#{s.version}" }
+  s.source        = { :git => "http://github.com/Babylonpartners/DrawerKit.git", :tag => "#{s.version}" }
   s.source_files  = "DrawerKit/**/*.{swift}"
 
 end
