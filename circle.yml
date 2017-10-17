@@ -1,0 +1,12 @@
+machine:
+  xcode:
+    version: "9.0"
+
+dependencies:
+  cache_directories:
+    - "Carthage/"
+    - "~/.cocoapods"
+
+test:
+  override:
+    - echo "done"
