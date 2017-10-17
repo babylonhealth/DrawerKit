@@ -227,3 +227,4 @@ pod 'DrawerKit', '~> 0.0.1'
 ```
 
 [CocoaPods]: https://cocoapods.org/
+[Carthage]: https://github.com/Carthage/Carthage
