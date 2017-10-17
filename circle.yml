@@ -4,9 +4,8 @@ machine:
 
 dependencies:
   cache_directories:
-    - "Carthage/"
     - "~/.cocoapods"
 
 test:
   override:
-    - script/test iphonesimulator "platform=iOS Simulator,name=iPhone 6s" DrawerKit build
+    - test iphonesimulator "platform=iOS Simulator,name=iPhone 6s" DrawerKit build
