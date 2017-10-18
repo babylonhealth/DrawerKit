@@ -217,7 +217,7 @@ If you use [Carthage][] to manage your dependencies, simply add
 DrawerKit to your `Cartfile`:
 
 ```
-github "DrawerKit/DrawerKit" ~> 0.0.1
+github "Babylonpartners/DrawerKit" ~> 0.0.1
 ```
 
 If you use Carthage to build your dependencies, make sure you have added `DrawerKit.framework`
