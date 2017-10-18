@@ -217,7 +217,7 @@ If you use [Carthage][] to manage your dependencies, simply add
 DrawerKit to your `Cartfile`:
 
 ```
-github "DrawerKit/DrawerKit" ~> 0.1.1
+github "DrawerKit/DrawerKit" ~> 1.0
 ```
 
 If you use Carthage to build your dependencies, make sure you have added `DrawerKit.framework`
@@ -229,7 +229,7 @@ your Carthage framework copying build phase.
 If you use [CocoaPods][] to manage your dependencies, simply add DrawerKit to your `Podfile`:
 
 ```
-pod 'DrawerKit', '~> 0.1.1'
+pod 'DrawerKit', '~> 1.0'
 ```
 
 [CocoaPods]: https://cocoapods.org/
