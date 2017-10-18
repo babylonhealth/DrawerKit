@@ -80,7 +80,7 @@ class DrawerKitDemoUITests: XCTestCase {
         XCTAssertFalse(isDrawerFullyOpen())
     }
     
-    fileprivate func isDrawerOpen() -> Bool {
+    private func isDrawerOpen() -> Bool {
         let drawer = app.staticTexts[Identifiers.drawerTitle]
         if tryWaitFor(element: drawer, withState: .exists) {
             return drawer.isHittable
@@ -89,7 +89,7 @@ class DrawerKitDemoUITests: XCTestCase {
         }
     }
     
-    fileprivate func isDrawerFullyOpen() -> Bool {
+    private func isDrawerFullyOpen() -> Bool {
         let image = app.images[Identifiers.drawerImage]
         if tryWaitFor(element: image, withState: .exists) {
             return app.images[Identifiers.drawerImage].frame.origin.y < drawerY
@@ -98,7 +98,8 @@ class DrawerKitDemoUITests: XCTestCase {
         }
     }
     
-    @discardableResult fileprivate func tryWaitFor(element: XCUIElement, withState state: ElementState, waiting forTimeout: TimeInterval = 5.0) -> Bool {
+    @discardableResult
+    private func tryWaitFor(element: XCUIElement, withState state: ElementState, waiting forTimeout: TimeInterval = 5.0) -> Bool {
         let myPredicate = NSPredicate(format: state.rawValue)
         
         let myExpectation = expectation(for: myPredicate, evaluatedWith: element, handler: nil)
