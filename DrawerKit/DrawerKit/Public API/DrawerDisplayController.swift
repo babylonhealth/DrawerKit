@@ -5,12 +5,13 @@ import UIKit
 // - support insufficiently tall content
 // - support not-covering status bar and/or having a gap at the top
 
-/// Instances of this class are returned as part of the `DrawerPresenting` protocol.
+/// Instances of this class are returned by objects conforming to
+/// the `DrawerCoordinating` protocol.
 public final class DrawerDisplayController: NSObject {
     /// The collection of configurable parameters dictating how the drawer works.
     public let configuration: DrawerConfiguration
 
-    weak var presentingVC: (UIViewController & DrawerPresenting)?
+    weak var presentingVC: UIViewController?
     /* strong */ var presentedVC: (UIViewController & DrawerPresentable)
 
     let inDebugMode: Bool
@@ -28,7 +29,7 @@ public final class DrawerDisplayController: NSObject {
     ///        a boolean value which, when true, draws guiding lines on top of the
     ///        presenting view controller but below the presented view controller.
     ///        Its default value is false.
-    public init(presentingViewController: (UIViewController & DrawerPresenting),
+    public init(presentingViewController: UIViewController,
                 presentedViewController: (UIViewController & DrawerPresentable),
                 configuration: DrawerConfiguration = DrawerConfiguration(),
                 inDebugMode: Bool = false) {

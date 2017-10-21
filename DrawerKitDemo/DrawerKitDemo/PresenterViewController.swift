@@ -1,7 +1,7 @@
 import UIKit
 import DrawerKit
 
-class PresenterViewController: UIViewController, DrawerPresenting {
+class PresenterViewController: UIViewController, DrawerCoordinating {
     /* strong */ var drawerDisplayController: DrawerDisplayController?
 
     @IBAction func presentButtonTapped() {
