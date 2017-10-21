@@ -20,7 +20,7 @@ private extension PresenterViewController {
         // ... or after initialisation. All of these have default values so change only
         // what you need to configure differently. They're all listed here just so you
         // can see what can be configured.
-        configuration.durationInSeconds = 0.8
+        configuration.totalDurationInSeconds = 0.3
         configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.8)
         configuration.supportsPartialExpansion = true
         configuration.dismissesInStages = true
@@ -30,8 +30,8 @@ private extension PresenterViewController {
         configuration.isDismissableByOutsideDrawerTaps = true
         configuration.numberOfTapsForOutsideDrawerDismissal = 1
         configuration.flickSpeedThreshold = 3
-        configuration.upperMarkGap = 30
-        configuration.lowerMarkGap = 30
+        configuration.upperMarkGap = 100
+        configuration.lowerMarkGap = 80
         configuration.maximumCornerRadius = 20
 
         drawerDisplayController = DrawerDisplayController(presentingViewController: self,
