@@ -78,7 +78,6 @@ public struct DrawerConfiguration: Equatable {
     /// corner animations from taking place. The default value is 15 points.
     public var maximumCornerRadius: CGFloat
 
-
     /// Initialiser for `DrawerConfiguration`.
     public init(durationInSeconds: TimeInterval = 0.3,
                 timingCurveProvider: UITimingCurveProvider = UISpringTimingParameters(),
