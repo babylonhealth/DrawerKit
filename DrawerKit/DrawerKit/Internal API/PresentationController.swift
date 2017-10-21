@@ -62,7 +62,7 @@ private extension PresentationController {
 
     var drawerPartialH: CGFloat {
         guard let presentedVC = presentedViewController as? DrawerPresentable else { return 0 }
-        return max(0, presentedVC.heightOfPartiallyExpandedDrawer)
+        return min(max(presentedVC.heightOfPartiallyExpandedDrawer, 0), containerViewH)
     }
 
     var drawerPartialY: CGFloat {
@@ -70,27 +70,37 @@ private extension PresentationController {
     }
 
     var upperMarkY: CGFloat {
-        return drawerPartialY - upperMarkGap
+        return max(drawerPartialY - upperMarkGap, 0)
     }
 
     var lowerMarkY: CGFloat {
-        return drawerPartialY + lowerMarkGap
+        return min(drawerPartialY + lowerMarkGap, containerViewH)
     }
 
     var currentDrawerY: CGFloat {
-        get { return presentedView?.frame.origin.y ?? 0 }
-        set { presentedView?.frame.origin.y = newValue }
+        get {
+            let posY = presentedView?.frame.origin.y ?? 0
+            return min(max(posY, 0), containerViewH)
+        }
+        set {
+            let posY = min(max(newValue, 0), containerViewH)
+            presentedView?.frame.origin.y = posY
+        }
     }
 
     var currentDrawerCornerRadius: CGFloat {
-        get { return presentedView?.layer.cornerRadius ?? 0 }
+        get {
+            let radius = presentedView?.layer.cornerRadius ?? 0
+            return min(max(radius, 0), maximumCornerRadius)
+        }
         set {
-            presentedView?.layer.cornerRadius = newValue
+            let radius = min(max(newValue, 0), maximumCornerRadius)
+            presentedView?.layer.cornerRadius = radius
             if #available(iOS 11.0, *) {
                 presentedView?.layer.maskedCorners =
                     [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             } else {
-                presentedView?.roundCorners([.topLeft, .topRight], radius: newValue)
+                presentedView?.roundCorners([.topLeft, .topRight], radius: radius)
             }
         }
     }
