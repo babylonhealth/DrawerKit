@@ -3,8 +3,8 @@ import UIKit
 final class PresentationController: UIPresentationController {
     let configuration: DrawerConfiguration // intentionally internal and immutable
     private var lastDrawerY: CGFloat = 0
-    private var containerViewDismissalTapGR: UITapGestureRecognizer?
-    private var presentedViewDragGR: UIPanGestureRecognizer?
+    private var drawerDismissalTapGR: UITapGestureRecognizer?
+    private var drawerDragGR: UIPanGestureRecognizer?
     private let inDebugMode: Bool
 
     init(presentingVC: UIViewController?,
@@ -28,7 +28,7 @@ extension PresentationController {
 
     override func presentationTransitionWillBegin() {
         containerView?.backgroundColor = .clear
-        setupContainerViewDismissalTapRecogniser()
+        setupDrawerDismissalTapRecogniser()
         setupPresentedViewDragRecogniser()
         setupDebugHeightMarks()
         addCornerRadiusAnimationEnding(at: drawerPartialY)
@@ -39,7 +39,7 @@ extension PresentationController {
     }
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
-        removeContainerViewDismissalTapRecogniser()
+        removeDrawerDismissalTapRecogniser()
         removePresentedViewDragRecogniser()
     }
 
@@ -94,27 +94,27 @@ private extension PresentationController {
 }
 
 private extension PresentationController {
-    func setupContainerViewDismissalTapRecogniser() {
-        guard containerViewDismissalTapGR == nil else { return }
+    func setupDrawerDismissalTapRecogniser() {
+        guard drawerDismissalTapGR == nil else { return }
         let isDismissable = isDismissableByOutsideDrawerTaps
         let numTapsRequired = numberOfTapsForOutsideDrawerDismissal
         guard isDismissable && numTapsRequired > 0 else { return }
         let tapGesture = UITapGestureRecognizer(target: self,
-                                                action: #selector(handleContainerViewDismissalTap))
+                                                action: #selector(handleDrawerDismissalTap))
         tapGesture.numberOfTouchesRequired = 1
         tapGesture.numberOfTapsRequired = numTapsRequired
         containerView?.addGestureRecognizer(tapGesture)
-        containerViewDismissalTapGR = tapGesture
+        drawerDismissalTapGR = tapGesture
     }
 
-    func removeContainerViewDismissalTapRecogniser() {
-        guard let tapGesture = containerViewDismissalTapGR else { return }
+    func removeDrawerDismissalTapRecogniser() {
+        guard let tapGesture = drawerDismissalTapGR else { return }
         containerView?.removeGestureRecognizer(tapGesture)
-        containerViewDismissalTapGR = nil
+        drawerDismissalTapGR = nil
     }
 
-    @objc func handleContainerViewDismissalTap() {
-        guard let tapGesture = containerViewDismissalTapGR else { return }
+    @objc func handleDrawerDismissalTap() {
+        guard let tapGesture = drawerDismissalTapGR else { return }
         let tapY = tapGesture.location(in: containerView).y
         guard tapY < currentDrawerY else { return }
         presentedViewController.dismiss(animated: true)
@@ -123,21 +123,21 @@ private extension PresentationController {
 
 private extension PresentationController {
     func setupPresentedViewDragRecogniser() {
-        guard presentedViewDragGR == nil && isDrawerDraggable else { return }
+        guard drawerDragGR == nil && isDrawerDraggable else { return }
         let panGesture = UIPanGestureRecognizer(target: self,
                                                 action: #selector(handlePresentedViewDrag))
         presentedView?.addGestureRecognizer(panGesture)
-        presentedViewDragGR = panGesture
+        drawerDragGR = panGesture
     }
 
     func removePresentedViewDragRecogniser() {
-        guard let panGesture = presentedViewDragGR else { return }
+        guard let panGesture = drawerDragGR else { return }
         presentedView?.removeGestureRecognizer(panGesture)
-        presentedViewDragGR = nil
+        drawerDragGR = nil
     }
 
     @objc func handlePresentedViewDrag() {
-        guard let panGesture = presentedViewDragGR, let view = panGesture.view else { return }
+        guard let panGesture = drawerDragGR, let view = panGesture.view else { return }
 
         switch panGesture.state {
         case .began:

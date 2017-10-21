@@ -4,7 +4,7 @@ final class InteractionController: UIPercentDrivenInteractiveTransition {
     private let isPresentation: Bool
     private weak var presentingVC: UIViewController!
     private weak var presentedVC: UIViewController!
-    private var presentedViewDragGR: UIPanGestureRecognizer?
+    private var drawerDragGR: UIPanGestureRecognizer?
     private var containerH: CGFloat = 0
 
     init(isPresentation: Bool, presentingVC: UIViewController, presentedVC: UIViewController) {
@@ -26,22 +26,22 @@ extension InteractionController {
 
 private extension InteractionController {
     func setupPresentedViewDragRecogniser() {
-        guard presentedViewDragGR == nil else { return }
+        guard drawerDragGR == nil else { return }
         let panGesture = UIPanGestureRecognizer(target: self,
                                                 action: #selector(handlePresentedViewDrag))
         presentedVC.view.addGestureRecognizer(panGesture)
-        presentedViewDragGR = panGesture
+        drawerDragGR = panGesture
     }
 
     func removePresentedViewDragRecogniser() {
-        guard let panGesture = presentedViewDragGR else { return }
+        guard let panGesture = drawerDragGR else { return }
         presentedVC.view.removeGestureRecognizer(panGesture)
-        presentedViewDragGR = nil
+        drawerDragGR = nil
     }
 
     @objc func handlePresentedViewDrag() {
         guard
-            let panGesture = presentedViewDragGR,
+            let panGesture = drawerDragGR,
             let view = panGesture.view
             else { return }
 
