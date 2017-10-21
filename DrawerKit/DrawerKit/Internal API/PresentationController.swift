@@ -31,7 +31,7 @@ extension PresentationController {
         containerView?.backgroundColor = .clear
         setupDrawerFullExpansionTapRecogniser()
         setupDrawerDismissalTapRecogniser()
-        setupPresentedViewDragRecogniser()
+        setupDrawerDragRecogniser()
         setupDebugHeightMarks()
         addCornerRadiusAnimationEnding(at: drawerPartialY)
     }
@@ -43,7 +43,7 @@ extension PresentationController {
     override func dismissalTransitionDidEnd(_ completed: Bool) {
         removeDrawerFullExpansionTapRecogniser()
         removeDrawerDismissalTapRecogniser()
-        removePresentedViewDragRecogniser()
+        removeDrawerDragRecogniser()
     }
 
     override func containerViewWillLayoutSubviews() {
@@ -153,21 +153,21 @@ private extension PresentationController {
 }
 
 private extension PresentationController {
-    func setupPresentedViewDragRecogniser() {
+    func setupDrawerDragRecogniser() {
         guard drawerDragGR == nil && isDrawerDraggable else { return }
         let panGesture = UIPanGestureRecognizer(target: self,
-                                                action: #selector(handlePresentedViewDrag))
+                                                action: #selector(handleDrawerDrag))
         presentedView?.addGestureRecognizer(panGesture)
         drawerDragGR = panGesture
     }
 
-    func removePresentedViewDragRecogniser() {
+    func removeDrawerDragRecogniser() {
         guard let panGesture = drawerDragGR else { return }
         presentedView?.removeGestureRecognizer(panGesture)
         drawerDragGR = nil
     }
 
-    @objc func handlePresentedViewDrag() {
+    @objc func handleDrawerDrag() {
         guard let panGesture = drawerDragGR, let view = panGesture.view else { return }
 
         switch panGesture.state {
