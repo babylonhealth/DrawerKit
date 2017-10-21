@@ -7,6 +7,8 @@ extension DrawerConfiguration {
             && lhs.supportsPartialExpansion == rhs.supportsPartialExpansion
             && lhs.dismissesInStages == rhs.dismissesInStages
             && lhs.isDrawerDraggable == rhs.isDrawerDraggable
+            && lhs.isFullyPresentableByDrawerTaps == rhs.isFullyPresentableByDrawerTaps
+            && lhs.numberOfTapsForFullDrawerPresentation == rhs.numberOfTapsForFullDrawerPresentation
             && lhs.isDismissableByOutsideDrawerTaps == rhs.isDismissableByOutsideDrawerTaps
             && lhs.numberOfTapsForOutsideDrawerDismissal == rhs.numberOfTapsForOutsideDrawerDismissal
             && lhs.flickSpeedThreshold == rhs.flickSpeedThreshold

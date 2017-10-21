@@ -34,6 +34,14 @@ public struct DrawerConfiguration: Equatable {
     /// Whether or not the drawer can be dragged up and down. The default value is `true`.
     public var isDrawerDraggable: Bool
 
+    /// Whether or not the drawer can be fully presentable by tapping on it.
+    /// The default value is `true`.
+    public var isFullyPresentableByDrawerTaps: Bool
+
+    /// How many taps are required for fully presenting the drawer by tapping on it.
+    /// The default value is 1.
+    public var numberOfTapsForFullDrawerPresentation: Int
+
     /// Whether or not the drawer can be dismissed by tapping anywhere outside of it.
     /// The default value is `true`.
     public var isDismissableByOutsideDrawerTaps: Bool
@@ -77,6 +85,8 @@ public struct DrawerConfiguration: Equatable {
                 supportsPartialExpansion: Bool = true,
                 dismissesInStages: Bool = true,
                 isDrawerDraggable: Bool = true,
+                isFullyPresentableByDrawerTaps: Bool = true,
+                numberOfTapsForFullDrawerPresentation: Int = 1,
                 isDismissableByOutsideDrawerTaps: Bool = true,
                 numberOfTapsForOutsideDrawerDismissal: Int = 1,
                 flickSpeedThreshold: CGFloat = 3,
@@ -88,6 +98,8 @@ public struct DrawerConfiguration: Equatable {
         self.supportsPartialExpansion = supportsPartialExpansion
         self.dismissesInStages = dismissesInStages
         self.isDrawerDraggable = isDrawerDraggable
+        self.isFullyPresentableByDrawerTaps = isFullyPresentableByDrawerTaps
+        self.numberOfTapsForFullDrawerPresentation = max(0, numberOfTapsForFullDrawerPresentation)
         self.isDismissableByOutsideDrawerTaps = isDismissableByOutsideDrawerTaps
         self.numberOfTapsForOutsideDrawerDismissal = max(0, numberOfTapsForOutsideDrawerDismissal)
         self.flickSpeedThreshold = max(0, flickSpeedThreshold)

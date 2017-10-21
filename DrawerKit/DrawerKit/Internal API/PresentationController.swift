@@ -3,6 +3,7 @@ import UIKit
 final class PresentationController: UIPresentationController {
     let configuration: DrawerConfiguration // intentionally internal and immutable
     private var lastDrawerY: CGFloat = 0
+    private var drawerFullExpansionTapGR: UITapGestureRecognizer?
     private var drawerDismissalTapGR: UITapGestureRecognizer?
     private var drawerDragGR: UIPanGestureRecognizer?
     private let inDebugMode: Bool
@@ -28,6 +29,7 @@ extension PresentationController {
 
     override func presentationTransitionWillBegin() {
         containerView?.backgroundColor = .clear
+        setupDrawerFullExpansionTapRecogniser()
         setupDrawerDismissalTapRecogniser()
         setupPresentedViewDragRecogniser()
         setupDebugHeightMarks()
@@ -39,6 +41,7 @@ extension PresentationController {
     }
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
+        removeDrawerFullExpansionTapRecogniser()
         removeDrawerDismissalTapRecogniser()
         removePresentedViewDragRecogniser()
     }
@@ -90,6 +93,34 @@ private extension PresentationController {
                 presentedView?.roundCorners([.topLeft, .topRight], radius: newValue)
             }
         }
+    }
+}
+
+private extension PresentationController {
+    func setupDrawerFullExpansionTapRecogniser() {
+        guard drawerFullExpansionTapGR == nil else { return }
+        let isFullyPresentable = isFullyPresentableByDrawerTaps
+        let numTapsRequired = numberOfTapsForFullDrawerPresentation
+        guard isFullyPresentable && numTapsRequired > 0 else { return }
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(handleDrawerFullExpansionTap))
+        tapGesture.numberOfTouchesRequired = 1
+        tapGesture.numberOfTapsRequired = numTapsRequired
+        presentedView?.addGestureRecognizer(tapGesture)
+        drawerFullExpansionTapGR = tapGesture
+    }
+
+    func removeDrawerFullExpansionTapRecogniser() {
+        guard let tapGesture = drawerFullExpansionTapGR else { return }
+        presentedView?.removeGestureRecognizer(tapGesture)
+        drawerFullExpansionTapGR = nil
+    }
+
+    @objc func handleDrawerFullExpansionTap() {
+        guard let tapGesture = drawerFullExpansionTapGR else { return }
+        let tapY = tapGesture.location(in: presentedView).y
+        guard tapY < drawerPartialH else { return }
+        animateTransition(to: 0)
     }
 }
 
