@@ -1,8 +1,12 @@
 import UIKit
 
 extension PresentationController {
-    var durationInSeconds: TimeInterval {
-        return configuration.durationInSeconds
+    var totalDurationInSeconds: TimeInterval {
+        return configuration.totalDurationInSeconds
+    }
+
+    var durationIsProportionalToDistanceTraveled: Bool {
+        return configuration.durationIsProportionalToDistanceTraveled
     }
 
     var timingCurveProvider: UITimingCurveProvider {

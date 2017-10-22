@@ -1,19 +1,34 @@
 import UIKit
 
 /// All the configurable parameters in one place.
-/// See `DrawerDisplayController+Configuration.swift` for documentation on
-/// what the various parameters are used for.
-public struct DrawerConfiguration: Equatable {
-    /// How long the animations that move the drawer up and down last.
-    /// The default value is 0.3 seconds.
-    public var durationInSeconds: TimeInterval
 
-    /// The type of timing curve to use for the animations. The full set
-    /// of cubic Bezier curves and spring-based curves is supported. Note
-    /// that selecting a spring-based timing curve causes the `durationInSeconds`
-    /// parameter to be ignored, because the duration is computed based on the
-    /// specifics of the spring-based curve. The default is `UISpringTimingParameters()`,
-    /// which is the system's global spring-based timing curve.
+public struct DrawerConfiguration {
+    /// The total duration, in seconds, for the drawer to transition from its
+    /// collapsed state to its fully-expanded state, or vice-versa. The default
+    /// value is 0.4 seconds.
+    public var totalDurationInSeconds: TimeInterval
+
+    /// When the drawer transitions between its collapsed and partially-expanded
+    /// states, or between its partially-expanded and its fully-expanded states, in
+    /// either direction, the distance traveled by the drawer is some fraction of
+    /// the total distance traveled between the collapsed and fully-expanded states.
+    /// You have a choice between having those fractional transitions take the same
+    /// amount of time as the full transition, and having them take a time that is
+    /// a fraction of the total time, where the fraction used is the fraction of
+    /// space those partial transitions travel. In the first case, all transitions
+    /// have the same duration (`totalDurationInSeconds`) but different speeds, while
+    /// in the second case different transitions have different durations but the same
+    /// speed. The default is `false`, that is, all transitions last the same amount
+    /// of time.
+    public var durationIsProportionalToDistanceTraveled: Bool
+
+    /// The type of timing curve to use for the animations. The full set of cubic
+    /// Bezier curves and spring-based curves is supported. Note that selecting a
+    /// spring-based timing curve may cause the `totalDurationInSeconds` parameter
+    /// to be ignored because the duration, for a fully general spring-based timing
+    /// curve provider, is computed based on the specifics of the spring-based curve.
+    /// The default is `UISpringTimingParameters()`, which is the system's global
+    /// spring-based timing curve.
     public var timingCurveProvider: UITimingCurveProvider
 
     /// When `true`, the drawer is presented first in its partially expanded state.
@@ -78,8 +93,8 @@ public struct DrawerConfiguration: Equatable {
     /// corner animations from taking place. The default value is 15 points.
     public var maximumCornerRadius: CGFloat
 
-    /// Initialiser for `DrawerConfiguration`.
-    public init(durationInSeconds: TimeInterval = 0.3,
+    public init(totalDurationInSeconds: TimeInterval = 0.4,
+                durationIsProportionalToDistanceTraveled: Bool = false,
                 timingCurveProvider: UITimingCurveProvider = UISpringTimingParameters(),
                 supportsPartialExpansion: Bool = true,
                 dismissesInStages: Bool = true,
@@ -92,7 +107,8 @@ public struct DrawerConfiguration: Equatable {
                 upperMarkGap: CGFloat = 40,
                 lowerMarkGap: CGFloat = 40,
                 maximumCornerRadius: CGFloat = 15) {
-        self.durationInSeconds = (durationInSeconds > 0 ? durationInSeconds : 0.8)
+        self.totalDurationInSeconds = (totalDurationInSeconds > 0 ? totalDurationInSeconds : 0.4)
+        self.durationIsProportionalToDistanceTraveled = durationIsProportionalToDistanceTraveled
         self.timingCurveProvider = timingCurveProvider
         self.supportsPartialExpansion = supportsPartialExpansion
         self.dismissesInStages = dismissesInStages
@@ -105,5 +121,24 @@ public struct DrawerConfiguration: Equatable {
         self.upperMarkGap = max(0, upperMarkGap)
         self.lowerMarkGap = max(0, lowerMarkGap)
         self.maximumCornerRadius = max(0, maximumCornerRadius)
+    }
+}
+
+extension DrawerConfiguration: Equatable {
+    public static func ==(lhs: DrawerConfiguration, rhs: DrawerConfiguration) -> Bool {
+        return lhs.totalDurationInSeconds == rhs.totalDurationInSeconds
+            && lhs.durationIsProportionalToDistanceTraveled == rhs.durationIsProportionalToDistanceTraveled
+            && lhs.timingCurveProvider === rhs.timingCurveProvider
+            && lhs.supportsPartialExpansion == rhs.supportsPartialExpansion
+            && lhs.dismissesInStages == rhs.dismissesInStages
+            && lhs.isDrawerDraggable == rhs.isDrawerDraggable
+            && lhs.isFullyPresentableByDrawerTaps == rhs.isFullyPresentableByDrawerTaps
+            && lhs.numberOfTapsForFullDrawerPresentation == rhs.numberOfTapsForFullDrawerPresentation
+            && lhs.isDismissableByOutsideDrawerTaps == rhs.isDismissableByOutsideDrawerTaps
+            && lhs.numberOfTapsForOutsideDrawerDismissal == rhs.numberOfTapsForOutsideDrawerDismissal
+            && lhs.flickSpeedThreshold == rhs.flickSpeedThreshold
+            && lhs.upperMarkGap == rhs.upperMarkGap
+            && lhs.lowerMarkGap == rhs.lowerMarkGap
+            && lhs.maximumCornerRadius == rhs.maximumCornerRadius
     }
 }
