@@ -28,6 +28,10 @@ extension DrawerState {
             return true
         case let (.transitioning(lhsCurPosY), .transitioning(rhsCurPosY)):
             return equal(lhsCurPosY, rhsCurPosY)
+        case let (.partiallyExpanded, .transitioning(rhsCurPosY)):
+            return true // XXX
+        case let (.transitioning(lhsCurPosY), .partiallyExpanded):
+            return true // XXX
         default:
             return false
         }

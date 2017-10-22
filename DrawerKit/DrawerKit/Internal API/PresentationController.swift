@@ -25,7 +25,9 @@ extension PresentationController {
         frame.size = size(forChildContentContainer: presentedViewController,
                           withParentContainerSize: containerViewSize)
         let state: DrawerState = (supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
-        frame.origin.y = drawerPositionY(for: state)
+        frame.origin.y = GeometryEvaluator.drawerPositionY(for: state,
+                                                           drawerPartialHeight: drawerPartialH,
+                                                           containerViewHeight: containerViewH)
         return frame
     }
 
@@ -36,10 +38,19 @@ extension PresentationController {
         setupDrawerDragRecogniser()
         setupDebugHeightMarks()
         addCornerRadiusAnimationEnding(at: .partiallyExpanded)
+        enableDrawerFullExpansionTapRecogniser(enabled: false)
+        enableDrawerDismissalTapRecogniser(enabled: false)
+    }
+
+    override func presentationTransitionDidEnd(_ completed: Bool) {
+        enableDrawerFullExpansionTapRecogniser(enabled: true)
+        enableDrawerDismissalTapRecogniser(enabled: true)
     }
 
     override func dismissalTransitionWillBegin() {
         addCornerRadiusAnimationEnding(at: .collapsed)
+        enableDrawerFullExpansionTapRecogniser(enabled: false)
+        enableDrawerDismissalTapRecogniser(enabled: false)
     }
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
@@ -50,39 +61,5 @@ extension PresentationController {
 
     override func containerViewWillLayoutSubviews() {
         presentedView?.frame = frameOfPresentedViewInContainerView
-    }
-}
-
-private extension PresentationController {
-    func clientPrepareViews(_ info: DrawerAnimationInfo) {
-        //        presenterVC?.drawerTransitionActions.prepare?(info)
-        //        contentVC?.drawerTransitionActions.prepare?(info)
-    }
-
-    func clientAnimateAlong(_ info: DrawerAnimationInfo) {
-        //        presenterVC?.drawerTransitionActions.prepare?(info)
-        //        contentVC?.drawerTransitionActions.prepare?(info)
-    }
-
-    func clientCleanupViews(_ endingPosition: UIViewAnimatingPosition,
-                            _ info: DrawerAnimationInfo) {
-        //        var endInfo = info
-        //        endInfo.endPosition = endingPosition
-        //        presenterVC?.drawerTransitionActions.cleanup?(info)
-        //        contentVC?.drawerTransitionActions.cleanup?(info)
-    }
-
-    func makeInformation(_ isPresenting: Bool,
-                         _ geometry: DrawerGeometry,
-                         _ actualDurationInSeconds: TimeInterval,
-                         _ endingPosition: UIViewAnimatingPosition? = nil) -> DrawerAnimationInfo {
-        return DrawerAnimationInfo(configuration: configuration,
-                                   geometry: geometry,
-                                   actualDurationInSeconds: actualDurationInSeconds,
-                                   isPresenting: isPresenting,
-                                   startDrawerState: .collapsed, // XXX
-                                   targetEndDrawerState: .partiallyExpanded, // XXX
-                                   endDrawerState: .partiallyExpanded, // XXX
-                                   endPosition: endingPosition)
     }
 }

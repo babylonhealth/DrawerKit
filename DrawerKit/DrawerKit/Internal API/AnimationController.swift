@@ -2,18 +2,11 @@ import UIKit
 
 final class AnimationController: NSObject {
     private let isPresentation: Bool
-    private let totalDurationInSeconds: TimeInterval
-    private let durationIsProportionalToDistanceTraveled: Bool
-    private let timingCurveProvider: UITimingCurveProvider
+    private let configuration: DrawerConfiguration
 
-    init(isPresentation: Bool,
-         totalDurationInSeconds: TimeInterval,
-         durationIsProportionalToDistanceTraveled: Bool,
-         timingCurveProvider: UITimingCurveProvider) {
+    init(isPresentation: Bool, configuration: DrawerConfiguration) {
         self.isPresentation = isPresentation
-        self.totalDurationInSeconds = totalDurationInSeconds
-        self.durationIsProportionalToDistanceTraveled = durationIsProportionalToDistanceTraveled
-        self.timingCurveProvider = timingCurveProvider
+        self.configuration = configuration
         super.init()
     }
 }
@@ -21,25 +14,68 @@ final class AnimationController: NSObject {
 extension AnimationController: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         guard let context = transitionContext else { return 0 }
-        let controller = viewController(from: context, isPresentation)
-        return actualTransitionDuration(controller, context)
+        let (_, presentedVC) = viewControllers(context, isPresentation)
+        return actualTransitionDuration(presentedVC, context)
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        let controller = viewController(from: transitionContext, isPresentation)
-        if isPresentation { transitionContext.containerView.addSubview(controller.view) }
+        let (presentingVC, presentedVC) = viewControllers(transitionContext, isPresentation)
+        if isPresentation { transitionContext.containerView.addSubview(presentedVC.view) }
 
         let duration = transitionDuration(using: transitionContext)
-        let animator = UIViewPropertyAnimator(duration: duration,
-                                              timingParameters: timingCurveProvider)
+        let timingCurveProvider = configuration.timingCurveProvider
+        let animator = UIViewPropertyAnimator(duration: duration, timingParameters: timingCurveProvider)
 
-        let (initialFrame, finalFrame) = frames(controller, transitionContext)
+        let (initialFrame, finalFrame) = frames(presentedVC, transitionContext)
 
-        controller.view.frame = initialFrame
-        animator.addAnimations { controller.view.frame = finalFrame }
+        let containerBounds = transitionContext.containerView.bounds
+        let containerViewH = containerBounds.size.height
+
+        let geometry = AnimationSupport.makeGeometry(containerBounds: containerBounds,
+                                                           startingFrame: initialFrame,
+                                                           endingFrame: finalFrame,
+                                                           presentingVC: presentingVC,
+                                                           presentedVC: presentedVC)
+
+        let drawerPartialH = (presentedVC as? DrawerPresentable)?.heightOfPartiallyExpandedDrawer ?? 0
+        let partialH = GeometryEvaluator.drawerPartialH(drawerPartialHeight: drawerPartialH,
+                                                        containerViewHeight: containerViewH)
+
+        let startDrawerState = GeometryEvaluator.drawerState(for: initialFrame.origin.y,
+                                                             drawerPartialHeight: partialH,
+                                                             containerViewHeight: containerViewH,
+                                                             configuration: configuration)
+
+        let targetDrawerState = GeometryEvaluator.drawerState(for: finalFrame.origin.y,
+                                                                 drawerPartialHeight: partialH,
+                                                                 containerViewHeight: containerViewH,
+                                                                 configuration: configuration)
+
+        let info = AnimationSupport.makeInfo(startDrawerState: startDrawerState,
+                                                   targetDrawerState: targetDrawerState,
+                                                   configuration,
+                                                   geometry,
+                                                   duration,
+                                                   isPresentation)
+
+        AnimationSupport.clientPrepareViews(presentingVC: presentingVC,
+                                                  presentedVC: presentedVC,
+                                                  info)
+        presentedVC.view.frame = initialFrame
+
+        animator.addAnimations {
+            presentedVC.view.frame = finalFrame
+            AnimationSupport.clientAnimateAlong(presentingVC: presentingVC,
+                                                      presentedVC: presentedVC,
+                                                      info)
+        }
 
         animator.addCompletion { endingPosition in
             let finished = (endingPosition == UIViewAnimatingPosition.end)
+            AnimationSupport.clientCleanupViews(presentingVC: presentingVC,
+                                                      presentedVC: presentedVC,
+                                                      endingPosition,
+                                                      info)
             transitionContext.completeTransition(finished)
         }
 
@@ -57,13 +93,10 @@ private extension AnimationController {
             let finalY = finalFrame.origin.y
             let containerViewH = transitionContext.containerView.bounds.size.height
 
-            var duration = totalDurationInSeconds
-            if durationIsProportionalToDistanceTraveled {
-                let fractionToGo = abs(finalY - initialY) / containerViewH
-                duration *= TimeInterval(fractionToGo)
-            }
-
-            return duration
+            return AnimationSupport.actualTransitionDuration(from: initialY,
+                                                                   to: finalY,
+                                                                   containerViewHeight: containerViewH,
+                                                                   configuration: configuration)
     }
 
     func frames(_ controller: UIViewController,
@@ -80,11 +113,20 @@ private extension AnimationController {
             return (initialFrame, finalFrame)
     }
 
-    func viewController(from transitionContext: UIViewControllerContextTransitioning,
-                        _ isPresentation: Bool) -> UIViewController {
-        let key = (isPresentation ?
-            UITransitionContextViewControllerKey.to :
-            UITransitionContextViewControllerKey.from)
-        return transitionContext.viewController(forKey: key)!
+    func viewControllers(_ transitionContext: UIViewControllerContextTransitioning,
+                         _ isPresentation: Bool)
+        -> (presenting: UIViewController, presented: UIViewController) {
+            let presentingKey = (isPresentation ?
+                UITransitionContextViewControllerKey.from :
+                UITransitionContextViewControllerKey.to)
+
+            let presentedKey = (isPresentation ?
+                UITransitionContextViewControllerKey.to :
+                UITransitionContextViewControllerKey.from)
+
+            let presentingVC = transitionContext.viewController(forKey: presentingKey)!
+            let presentedVC = transitionContext.viewController(forKey: presentedKey)!
+
+            return (presentingVC, presentedVC)
     }
 }

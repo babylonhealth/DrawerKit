@@ -26,10 +26,10 @@ public struct DrawerAnimationInfo {
 
     /// The drawer state at which the drawer is supposed to end, for the drawer
     /// transition being reported.
-    public let targetEndDrawerState: DrawerState
+    public let targetDrawerState: DrawerState
 
     /// The ending state for the drawer transition being reported. Note that it need
-    /// not be the same state as `targetEndDrawerState`. See `endPosition` below for
+    /// not be the same state as `targetDrawerState`. See `endPosition` below for
     /// more details.
     public let endDrawerState: DrawerState
 
@@ -47,7 +47,7 @@ public struct DrawerAnimationInfo {
                   actualDurationInSeconds: TimeInterval,
                   isPresenting: Bool,
                   startDrawerState: DrawerState,
-                  targetEndDrawerState: DrawerState,
+                  targetDrawerState: DrawerState,
                   endDrawerState: DrawerState,
                   endPosition: UIViewAnimatingPosition? = nil) {
         self.configuration = configuration
@@ -55,7 +55,7 @@ public struct DrawerAnimationInfo {
         self.actualDurationInSeconds = actualDurationInSeconds
         self.isPresenting = isPresenting
         self.startDrawerState = startDrawerState
-        self.targetEndDrawerState = targetEndDrawerState
+        self.targetDrawerState = targetDrawerState
         self.endDrawerState = endDrawerState
         self.endPosition = endPosition
     }
@@ -68,7 +68,7 @@ extension DrawerAnimationInfo: Equatable {
             && lhs.actualDurationInSeconds == rhs.actualDurationInSeconds
             && lhs.isPresenting == rhs.isPresenting
             && lhs.startDrawerState == rhs.startDrawerState
-            && lhs.targetEndDrawerState == rhs.targetEndDrawerState
+            && lhs.targetDrawerState == rhs.targetDrawerState
             && lhs.endDrawerState == rhs.endDrawerState
             && lhs.endPosition == rhs.endPosition
     }

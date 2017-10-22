@@ -8,14 +8,11 @@ public struct DrawerGeometry {
     /// The bounds rectangle of the drawer's container view.
     public let containerBounds: CGRect
 
-    /// The drawer's frame, in its container view's coordinate system.
-    public let drawerFrame: CGRect
+    /// The drawer's starting frame, in its container view's coordinate system.
+    public let startingFrame: CGRect
 
-    /// The current user interface orientation.
-    public let userInterfaceOrientation: UIInterfaceOrientation
-
-    /// The status bar's current height.
-    public let statusBarHeight: CGFloat
+    /// The drawer's ending frame, in its container view's coordinate system.
+    public let endingFrame: CGRect
 
     /// The navigation bar's current height, if there is a navigation bar.
     /// Otherwise, the value of this property is zero.
@@ -24,16 +21,33 @@ public struct DrawerGeometry {
     /// The drawer's height in its partially expanded state.
     public let heightOfPartiallyExpandedDrawer: CGFloat
 
+    /// The current user interface orientation.
+    public var userInterfaceOrientation: UIInterfaceOrientation {
+        // TODO: should use trait collections... statusBarOrientation is deprecated
+        return UIApplication.shared.statusBarOrientation
+    }
+
+    /// The status bar's current height.
+    public var statusBarHeight: CGFloat {
+        let statusBarFrame = UIApplication.shared.statusBarFrame
+        switch userInterfaceOrientation {
+        case .portrait, .portraitUpsideDown:
+            return statusBarFrame.size.height
+        case .landscapeLeft, .landscapeRight:
+            return statusBarFrame.size.width
+        case .unknown:
+            return 0 // May UIKit have mercy on our apps
+        }
+    }
+
     internal init(containerBounds: CGRect,
-                  drawerFrame: CGRect,
-                  userInterfaceOrientation: UIInterfaceOrientation,
-                  statusBarHeight: CGFloat,
+                  startingFrame: CGRect,
+                  endingFrame: CGRect,
                   navigationBarHeight: CGFloat,
                   heightOfPartiallyExpandedDrawer: CGFloat) {
         self.containerBounds = containerBounds
-        self.drawerFrame = drawerFrame
-        self.userInterfaceOrientation = userInterfaceOrientation
-        self.statusBarHeight = statusBarHeight
+        self.startingFrame = startingFrame
+        self.endingFrame = endingFrame
         self.navigationBarHeight = navigationBarHeight
         self.heightOfPartiallyExpandedDrawer = heightOfPartiallyExpandedDrawer
     }
@@ -42,10 +56,11 @@ public struct DrawerGeometry {
 extension DrawerGeometry: Equatable {
     public static func ==(lhs: DrawerGeometry, rhs: DrawerGeometry) -> Bool {
         return lhs.containerBounds == rhs.containerBounds
-            && lhs.drawerFrame == rhs.drawerFrame
-            && lhs.userInterfaceOrientation == rhs.userInterfaceOrientation
-            && lhs.statusBarHeight == rhs.statusBarHeight
+            && lhs.startingFrame == rhs.startingFrame
+            && lhs.endingFrame == rhs.endingFrame
             && lhs.navigationBarHeight == rhs.navigationBarHeight
             && lhs.heightOfPartiallyExpandedDrawer == rhs.heightOfPartiallyExpandedDrawer
+            && lhs.userInterfaceOrientation == rhs.userInterfaceOrientation
+            && lhs.statusBarHeight == rhs.statusBarHeight
     }
 }

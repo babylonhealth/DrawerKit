@@ -1,8 +1,12 @@
 import UIKit
 
 extension PresentationController {
+    var containerViewBounds: CGRect {
+        return containerView?.bounds ?? .zero
+    }
+
     var containerViewSize: CGSize {
-        return containerView?.bounds.size ?? .zero
+        return containerViewBounds.size
     }
 
     var containerViewH: CGFloat {
@@ -11,50 +15,41 @@ extension PresentationController {
 
     var drawerPartialH: CGFloat {
         guard let presentedVC = presentedViewController as? DrawerPresentable else { return 0 }
-        return min(max(presentedVC.heightOfPartiallyExpandedDrawer, 0), containerViewH)
+        let drawerPartialH = presentedVC.heightOfPartiallyExpandedDrawer
+        return GeometryEvaluator.drawerPartialH(drawerPartialHeight: drawerPartialH,
+                                                containerViewHeight: containerViewH)
     }
 
     var drawerPartialY: CGFloat {
-        return containerViewH - drawerPartialH
+        return GeometryEvaluator.drawerPartialY(drawerPartialHeight: drawerPartialH,
+                                                containerViewHeight: containerViewH)
     }
 
     var upperMarkY: CGFloat {
-        return max(drawerPartialY - upperMarkGap, 0)
+        return GeometryEvaluator.upperMarkY(drawerPartialHeight: drawerPartialH,
+                                            containerViewHeight: containerViewH,
+                                            configuration: configuration)
     }
 
     var lowerMarkY: CGFloat {
-        return min(drawerPartialY + lowerMarkGap, containerViewH)
+        return GeometryEvaluator.lowerMarkY(drawerPartialHeight: drawerPartialH,
+                                            containerViewHeight: containerViewH,
+                                            configuration: configuration)
     }
 
     var currentDrawerState: DrawerState {
-        get { return drawerState(for: currentDrawerY) }
-        set { currentDrawerY = drawerPositionY(for: newValue) }
-    }
-
-    func drawerPositionY(for state: DrawerState) -> CGFloat {
-        switch state {
-        case .collapsed:
-            return containerViewH
-        case .partiallyExpanded:
-            return drawerPartialY
-        case .fullyExpanded:
-            return 0
-        case let .transitioning(positionY):
-            return positionY
+        get {
+            return GeometryEvaluator.drawerState(for: currentDrawerY,
+                                                 drawerPartialHeight: drawerPartialH,
+                                                 containerViewHeight: containerViewH,
+                                                 configuration: configuration)
         }
-    }
 
-    func drawerState(for positionY: CGFloat, clampToNearest: Bool = false) -> DrawerState {
-        if smallerThanOrEqual(positionY, 0) {
-            return .fullyExpanded
-        } else if greaterThanOrEqual(positionY, containerViewH) {
-            return .collapsed
-        } else if equal(positionY, drawerPartialY) {
-            return .partiallyExpanded
-        } else {
-            let posY = min(max(positionY, 0), containerViewH)
-            guard clampToNearest else { return .transitioning(posY) }
-            return drawerState(for: clamped(posY))
+        set {
+            currentDrawerY =
+                GeometryEvaluator.drawerPositionY(for: newValue,
+                                                  drawerPartialHeight: drawerPartialH,
+                                                  containerViewHeight: containerViewH)
         }
     }
 
@@ -63,6 +58,7 @@ extension PresentationController {
             let posY = presentedView?.frame.origin.y ?? 0
             return min(max(posY, 0), containerViewH)
         }
+
         set {
             let posY = min(max(newValue, 0), containerViewH)
             presentedView?.frame.origin.y = posY
@@ -74,6 +70,7 @@ extension PresentationController {
             let radius = presentedView?.layer.cornerRadius ?? 0
             return min(max(radius, 0), maximumCornerRadius)
         }
+
         set {
             let radius = min(max(newValue, 0), maximumCornerRadius)
             presentedView?.layer.cornerRadius = radius
@@ -90,7 +87,10 @@ extension PresentationController {
         guard maximumCornerRadius != 0 && drawerPartialY != 0
             && drawerPartialY != containerViewH else { return 0 }
 
-        let positionY = drawerPositionY(for: state)
+        let positionY =
+            GeometryEvaluator.drawerPositionY(for: state,
+                                              drawerPartialHeight: drawerPartialH,
+                                              containerViewHeight: containerViewH)
 
         let fraction: CGFloat
         if supportsPartialExpansion {
@@ -104,53 +104,5 @@ extension PresentationController {
         }
 
         return fraction * maximumCornerRadius
-    }
-
-    func clamped(_ positionY: CGFloat) -> CGFloat {
-        if smallerThanOrEqual(positionY, upperMarkY) {
-            return 0
-        } else if greaterThanOrEqual(positionY, lowerMarkY) {
-            return containerViewH
-        } else if smallerThanOrEqual(positionY, drawerPartialY) {
-            return (supportsPartialExpansion ? drawerPartialY : 0)
-        } else {
-            return (supportsPartialExpansion ? drawerPartialY : containerViewH)
-        }
-    }
-
-    func nextStateFrom(currentState: DrawerState, speedY: CGFloat) -> DrawerState {
-        let isNotMoving = (speedY == 0)
-        let isMovingUp = (speedY < 0) // recall that Y-axis points down
-        let isMovingDown = (speedY > 0)
-
-        let isMovingQuickly = (flickSpeedThreshold != 0) && (abs(speedY) > flickSpeedThreshold)
-        let isMovingUpQuickly = isMovingUp && isMovingQuickly
-        let isMovingDownQuickly = isMovingDown && isMovingQuickly
-
-        let positionY = drawerPositionY(for: currentState)
-        let isAboveUpperMark = (positionY < upperMarkY)
-        let isAboveLowerMark = (positionY < lowerMarkY)
-
-        if isMovingUpQuickly { return .fullyExpanded }
-        if isMovingDownQuickly { return .collapsed }
-
-        if isAboveUpperMark {
-            if isMovingUp || isNotMoving {
-                return .fullyExpanded
-            } else { // isMovingDown
-                let inStages = supportsPartialExpansion && dismissesInStages
-                return inStages ? .partiallyExpanded : .collapsed
-            }
-        }
-
-        if isAboveLowerMark {
-            if isMovingDown {
-                return .collapsed
-            } else { // isMovingUp || isNotMoving
-                return (supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
-            }
-        }
-
-        return .collapsed
     }
 }

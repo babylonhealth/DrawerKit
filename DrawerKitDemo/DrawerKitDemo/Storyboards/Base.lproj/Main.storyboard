@@ -70,6 +70,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hd-8Z-dwV" userLabel="handle">
+                                <rect key="frame" x="167" y="8" width="40" height="6"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="C67-il-hSA"/>
+                                    <constraint firstAttribute="width" constant="40" id="e2f-Gn-D9g"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Saturn" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jth-UI-73K">
                                 <rect key="frame" x="148" y="28" width="79" height="30"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -138,9 +146,11 @@
                             <constraint firstItem="Ojr-aM-v38" firstAttribute="top" secondItem="dEa-Pl-yQz" secondAttribute="bottom" constant="20" id="Dgd-aQ-agb"/>
                             <constraint firstItem="dEa-Pl-yQz" firstAttribute="top" secondItem="69I-et-UOX" secondAttribute="bottom" constant="100" id="Eai-cn-LDj"/>
                             <constraint firstItem="dEa-Pl-yQz" firstAttribute="leading" secondItem="tAJ-xI-Qxr" secondAttribute="leading" id="Vcw-46-NLg"/>
+                            <constraint firstItem="7Hd-8Z-dwV" firstAttribute="centerX" secondItem="tAJ-xI-Qxr" secondAttribute="centerX" id="XGu-Tz-6Ru"/>
                             <constraint firstItem="Jth-UI-73K" firstAttribute="top" secondItem="tAJ-xI-Qxr" secondAttribute="top" constant="28" id="aH2-1L-AcL"/>
                             <constraint firstItem="Ojr-aM-v38" firstAttribute="leading" secondItem="tAJ-xI-Qxr" secondAttribute="leadingMargin" constant="10" id="cWU-AN-kgF"/>
                             <constraint firstItem="qPD-ym-Fa5" firstAttribute="top" secondItem="69I-et-UOX" secondAttribute="bottom" constant="25" id="cpO-2w-akW"/>
+                            <constraint firstItem="7Hd-8Z-dwV" firstAttribute="top" secondItem="tAJ-xI-Qxr" secondAttribute="top" constant="8" id="g8H-fW-Bs7"/>
                             <constraint firstAttribute="trailing" secondItem="dEa-Pl-yQz" secondAttribute="trailing" id="gI5-Vo-Tk3"/>
                             <constraint firstItem="Jth-UI-73K" firstAttribute="centerX" secondItem="tAJ-xI-Qxr" secondAttribute="centerX" id="hN7-u7-BLQ"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Ojr-aM-v38" secondAttribute="bottom" constant="20" id="r5Q-A1-OUj"/>
@@ -148,10 +158,17 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Ojr-aM-v38" secondAttribute="trailing" constant="10" id="tkz-7e-SmV"/>
                         </constraints>
                         <connections>
+                            <outlet property="bodyLabel" destination="69I-et-UOX" id="yM2-QU-7fi"/>
+                            <outlet property="dismissButton" destination="qPD-ym-Fa5" id="vT0-hE-mwT"/>
                             <outlet property="dividerView" destination="dEa-Pl-yQz" id="aF0-jd-cMU"/>
+                            <outlet property="handleView" destination="7Hd-8Z-dwV" id="hmM-Lq-gCA"/>
                             <outlet property="imageView" destination="rpy-pk-bsr" id="JPN-4k-Tmo"/>
+                            <outlet property="titleLabel" destination="Jth-UI-73K" id="THa-a8-8sV"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="presentedView" destination="tAJ-xI-Qxr" id="N57-5D-1ic"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjN-SN-YOS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

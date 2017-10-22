@@ -12,6 +12,7 @@ extension PresentationController {
         guard let tapGesture = drawerDismissalTapGR else { return }
         let tapY = tapGesture.location(in: containerView).y
         guard tapY < currentDrawerY else { return }
+        tapGesture.isEnabled = false
         presentedViewController.dismiss(animated: true)
     }
 
@@ -20,18 +21,29 @@ extension PresentationController {
 
         switch panGesture.state {
         case .began:
-            lastDrawerState = drawerState(for: currentDrawerY, clampToNearest: true)
+            lastDrawerState = GeometryEvaluator.drawerState(for: currentDrawerY,
+                                                            drawerPartialHeight: drawerPartialH,
+                                                            containerViewHeight: containerViewH,
+                                                            configuration: configuration,
+                                                            clampToNearest: true)
 
         case .changed:
-            lastDrawerState = drawerState(for: currentDrawerY, clampToNearest: true)
+            lastDrawerState = GeometryEvaluator.drawerState(for: currentDrawerY,
+                                                            drawerPartialHeight: drawerPartialH,
+                                                            containerViewHeight: containerViewH,
+                                                            configuration: configuration,
+                                                            clampToNearest: true)
             currentDrawerY += panGesture.translation(in: view).y
             currentDrawerCornerRadius = cornerRadius(at: currentDrawerState)
             panGesture.setTranslation(.zero, in: view)
 
         case .ended:
             let drawerSpeedY = panGesture.velocity(in: view).y / containerViewH
-            let endingState = nextStateFrom(currentState: currentDrawerState,
-                                            speedY: drawerSpeedY)
+            let endingState = GeometryEvaluator.nextStateFrom(currentState: currentDrawerState,
+                                                              speedY: drawerSpeedY,
+                                                              drawerPartialHeight: drawerPartialH,
+                                                              containerViewHeight: containerViewH,
+                                                              configuration: configuration)
             animateTransition(to: endingState)
 
         case .cancelled:

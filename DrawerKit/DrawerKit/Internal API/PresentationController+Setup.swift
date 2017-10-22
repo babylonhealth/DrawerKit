@@ -19,6 +19,10 @@ extension PresentationController {
         presentedView?.removeGestureRecognizer(tapGesture)
         drawerFullExpansionTapGR = nil
     }
+
+    func enableDrawerFullExpansionTapRecogniser(enabled: Bool) {
+        drawerFullExpansionTapGR?.isEnabled = enabled
+    }
 }
 
 extension PresentationController {
@@ -39,6 +43,10 @@ extension PresentationController {
         guard let tapGesture = drawerDismissalTapGR else { return }
         containerView?.removeGestureRecognizer(tapGesture)
         drawerDismissalTapGR = nil
+    }
+
+    func enableDrawerDismissalTapRecogniser(enabled: Bool) {
+        drawerDismissalTapGR?.isEnabled = enabled
     }
 }
 

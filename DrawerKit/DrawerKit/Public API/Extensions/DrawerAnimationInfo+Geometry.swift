@@ -11,8 +11,12 @@ extension DrawerAnimationInfo {
         return geometry.containerBounds
     }
 
-    public var drawerFrame: CGRect {
-        return geometry.drawerFrame
+    public var startingFrame: CGRect {
+        return geometry.startingFrame
+    }
+
+    public var endingFrame: CGRect {
+        return geometry.endingFrame
     }
 
     public var userInterfaceOrientation: UIInterfaceOrientation {
