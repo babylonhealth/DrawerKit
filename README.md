@@ -22,11 +22,23 @@ that limitation.
 	</a>
 </p>
 
+## What's new since v. 0.1.1?
+
+Please note that v. `0.2.0` is not backward-compatible with v. 0.1.1.
+
+- The presenting view controller is no longer required to conform to `DrawerPresenting`. In fact,
+`DrawerPresenting` no longer exists. Instead, a new protocol was created to take its place,
+`DrawerCoordinating`, so that *any* object can conform to it and be responsible for vending the
+drawer display controller. Of course, the presenting view controller can still fulfil that
+responsibility but it no longer must do so.
+
+- Added **tap-to-expand**. Now, if the corresponding configuration boolean is turned on, tapping
+on the drawer when it's in its partially expanded state will trigger it to transition to its
+fully expanded state.
+
 ## What version of iOS does it require or support?
 
 __DrawerKit__ is compatible with iOS 10 and above.
-
-Please note that version 0.12 is not backward-compatible with version 0.1.1. For details, please read the [change log file]().
 
 ## How to use it?
 
