@@ -7,13 +7,13 @@ import Foundation
 /// cleanup their views before, during, and/or after a drawer transition takes place.
 
 public struct DrawerAnimationActions {
-    public typealias PrepareSignature = (_ info: DrawerAnimationInfo) -> Void
-    public typealias AnimateAlongSignature = (_ info: DrawerAnimationInfo) -> Void
-    public typealias CleanupSignature = (_ info: DrawerAnimationInfo) -> Void
+    public typealias PrepareHandler = (_ info: DrawerAnimationInfo) -> Void
+    public typealias AnimateAlongHandler = (_ info: DrawerAnimationInfo) -> Void
+    public typealias CleanupHandler = (_ info: DrawerAnimationInfo) -> Void
 
-    public init(prepare: PrepareSignature? = nil,
-                animateAlong: AnimateAlongSignature? = nil,
-                cleanup: CleanupSignature? = nil) {
+    public init(prepare: PrepareHandler? = nil,
+                animateAlong: AnimateAlongHandler? = nil,
+                cleanup: CleanupHandler? = nil) {
         self.prepare = prepare
         self.animateAlong = animateAlong
         self.cleanup = cleanup
@@ -23,17 +23,17 @@ public struct DrawerAnimationActions {
     /// the view controllers involved, if they conform to `DrawerAnimationParticipant`,
     /// that they can now prepare their views for the drawer transition animation
     /// about to start.
-    public var prepare: PrepareSignature?
+    public var prepare: PrepareHandler?
 
     /// A closure used as a call-back by the drawer transition process to inform
     /// the view controllers involved, if they conform to `DrawerAnimationParticipant`,
     /// that they can now perform animations in their views along with the drawer
     /// transition animation currently in progress.
-    public var animateAlong: AnimateAlongSignature?
+    public var animateAlong: AnimateAlongHandler?
 
     /// A closure used as a call-back by the drawer transition process to inform
     /// the view controllers involved, if they conform to `DrawerAnimationParticipant`,
     /// that they can now cleanup their views since the drawer transition animation
     /// has completed.
-    public var cleanup: CleanupSignature?
+    public var cleanup: CleanupHandler?
 }
