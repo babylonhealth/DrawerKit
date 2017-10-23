@@ -321,8 +321,10 @@ private extension PresentationController {
     }
 
     func addCornerRadiusAnimationEnding(at endState: DrawerState) {
-        guard maximumCornerRadius != 0 && drawerPartialY != 0
-            && endState != currentDrawerState else { return }
+        guard maximumCornerRadius != 0
+            && drawerPartialY != 0
+            && endState != currentDrawerState
+            else { return }
 
         let animator = UIViewPropertyAnimator(duration: durationInSeconds,
                                               timingParameters: timingCurveProvider)
