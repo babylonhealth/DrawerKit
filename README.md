@@ -36,6 +36,8 @@ responsibility but it no longer must do so.
 on the drawer when it's in its partially expanded state will trigger it to transition to its
 fully expanded state.
 
+- Added some under-the-hood improvements in preparation for adding upcoming new features.
+
 ## What version of iOS does it require or support?
 
 __DrawerKit__ is compatible with iOS 10 and above.

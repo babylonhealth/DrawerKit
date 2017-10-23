@@ -8,6 +8,8 @@ Release 0.2.0 breaks backward compatibility with the earlier release, since one 
 
 - Added **tap-to-expand**. Now, if the corresponding configuration boolean is turned on, tapping on the drawer when it's in its partially expanded state will trigger it to transition to its fully expanded state.
 
+- Added some under-the-hood improvements in preparation for adding upcoming new features.
+
 ## v. 0.1.1
 
 - Initial release
