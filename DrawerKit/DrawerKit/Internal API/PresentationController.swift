@@ -154,8 +154,10 @@ private extension PresentationController {
     }
 
     func cornerRadius(at state: DrawerState) -> CGFloat {
-        guard maximumCornerRadius != 0 && drawerPartialY != 0
-            && drawerPartialY != containerViewH else { return 0 }
+        guard maximumCornerRadius != 0
+            && drawerPartialY != 0
+            && drawerPartialY != containerViewH
+            else { return 0 }
 
         let positionY = drawerPositionY(for: state)
 
