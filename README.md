@@ -26,25 +26,22 @@ that limitation.
 
 __DrawerKit__ is compatible with iOS 10 and above.
 
+Please note that version 0.12 is not backward-compatible with version 0.1.1. For details, please read the [change log file]().
+
 ## How to use it?
 
 In order for the _presenting_ view controller to present another view controller (the _presented_ view controller)
-as a drawer, both view controllers need to conform to specific protocols, as follows.
-
-The presenting view controller needs to conform to the `DrawerPresenting` protocol,
+as a drawer, some object needs to conform to the `DrawerCoordinating` protocol and the _presented_ view controller
+needs to conform to the `DrawerPresentable` protocol. The _presenting_ view controller _may_ be the object conforming
+to `DrawerCoordinating` but it need not be.
 
 ```swift
-public protocol DrawerPresenting: class {
-    /// An object vended by the presenting view controller, whose responsibility
-    /// is to coordinate the presentation, animation, and interactivity of/with
-    /// the drawer.
+public protocol DrawerCoordinating: class {
+    /// An object vended by the conforming object, whose responsibility is to control
+    /// the presentation, animation, and interactivity of/with the drawer.
     var drawerDisplayController: DrawerDisplayController? { get }
 }
-```
 
-and the presented view controller needs to conform to the `DrawerPresentable` protocol,
-
-```swift
 public protocol DrawerPresentable: class {
     /// The height at which the drawer must be presented when it's in its
     /// partially expanded state. If negative, its value is clamped to zero.
@@ -53,7 +50,8 @@ public protocol DrawerPresentable: class {
 ```
 
 After that, it's essentially business as usual in regards to presenting a view controller modally. Here's the basic
-code to get a view controller to present another as a drawer:
+code to get a view controller to present another as a drawer, where the presenting view controller itself conforms to
+`DrawerCoordinating`,
 
 ```swift
 extension PresenterViewController {
@@ -64,22 +62,27 @@ extension PresenterViewController {
         // you can provide the configuration values in the initialiser...
         var configuration = DrawerConfiguration(/* ..., ..., ..., */)
 
-        // ... or after initialisation
+        // ... or after initialisation. All of these have default values so change only
+        // what you need to configure differently. They're all listed here just so you
+        // can see what can be configured.
         configuration.durationInSeconds = 0.8
         configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.8)
         configuration.supportsPartialExpansion = true
         configuration.dismissesInStages = true
         configuration.isDrawerDraggable = true
+        configuration.isFullyPresentableByDrawerTaps = true
+        configuration.numberOfTapsForFullDrawerPresentation = 1
         configuration.isDismissableByOutsideDrawerTaps = true
         configuration.numberOfTapsForOutsideDrawerDismissal = 1
         configuration.flickSpeedThreshold = 3
-        configuration.upperMarkGap = 30
-        configuration.lowerMarkGap = 30
+        configuration.upperMarkGap = 100
+        configuration.lowerMarkGap = 80
         configuration.maximumCornerRadius = 20
 
         drawerDisplayController = DrawerDisplayController(presentingViewController: self,
                                                           presentedViewController: vc,
-                                                          configuration: configuration)
+                                                          configuration: configuration,
+                                                          inDebugMode: true)
 
         present(vc, animated: true)
     }
@@ -113,71 +116,79 @@ __DrawerKit__ has a number of configurable properties, conveniently collected to
 `DrawerConfiguration`. Here's a list of all the currently supported configuration options:
 
 ```swift
-    /// How long the animations that move the drawer up and down last.
-    /// The default value is 0.3 seconds.
-    public var durationInSeconds: TimeInterval
+/// How long the animations that move the drawer up and down last.
+/// The default value is 0.3 seconds.
+public var durationInSeconds: TimeInterval
 
-    /// The type of timing curve to use for the animations. The full set
-    /// of cubic Bezier curves and spring-based curves is supported. Note
-    /// that selecting a spring-based timing curve causes the `durationInSeconds`
-    /// parameter to be ignored, because the duration is computed based on the
-    /// specifics of the spring-based curve. The default is `UISpringTimingParameters()`,
-    /// which is the system's global spring-based timing curve.
-    public var timingCurveProvider: UITimingCurveProvider
+/// The type of timing curve to use for the animations. The full set
+/// of cubic Bezier curves and spring-based curves is supported. Note
+/// that selecting a spring-based timing curve causes the `durationInSeconds`
+/// parameter to be ignored, because the duration is computed based on the
+/// specifics of the spring-based curve. The default is `UISpringTimingParameters()`,
+/// which is the system's global spring-based timing curve.
+public var timingCurveProvider: UITimingCurveProvider
 
-    /// When `true`, the drawer is presented first in its partially expanded state.
-    /// When `false`, the presentation is always to full screen and there is no
-    /// partially expanded state. The default value is `true`.
-    public var supportsPartialExpansion: Bool
+/// When `true`, the drawer is presented first in its partially expanded state.
+/// When `false`, the presentation is always to full screen and there is no
+/// partially expanded state. The default value is `true`.
+public var supportsPartialExpansion: Bool
 
-    /// When `true`, dismissing the drawer from its fully expanded state can result
-    /// in the drawer stopping at its partially expanded state. When `false`, the
-    /// dismissal is always straight to the collapsed state. Note that
-    /// `supportsPartialExpansion` being `false` implies `dismissesInStages` being
-    /// `false` as well but you can have `supportsPartialExpansion == true` and
-    /// `dismissesInStages == false`, which would result in presentations to the
-    /// partially expanded state but all dismissals would be straight to the collapsed
-    /// state. The default value is `true`.
-    public var dismissesInStages: Bool
+/// When `true`, dismissing the drawer from its fully expanded state can result
+/// in the drawer stopping at its partially expanded state. When `false`, the
+/// dismissal is always straight to the collapsed state. Note that
+/// `supportsPartialExpansion` being `false` implies `dismissesInStages` being
+/// `false` as well but you can have `supportsPartialExpansion == true` and
+/// `dismissesInStages == false`, which would result in presentations to the
+/// partially expanded state but all dismissals would be straight to the collapsed
+/// state. The default value is `true`.
+public var dismissesInStages: Bool
 
-    /// Whether or not the drawer can be dragged up and down. The default value is `true`.
-    public var isDrawerDraggable: Bool
+/// Whether or not the drawer can be dragged up and down. The default value is `true`.
+public var isDrawerDraggable: Bool
 
-    /// Whether or not the drawer can be dismissed by tapping anywhere outside of it.
-    /// The default value is `true`.
-    public var isDismissableByOutsideDrawerTaps: Bool
+/// Whether or not the drawer can be fully presentable by tapping on it.
+/// The default value is `true`.
+public var isFullyPresentableByDrawerTaps: Bool
 
-    /// How many taps are required for dismissing the drawer by tapping outside of it.
-    /// The default value is 1.
-    public var numberOfTapsForOutsideDrawerDismissal: Int
+/// How many taps are required for fully presenting the drawer by tapping on it.
+/// The default value is 1.
+public var numberOfTapsForFullDrawerPresentation: Int
 
-    /// How fast one needs to "flick" the drawer up or down to make it ignore the
-    /// partially expanded state. Flicking fast enough up always presents to full screen
-    /// and flicking fast enough down always collapses the drawer. A typically good value
-    /// is around 3 points per screen height per second, and that is also the default
-    /// value of this property.
-    public var flickSpeedThreshold: CGFloat
+/// Whether or not the drawer can be dismissed by tapping anywhere outside of it.
+/// The default value is `true`.
+public var isDismissableByOutsideDrawerTaps: Bool
 
-    /// There is a band around the partially expanded position of the drawer where
-    /// ending a drag inside will cause the drawer to move back to the partially
-    /// expanded position (subjected to the conditions set by `supportsPartialExpansion`
-    /// and `dismissesInStages`, of course). Set `inDebugMode` to `true` to see lines
-    /// drawn at those positions. This value represents the gap *above* the partially
-    /// expanded position. The default value is 40 points.
-    public var upperMarkGap: CGFloat
+/// How many taps are required for dismissing the drawer by tapping outside of it.
+/// The default value is 1.
+public var numberOfTapsForOutsideDrawerDismissal: Int
 
-    /// There is a band around the partially expanded position of the drawer where
-    /// ending a drag inside will cause the drawer to move back to the partially
-    /// expanded position (subjected to the conditions set by `supportsPartialExpansion`
-    /// and `dismissesInStages`, of course). Set `inDebugMode` to `true` to see lines
-    /// drawn at those positions. This value represents the gap *below* the partially
-    /// expanded position. The default value is 40 points.
-    public var lowerMarkGap: CGFloat
+/// How fast one needs to "flick" the drawer up or down to make it ignore the
+/// partially expanded state. Flicking fast enough up always presents to full screen
+/// and flicking fast enough down always collapses the drawer. A typically good value
+/// is around 3 points per screen height per second, and that is also the default
+/// value of this property.
+public var flickSpeedThreshold: CGFloat
 
-    /// The animating drawer also animates the radius of its top left and top right
-    /// corners, from 0 to the value of this property. Setting this to 0 prevents any
-    /// corner animations from taking place. The default value is 15 points.
-    public var maximumCornerRadius: CGFloat
+/// There is a band around the partially expanded position of the drawer where
+/// ending a drag inside will cause the drawer to move back to the partially
+/// expanded position (subjected to the conditions set by `supportsPartialExpansion`
+/// and `dismissesInStages`, of course). Set `inDebugMode` to `true` to see lines
+/// drawn at those positions. This value represents the gap *above* the partially
+/// expanded position. The default value is 40 points.
+public var upperMarkGap: CGFloat
+
+/// There is a band around the partially expanded position of the drawer where
+/// ending a drag inside will cause the drawer to move back to the partially
+/// expanded position (subjected to the conditions set by `supportsPartialExpansion`
+/// and `dismissesInStages`, of course). Set `inDebugMode` to `true` to see lines
+/// drawn at those positions. This value represents the gap *below* the partially
+/// expanded position. The default value is 40 points.
+public var lowerMarkGap: CGFloat
+
+/// The animating drawer also animates the radius of its top left and top right
+/// corners, from 0 to the value of this property. Setting this to 0 prevents any
+/// corner animations from taking place. The default value is 15 points.
+public var maximumCornerRadius: CGFloat
 ```
 
 ## What's the actual drawer behaviour logic?
