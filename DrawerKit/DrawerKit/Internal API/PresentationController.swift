@@ -2,9 +2,10 @@ import UIKit
 
 final class PresentationController: UIPresentationController {
     let configuration: DrawerConfiguration // intentionally internal and immutable
-    private var lastDrawerY: CGFloat = 0
-    private var containerViewDismissalTapGR: UITapGestureRecognizer?
-    private var presentedViewDragGR: UIPanGestureRecognizer?
+    private var lastDrawerState: DrawerState = .collapsed
+    private var drawerFullExpansionTapGR: UITapGestureRecognizer?
+    private var drawerDismissalTapGR: UITapGestureRecognizer?
+    private var drawerDragGR: UIPanGestureRecognizer?
     private let inDebugMode: Bool
 
     init(presentingVC: UIViewController?,
@@ -22,29 +23,47 @@ extension PresentationController {
         var frame: CGRect = .zero
         frame.size = size(forChildContentContainer: presentedViewController,
                           withParentContainerSize: containerViewSize)
-        frame.origin.y = (supportsPartialExpansion ? drawerPartialY : 0)
+        let state: DrawerState = (supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
+        frame.origin.y = drawerPositionY(for: state)
         return frame
     }
 
     override func presentationTransitionWillBegin() {
         containerView?.backgroundColor = .clear
-        setupContainerViewDismissalTapRecogniser()
-        setupPresentedViewDragRecogniser()
+        setupDrawerFullExpansionTapRecogniser()
+        setupDrawerDismissalTapRecogniser()
+        setupDrawerDragRecogniser()
         setupDebugHeightMarks()
-        addCornerRadiusAnimationEnding(at: drawerPartialY)
+        addCornerRadiusAnimationEnding(at: .partiallyExpanded)
     }
 
     override func dismissalTransitionWillBegin() {
-        addCornerRadiusAnimationEnding(at: containerViewH)
+        addCornerRadiusAnimationEnding(at: .collapsed)
     }
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
-        removeContainerViewDismissalTapRecogniser()
-        removePresentedViewDragRecogniser()
+        removeDrawerFullExpansionTapRecogniser()
+        removeDrawerDismissalTapRecogniser()
+        removeDrawerDragRecogniser()
     }
 
     override func containerViewWillLayoutSubviews() {
         presentedView?.frame = frameOfPresentedViewInContainerView
+    }
+}
+
+extension DrawerState {
+    static func ==(lhs: DrawerState, rhs: DrawerState) -> Bool {
+        switch (lhs, rhs) {
+        case (.collapsed, .collapsed),
+             (.partiallyExpanded, .partiallyExpanded),
+             (.fullyExpanded, .fullyExpanded):
+            return true
+        case let (.transitioning(lhsCurPosY), .transitioning(rhsCurPosY)):
+            return equal(lhsCurPosY, rhsCurPosY)
+        default:
+            return false
+        }
     }
 }
 
@@ -59,7 +78,7 @@ private extension PresentationController {
 
     var drawerPartialH: CGFloat {
         guard let presentedVC = presentedViewController as? DrawerPresentable else { return 0 }
-        return max(0, presentedVC.heightOfPartiallyExpandedDrawer)
+        return min(max(presentedVC.heightOfPartiallyExpandedDrawer, 0), containerViewH)
     }
 
     var drawerPartialY: CGFloat {
@@ -67,166 +86,80 @@ private extension PresentationController {
     }
 
     var upperMarkY: CGFloat {
-        return drawerPartialY - upperMarkGap
+        return max(drawerPartialY - upperMarkGap, 0)
     }
 
     var lowerMarkY: CGFloat {
-        return drawerPartialY + lowerMarkGap
+        return min(drawerPartialY + lowerMarkGap, containerViewH)
+    }
+
+    var currentDrawerState: DrawerState {
+        get { return drawerState(for: currentDrawerY) }
+        set { currentDrawerY = drawerPositionY(for: newValue) }
+    }
+
+    func drawerPositionY(for state: DrawerState) -> CGFloat {
+        switch state {
+        case .collapsed:
+            return containerViewH
+        case .partiallyExpanded:
+            return drawerPartialY
+        case .fullyExpanded:
+            return 0
+        case let .transitioning(positionY):
+            return positionY
+        }
+    }
+
+    func drawerState(for positionY: CGFloat, clampToNearest: Bool = false) -> DrawerState {
+        if smallerThanOrEqual(positionY, 0) {
+            return .fullyExpanded
+        } else if greaterThanOrEqual(positionY, containerViewH) {
+            return .collapsed
+        } else if equal(positionY, drawerPartialY) {
+            return .partiallyExpanded
+        } else {
+            let posY = min(max(positionY, 0), containerViewH)
+            guard clampToNearest else { return .transitioning(posY) }
+            return drawerState(for: clamped(posY))
+        }
     }
 
     var currentDrawerY: CGFloat {
-        get { return presentedView?.frame.origin.y ?? 0 }
-        set { presentedView?.frame.origin.y = newValue }
+        get {
+            let posY = presentedView?.frame.origin.y ?? 0
+            return min(max(posY, 0), containerViewH)
+        }
+        set {
+            let posY = min(max(newValue, 0), containerViewH)
+            presentedView?.frame.origin.y = posY
+        }
     }
 
     var currentDrawerCornerRadius: CGFloat {
-        get { return presentedView?.layer.cornerRadius ?? 0 }
+        get {
+            let radius = presentedView?.layer.cornerRadius ?? 0
+            return min(max(radius, 0), maximumCornerRadius)
+        }
         set {
-            presentedView?.layer.cornerRadius = newValue
+            let radius = min(max(newValue, 0), maximumCornerRadius)
+            presentedView?.layer.cornerRadius = radius
             if #available(iOS 11.0, *) {
                 presentedView?.layer.maskedCorners =
                     [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             } else {
-                presentedView?.roundCorners([.topLeft, .topRight], radius: newValue)
+                presentedView?.roundCorners([.topLeft, .topRight], radius: radius)
             }
         }
     }
-}
 
-private extension PresentationController {
-    func setupContainerViewDismissalTapRecogniser() {
-        guard containerViewDismissalTapGR == nil else { return }
-        let isDismissable = isDismissableByOutsideDrawerTaps
-        let numTapsRequired = numberOfTapsForOutsideDrawerDismissal
-        guard isDismissable && numTapsRequired > 0 else { return }
-        let tapGesture = UITapGestureRecognizer(target: self,
-                                                action: #selector(handleContainerViewDismissalTap))
-        tapGesture.numberOfTouchesRequired = 1
-        tapGesture.numberOfTapsRequired = numTapsRequired
-        containerView?.addGestureRecognizer(tapGesture)
-        containerViewDismissalTapGR = tapGesture
-    }
+    func cornerRadius(at state: DrawerState) -> CGFloat {
+        guard maximumCornerRadius != 0
+            && drawerPartialY != 0
+            && drawerPartialY != containerViewH
+            else { return 0 }
 
-    func removeContainerViewDismissalTapRecogniser() {
-        guard let tapGesture = containerViewDismissalTapGR else { return }
-        containerView?.removeGestureRecognizer(tapGesture)
-        containerViewDismissalTapGR = nil
-    }
-
-    @objc func handleContainerViewDismissalTap() {
-        guard let tapGesture = containerViewDismissalTapGR else { return }
-        let tapY = tapGesture.location(in: containerView).y
-        guard tapY < currentDrawerY else { return }
-        presentedViewController.dismiss(animated: true)
-    }
-}
-
-private extension PresentationController {
-    func setupPresentedViewDragRecogniser() {
-        guard presentedViewDragGR == nil && isDrawerDraggable else { return }
-        let panGesture = UIPanGestureRecognizer(target: self,
-                                                action: #selector(handlePresentedViewDrag))
-        presentedView?.addGestureRecognizer(panGesture)
-        presentedViewDragGR = panGesture
-    }
-
-    func removePresentedViewDragRecogniser() {
-        guard let panGesture = presentedViewDragGR else { return }
-        presentedView?.removeGestureRecognizer(panGesture)
-        presentedViewDragGR = nil
-    }
-
-    @objc func handlePresentedViewDrag() {
-        guard let panGesture = presentedViewDragGR, let view = panGesture.view else { return }
-
-        switch panGesture.state {
-        case .began:
-            lastDrawerY = currentDrawerY
-
-        case .changed:
-            lastDrawerY = currentDrawerY
-            let offsetY = panGesture.translation(in: view).y
-            panGesture.setTranslation(.zero, in: view)
-            let positionY = currentDrawerY + offsetY
-            currentDrawerY = min(max(positionY, 0), containerViewH)
-            currentDrawerCornerRadius = cornerRadius(at: currentDrawerY)
-
-        case .ended:
-            let drawerVelocityY = panGesture.velocity(in: view).y / containerViewH
-            let endPosY = endingPositionY(positionY: currentDrawerY,
-                                          velocityY: drawerVelocityY)
-            animateTransition(to: endPosY)
-
-        case .cancelled:
-            animateTransition(to: lastDrawerY, clamping: true)
-
-        default:
-            break
-        }
-    }
-}
-
-private extension PresentationController {
-    func animateTransition(to endPositionY: CGFloat, clamping: Bool = false) {
-        guard endPositionY != currentDrawerY else { return }
-
-        let endPosY = (clamping ? clamped(endPositionY) : endPositionY)
-        guard endPosY != currentDrawerY else { return }
-
-        let animator = UIViewPropertyAnimator(duration: durationInSeconds,
-                                              timingParameters: timingCurveProvider)
-
-        let maxCornerRadius = maximumCornerRadius
-        let endingCornerRadius = cornerRadius(at: endPosY)
-        animator.addAnimations {
-            self.currentDrawerY = endPosY
-            if maxCornerRadius > 0 {
-                self.currentDrawerCornerRadius = endingCornerRadius
-            }
-        }
-
-        if endPosY == containerViewH {
-            animator.addCompletion { _ in
-                self.presentedViewController.dismiss(animated: true)
-            }
-        }
-
-        if maxCornerRadius > 0 && endPosY != drawerPartialY {
-            animator.addCompletion { _ in
-                self.currentDrawerCornerRadius = 0
-            }
-        }
-
-        animator.startAnimation()
-    }
-
-    func addCornerRadiusAnimationEnding(at endPositionY: CGFloat, clamping: Bool = false) {
-        guard maximumCornerRadius > 0 && drawerPartialY > 0 && endPositionY != currentDrawerY else { return }
-
-        let endPosY = (clamping ? clamped(endPositionY) : endPositionY)
-        guard endPosY != currentDrawerY else { return }
-
-        let animator = UIViewPropertyAnimator(duration: durationInSeconds,
-                                              timingParameters: timingCurveProvider)
-
-        let endingCornerRadius = cornerRadius(at: endPosY)
-        animator.addAnimations {
-            self.currentDrawerCornerRadius = endingCornerRadius
-        }
-
-        if endPosY != drawerPartialY {
-            animator.addCompletion { _ in
-                self.currentDrawerCornerRadius = 0
-            }
-        }
-
-        animator.startAnimation()
-    }
-
-    func cornerRadius(at positionY: CGFloat) -> CGFloat {
-        guard maximumCornerRadius > 0 else { return currentDrawerCornerRadius }
-        guard drawerPartialY > 0 && drawerPartialY < containerViewH else { return 0 }
-        guard positionY >= 0 && positionY <= containerViewH else { return 0 }
+        let positionY = drawerPositionY(for: state)
 
         let fraction: CGFloat
         if supportsPartialExpansion {
@@ -241,50 +174,211 @@ private extension PresentationController {
 
         return fraction * maximumCornerRadius
     }
+
+    func clamped(_ positionY: CGFloat) -> CGFloat {
+        if smallerThanOrEqual(positionY, upperMarkY) {
+            return 0
+        } else if greaterThanOrEqual(positionY, lowerMarkY) {
+            return containerViewH
+        } else if smallerThanOrEqual(positionY, drawerPartialY) {
+            return (supportsPartialExpansion ? drawerPartialY : 0)
+        } else {
+            return (supportsPartialExpansion ? drawerPartialY : containerViewH)
+        }
+    }
 }
 
 private extension PresentationController {
-    func endingPositionY(positionY: CGFloat, velocityY: CGFloat) -> CGFloat {
-        let isNotMoving = (velocityY == 0)
-        let isMovingUp = (velocityY < 0) // recall that Y-axis points down
-        let isMovingDown = (velocityY > 0)
-        let isMovingQuickly = (flickSpeedThreshold > 0) && (abs(velocityY) > flickSpeedThreshold)
+    func setupDrawerFullExpansionTapRecogniser() {
+        guard drawerFullExpansionTapGR == nil else { return }
+        let isFullyPresentable = isFullyPresentableByDrawerTaps
+        let numTapsRequired = numberOfTapsForFullDrawerPresentation
+        guard isFullyPresentable && numTapsRequired > 0 else { return }
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(handleDrawerFullExpansionTap))
+        tapGesture.numberOfTouchesRequired = 1
+        tapGesture.numberOfTapsRequired = numTapsRequired
+        presentedView?.addGestureRecognizer(tapGesture)
+        drawerFullExpansionTapGR = tapGesture
+    }
+
+    func removeDrawerFullExpansionTapRecogniser() {
+        guard let tapGesture = drawerFullExpansionTapGR else { return }
+        presentedView?.removeGestureRecognizer(tapGesture)
+        drawerFullExpansionTapGR = nil
+    }
+
+    @objc func handleDrawerFullExpansionTap() {
+        guard let tapGesture = drawerFullExpansionTapGR else { return }
+        let tapY = tapGesture.location(in: presentedView).y
+        guard tapY < drawerPartialH else { return }
+        animateTransition(to: .fullyExpanded)
+    }
+}
+
+private extension PresentationController {
+    func setupDrawerDismissalTapRecogniser() {
+        guard drawerDismissalTapGR == nil else { return }
+        let isDismissable = isDismissableByOutsideDrawerTaps
+        let numTapsRequired = numberOfTapsForOutsideDrawerDismissal
+        guard isDismissable && numTapsRequired > 0 else { return }
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(handleDrawerDismissalTap))
+        tapGesture.numberOfTouchesRequired = 1
+        tapGesture.numberOfTapsRequired = numTapsRequired
+        containerView?.addGestureRecognizer(tapGesture)
+        drawerDismissalTapGR = tapGesture
+    }
+
+    func removeDrawerDismissalTapRecogniser() {
+        guard let tapGesture = drawerDismissalTapGR else { return }
+        containerView?.removeGestureRecognizer(tapGesture)
+        drawerDismissalTapGR = nil
+    }
+
+    @objc func handleDrawerDismissalTap() {
+        guard let tapGesture = drawerDismissalTapGR else { return }
+        let tapY = tapGesture.location(in: containerView).y
+        guard tapY < currentDrawerY else { return }
+        presentedViewController.dismiss(animated: true)
+    }
+}
+
+private extension PresentationController {
+    func setupDrawerDragRecogniser() {
+        guard drawerDragGR == nil && isDrawerDraggable else { return }
+        let panGesture = UIPanGestureRecognizer(target: self,
+                                                action: #selector(handleDrawerDrag))
+        presentedView?.addGestureRecognizer(panGesture)
+        drawerDragGR = panGesture
+    }
+
+    func removeDrawerDragRecogniser() {
+        guard let panGesture = drawerDragGR else { return }
+        presentedView?.removeGestureRecognizer(panGesture)
+        drawerDragGR = nil
+    }
+
+    @objc func handleDrawerDrag() {
+        guard let panGesture = drawerDragGR, let view = panGesture.view else { return }
+
+        switch panGesture.state {
+        case .began:
+            lastDrawerState = drawerState(for: currentDrawerY, clampToNearest: true)
+
+        case .changed:
+            lastDrawerState = drawerState(for: currentDrawerY, clampToNearest: true)
+            currentDrawerY += panGesture.translation(in: view).y
+            currentDrawerCornerRadius = cornerRadius(at: currentDrawerState)
+            panGesture.setTranslation(.zero, in: view)
+
+        case .ended:
+            let drawerSpeedY = panGesture.velocity(in: view).y / containerViewH
+            let endingState = nextStateFrom(currentState: currentDrawerState,
+                                            speedY: drawerSpeedY)
+            animateTransition(to: endingState)
+
+        case .cancelled:
+            animateTransition(to: lastDrawerState)
+
+        default:
+            break
+        }
+    }
+}
+
+private extension PresentationController {
+    func animateTransition(to endState: DrawerState) {
+        guard endState != currentDrawerState else { return }
+
+        let animator = UIViewPropertyAnimator(duration: durationInSeconds,
+                                              timingParameters: timingCurveProvider)
+
+        let maxCornerRadius = maximumCornerRadius
+        let endingCornerRadius = cornerRadius(at: endState)
+        let endingPositionY = drawerPositionY(for: endState)
+
+        animator.addAnimations {
+            self.currentDrawerY = endingPositionY
+            if maxCornerRadius != 0 {
+                self.currentDrawerCornerRadius = endingCornerRadius
+            }
+        }
+
+        if endState == .collapsed {
+            animator.addCompletion { _ in
+                self.presentedViewController.dismiss(animated: true)
+            }
+        }
+
+        if maxCornerRadius != 0 && (endState == .collapsed || endState == .fullyExpanded) {
+            animator.addCompletion { _ in
+                self.currentDrawerCornerRadius = 0
+            }
+        }
+
+        animator.startAnimation()
+    }
+
+    func addCornerRadiusAnimationEnding(at endState: DrawerState) {
+        guard maximumCornerRadius != 0
+            && drawerPartialY != 0
+            && endState != currentDrawerState
+            else { return }
+
+        let animator = UIViewPropertyAnimator(duration: durationInSeconds,
+                                              timingParameters: timingCurveProvider)
+
+        let endingCornerRadius = cornerRadius(at: endState)
+        animator.addAnimations {
+            self.currentDrawerCornerRadius = endingCornerRadius
+        }
+
+        if endState == .collapsed || endState == .fullyExpanded {
+            animator.addCompletion { _ in
+                self.currentDrawerCornerRadius = 0
+            }
+        }
+
+        animator.startAnimation()
+    }
+}
+
+private extension PresentationController {
+    func nextStateFrom(currentState: DrawerState, speedY: CGFloat) -> DrawerState {
+        let isNotMoving = (speedY == 0)
+        let isMovingUp = (speedY < 0) // recall that Y-axis points down
+        let isMovingDown = (speedY > 0)
+
+        let isMovingQuickly = (flickSpeedThreshold != 0) && (abs(speedY) > flickSpeedThreshold)
         let isMovingUpQuickly = isMovingUp && isMovingQuickly
         let isMovingDownQuickly = isMovingDown && isMovingQuickly
+
+        let positionY = drawerPositionY(for: currentState)
         let isAboveUpperMark = (positionY < upperMarkY)
         let isAboveLowerMark = (positionY < lowerMarkY)
 
-        if isMovingUpQuickly { return 0 }
-        if isMovingDownQuickly { return containerViewH }
+        if isMovingUpQuickly { return .fullyExpanded }
+        if isMovingDownQuickly { return .collapsed }
 
         if isAboveUpperMark {
             if isMovingUp || isNotMoving {
-                return 0
-            } else {
+                return .fullyExpanded
+            } else { // isMovingDown
                 let inStages = supportsPartialExpansion && dismissesInStages
-                return inStages ? drawerPartialY : containerViewH
+                return inStages ? .partiallyExpanded : .collapsed
             }
         }
 
         if isAboveLowerMark {
             if isMovingDown {
-                return containerViewH
-            } else {
-                return (supportsPartialExpansion ? drawerPartialY : 0)
+                return .collapsed
+            } else { // isMovingUp || isNotMoving
+                return (supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
             }
         }
 
-        return containerViewH
-    }
-
-    func clamped(_ positionY: CGFloat) -> CGFloat {
-        if positionY < upperMarkY {
-            return 0
-        } else if positionY > lowerMarkY {
-            return containerViewH
-        } else {
-            return (supportsPartialExpansion ? drawerPartialY : 0)
-        }
+        return .collapsed
     }
 }
 
@@ -317,8 +411,21 @@ private extension PresentationController {
     }
 }
 
+private func equal(_ lhs: CGFloat, _ rhs: CGFloat) -> Bool {
+    let epsilon: CGFloat = 1e-6
+    return abs(lhs - rhs) <= epsilon
+}
+
+private func smallerThanOrEqual(_ lhs: CGFloat, _ rhs: CGFloat) -> Bool {
+    return lhs < rhs || equal(lhs, rhs)
+}
+
+private func greaterThanOrEqual(_ lhs: CGFloat, _ rhs: CGFloat) -> Bool {
+    return lhs > rhs || equal(lhs, rhs)
+}
+
 // For versions of iOS lower than  11.0
-extension UIView {
+private extension UIView {
     func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: self.bounds,
                                 byRoundingCorners: corners,

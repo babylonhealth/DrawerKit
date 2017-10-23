@@ -24,6 +24,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap anywhere to display the drawer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1R-4Q-Kln">
                                 <rect key="frame" x="102" y="309.5" width="170" height="48"/>
+                                <accessibility key="accessibilityConfiguration" identifier="canvasDescription"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="170" id="Npx-Nk-42o"/>
                                 </constraints>
@@ -33,6 +34,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqC-oY-NTg">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <accessibility key="accessibilityConfiguration" identifier="mainCanvas"/>
                                 <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -71,6 +73,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Saturn" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jth-UI-73K">
                                 <rect key="frame" x="148" y="28" width="79" height="30"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" identifier="drawerTitle"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -78,6 +81,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Swipe up for more details!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="69I-et-UOX">
                                 <rect key="frame" x="87.5" y="68" width="200" height="21"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" identifier="drawerDescription"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -91,6 +95,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPD-ym-Fa5">
                                 <rect key="frame" x="165" y="114" width="44" height="44"/>
+                                <accessibility key="accessibilityConfiguration" identifier="drawerClose"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="U7N-Zz-5cE"/>
                                     <constraint firstAttribute="width" constant="44" id="glj-Cq-BkG"/>
@@ -110,6 +115,7 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Saturn" translatesAutoresizingMaskIntoConstraints="NO" id="rpy-pk-bsr">
                                         <rect key="frame" x="0.0" y="0.0" width="323" height="437"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="saturnImage"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
