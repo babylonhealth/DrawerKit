@@ -37,6 +37,14 @@ extension PresentationController {
         return configuration.isDrawerDraggable
     }
 
+    var isFullyPresentableByDrawerTaps: Bool {
+        return configuration.isFullyPresentableByDrawerTaps
+    }
+
+    var numberOfTapsForFullDrawerPresentation: Int {
+        return configuration.numberOfTapsForFullDrawerPresentation
+    }
+
     var isDismissableByOutsideDrawerTaps: Bool {
         return configuration.isDismissableByOutsideDrawerTaps
     }

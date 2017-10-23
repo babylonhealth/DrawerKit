@@ -43,6 +43,18 @@ extension DrawerDisplayController {
         return configuration.isDrawerDraggable
     }
 
+    /// Whether or not the drawer can be fully presentable by tapping on it.
+    /// The default value is `true`.
+    public var isFullyPresentableByDrawerTaps: Bool {
+        return configuration.isFullyPresentableByDrawerTaps
+    }
+
+    /// How many taps are required for fully presenting the drawer by tapping on it.
+    /// The default value is 1.
+    public var numberOfTapsForFullDrawerPresentation: Int {
+        return configuration.numberOfTapsForFullDrawerPresentation
+    }
+
     /// Whether or not the drawer can be dismissed by tapping anywhere outside of it.
     /// The default value is `true`.
     public var isDismissableByOutsideDrawerTaps: Bool {
