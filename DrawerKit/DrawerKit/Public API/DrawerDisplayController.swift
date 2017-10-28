@@ -4,6 +4,12 @@ import UIKit
 // - support device interface orientation changes
 // - support insufficiently tall content
 // - support not-covering status bar and/or having a gap at the top
+// - support concurrent animations
+// - fix pan gesture conflicting with pre-existing pan gesture
+// - support iPhone X
+// - add handle view support
+// - fix tap gesture recogniser consuming event
+// - fix dynamic computation of drawer height
 
 /// Instances of this class are returned by objects conforming to
 /// the `DrawerCoordinating` protocol.
