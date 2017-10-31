@@ -19,7 +19,7 @@ extension PresentedView {
     func prepareCollapsedToPartiallyExpanded() {
         handleView.alpha = 0
         titleLabel.alpha = 0
-        bodyLabel.transform = CGAffineTransform(scaleX: 0, y: 0)
+        bodyLabel.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         dismissButton.alpha = 0
     }
 
@@ -55,7 +55,7 @@ extension PresentedView {
 
     func animateAlongPartiallyExpandedToFullyExpanded() {
         handleView.alpha = 0
-        bodyLabel.transform = CGAffineTransform(scaleX: 0, y: 0)
+        bodyLabel.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
     }
 
     func cleanupPartiallyExpandedToFullyExpanded() {
