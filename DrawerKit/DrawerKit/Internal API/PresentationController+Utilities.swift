@@ -3,7 +3,7 @@ import UIKit
 // Needs to be a free-floating function because it's accessed by extensions of
 // different types.
 func equal(_ lhs: CGFloat, _ rhs: CGFloat) -> Bool {
-    let epsilon: CGFloat = 1e-6
+    let epsilon: CGFloat = 0.5
     return abs(lhs - rhs) <= epsilon
 }
 
