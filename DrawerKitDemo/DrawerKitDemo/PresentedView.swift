@@ -77,11 +77,13 @@ extension PresentedView {
 
 extension PresentedView {
     func prepareCollapsedToFullyExpanded() {
-        // XXX
+        handleView.alpha = 1
+        bodyLabel.transform = .identity
     }
 
     func animateAlongCollapsedToFullyExpanded() {
-        // XXX
+        handleView.alpha = 0
+        bodyLabel.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
     }
 
     func cleanupCollapsedToFullyExpanded() {
