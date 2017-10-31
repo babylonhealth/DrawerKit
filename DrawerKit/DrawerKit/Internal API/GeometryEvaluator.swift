@@ -80,7 +80,7 @@ extension GeometryEvaluator {
                                containerViewHeight: containerViewHeight,
                                configuration: configuration)
         } else {
-            return .transitioning(positionY)
+            return .transitioning(currentDrawerY: positionY)
         }
     }
 

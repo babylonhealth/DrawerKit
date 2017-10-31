@@ -6,5 +6,5 @@ public enum DrawerState: Equatable { // the implementation of Equatable is inter
     case collapsed
     case partiallyExpanded
     case fullyExpanded
-    case transitioning(CGFloat) // current drawer Y position
+    case transitioning(currentDrawerY: CGFloat)
 }
