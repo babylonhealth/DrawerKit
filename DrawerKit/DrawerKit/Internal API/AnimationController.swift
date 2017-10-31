@@ -32,10 +32,10 @@ extension AnimationController: UIViewControllerAnimatedTransitioning {
         let containerViewH = containerBounds.size.height
 
         let geometry = AnimationSupport.makeGeometry(containerBounds: containerBounds,
-                                                           startingFrame: initialFrame,
-                                                           endingFrame: finalFrame,
-                                                           presentingVC: presentingVC,
-                                                           presentedVC: presentedVC)
+                                                     startingFrame: initialFrame,
+                                                     endingFrame: finalFrame,
+                                                     presentingVC: presentingVC,
+                                                     presentedVC: presentedVC)
 
         let drawerPartialH = (presentedVC as? DrawerPresentable)?.heightOfPartiallyExpandedDrawer ?? 0
         let partialH = GeometryEvaluator.drawerPartialH(drawerPartialHeight: drawerPartialH,
@@ -47,35 +47,35 @@ extension AnimationController: UIViewControllerAnimatedTransitioning {
                                                              configuration: configuration)
 
         let targetDrawerState = GeometryEvaluator.drawerState(for: finalFrame.origin.y,
-                                                                 drawerPartialHeight: partialH,
-                                                                 containerViewHeight: containerViewH,
-                                                                 configuration: configuration)
+                                                              drawerPartialHeight: partialH,
+                                                              containerViewHeight: containerViewH,
+                                                              configuration: configuration)
 
         let info = AnimationSupport.makeInfo(startDrawerState: startDrawerState,
-                                                   targetDrawerState: targetDrawerState,
-                                                   configuration,
-                                                   geometry,
-                                                   duration,
-                                                   isPresentation)
+                                             targetDrawerState: targetDrawerState,
+                                             configuration,
+                                             geometry,
+                                             duration,
+                                             isPresentation)
 
         AnimationSupport.clientPrepareViews(presentingVC: presentingVC,
-                                                  presentedVC: presentedVC,
-                                                  info)
+                                            presentedVC: presentedVC,
+                                            info)
         presentedVC.view.frame = initialFrame
 
         animator.addAnimations {
             presentedVC.view.frame = finalFrame
             AnimationSupport.clientAnimateAlong(presentingVC: presentingVC,
-                                                      presentedVC: presentedVC,
-                                                      info)
+                                                presentedVC: presentedVC,
+                                                info)
         }
 
         animator.addCompletion { endingPosition in
             let finished = (endingPosition == UIViewAnimatingPosition.end)
             AnimationSupport.clientCleanupViews(presentingVC: presentingVC,
-                                                      presentedVC: presentedVC,
-                                                      endingPosition,
-                                                      info)
+                                                presentedVC: presentedVC,
+                                                endingPosition,
+                                                info)
             transitionContext.completeTransition(finished)
         }
 
@@ -94,9 +94,9 @@ private extension AnimationController {
             let containerViewH = transitionContext.containerView.bounds.size.height
 
             return AnimationSupport.actualTransitionDuration(from: initialY,
-                                                                   to: finalY,
-                                                                   containerViewHeight: containerViewH,
-                                                                   configuration: configuration)
+                                                             to: finalY,
+                                                             containerViewHeight: containerViewH,
+                                                             configuration: configuration)
     }
 
     func frames(_ controller: UIViewController,

@@ -27,21 +27,21 @@ extension PresentationController {
         endingFrame.origin.y = endingPositionY
 
         let geometry = AnimationSupport.makeGeometry(containerBounds: containerViewBounds,
-                                                           startingFrame: startingFrame,
-                                                           endingFrame: endingFrame,
-                                                           presentingVC: presentingVC,
-                                                           presentedVC: presentedVC)
+                                                     startingFrame: startingFrame,
+                                                     endingFrame: endingFrame,
+                                                     presentingVC: presentingVC,
+                                                     presentedVC: presentedVC)
 
         let info = AnimationSupport.makeInfo(startDrawerState: startingState,
-                                                   targetDrawerState: endingState,
-                                                   configuration,
-                                                   geometry,
-                                                   animator.duration,
-                                                   endingPositionY < startingPositionY)
+                                             targetDrawerState: endingState,
+                                             configuration,
+                                             geometry,
+                                             animator.duration,
+                                             endingPositionY < startingPositionY)
 
         AnimationSupport.clientPrepareViews(presentingVC: presentingVC,
-                                                  presentedVC: presentedVC,
-                                                  info)
+                                            presentedVC: presentedVC,
+                                            info)
 
         animator.addAnimations {
             self.currentDrawerY = endingPositionY
@@ -49,8 +49,8 @@ extension PresentationController {
                 self.currentDrawerCornerRadius = endingCornerRadius
             }
             AnimationSupport.clientAnimateAlong(presentingVC: presentingVC,
-                                                      presentedVC: presentedVC,
-                                                      info)
+                                                presentedVC: presentedVC,
+                                                info)
         }
 
         animator.addCompletion { endingPosition in
@@ -59,7 +59,7 @@ extension PresentationController {
 
             let shouldDismiss =
                 (isStartingStateCollapsed && endingPosition == .start) ||
-                (isEndingStateCollapsed && endingPosition == .end)
+                    (isEndingStateCollapsed && endingPosition == .end)
 
             if shouldDismiss {
                 self.presentedViewController.dismiss(animated: true)
@@ -80,9 +80,9 @@ extension PresentationController {
             }
 
             AnimationSupport.clientCleanupViews(presentingVC: presentingVC,
-                                                      presentedVC: presentedVC,
-                                                      endingPosition,
-                                                      info)
+                                                presentedVC: presentedVC,
+                                                endingPosition,
+                                                info)
         }
 
         animator.startAnimation()
@@ -128,9 +128,9 @@ extension PresentationController {
                               endingPositionY: CGFloat) -> UIViewPropertyAnimator {
         let duration =
             AnimationSupport.actualTransitionDuration(from: startingPositionY,
-                                                            to: endingPositionY,
-                                                            containerViewHeight: containerViewH,
-                                                            configuration: configuration)
+                                                      to: endingPositionY,
+                                                      containerViewHeight: containerViewH,
+                                                      configuration: configuration)
 
         return UIViewPropertyAnimator(duration: duration,
                                       timingParameters: timingCurveProvider)
@@ -151,4 +151,3 @@ extension PresentationController {
         return (startingPositionY, endingPositionY)
     }
 }
-
