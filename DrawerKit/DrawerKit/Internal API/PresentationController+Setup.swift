@@ -67,6 +67,40 @@ extension PresentationController {
 }
 
 extension PresentationController {
+    func setupHandleView() {
+        guard
+            let presentedView = self.presentedView,
+            let handleView = self.handleView
+            else { return }
+
+        let handleConfig = configuration.handleViewConfiguration
+        handleView.translatesAutoresizingMaskIntoConstraints = false
+        handleView.backgroundColor = handleConfig.backgroundColor
+        handleView.layer.masksToBounds = true
+
+        switch handleConfig.cornerRadius {
+        case .automatic:
+            handleView.layer.cornerRadius = handleConfig.size.height / 2
+        case let .custom(radius):
+            handleView.layer.cornerRadius = radius
+        }
+
+        presentedView.addSubview(handleView)
+
+        NSLayoutConstraint.activate([
+            handleView.widthAnchor.constraint(equalToConstant: handleConfig.size.width),
+            handleView.heightAnchor.constraint(equalToConstant: handleConfig.size.height),
+            handleView.centerXAnchor.constraint(equalTo: presentedView.centerXAnchor),
+            handleView.topAnchor.constraint(equalTo: presentedView.topAnchor, constant: 8)
+            ])
+    }
+
+    func removeHandleView() {
+        self.handleView?.removeFromSuperview()
+    }
+}
+
+extension PresentationController {
     func setupDebugHeightMarks() {
         guard inDebugMode && (upperMarkGap > 0 || lowerMarkGap > 0),
             let containerView = containerView else { return }

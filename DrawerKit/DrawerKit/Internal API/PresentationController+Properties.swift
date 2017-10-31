@@ -84,8 +84,15 @@ extension PresentationController {
     }
 
     func cornerRadius(at state: DrawerState) -> CGFloat {
-        guard maximumCornerRadius != 0 && drawerPartialY != 0
-            && drawerPartialY != containerViewH else { return 0 }
+        return maximumCornerRadius * triangularValue(at: state)
+    }
+
+    func handleViewAlpha(at state: DrawerState) -> CGFloat {
+        return triangularValue(at: state)
+    }
+
+    private func triangularValue(at state: DrawerState) -> CGFloat {
+        guard drawerPartialY != 0 && drawerPartialY != containerViewH else { return 0 }
 
         let positionY =
             GeometryEvaluator.drawerPositionY(for: state,
@@ -103,6 +110,6 @@ extension PresentationController {
             fraction = 1 - positionY / containerViewH
         }
 
-        return fraction * maximumCornerRadius
+        return fraction
     }
 }

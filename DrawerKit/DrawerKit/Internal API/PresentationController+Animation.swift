@@ -39,12 +39,16 @@ extension PresentationController {
                                              animator.duration,
                                              endingPositionY < startingPositionY)
 
+        self.handleView?.alpha = handleViewAlpha(at: startingState)
+        let endingHandleViewAlpha = handleViewAlpha(at: endingState)
+
         AnimationSupport.clientPrepareViews(presentingVC: presentingVC,
                                             presentedVC: presentedVC,
                                             info)
 
         animator.addAnimations {
             self.currentDrawerY = endingPositionY
+            self.handleView?.alpha = endingHandleViewAlpha
             if maxCornerRadius != 0 {
                 self.currentDrawerCornerRadius = endingCornerRadius
             }
@@ -54,6 +58,8 @@ extension PresentationController {
         }
 
         animator.addCompletion { endingPosition in
+            self.handleView?.alpha = endingHandleViewAlpha
+
             let isStartingStateCollapsed = (startingState == .collapsed)
             let isEndingStateCollapsed = (endingState == .collapsed)
 

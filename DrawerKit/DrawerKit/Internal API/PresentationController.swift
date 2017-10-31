@@ -3,6 +3,7 @@ import UIKit
 final class PresentationController: UIPresentationController {
     let configuration: DrawerConfiguration // intentionally internal and immutable
     let inDebugMode: Bool
+    let handleView: UIView?
 
     var drawerFullExpansionTapGR: UITapGestureRecognizer?
     var drawerDismissalTapGR: UITapGestureRecognizer?
@@ -15,6 +16,7 @@ final class PresentationController: UIPresentationController {
          inDebugMode: Bool = false) {
         self.configuration = configuration
         self.inDebugMode = inDebugMode
+        self.handleView = (configuration.hasHandleView ? UIView() : nil)
         super.init(presentedViewController: presentedVC, presenting: presentingVC)
     }
 }
@@ -37,6 +39,7 @@ extension PresentationController {
         setupDrawerDismissalTapRecogniser()
         setupDrawerDragRecogniser()
         setupDebugHeightMarks()
+        setupHandleView()
         addCornerRadiusAnimationEnding(at: .partiallyExpanded)
         enableDrawerFullExpansionTapRecogniser(enabled: false)
         enableDrawerDismissalTapRecogniser(enabled: false)
@@ -57,6 +60,7 @@ extension PresentationController {
         removeDrawerFullExpansionTapRecogniser()
         removeDrawerDismissalTapRecogniser()
         removeDrawerDragRecogniser()
+        removeHandleView()
     }
 
     override func containerViewWillLayoutSubviews() {

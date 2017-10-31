@@ -30,6 +30,7 @@
 		CB6F86BC1F9C06D6000FA37A /* PresentationController+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6F86BB1F9C06D6000FA37A /* PresentationController+Animation.swift */; };
 		CB9101C61F8F791A000EAC41 /* PresentationController+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9101C51F8F791A000EAC41 /* PresentationController+Configuration.swift */; };
 		CBACF6B31F9C622300C15CA3 /* AnimationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBACF6B21F9C622300C15CA3 /* AnimationSupport.swift */; };
+		CBB9A9771FA8DC04008253CB /* HandleViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB9A9761FA8DC04008253CB /* HandleViewConfiguration.swift */; };
 		CBBA2D5C1F8E815B00E0137F /* DrawerKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CBBA2D5A1F8E815B00E0137F /* DrawerKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CBFA36F21F9C4004006847BB /* GeometryEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFA36F11F9C4004006847BB /* GeometryEvaluator.swift */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		CB6F86BB1F9C06D6000FA37A /* PresentationController+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresentationController+Animation.swift"; sourceTree = "<group>"; };
 		CB9101C51F8F791A000EAC41 /* PresentationController+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PresentationController+Configuration.swift"; sourceTree = "<group>"; };
 		CBACF6B21F9C622300C15CA3 /* AnimationSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSupport.swift; sourceTree = "<group>"; };
+		CBB9A9761FA8DC04008253CB /* HandleViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleViewConfiguration.swift; sourceTree = "<group>"; };
 		CBBA2D571F8E815B00E0137F /* DrawerKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DrawerKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBBA2D5A1F8E815B00E0137F /* DrawerKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawerKit.h; sourceTree = "<group>"; };
 		CBBA2D5B1F8E815B00E0137F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				CB2CB7911F8E934500AA152D /* DrawerConfiguration.swift */,
+				CBB9A9761FA8DC04008253CB /* HandleViewConfiguration.swift */,
 				CB5AF8011F9BDF29000B2DC9 /* DrawerAnimationActions.swift */,
 				CB5AF8031F9BE037000B2DC9 /* DrawerAnimationInfo.swift */,
 				CB5AF8051F9BE0E3000B2DC9 /* DrawerGeometry.swift */,
@@ -254,6 +257,7 @@
 				CB5AF8111F9BE95C000B2DC9 /* DrawerAnimationInfo+Configuration.swift in Sources */,
 				CB2CB79F1F8E951900AA152D /* AnimationController.swift in Sources */,
 				CBACF6B31F9C622300C15CA3 /* AnimationSupport.swift in Sources */,
+				CBB9A9771FA8DC04008253CB /* HandleViewConfiguration.swift in Sources */,
 				CB6F86B61F9C03F8000FA37A /* PresentationController+Setup.swift in Sources */,
 				CB2CB7951F8E934500AA152D /* DrawerCoordinating.swift in Sources */,
 				CB2CB7AF1F8E9F4C00AA152D /* DrawerDisplayController+Configuration.swift in Sources */,

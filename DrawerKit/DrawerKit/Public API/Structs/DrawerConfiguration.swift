@@ -93,6 +93,13 @@ public struct DrawerConfiguration {
     /// corner animations from taking place. The default value is 15 points.
     public var maximumCornerRadius: CGFloat
 
+    /// Whether or not to automatically add a handle view to the presented content.
+    /// The default is `true`.
+    public var hasHandleView: Bool
+
+    /// The configuration options for the handle view, should it be shown.
+    public var handleViewConfiguration: HandleViewConfiguration
+
     public init(totalDurationInSeconds: TimeInterval = 0.4,
                 durationIsProportionalToDistanceTraveled: Bool = false,
                 timingCurveProvider: UITimingCurveProvider = UISpringTimingParameters(),
@@ -106,7 +113,9 @@ public struct DrawerConfiguration {
                 flickSpeedThreshold: CGFloat = 3,
                 upperMarkGap: CGFloat = 40,
                 lowerMarkGap: CGFloat = 40,
-                maximumCornerRadius: CGFloat = 15) {
+                maximumCornerRadius: CGFloat = 15,
+                hasHandleView: Bool = true,
+                handleViewConfiguration: HandleViewConfiguration = HandleViewConfiguration()) {
         self.totalDurationInSeconds = (totalDurationInSeconds > 0 ? totalDurationInSeconds : 0.4)
         self.durationIsProportionalToDistanceTraveled = durationIsProportionalToDistanceTraveled
         self.timingCurveProvider = timingCurveProvider
@@ -121,6 +130,8 @@ public struct DrawerConfiguration {
         self.upperMarkGap = max(0, upperMarkGap)
         self.lowerMarkGap = max(0, lowerMarkGap)
         self.maximumCornerRadius = max(0, maximumCornerRadius)
+        self.hasHandleView = hasHandleView
+        self.handleViewConfiguration = handleViewConfiguration
     }
 }
 
@@ -140,5 +151,7 @@ extension DrawerConfiguration: Equatable {
             && lhs.upperMarkGap == rhs.upperMarkGap
             && lhs.lowerMarkGap == rhs.lowerMarkGap
             && lhs.maximumCornerRadius == rhs.maximumCornerRadius
+            && lhs.hasHandleView == rhs.hasHandleView
+            && lhs.handleViewConfiguration == rhs.handleViewConfiguration
     }
 }
