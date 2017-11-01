@@ -2,7 +2,7 @@
 
 ## v. 0.3.0
 
-Release 0.3.0 breaks backward compatibility with the earlier releases. Specific changes and new features are as follows:
+Release 0.3.0 breaks backwards compatibility with the earlier releases. Specific changes and new features are as follows:
 
 - Concurrent animations: it's now possible for either or both view controllers (presenting and presented) to participate in the drawer animation so that their views can be animated while the drawer is moving up and down.
 
@@ -14,7 +14,7 @@ Release 0.3.0 breaks backward compatibility with the earlier releases. Specific 
 
 ## v. 0.2.0
 
-Release 0.2.0 breaks backward compatibility with the earlier release, since one of the protocols has disappeared and a new one has been added. Specific changes and new features are as follows:
+Release 0.2.0 breaks backwards compatibility with the earlier release, since one of the protocols has disappeared and a new one has been added. Specific changes and new features are as follows:
 
 - The presenting view controller is no longer required to conform to `DrawerPresenting`. In fact, `DrawerPresenting` no longer exists. Instead, a new protocol was created to take its place, `DrawerCoordinating`, so that *any* object can conform to it and be responsible for vending the drawer display controller. Of course, the presenting view controller can still fulfil that responsibility but it no longer must do so.
 

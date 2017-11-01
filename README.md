@@ -38,7 +38,7 @@ Please do play with the demo app and try different configuration options because
 
 ## What's new in version 0.3.0?
 
-Please note that v. `0.3.0` is not backward-compatible with v. 0.2.
+Please note that v. `0.3.0` is not backwards-compatible with v. 0.2.
 
 - *Concurrent animations*: it's now possible for either or both view controllers (presenting and
 presented) to participate in the drawer animation so that their views can be animated while the
@@ -60,7 +60,7 @@ speed, if desired.
 
 ## What's new in version 0.2.0?
 
-Please note that v. `0.2.0` is not backward-compatible with v. 0.1.1.
+Please note that v. `0.2.0` is not backwards-compatible with v. 0.1.1.
 
 - The presenting view controller is no longer required to conform to `DrawerPresenting`. In fact,
 `DrawerPresenting` no longer exists. Instead, a new protocol was created to take its place,
