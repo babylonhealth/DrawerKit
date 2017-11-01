@@ -27,9 +27,11 @@ extension PresentationController {
         frame.size = size(forChildContentContainer: presentedViewController,
                           withParentContainerSize: containerViewSize)
         let state: DrawerState = (supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
+        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         frame.origin.y = GeometryEvaluator.drawerPositionY(for: state,
                                                            drawerPartialHeight: drawerPartialH,
-                                                           containerViewHeight: containerViewH)
+                                                           containerViewHeight: containerViewH,
+                                                           drawerFullY: drawerFullY)
         return frame
     }
 

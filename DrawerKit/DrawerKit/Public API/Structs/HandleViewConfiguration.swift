@@ -21,6 +21,12 @@ public struct HandleViewConfiguration {
         }
     }
 
+    /// Whether or not to automatically dim the handle view as the drawer approaches
+    /// its collapsed or fully expanded states. The default is `true`. Set it to `false`
+    /// when configuring the drawer not to cover the full screen so that the handle view
+    /// is always visible in that case.
+    public var autoAnimatesDimming: Bool
+
     /// The handle view's background color. The default value is `UIColor.gray`.
     public var backgroundColor: UIColor
 
@@ -32,9 +38,12 @@ public struct HandleViewConfiguration {
     /// results in a corner radius equal to half the handle view's height.
     public var cornerRadius: CornerRadius
 
-    public init(backgroundColor: UIColor = .gray,
+    public init(autoAnimatesDimming: Bool = true,
+                backgroundColor: UIColor = .gray,
                 size: CGSize = CGSize(width: 40, height: 6),
                 cornerRadius: CornerRadius = .automatic) {
+        self.autoAnimatesDimming = autoAnimatesDimming
+
         if backgroundColor == .clear {
             self.backgroundColor = .gray
         } else {
@@ -59,7 +68,8 @@ public struct HandleViewConfiguration {
 
 extension HandleViewConfiguration: Equatable {
     public static func ==(lhs: HandleViewConfiguration, rhs: HandleViewConfiguration) -> Bool {
-        return lhs.backgroundColor == rhs.backgroundColor
+        return lhs.autoAnimatesDimming == rhs.autoAnimatesDimming
+            && lhs.backgroundColor == rhs.backgroundColor
             && lhs.size == rhs.size
             && lhs.cornerRadius == rhs.cornerRadius
     }

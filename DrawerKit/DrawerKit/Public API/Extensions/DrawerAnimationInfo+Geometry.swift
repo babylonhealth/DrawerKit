@@ -20,11 +20,11 @@ extension DrawerAnimationInfo {
     }
 
     public var userInterfaceOrientation: UIInterfaceOrientation {
-        return geometry.userInterfaceOrientation
+        return DrawerGeometry.userInterfaceOrientation
     }
 
     public var statusBarHeight: CGFloat {
-        return geometry.statusBarHeight
+        return DrawerGeometry.statusBarHeight
     }
 
     public var navigationBarHeight: CGFloat {

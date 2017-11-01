@@ -19,12 +19,32 @@ extension DrawerDisplayController {
         return configuration.timingCurveProvider
     }
 
+    public var fullExpansionBehaviour: DrawerConfiguration.FullExpansionBehaviour {
+        return configuration.fullExpansionBehaviour
+    }
+
     public var supportsPartialExpansion: Bool {
         return configuration.supportsPartialExpansion
     }
 
     public var dismissesInStages: Bool {
         return configuration.dismissesInStages
+    }
+
+    public var flickSpeedThreshold: CGFloat {
+        return configuration.flickSpeedThreshold
+    }
+
+    public var upperMarkGap: CGFloat {
+        return configuration.upperMarkGap
+    }
+
+    public var lowerMarkGap: CGFloat {
+        return configuration.lowerMarkGap
+    }
+
+    public var maximumCornerRadius: CGFloat {
+        return configuration.maximumCornerRadius
     }
 
     public var isDrawerDraggable: Bool {
@@ -47,19 +67,11 @@ extension DrawerDisplayController {
         return configuration.numberOfTapsForOutsideDrawerDismissal
     }
 
-    public var flickSpeedThreshold: CGFloat {
-        return configuration.flickSpeedThreshold
+    public var hasHandleView: Bool {
+        return configuration.hasHandleView
     }
 
-    public var upperMarkGap: CGFloat {
-        return configuration.upperMarkGap
-    }
-
-    public var lowerMarkGap: CGFloat {
-        return configuration.lowerMarkGap
-    }
-
-    public var maximumCornerRadius: CGFloat {
-        return configuration.maximumCornerRadius
+    public var handleViewConfiguration: HandleViewConfiguration {
+        return configuration.handleViewConfiguration
     }
 }

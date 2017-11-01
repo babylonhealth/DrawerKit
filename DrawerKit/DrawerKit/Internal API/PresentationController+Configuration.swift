@@ -13,6 +13,10 @@ extension PresentationController {
         return configuration.timingCurveProvider
     }
 
+    var fullExpansionBehaviour: DrawerConfiguration.FullExpansionBehaviour {
+        return configuration.fullExpansionBehaviour
+    }
+
     var supportsPartialExpansion: Bool {
         return configuration.supportsPartialExpansion
     }
@@ -55,5 +59,13 @@ extension PresentationController {
 
     var numberOfTapsForOutsideDrawerDismissal: Int {
         return configuration.numberOfTapsForOutsideDrawerDismissal
+    }
+
+    var hasHandleView: Bool {
+        return configuration.hasHandleView
+    }
+
+    var handleViewConfiguration: HandleViewConfiguration {
+        return configuration.handleViewConfiguration
     }
 }

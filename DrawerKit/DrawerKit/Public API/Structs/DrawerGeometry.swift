@@ -22,13 +22,13 @@ public struct DrawerGeometry {
     public let heightOfPartiallyExpandedDrawer: CGFloat
 
     /// The current user interface orientation.
-    public var userInterfaceOrientation: UIInterfaceOrientation {
+    public static var userInterfaceOrientation: UIInterfaceOrientation {
         // TODO: should use trait collections... statusBarOrientation is deprecated
         return UIApplication.shared.statusBarOrientation
     }
 
     /// The status bar's current height.
-    public var statusBarHeight: CGFloat {
+    public static var statusBarHeight: CGFloat {
         let statusBarFrame = UIApplication.shared.statusBarFrame
         switch userInterfaceOrientation {
         case .portrait, .portraitUpsideDown:
@@ -60,7 +60,5 @@ extension DrawerGeometry: Equatable {
             && lhs.endingFrame == rhs.endingFrame
             && lhs.navigationBarHeight == rhs.navigationBarHeight
             && lhs.heightOfPartiallyExpandedDrawer == rhs.heightOfPartiallyExpandedDrawer
-            && lhs.userInterfaceOrientation == rhs.userInterfaceOrientation
-            && lhs.statusBarHeight == rhs.statusBarHeight
     }
 }

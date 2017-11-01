@@ -39,8 +39,9 @@ extension PresentationController {
                                              animator.duration,
                                              endingPositionY < startingPositionY)
 
-        self.handleView?.alpha = handleViewAlpha(at: startingState)
         let endingHandleViewAlpha = handleViewAlpha(at: endingState)
+        let autoAnimatesDimming = configuration.handleViewConfiguration.autoAnimatesDimming
+        if autoAnimatesDimming { self.handleView?.alpha = handleViewAlpha(at: startingState) }
 
         AnimationSupport.clientPrepareViews(presentingVC: presentingVC,
                                             presentedVC: presentedVC,
@@ -48,17 +49,15 @@ extension PresentationController {
 
         animator.addAnimations {
             self.currentDrawerY = endingPositionY
-            self.handleView?.alpha = endingHandleViewAlpha
-            if maxCornerRadius != 0 {
-                self.currentDrawerCornerRadius = endingCornerRadius
-            }
+            if autoAnimatesDimming { self.handleView?.alpha = endingHandleViewAlpha }
+            if maxCornerRadius != 0 { self.currentDrawerCornerRadius = endingCornerRadius }
             AnimationSupport.clientAnimateAlong(presentingVC: presentingVC,
                                                 presentedVC: presentedVC,
                                                 info)
         }
 
         animator.addCompletion { endingPosition in
-            self.handleView?.alpha = endingHandleViewAlpha
+            if autoAnimatesDimming { self.handleView?.alpha = endingHandleViewAlpha }
 
             let isStartingStateCollapsed = (startingState == .collapsed)
             let isEndingStateCollapsed = (endingState == .collapsed)
@@ -95,8 +94,11 @@ extension PresentationController {
     }
 
     func addCornerRadiusAnimationEnding(at endingState: DrawerState) {
-        guard maximumCornerRadius != 0 && drawerPartialY != 0
-            && endingState != currentDrawerState else { return }
+        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
+        guard maximumCornerRadius != 0
+            && drawerPartialY != drawerFullY
+            && endingState != currentDrawerState
+            else { return }
 
         let startingState = currentDrawerState
         let (startingPositionY, endingPositionY) = positionsY(startingState: startingState,
@@ -144,15 +146,18 @@ extension PresentationController {
 
     private func positionsY(startingState: DrawerState,
                             endingState: DrawerState) -> (starting: CGFloat, ending: CGFloat) {
+        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         let startingPositionY =
             GeometryEvaluator.drawerPositionY(for: startingState,
                                               drawerPartialHeight: drawerPartialH,
-                                              containerViewHeight: containerViewH)
+                                              containerViewHeight: containerViewH,
+                                              drawerFullY: drawerFullY)
 
         let endingPositionY =
             GeometryEvaluator.drawerPositionY(for: endingState,
                                               drawerPartialHeight: drawerPartialH,
-                                              containerViewHeight: containerViewH)
+                                              containerViewHeight: containerViewH,
+                                              drawerFullY: drawerFullY)
 
         return (startingPositionY, endingPositionY)
     }

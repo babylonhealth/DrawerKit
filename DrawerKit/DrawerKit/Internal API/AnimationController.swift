@@ -41,14 +41,17 @@ extension AnimationController: UIViewControllerAnimatedTransitioning {
         let partialH = GeometryEvaluator.drawerPartialH(drawerPartialHeight: drawerPartialH,
                                                         containerViewHeight: containerViewH)
 
+        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         let startDrawerState = GeometryEvaluator.drawerState(for: initialFrame.origin.y,
                                                              drawerPartialHeight: partialH,
                                                              containerViewHeight: containerViewH,
+                                                             drawerFullY: drawerFullY,
                                                              configuration: configuration)
 
         let targetDrawerState = GeometryEvaluator.drawerState(for: finalFrame.origin.y,
                                                               drawerPartialHeight: partialH,
                                                               containerViewHeight: containerViewH,
+                                                              drawerFullY: drawerFullY,
                                                               configuration: configuration)
 
         let info = AnimationSupport.makeInfo(startDrawerState: startDrawerState,

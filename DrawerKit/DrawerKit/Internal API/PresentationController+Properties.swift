@@ -26,8 +26,10 @@ extension PresentationController {
     }
 
     var upperMarkY: CGFloat {
+        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         return GeometryEvaluator.upperMarkY(drawerPartialHeight: drawerPartialH,
                                             containerViewHeight: containerViewH,
+                                            drawerFullY: drawerFullY,
                                             configuration: configuration)
     }
 
@@ -39,28 +41,34 @@ extension PresentationController {
 
     var currentDrawerState: DrawerState {
         get {
+            let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
             return GeometryEvaluator.drawerState(for: currentDrawerY,
                                                  drawerPartialHeight: drawerPartialH,
                                                  containerViewHeight: containerViewH,
+                                                 drawerFullY: drawerFullY,
                                                  configuration: configuration)
         }
 
         set {
+            let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
             currentDrawerY =
                 GeometryEvaluator.drawerPositionY(for: newValue,
                                                   drawerPartialHeight: drawerPartialH,
-                                                  containerViewHeight: containerViewH)
+                                                  containerViewHeight: containerViewH,
+                                                  drawerFullY: drawerFullY)
         }
     }
 
     var currentDrawerY: CGFloat {
         get {
-            let posY = presentedView?.frame.origin.y ?? 0
-            return min(max(posY, 0), containerViewH)
+            let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
+            let posY = presentedView?.frame.origin.y ?? drawerFullY
+            return min(max(posY, drawerFullY), containerViewH)
         }
 
         set {
-            let posY = min(max(newValue, 0), containerViewH)
+            let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
+            let posY = min(max(newValue, drawerFullY), containerViewH)
             presentedView?.frame.origin.y = posY
         }
     }
@@ -92,22 +100,27 @@ extension PresentationController {
     }
 
     private func triangularValue(at state: DrawerState) -> CGFloat {
-        guard drawerPartialY != 0 && drawerPartialY != containerViewH else { return 0 }
+        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
+        guard drawerPartialY != drawerFullY
+            && drawerPartialY != containerViewH
+            && drawerFullY != containerViewH
+            else { return 0 }
 
         let positionY =
             GeometryEvaluator.drawerPositionY(for: state,
                                               drawerPartialHeight: drawerPartialH,
-                                              containerViewHeight: containerViewH)
+                                              containerViewHeight: containerViewH,
+                                              drawerFullY: drawerFullY)
 
         let fraction: CGFloat
         if supportsPartialExpansion {
             if positionY < drawerPartialY {
-                fraction = positionY / drawerPartialY
+                fraction = (positionY - drawerFullY) / (drawerPartialY - drawerFullY)
             } else {
                 fraction = 1 - (positionY - drawerPartialY) / (containerViewH - drawerPartialY)
             }
         } else {
-            fraction = 1 - positionY / containerViewH
+            fraction = 1 - (positionY - drawerFullY) / (containerViewH - drawerFullY)
         }
 
         return fraction

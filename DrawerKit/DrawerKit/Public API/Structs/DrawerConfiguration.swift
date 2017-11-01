@@ -3,6 +3,36 @@ import UIKit
 /// All the configurable parameters in one place.
 
 public struct DrawerConfiguration {
+    public enum FullExpansionBehaviour: Equatable {
+        case coversFullScreen
+        case dosNotCoverStatusBar
+        case leavesCustomGap(gap: CGFloat)
+
+        var drawerFullY: CGFloat {
+            switch self {
+            case .coversFullScreen:
+                return 0
+            case .dosNotCoverStatusBar:
+                return DrawerGeometry.statusBarHeight
+            case let .leavesCustomGap(gap):
+                return gap
+            }
+        }
+
+        public static func ==(lhs: DrawerConfiguration.FullExpansionBehaviour,
+                              rhs: DrawerConfiguration.FullExpansionBehaviour) -> Bool {
+            switch (lhs, rhs) {
+            case (.coversFullScreen, .coversFullScreen),
+                 (.dosNotCoverStatusBar, .dosNotCoverStatusBar):
+                return true
+            case let (.leavesCustomGap(lhsGap), .leavesCustomGap(rhsGap)):
+                return lhsGap == rhsGap
+            default:
+                return false
+            }
+        }
+    }
+
     /// The total duration, in seconds, for the drawer to transition from its
     /// collapsed state to its fully-expanded state, or vice-versa. The default
     /// value is 0.4 seconds.
@@ -30,6 +60,11 @@ public struct DrawerConfiguration {
     /// The default is `UISpringTimingParameters()`, which is the system's global
     /// spring-based timing curve.
     public var timingCurveProvider: UITimingCurveProvider
+
+    /// Whether the drawer expands to cover the entire screen, the entire screen minus
+    /// the status bar, or the entire screen minus a custom gap. The default is to cover
+    /// the full screen.
+    public var fullExpansionBehaviour: FullExpansionBehaviour
 
     /// When `true`, the drawer is presented first in its partially expanded state.
     /// When `false`, the presentation is always to full screen and there is no
@@ -103,6 +138,7 @@ public struct DrawerConfiguration {
     public init(totalDurationInSeconds: TimeInterval = 0.4,
                 durationIsProportionalToDistanceTraveled: Bool = false,
                 timingCurveProvider: UITimingCurveProvider = UISpringTimingParameters(),
+                fullExpansionBehaviour: FullExpansionBehaviour = .coversFullScreen,
                 supportsPartialExpansion: Bool = true,
                 dismissesInStages: Bool = true,
                 isDrawerDraggable: Bool = true,
@@ -119,6 +155,14 @@ public struct DrawerConfiguration {
         self.totalDurationInSeconds = (totalDurationInSeconds > 0 ? totalDurationInSeconds : 0.4)
         self.durationIsProportionalToDistanceTraveled = durationIsProportionalToDistanceTraveled
         self.timingCurveProvider = timingCurveProvider
+        switch fullExpansionBehaviour {
+        case .coversFullScreen, .dosNotCoverStatusBar:
+            self.fullExpansionBehaviour = fullExpansionBehaviour
+        case let .leavesCustomGap(gap):
+            let validatedGap = max(0, gap)
+            self.fullExpansionBehaviour = (validatedGap == 0 ?
+                .coversFullScreen : .leavesCustomGap(gap: validatedGap))
+        }
         self.supportsPartialExpansion = supportsPartialExpansion
         self.dismissesInStages = dismissesInStages
         self.isDrawerDraggable = isDrawerDraggable
@@ -140,6 +184,7 @@ extension DrawerConfiguration: Equatable {
         return lhs.totalDurationInSeconds == rhs.totalDurationInSeconds
             && lhs.durationIsProportionalToDistanceTraveled == rhs.durationIsProportionalToDistanceTraveled
             && lhs.timingCurveProvider === rhs.timingCurveProvider
+            && lhs.fullExpansionBehaviour == rhs.fullExpansionBehaviour
             && lhs.supportsPartialExpansion == rhs.supportsPartialExpansion
             && lhs.dismissesInStages == rhs.dismissesInStages
             && lhs.isDrawerDraggable == rhs.isDrawerDraggable

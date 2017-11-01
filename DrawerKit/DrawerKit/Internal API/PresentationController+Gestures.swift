@@ -21,16 +21,20 @@ extension PresentationController {
 
         switch panGesture.state {
         case .began:
+            let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
             lastDrawerState = GeometryEvaluator.drawerState(for: currentDrawerY,
                                                             drawerPartialHeight: drawerPartialH,
                                                             containerViewHeight: containerViewH,
+                                                            drawerFullY: drawerFullY,
                                                             configuration: configuration,
                                                             clampToNearest: true)
 
         case .changed:
+            let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
             lastDrawerState = GeometryEvaluator.drawerState(for: currentDrawerY,
                                                             drawerPartialHeight: drawerPartialH,
                                                             containerViewHeight: containerViewH,
+                                                            drawerFullY: drawerFullY,
                                                             configuration: configuration,
                                                             clampToNearest: true)
             currentDrawerY += panGesture.translation(in: view).y
@@ -38,11 +42,13 @@ extension PresentationController {
             panGesture.setTranslation(.zero, in: view)
 
         case .ended:
+            let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
             let drawerSpeedY = panGesture.velocity(in: view).y / containerViewH
             let endingState = GeometryEvaluator.nextStateFrom(currentState: currentDrawerState,
                                                               speedY: drawerSpeedY,
                                                               drawerPartialHeight: drawerPartialH,
                                                               containerViewHeight: containerViewH,
+                                                              drawerFullY: drawerFullY,
                                                               configuration: configuration)
             animateTransition(to: endingState)
 
