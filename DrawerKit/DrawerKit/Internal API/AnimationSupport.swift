@@ -38,10 +38,7 @@ struct AnimationSupport {
                          _ actualDurationInSeconds: TimeInterval,
                          _ isPresenting: Bool,
                          _ endingPosition: UIViewAnimatingPosition? = nil) -> DrawerAnimationInfo {
-        // XXX - what if endingPosition == .current ?
-        let endDrawerState =
-            (endingPosition == .start ? startDrawerState : targetDrawerState)
-
+        let endDrawerState = (endingPosition == .start ? startDrawerState : targetDrawerState)
         return DrawerAnimationInfo(configuration: configuration,
                                    geometry: geometry,
                                    actualDurationInSeconds: actualDurationInSeconds,
