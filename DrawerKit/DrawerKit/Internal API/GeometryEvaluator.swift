@@ -15,8 +15,8 @@ struct GeometryEvaluator {
 
     static func upperMarkY(drawerPartialHeight: CGFloat,
                            containerViewHeight: CGFloat,
-                           drawerFullY: CGFloat,
                            configuration: DrawerConfiguration) -> CGFloat {
+        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         let partialY = drawerPartialY(drawerPartialHeight: drawerPartialHeight,
                                       containerViewHeight: containerViewHeight)
         return max(partialY - configuration.upperMarkGap, drawerFullY)
@@ -33,11 +33,10 @@ struct GeometryEvaluator {
     static func clamped(_ positionY: CGFloat,
                         drawerPartialHeight: CGFloat,
                         containerViewHeight: CGFloat,
-                        drawerFullY: CGFloat,
                         configuration: DrawerConfiguration) -> CGFloat {
+        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         let upperY = upperMarkY(drawerPartialHeight: drawerPartialHeight,
                                 containerViewHeight: containerViewHeight,
-                                drawerFullY: drawerFullY,
                                 configuration: configuration)
         if smallerThanOrEqual(positionY, upperY) {
             return drawerFullY
@@ -78,7 +77,6 @@ extension GeometryEvaluator {
             let posY = clamped(positionY,
                                drawerPartialHeight: drawerPartialHeight,
                                containerViewHeight: containerViewHeight,
-                               drawerFullY: drawerFullY,
                                configuration: configuration)
             return drawerState(for: posY,
                                drawerPartialHeight: drawerPartialHeight,
@@ -110,7 +108,6 @@ extension GeometryEvaluator {
                               speedY: CGFloat,
                               drawerPartialHeight: CGFloat,
                               containerViewHeight: CGFloat,
-                              drawerFullY: CGFloat,
                               configuration: DrawerConfiguration) -> DrawerState {
         let isNotMoving = (speedY == 0)
         let isMovingUp = (speedY < 0) // recall that Y-axis points down
@@ -121,6 +118,8 @@ extension GeometryEvaluator {
         let isMovingUpQuickly = isMovingUp && isMovingQuickly
         let isMovingDownQuickly = isMovingDown && isMovingQuickly
 
+        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
+
         let positionY = drawerPositionY(for: currentState,
                                         drawerPartialHeight: drawerPartialHeight,
                                         containerViewHeight: containerViewHeight,
@@ -128,7 +127,6 @@ extension GeometryEvaluator {
 
         let upperY = upperMarkY(drawerPartialHeight: drawerPartialHeight,
                                 containerViewHeight: containerViewHeight,
-                                drawerFullY: drawerFullY,
                                 configuration: configuration)
 
         let lowerY = lowerMarkY(drawerPartialHeight: drawerPartialHeight,

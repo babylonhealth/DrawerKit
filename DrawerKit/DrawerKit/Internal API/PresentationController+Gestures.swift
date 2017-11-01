@@ -38,13 +38,11 @@ extension PresentationController {
             panGesture.setTranslation(.zero, in: view)
 
         case .ended:
-            let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
             let drawerSpeedY = panGesture.velocity(in: view).y / containerViewH
             let endingState = GeometryEvaluator.nextStateFrom(currentState: currentDrawerState,
                                                               speedY: drawerSpeedY,
                                                               drawerPartialHeight: drawerPartialH,
                                                               containerViewHeight: containerViewH,
-                                                              drawerFullY: drawerFullY,
                                                               configuration: configuration)
             animateTransition(to: endingState)
 

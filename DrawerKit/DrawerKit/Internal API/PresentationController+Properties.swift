@@ -26,10 +26,8 @@ extension PresentationController {
     }
 
     var upperMarkY: CGFloat {
-        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         return GeometryEvaluator.upperMarkY(drawerPartialHeight: drawerPartialH,
                                             containerViewHeight: containerViewH,
-                                            drawerFullY: drawerFullY,
                                             configuration: configuration)
     }
 
