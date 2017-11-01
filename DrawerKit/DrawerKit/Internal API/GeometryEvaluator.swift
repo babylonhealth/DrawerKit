@@ -64,9 +64,9 @@ extension GeometryEvaluator {
     static func drawerState(for positionY: CGFloat,
                             drawerPartialHeight: CGFloat,
                             containerViewHeight: CGFloat,
-                            drawerFullY: CGFloat,
                             configuration: DrawerConfiguration,
                             clampToNearest: Bool = false) -> DrawerState {
+        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         if smallerThanOrEqual(positionY, drawerFullY) { return .fullyExpanded }
         if greaterThanOrEqual(positionY, containerViewHeight) { return .collapsed }
 
@@ -83,7 +83,6 @@ extension GeometryEvaluator {
             return drawerState(for: posY,
                                drawerPartialHeight: drawerPartialHeight,
                                containerViewHeight: containerViewHeight,
-                               drawerFullY: drawerFullY,
                                configuration: configuration)
         } else {
             return .transitioning(currentDrawerY: positionY)

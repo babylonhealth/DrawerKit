@@ -41,11 +41,9 @@ extension PresentationController {
 
     var currentDrawerState: DrawerState {
         get {
-            let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
             return GeometryEvaluator.drawerState(for: currentDrawerY,
                                                  drawerPartialHeight: drawerPartialH,
                                                  containerViewHeight: containerViewH,
-                                                 drawerFullY: drawerFullY,
                                                  configuration: configuration)
         }
 

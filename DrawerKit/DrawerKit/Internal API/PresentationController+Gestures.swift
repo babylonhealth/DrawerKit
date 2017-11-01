@@ -21,20 +21,16 @@ extension PresentationController {
 
         switch panGesture.state {
         case .began:
-            let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
             lastDrawerState = GeometryEvaluator.drawerState(for: currentDrawerY,
                                                             drawerPartialHeight: drawerPartialH,
                                                             containerViewHeight: containerViewH,
-                                                            drawerFullY: drawerFullY,
                                                             configuration: configuration,
                                                             clampToNearest: true)
 
         case .changed:
-            let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
             lastDrawerState = GeometryEvaluator.drawerState(for: currentDrawerY,
                                                             drawerPartialHeight: drawerPartialH,
                                                             containerViewHeight: containerViewH,
-                                                            drawerFullY: drawerFullY,
                                                             configuration: configuration,
                                                             clampToNearest: true)
             currentDrawerY += panGesture.translation(in: view).y
