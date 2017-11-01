@@ -20,9 +20,20 @@ Please do play with the demo app and try different configuration options because
 `DrawerKit` that the gif below is at most a pathetic representation of everything that the library can do.
 
 <p align="center">
-	<a href="https://github.com/Babylonpartners/DrawerKit/">
-	    <img src="drawers.gif" alt="DrawerKit" />
-	</a>
+	<table>
+		<tr>
+			<td>
+				<a href="https://github.com/Babylonpartners/DrawerKit/">
+					<img src="drawers2.gif" alt="DrawerKit" />
+				</a>
+			</td>
+			<td>
+				<a href="https://github.com/Babylonpartners/DrawerKit/">
+					<img src="drawers3.gif" alt="DrawerKit" />
+				</a>
+			</td>
+		</tr>
+	</table>
 </p>
 
 ## What's new in version 0.3.0?
