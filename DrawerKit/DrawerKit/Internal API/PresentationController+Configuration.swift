@@ -1,12 +1,20 @@
 import UIKit
 
 extension PresentationController {
-    var durationInSeconds: TimeInterval {
-        return configuration.durationInSeconds
+    var totalDurationInSeconds: TimeInterval {
+        return configuration.totalDurationInSeconds
+    }
+
+    var durationIsProportionalToDistanceTraveled: Bool {
+        return configuration.durationIsProportionalToDistanceTraveled
     }
 
     var timingCurveProvider: UITimingCurveProvider {
         return configuration.timingCurveProvider
+    }
+
+    var fullExpansionBehaviour: DrawerConfiguration.FullExpansionBehaviour {
+        return configuration.fullExpansionBehaviour
     }
 
     var supportsPartialExpansion: Bool {
@@ -51,5 +59,13 @@ extension PresentationController {
 
     var numberOfTapsForOutsideDrawerDismissal: Int {
         return configuration.numberOfTapsForOutsideDrawerDismissal
+    }
+
+    var hasHandleView: Bool {
+        return configuration.hasHandleView
+    }
+
+    var handleViewConfiguration: HandleViewConfiguration {
+        return configuration.handleViewConfiguration
     }
 }
