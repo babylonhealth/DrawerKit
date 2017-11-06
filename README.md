@@ -16,15 +16,57 @@ until it's fully presented or fully dismissed. It's *not* (yet) a complete imple
 the Maps app simply because our specific needs dictated something else. We intend to continue working on it to address
 that limitation.
 
+Please do play with the demo app and try different configuration options because there are so many ways to configure
+`DrawerKit` that the gif below is at most a pathetic representation of everything that the library can do.
+
 <p align="center">
-	<a href="https://github.com/Babylonpartners/DrawerKit/">
-	    <img src="drawers.gif" alt="DrawerKit" />
-	</a>
+	<table>
+		<tr>
+			<td>
+				<a href="https://github.com/Babylonpartners/DrawerKit/">
+					<img src="drawers2.gif" alt="DrawerKit" width="288" height="514" />
+				</a>
+			</td>
+			<td>
+				<a href="https://github.com/Babylonpartners/DrawerKit/">
+					<img src="drawers3.gif" alt="DrawerKit" width="288" height="514" />
+				</a>
+			</td>
+		</tr>
+	</table>
 </p>
 
+<<<<<<< HEAD
 ## What's new since v. 0.1.1?
 
 Please note that v. `0.2.0` is not backward-compatible with v. 0.1.1.
+=======
+## What's new in version 0.3.0?
+
+Please note that v. `0.3.0` is not backwards-compatible with v. 0.2.
+
+- *Concurrent animations*: it's now possible for either or both view controllers (presenting and
+presented) to participate in the drawer animation so that their views can be animated while the
+drawer is moving up and down.
+
+- *Automatic display of a "handle view"*: it's now possible to have the drawer add a "gray bar" near
+its top. This bar, referred to as the "handle view", can be customised in its size, background color,
+and corner radius, and can be automatically dimmed as the drawer moves towards its collapsed or
+fully-expanded states. Or you can turn that off and throw your own.
+
+- *Support for not expanding to cover the entire screen*. It's now possible to select the behaviour of
+the drawer when it fully-expands itself. You may choose from covering the entire screen (the default),
+not covering the status bar, and leaving a gap at the top, of any desired size.
+
+- Partial transitions (collapsed to partially-expanded and partially-expanded to fully-expanded, and
+vice-versa) can now have durations that are equal to, or fractions of, the duration for a full-size
+transition (collapsed to fully-expanded, and vice-versa). This allows for transitions to have the same
+speed, if desired.
+
+## What's new in version 0.2.0?
+
+Please note that v. `0.2.0` is not backwards-compatible with v. 0.1.1.
+>>>>>>> origin/develop
 
 - The presenting view controller is no longer required to conform to `DrawerPresenting`. In fact,
 `DrawerPresenting` no longer exists. Instead, a new protocol was created to take its place,
@@ -78,9 +120,18 @@ extension PresenterViewController {
 
         // ... or after initialisation. All of these have default values so change only
         // what you need to configure differently. They're all listed here just so you
+<<<<<<< HEAD
         // can see what can be configured.
         configuration.durationInSeconds = 0.8
+=======
+        // can see what can be configured. The values listed are the default ones,
+        // except where indicated otherwise.
+        configuration.totalDurationInSeconds = 3 // default is 0.4
+        configuration.durationIsProportionalToDistanceTraveled = false
+        // default is UISpringTimingParameters()
+>>>>>>> origin/develop
         configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.8)
+        configuration.fullExpansionBehaviour = .leavesCustomGap(gap: 100) // default is .coversFullScreen
         configuration.supportsPartialExpansion = true
         configuration.dismissesInStages = true
         configuration.isDrawerDraggable = true
@@ -89,9 +140,22 @@ extension PresenterViewController {
         configuration.isDismissableByOutsideDrawerTaps = true
         configuration.numberOfTapsForOutsideDrawerDismissal = 1
         configuration.flickSpeedThreshold = 3
+<<<<<<< HEAD
         configuration.upperMarkGap = 100
         configuration.lowerMarkGap = 80
         configuration.maximumCornerRadius = 20
+=======
+        configuration.upperMarkGap = 100 // default is 40
+        configuration.lowerMarkGap =  80 // default is 40
+        configuration.maximumCornerRadius = 15
+        configuration.hasHandleView = true
+        var handleViewConfiguration = HandleViewConfiguration()
+        handleViewConfiguration.autoAnimatesDimming = true
+        handleViewConfiguration.backgroundColor = .gray
+        handleViewConfiguration.size = CGSize(width: 40, height: 6)
+        handleViewConfiguration.cornerRadius = .automatic
+        configuration.handleViewConfiguration = handleViewConfiguration
+>>>>>>> origin/develop
 
         drawerDisplayController = DrawerDisplayController(presentingViewController: self,
                                                           presentedViewController: vc,
@@ -130,6 +194,7 @@ __DrawerKit__ has a number of configurable properties, conveniently collected to
 `DrawerConfiguration`. Here's a list of all the currently supported configuration options:
 
 ```swift
+<<<<<<< HEAD
 /// How long the animations that move the drawer up and down last.
 /// The default value is 0.3 seconds.
 public var durationInSeconds: TimeInterval
@@ -203,6 +268,138 @@ public var lowerMarkGap: CGFloat
 /// corners, from 0 to the value of this property. Setting this to 0 prevents any
 /// corner animations from taking place. The default value is 15 points.
 public var maximumCornerRadius: CGFloat
+=======
+    /// The total duration, in seconds, for the drawer to transition from its
+    /// collapsed state to its fully-expanded state, or vice-versa. The default
+    /// value is 0.4 seconds.
+    public var totalDurationInSeconds: TimeInterval
+
+    /// When the drawer transitions between its collapsed and partially-expanded
+    /// states, or between its partially-expanded and its fully-expanded states, in
+    /// either direction, the distance traveled by the drawer is some fraction of
+    /// the total distance traveled between the collapsed and fully-expanded states.
+    /// You have a choice between having those fractional transitions take the same
+    /// amount of time as the full transition, and having them take a time that is
+    /// a fraction of the total time, where the fraction used is the fraction of
+    /// space those partial transitions travel. In the first case, all transitions
+    /// have the same duration (`totalDurationInSeconds`) but different speeds, while
+    /// in the second case different transitions have different durations but the same
+    /// speed. The default is `false`, that is, all transitions last the same amount
+    /// of time.
+    public var durationIsProportionalToDistanceTraveled: Bool
+
+    /// The type of timing curve to use for the animations. The full set of cubic
+    /// Bezier curves and spring-based curves is supported. Note that selecting a
+    /// spring-based timing curve may cause the `totalDurationInSeconds` parameter
+    /// to be ignored because the duration, for a fully general spring-based timing
+    /// curve provider, is computed based on the specifics of the spring-based curve.
+    /// The default is `UISpringTimingParameters()`, which is the system's global
+    /// spring-based timing curve.
+    public var timingCurveProvider: UITimingCurveProvider
+
+    /// Whether the drawer expands to cover the entire screen, the entire screen minus
+    /// the status bar, or the entire screen minus a custom gap. The default is to cover
+    /// the full screen.
+    public var fullExpansionBehaviour: FullExpansionBehaviour
+
+    /// When `true`, the drawer is presented first in its partially expanded state.
+    /// When `false`, the presentation is always to full screen and there is no
+    /// partially expanded state. The default value is `true`.
+    public var supportsPartialExpansion: Bool
+
+    /// When `true`, dismissing the drawer from its fully expanded state can result
+    /// in the drawer stopping at its partially expanded state. When `false`, the
+    /// dismissal is always straight to the collapsed state. Note that
+    /// `supportsPartialExpansion` being `false` implies `dismissesInStages` being
+    /// `false` as well but you can have `supportsPartialExpansion == true` and
+    /// `dismissesInStages == false`, which would result in presentations to the
+    /// partially expanded state but all dismissals would be straight to the collapsed
+    /// state. The default value is `true`.
+    public var dismissesInStages: Bool
+
+    /// Whether or not the drawer can be dragged up and down. The default value is `true`.
+    public var isDrawerDraggable: Bool
+
+    /// Whether or not the drawer can be fully presentable by tapping on it.
+    /// The default value is `true`.
+    public var isFullyPresentableByDrawerTaps: Bool
+
+    /// How many taps are required for fully presenting the drawer by tapping on it.
+    /// The default value is 1.
+    public var numberOfTapsForFullDrawerPresentation: Int
+
+    /// Whether or not the drawer can be dismissed by tapping anywhere outside of it.
+    /// The default value is `true`.
+    public var isDismissableByOutsideDrawerTaps: Bool
+
+    /// How many taps are required for dismissing the drawer by tapping outside of it.
+    /// The default value is 1.
+    public var numberOfTapsForOutsideDrawerDismissal: Int
+
+    /// How fast one needs to "flick" the drawer up or down to make it ignore the
+    /// partially expanded state. Flicking fast enough up always presents to full screen
+    /// and flicking fast enough down always collapses the drawer. A typically good value
+    /// is around 3 points per screen height per second, and that is also the default
+    /// value of this property.
+    public var flickSpeedThreshold: CGFloat
+
+    /// There is a band around the partially expanded position of the drawer where
+    /// ending a drag inside will cause the drawer to move back to the partially
+    /// expanded position (subjected to the conditions set by `supportsPartialExpansion`
+    /// and `dismissesInStages`, of course). Set `inDebugMode` to `true` to see lines
+    /// drawn at those positions. This value represents the gap *above* the partially
+    /// expanded position. The default value is 40 points.
+    public var upperMarkGap: CGFloat
+
+    /// There is a band around the partially expanded position of the drawer where
+    /// ending a drag inside will cause the drawer to move back to the partially
+    /// expanded position (subjected to the conditions set by `supportsPartialExpansion`
+    /// and `dismissesInStages`, of course). Set `inDebugMode` to `true` to see lines
+    /// drawn at those positions. This value represents the gap *below* the partially
+    /// expanded position. The default value is 40 points.
+    public var lowerMarkGap: CGFloat
+
+    /// The animating drawer also animates the radius of its top left and top right
+    /// corners, from 0 to the value of this property. Setting this to 0 prevents any
+    /// corner animations from taking place. The default value is 15 points.
+    public var maximumCornerRadius: CGFloat
+
+    /// Whether or not to automatically add a handle view to the presented content.
+    /// The default is `true`.
+    public var hasHandleView: Bool
+
+    /// The configuration options for the handle view, should it be shown.
+    public var handleViewConfiguration: HandleViewConfiguration
+```
+
+```swift
+    public enum FullExpansionBehaviour: Equatable {
+        case coversFullScreen
+        case dosNotCoverStatusBar
+        case leavesCustomGap(gap: CGFloat)
+    }
+```
+
+```swift
+public struct HandleViewConfiguration {
+    /// Whether or not to automatically dim the handle view as the drawer approaches
+    /// its collapsed or fully expanded states. The default is `true`. Set it to `false`
+    /// when configuring the drawer not to cover the full screen so that the handle view
+    /// is always visible in that case.
+    public var autoAnimatesDimming: Bool
+
+    /// The handle view's background color. The default value is `UIColor.gray`.
+    public var backgroundColor: UIColor
+
+    /// The handle view's bounding rectangle's size. The default value is
+    /// `CGSize(width: 40, height: 6)`.
+    public var size: CGSize
+
+    /// The handle view's corner radius. The default is `CornerRadius.automatic`, which
+    /// results in a corner radius equal to half the handle view's height.
+    public var cornerRadius: CornerRadius
+}
+>>>>>>> origin/develop
 ```
 
 ## What's the actual drawer behaviour logic?
