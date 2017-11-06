@@ -137,7 +137,7 @@ extension PresentationController {
         let duration =
             AnimationSupport.actualTransitionDuration(from: startingPositionY,
                                                       to: endingPositionY,
-                                                      containerViewHeight: containerViewH,
+                                                      containerViewHeight: containerViewHeight,
                                                       configuration: configuration)
 
         return UIViewPropertyAnimator(duration: duration,
@@ -149,14 +149,14 @@ extension PresentationController {
         let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         let startingPositionY =
             GeometryEvaluator.drawerPositionY(for: startingState,
-                                              drawerPartialHeight: drawerPartialH,
-                                              containerViewHeight: containerViewH,
+                                              drawerPartialHeight: drawerPartialHeight,
+                                              containerViewHeight: containerViewHeight,
                                               drawerFullY: drawerFullY)
 
         let endingPositionY =
             GeometryEvaluator.drawerPositionY(for: endingState,
-                                              drawerPartialHeight: drawerPartialH,
-                                              containerViewHeight: containerViewH,
+                                              drawerPartialHeight: drawerPartialHeight,
+                                              containerViewHeight: containerViewHeight,
                                               drawerFullY: drawerFullY)
 
         return (startingPositionY, endingPositionY)

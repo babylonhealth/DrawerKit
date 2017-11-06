@@ -4,7 +4,7 @@ extension PresentationController {
     @objc func handleDrawerFullExpansionTap() {
         guard let tapGesture = drawerFullExpansionTapGR else { return }
         let tapY = tapGesture.location(in: presentedView).y
-        guard tapY < drawerPartialH else { return }
+        guard tapY < drawerPartialHeight else { return }
         animateTransition(to: .fullyExpanded)
     }
 
@@ -22,15 +22,15 @@ extension PresentationController {
         switch panGesture.state {
         case .began:
             lastDrawerState = GeometryEvaluator.drawerState(for: currentDrawerY,
-                                                            drawerPartialHeight: drawerPartialH,
-                                                            containerViewHeight: containerViewH,
+                                                            drawerPartialHeight: drawerPartialHeight,
+                                                            containerViewHeight: containerViewHeight,
                                                             configuration: configuration,
                                                             clampToNearest: true)
 
         case .changed:
             lastDrawerState = GeometryEvaluator.drawerState(for: currentDrawerY,
-                                                            drawerPartialHeight: drawerPartialH,
-                                                            containerViewHeight: containerViewH,
+                                                            drawerPartialHeight: drawerPartialHeight,
+                                                            containerViewHeight: containerViewHeight,
                                                             configuration: configuration,
                                                             clampToNearest: true)
             currentDrawerY += panGesture.translation(in: view).y
@@ -38,11 +38,11 @@ extension PresentationController {
             panGesture.setTranslation(.zero, in: view)
 
         case .ended:
-            let drawerSpeedY = panGesture.velocity(in: view).y / containerViewH
+            let drawerSpeedY = panGesture.velocity(in: view).y / containerViewHeight
             let endingState = GeometryEvaluator.nextStateFrom(currentState: currentDrawerState,
                                                               speedY: drawerSpeedY,
-                                                              drawerPartialHeight: drawerPartialH,
-                                                              containerViewHeight: containerViewH,
+                                                              drawerPartialHeight: drawerPartialHeight,
+                                                              containerViewHeight: containerViewHeight,
                                                               configuration: configuration)
             animateTransition(to: endingState)
 

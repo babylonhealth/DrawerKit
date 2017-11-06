@@ -29,8 +29,8 @@ extension PresentationController {
         let state: DrawerState = (supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
         let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         frame.origin.y = GeometryEvaluator.drawerPositionY(for: state,
-                                                           drawerPartialHeight: drawerPartialH,
-                                                           containerViewHeight: containerViewH,
+                                                           drawerPartialHeight: drawerPartialHeight,
+                                                           containerViewHeight: containerViewHeight,
                                                            drawerFullY: drawerFullY)
         return frame
     }
