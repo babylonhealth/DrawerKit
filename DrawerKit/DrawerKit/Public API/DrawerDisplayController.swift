@@ -3,10 +3,11 @@ import UIKit
 // TODO:
 // - support device interface orientation changes
 // - support insufficiently tall content
-// - support not-covering status bar and/or having a gap at the top
+// - support iPhone X
 
 /// Instances of this class are returned by objects conforming to
 /// the `DrawerCoordinating` protocol.
+
 public final class DrawerDisplayController: NSObject {
     /// The collection of configurable parameters dictating how the drawer works.
     public let configuration: DrawerConfiguration
@@ -19,13 +20,13 @@ public final class DrawerDisplayController: NSObject {
     /// Initialiser for `DrawerDisplayController`.
     ///
     /// - Parameters:
-    ///   - presentingViewController:
+    ///   - `presentingViewController`:
     ///        the view controller presenting the drawer.
-    ///   - presentedViewController:
+    ///   - `presentedViewController`:
     ///        the view controller wanting to be presented as a drawer.
-    ///   - configuration:
-    ///        the collection of configurable parameters dictating how the drawer works.
-    ///   - inDebugMode:
+    ///   - `configuration`:
+    ///        the collection of configurable parameters dictating the drawer's behaviour.
+    ///   - `inDebugMode`:
     ///        a boolean value which, when true, draws guiding lines on top of the
     ///        presenting view controller but below the presented view controller.
     ///        Its default value is false.

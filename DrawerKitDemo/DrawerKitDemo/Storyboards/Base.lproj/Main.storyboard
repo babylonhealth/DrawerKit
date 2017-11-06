@@ -148,10 +148,16 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Ojr-aM-v38" secondAttribute="trailing" constant="10" id="tkz-7e-SmV"/>
                         </constraints>
                         <connections>
+                            <outlet property="bodyLabel" destination="69I-et-UOX" id="yM2-QU-7fi"/>
+                            <outlet property="dismissButton" destination="qPD-ym-Fa5" id="vT0-hE-mwT"/>
                             <outlet property="dividerView" destination="dEa-Pl-yQz" id="aF0-jd-cMU"/>
                             <outlet property="imageView" destination="rpy-pk-bsr" id="JPN-4k-Tmo"/>
+                            <outlet property="titleLabel" destination="Jth-UI-73K" id="THa-a8-8sV"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="presentedView" destination="tAJ-xI-Qxr" id="N57-5D-1ic"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjN-SN-YOS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
