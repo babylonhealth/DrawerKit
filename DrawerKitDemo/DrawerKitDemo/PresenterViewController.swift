@@ -19,9 +19,13 @@ private extension PresenterViewController {
 
         // ... or after initialisation. All of these have default values so change only
         // what you need to configure differently. They're all listed here just so you
-        // can see what can be configured.
-        configuration.durationInSeconds = 0.8
+        // can see what can be configured. The values listed are the default ones,
+        // except where indicated otherwise.
+        configuration.totalDurationInSeconds = 3 // default is 0.4
+        configuration.durationIsProportionalToDistanceTraveled = false
+        // default is UISpringTimingParameters()
         configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.8)
+        configuration.fullExpansionBehaviour = .leavesCustomGap(gap: 100) // default is .coversFullScreen
         configuration.supportsPartialExpansion = true
         configuration.dismissesInStages = true
         configuration.isDrawerDraggable = true
@@ -30,9 +34,16 @@ private extension PresenterViewController {
         configuration.isDismissableByOutsideDrawerTaps = true
         configuration.numberOfTapsForOutsideDrawerDismissal = 1
         configuration.flickSpeedThreshold = 3
-        configuration.upperMarkGap = 100
-        configuration.lowerMarkGap = 80
-        configuration.maximumCornerRadius = 20
+        configuration.upperMarkGap = 100 // default is 40
+        configuration.lowerMarkGap =  80 // default is 40
+        configuration.maximumCornerRadius = 15
+        configuration.hasHandleView = true
+        var handleViewConfiguration = HandleViewConfiguration()
+        handleViewConfiguration.autoAnimatesDimming = true
+        handleViewConfiguration.backgroundColor = .gray
+        handleViewConfiguration.size = CGSize(width: 40, height: 6)
+        handleViewConfiguration.cornerRadius = .automatic
+        configuration.handleViewConfiguration = handleViewConfiguration
 
         drawerDisplayController = DrawerDisplayController(presentingViewController: self,
                                                           presentedViewController: vc,
