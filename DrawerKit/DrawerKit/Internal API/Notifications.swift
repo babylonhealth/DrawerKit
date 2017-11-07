@@ -30,7 +30,7 @@ extension NotificationCenter {
                                           object: Any? = nil, queue: OperationQueue? = nil,
                                           using block: @escaping (A, Any?) -> ()) -> NotificationToken {
         let token = addObserver(forName: name, object: object, queue: queue, using: { note in
-            guard let note = note.userInfo?[NotificationCenter._$key$_] as? A else { assert(false) }
+            guard let note = note.userInfo?[NotificationCenter._$key$_] as? A else { fatalError("incorrect notification key type") }
             block(note, object)
         })
 
