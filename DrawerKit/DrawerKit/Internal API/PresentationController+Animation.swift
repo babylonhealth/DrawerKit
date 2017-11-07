@@ -43,16 +43,19 @@ extension PresentationController {
         let autoAnimatesDimming = configuration.handleViewConfiguration.autoAnimatesDimming
         if autoAnimatesDimming { self.handleView?.alpha = handleViewAlpha(at: startingState) }
 
-        AnimationSupport.clientPrepareViews(presentingVC: presentingVC,
-                                            presentedVC: presentedVC,
+        let presentingAnimationActions = self.presentingDrawerAnimationActions
+        let presentedAnimationActions = self.presentedDrawerAnimationActions
+
+        AnimationSupport.clientPrepareViews(presentingDrawerAnimationActions: presentingAnimationActions,
+                                            presentedDrawerAnimationActions: presentedAnimationActions,
                                             info)
 
         animator.addAnimations {
             self.currentDrawerY = endingPositionY
             if autoAnimatesDimming { self.handleView?.alpha = endingHandleViewAlpha }
             if maxCornerRadius != 0 { self.currentDrawerCornerRadius = endingCornerRadius }
-            AnimationSupport.clientAnimateAlong(presentingVC: presentingVC,
-                                                presentedVC: presentedVC,
+            AnimationSupport.clientAnimateAlong(presentingDrawerAnimationActions: presentingAnimationActions,
+                                                presentedDrawerAnimationActions: presentedAnimationActions,
                                                 info)
         }
 
@@ -84,8 +87,8 @@ extension PresentationController {
                 self.currentDrawerCornerRadius = 0
             }
 
-            AnimationSupport.clientCleanupViews(presentingVC: presentingVC,
-                                                presentedVC: presentedVC,
+            AnimationSupport.clientCleanupViews(presentingDrawerAnimationActions: presentingAnimationActions,
+                                                presentedDrawerAnimationActions: presentedAnimationActions,
                                                 endingPosition,
                                                 info)
         }

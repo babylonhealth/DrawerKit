@@ -49,27 +49,27 @@ struct AnimationSupport {
                                    endPosition: endingPosition)
     }
 
-    static func clientPrepareViews(presentingVC: UIViewController,
-                                   presentedVC: UIViewController,
+    static func clientPrepareViews(presentingDrawerAnimationActions: DrawerAnimationActions,
+                                   presentedDrawerAnimationActions: DrawerAnimationActions,
                                    _ info: DrawerAnimationInfo) {
-        (presentingVC as? DrawerAnimationParticipant)?.drawerAnimationActions.prepare?(info)
-        (presentedVC as? DrawerAnimationParticipant)?.drawerAnimationActions.prepare?(info)
+        presentingDrawerAnimationActions.prepare?(info)
+        presentedDrawerAnimationActions.prepare?(info)
     }
 
-    static func clientAnimateAlong(presentingVC: UIViewController,
-                                   presentedVC: UIViewController,
+    static func clientAnimateAlong(presentingDrawerAnimationActions: DrawerAnimationActions,
+                                   presentedDrawerAnimationActions: DrawerAnimationActions,
                                    _ info: DrawerAnimationInfo) {
-        (presentingVC as? DrawerAnimationParticipant)?.drawerAnimationActions.animateAlong?(info)
-        (presentedVC as? DrawerAnimationParticipant)?.drawerAnimationActions.animateAlong?(info)
+        presentingDrawerAnimationActions.animateAlong?(info)
+        presentedDrawerAnimationActions.animateAlong?(info)
     }
 
-    static func clientCleanupViews(presentingVC: UIViewController,
-                                   presentedVC: UIViewController,
+    static func clientCleanupViews(presentingDrawerAnimationActions: DrawerAnimationActions,
+                                   presentedDrawerAnimationActions: DrawerAnimationActions,
                                    _ endingPosition: UIViewAnimatingPosition,
                                    _ info: DrawerAnimationInfo) {
         var endInfo = info
         endInfo.endPosition = endingPosition
-        (presentingVC as? DrawerAnimationParticipant)?.drawerAnimationActions.cleanup?(info)
-        (presentedVC as? DrawerAnimationParticipant)?.drawerAnimationActions.cleanup?(info)
+        presentingDrawerAnimationActions.cleanup?(info)
+        presentedDrawerAnimationActions.cleanup?(info)
     }
 }

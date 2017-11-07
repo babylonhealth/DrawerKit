@@ -5,18 +5,25 @@ final class PresentationController: UIPresentationController {
     let inDebugMode: Bool
     let handleView: UIView?
 
+    let presentingDrawerAnimationActions: DrawerAnimationActions
+    let presentedDrawerAnimationActions: DrawerAnimationActions
+
     var drawerFullExpansionTapGR: UITapGestureRecognizer?
     var drawerDismissalTapGR: UITapGestureRecognizer?
     var drawerDragGR: UIPanGestureRecognizer?
     var lastDrawerState: DrawerState = .collapsed
 
     init(presentingVC: UIViewController?,
+         presentingDrawerAnimationActions: DrawerAnimationActions,
          presentedVC: UIViewController,
+         presentedDrawerAnimationActions: DrawerAnimationActions,
          configuration: DrawerConfiguration,
          inDebugMode: Bool = false) {
         self.configuration = configuration
         self.inDebugMode = inDebugMode
         self.handleView = (configuration.hasHandleView ? UIView() : nil)
+        self.presentingDrawerAnimationActions = presentingDrawerAnimationActions
+        self.presentedDrawerAnimationActions = presentedDrawerAnimationActions
         super.init(presentedViewController: presentedVC, presenting: presentingVC)
     }
 }
