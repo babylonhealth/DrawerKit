@@ -86,6 +86,7 @@
 			children = (
 				CB2CB79A1F8E951900AA152D /* DrawerDisplayController.swift */,
 				CB3CAFBD1FB248B000AD28A1 /* DrawerNotifications.swift */,
+				CB3CAFBF1FB24BD800AD28A1 /* Notifications.swift */,
 				CB5AF8071F9BE105000B2DC9 /* Protocols */,
 				CB5AF8081F9BE12E000B2DC9 /* Structs */,
 				CB5AF8121F9BE9B3000B2DC9 /* Extensions */,
@@ -108,7 +109,6 @@
 				CB2CB79C1F8E951900AA152D /* AnimationController.swift */,
 				CBFA36F11F9C4004006847BB /* GeometryEvaluator.swift */,
 				CBACF6B21F9C622300C15CA3 /* AnimationSupport.swift */,
-				CB3CAFBF1FB24BD800AD28A1 /* Notifications.swift */,
 			);
 			path = "Internal API";
 			sourceTree = "<group>";
