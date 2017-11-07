@@ -2,9 +2,24 @@ import UIKit
 import DrawerKit
 
 class PresentedViewController: UIViewController {
+    private var notificationToken: NotificationToken!
+
     @IBOutlet weak var presentedView: PresentedView!
     @IBAction func dismissButtonTapped() {
         dismiss(animated: true)
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.notificationToken = NotificationCenter.default.addObserver(name: DrawerNotification.drawerExteriorTapped.name) {
+            (notification: DrawerNotification, object: Any?) in
+            switch notification {
+            case .drawerExteriorTapped:
+                print("drawerExteriorTapped")
+            default:
+                break
+            }
+        }
     }
 }
 
