@@ -42,14 +42,14 @@ public final class DrawerDisplayController: NSObject {
         self.configuration = configuration
         self.inDebugMode = inDebugMode
 
-        if let presentingVCasDrawerParticipant = presentingViewController as? DrawerAnimationParticipant {
-            self.presentingDrawerAnimationActions = presentingVCasDrawerParticipant.drawerAnimationActions
+        if let presentingAsDrawerParticipant = presentingViewController as? DrawerAnimationParticipant {
+            self.presentingDrawerAnimationActions = presentingAsDrawerParticipant.drawerAnimationActions
         } else {
             self.presentingDrawerAnimationActions = DrawerAnimationActions()
         }
 
-        if let presentedVCasDrawerParticipant = presentedViewController as? DrawerAnimationParticipant {
-            self.presentedDrawerAnimationActions = presentedVCasDrawerParticipant.drawerAnimationActions
+        if let presentedAsDrawerParticipant = presentedViewController as? DrawerAnimationParticipant {
+            self.presentedDrawerAnimationActions = presentedAsDrawerParticipant.drawerAnimationActions
         } else {
             self.presentedDrawerAnimationActions = DrawerAnimationActions()
         }
