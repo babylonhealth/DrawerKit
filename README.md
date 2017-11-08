@@ -36,6 +36,19 @@ Please do play with the demo app and try different configuration options because
 	</table>
 </p>
 
+## What's new in version 0.3.1?
+
+- Better support for concurrent animations: in previous versions, the actual presenting view
+controller wasn't necessarily what you'd think is the presenting view controller, which caused
+problems when trying to animate its view concurrently with the drawer animation. Now, although
+it's still the case that the presenting view controller may not be the view controller you think
+it is, the view controller that you think is the presenting view controller and which you add
+conformance to `DrawerAnimationParticipant` is the view controller whose animation closures get invoked.
+
+- Notifications: it's now possible to subscribe to notifications indicating when the drawer is
+tapped (both in its interior and in its exterior), when drawer transitions are about to start,
+and when they're completed.
+
 ## What's new in version 0.3.0?
 
 Please note that v. `0.3.0` is not backwards-compatible with v. 0.2.

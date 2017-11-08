@@ -4,9 +4,17 @@ final class AnimationController: NSObject {
     private let isPresentation: Bool
     private let configuration: DrawerConfiguration
 
-    init(isPresentation: Bool, configuration: DrawerConfiguration) {
+    let presentingDrawerAnimationActions: DrawerAnimationActions
+    let presentedDrawerAnimationActions: DrawerAnimationActions
+
+    init(isPresentation: Bool,
+         configuration: DrawerConfiguration,
+         presentingDrawerAnimationActions: DrawerAnimationActions,
+         presentedDrawerAnimationActions: DrawerAnimationActions) {
         self.isPresentation = isPresentation
         self.configuration = configuration
+        self.presentingDrawerAnimationActions = presentingDrawerAnimationActions
+        self.presentedDrawerAnimationActions = presentedDrawerAnimationActions
         super.init()
     }
 }
@@ -58,22 +66,25 @@ extension AnimationController: UIViewControllerAnimatedTransitioning {
                                              duration,
                                              isPresentation)
 
-        AnimationSupport.clientPrepareViews(presentingVC: presentingVC,
-                                            presentedVC: presentedVC,
+        let presentingAnimationActions = self.presentingDrawerAnimationActions
+        let presentedAnimationActions = self.presentedDrawerAnimationActions
+
+        AnimationSupport.clientPrepareViews(presentingDrawerAnimationActions: presentingAnimationActions,
+                                            presentedDrawerAnimationActions: presentedAnimationActions,
                                             info)
         presentedVC.view.frame = initialFrame
 
         animator.addAnimations {
             presentedVC.view.frame = finalFrame
-            AnimationSupport.clientAnimateAlong(presentingVC: presentingVC,
-                                                presentedVC: presentedVC,
+            AnimationSupport.clientAnimateAlong(presentingDrawerAnimationActions: presentingAnimationActions,
+                                                presentedDrawerAnimationActions: presentedAnimationActions,
                                                 info)
         }
 
         animator.addCompletion { endingPosition in
             let finished = (endingPosition == UIViewAnimatingPosition.end)
-            AnimationSupport.clientCleanupViews(presentingVC: presentingVC,
-                                                presentedVC: presentedVC,
+            AnimationSupport.clientCleanupViews(presentingDrawerAnimationActions: presentingAnimationActions,
+                                                presentedDrawerAnimationActions: presentedAnimationActions,
                                                 endingPosition,
                                                 info)
             transitionContext.completeTransition(finished)

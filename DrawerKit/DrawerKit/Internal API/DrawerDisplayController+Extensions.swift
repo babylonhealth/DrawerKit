@@ -5,7 +5,9 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
                                        presenting: UIViewController?,
                                        source: UIViewController) -> UIPresentationController? {
         let presentationController = PresentationController(presentingVC: presentingVC,
+                                                            presentingDrawerAnimationActions: presentingDrawerAnimationActions,
                                                             presentedVC: presented,
+                                                            presentedDrawerAnimationActions: presentedDrawerAnimationActions,
                                                             configuration: configuration,
                                                             inDebugMode: inDebugMode)
         presentationController.delegate = self
@@ -15,11 +17,17 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
     public func animationController(forPresented presented: UIViewController,
                                     presenting: UIViewController,
                                     source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return AnimationController(isPresentation: true, configuration: configuration)
+        return AnimationController(isPresentation: true,
+                                   configuration: configuration,
+                                   presentingDrawerAnimationActions: presentingDrawerAnimationActions,
+                                   presentedDrawerAnimationActions: presentedDrawerAnimationActions)
     }
 
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return AnimationController(isPresentation: false, configuration: configuration)
+        return AnimationController(isPresentation: false,
+                                   configuration: configuration,
+                                   presentingDrawerAnimationActions: presentingDrawerAnimationActions,
+                                   presentedDrawerAnimationActions: presentedDrawerAnimationActions)
     }
 
     public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
