@@ -31,7 +31,7 @@ extension NotificationCenter {
     }
 
     internal func post(notification: NotificationEnum, object: Any? = nil) {
-        let userInfo = [NotificationCenter.typedNotificationKey: notification]
+        let userInfo = [NotificationCenter.notificationKey: notification]
         post(name: notification.name, object: object, userInfo: userInfo)
     }
 }
