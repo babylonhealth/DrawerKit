@@ -11,7 +11,8 @@ class PresentedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.notificationToken = NotificationCenter.default.addObserver(name: DrawerNotification.drawerExteriorTapped.name) {
+        self.notificationToken = NotificationCenter.default
+            .addObserver(name: DrawerNotification.drawerExteriorTappedNotification) {
             (notification: DrawerNotification, object: Any?) in
             switch notification {
             case .drawerExteriorTapped:
