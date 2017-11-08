@@ -12,11 +12,9 @@ public class NotificationToken {
     deinit { center.removeObserver(token) }
 }
 
-
 public protocol NotificationEnum {
     var name: Notification.Name { get }
 }
-
 
 extension NotificationCenter {
     private static let _$key$_ = "_$key$_"
@@ -37,4 +35,3 @@ extension NotificationCenter {
         post(name: notification.name, object: object, userInfo: userInfo)
     }
 }
-
