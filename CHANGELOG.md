@@ -1,5 +1,9 @@
 # DrawerKit
 
+## v. 0.3.3
+
+- Fixes an issue where the presented view controller's view might not be laid out properly by the time the drawer's height is requested from it.
+
 ## v. 0.3.2
 
 - Fixes an issue with typed notifications.
