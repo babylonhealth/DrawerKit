@@ -1,6 +1,6 @@
 machine:
   xcode:
-    version: "9.0"
+    version: "9.1"
 
 dependencies:
   cache_directories:
@@ -8,14 +8,14 @@ dependencies:
 
 test:
   override:
-    - set -o pipefail && 
-      xcodebuild 
-        CODE_SIGNING_REQUIRED=NO 
+    - set -o pipefail &&
+      xcodebuild
+        CODE_SIGNING_REQUIRED=NO
         CODE_SIGN_IDENTITY=
-        PROVISIONING_PROFILE= 
+        PROVISIONING_PROFILE=
           -sdk iphonesimulator
-          -destination 'platform=iOS Simulator,OS=11.0.1,name=iPhone 7'
-          -workspace DrawerKit.xcworkspace 
+          -destination 'platform=iOS Simulator,OS=11.1,name=iPhone 7'
+          -workspace DrawerKit.xcworkspace
           -scheme "DrawerKitDemo"
       clean build test
     - pod lib lint

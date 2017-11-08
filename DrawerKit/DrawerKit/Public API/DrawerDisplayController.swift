@@ -15,6 +15,9 @@ public final class DrawerDisplayController: NSObject {
     weak var presentingVC: UIViewController?
     /* strong */ var presentedVC: (UIViewController & DrawerPresentable)
 
+    let presentingDrawerAnimationActions: DrawerAnimationActions
+    let presentedDrawerAnimationActions: DrawerAnimationActions
+
     let inDebugMode: Bool
 
     /// Initialiser for `DrawerDisplayController`.
@@ -38,6 +41,19 @@ public final class DrawerDisplayController: NSObject {
         self.presentedVC = presentedViewController
         self.configuration = configuration
         self.inDebugMode = inDebugMode
+
+        if let presentingAsDrawerParticipant = presentingViewController as? DrawerAnimationParticipant {
+            self.presentingDrawerAnimationActions = presentingAsDrawerParticipant.drawerAnimationActions
+        } else {
+            self.presentingDrawerAnimationActions = DrawerAnimationActions()
+        }
+
+        if let presentedAsDrawerParticipant = presentedViewController as? DrawerAnimationParticipant {
+            self.presentedDrawerAnimationActions = presentedAsDrawerParticipant.drawerAnimationActions
+        } else {
+            self.presentedDrawerAnimationActions = DrawerAnimationActions()
+        }
+
         super.init()
         presentedViewController.transitioningDelegate = self
         presentedViewController.modalPresentationStyle = .custom

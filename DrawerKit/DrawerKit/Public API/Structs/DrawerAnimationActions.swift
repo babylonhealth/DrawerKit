@@ -23,17 +23,17 @@ public struct DrawerAnimationActions {
     /// the view controllers involved, if they conform to `DrawerAnimationParticipant`,
     /// that they can now prepare their views for the drawer transition animation
     /// about to start.
-    public var prepare: PrepareHandler?
+    let prepare: PrepareHandler?
 
     /// A closure used as a call-back by the drawer transition process to inform
     /// the view controllers involved, if they conform to `DrawerAnimationParticipant`,
     /// that they can now perform animations in their views along with the drawer
     /// transition animation currently in progress.
-    public var animateAlong: AnimateAlongHandler?
+    let animateAlong: AnimateAlongHandler?
 
     /// A closure used as a call-back by the drawer transition process to inform
     /// the view controllers involved, if they conform to `DrawerAnimationParticipant`,
     /// that they can now cleanup their views since the drawer transition animation
     /// has completed.
-    public var cleanup: CleanupHandler?
+    let cleanup: CleanupHandler?
 }
