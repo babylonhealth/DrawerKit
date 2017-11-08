@@ -19,8 +19,8 @@ public enum DrawerNotification: NotificationEnum {
         }
     }
 
-    private static let transitionWillStartNotification = Notification.Name(rawValue: "DrawerNotification.transitionWillStart")
-    private static let transitionDidFinishNotification = Notification.Name(rawValue: "DrawerNotification.transitionDidFinish")
-    private static let drawerInteriorTappedNotification = Notification.Name(rawValue: "DrawerNotification.drawerInteriorTapped")
-    private static let drawerExteriorTappedNotification = Notification.Name(rawValue: "DrawerNotification.drawerExteriorTapped")
+    public static let transitionWillStartNotification = Notification.Name(rawValue: "DrawerNotification.transitionWillStart")
+    public static let transitionDidFinishNotification = Notification.Name(rawValue: "DrawerNotification.transitionDidFinish")
+    public static let drawerInteriorTappedNotification = Notification.Name(rawValue: "DrawerNotification.drawerInteriorTapped")
+    public static let drawerExteriorTappedNotification = Notification.Name(rawValue: "DrawerNotification.drawerExteriorTapped")
 }
