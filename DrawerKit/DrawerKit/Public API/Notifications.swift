@@ -17,13 +17,13 @@ public protocol NotificationEnum {
 }
 
 extension NotificationCenter {
-    private static let _$key$_ = "_$key$_"
+    private static let notificationKey = "notificationKey"
 
     public func addObserver<A: NotificationEnum>(name: Notification.Name,
                                                  object: Any? = nil, queue: OperationQueue? = nil,
                                                  using block: @escaping (A, Any?) -> ()) -> NotificationToken {
         let token = addObserver(forName: name, object: object, queue: queue, using: { note in
-            guard let note = note.userInfo?[NotificationCenter._$key$_] as? A else { fatalError("incorrect notification key type") }
+            guard let note = note.userInfo?[NotificationCenter.notificationKey] as? A else { fatalError("incorrect notification key type") }
             block(note, object)
         })
 
@@ -31,7 +31,7 @@ extension NotificationCenter {
     }
 
     internal func post(notification: NotificationEnum, object: Any? = nil) {
-        let userInfo = [NotificationCenter._$key$_: notification]
+        let userInfo = [NotificationCenter.typedNotificationKey: notification]
         post(name: notification.name, object: object, userInfo: userInfo)
     }
 }
