@@ -1,5 +1,9 @@
 # DrawerKit
 
+## v. 0.3.2
+
+- Fixes an issue with typed notifications.
+
 ## v. 0.3.1
 
 - Better support for concurrent animations: in previous versions, the actual presenting view controller wasn't necessarily what you'd think is the presenting view controller, which caused problems when trying to animate its view concurrently with the drawer animation. Now, although it's still the case that the presenting view controller may not be the view controller you think it is, the view controller that you think is the presenting view controller and which you add conformance to `DrawerAnimationParticipant` is the view controller whose animation closures get invoked.

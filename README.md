@@ -36,7 +36,7 @@ Please do play with the demo app and try different configuration options because
 	</table>
 </p>
 
-## What's new in version 0.3.1?
+## What's new in version 0.3.2?
 
 - Better support for concurrent animations: in previous versions, the actual presenting view
 controller wasn't necessarily what you'd think is the presenting view controller, which caused
