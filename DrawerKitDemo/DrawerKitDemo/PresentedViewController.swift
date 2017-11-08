@@ -2,9 +2,24 @@ import UIKit
 import DrawerKit
 
 class PresentedViewController: UIViewController {
+    private var notificationToken: NotificationToken!
+
     @IBOutlet weak var presentedView: PresentedView!
     @IBAction func dismissButtonTapped() {
         dismiss(animated: true)
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.notificationToken = NotificationCenter.default.addObserver(name: DrawerNotification.drawerExteriorTapped.name) {
+            (notification: DrawerNotification, object: Any?) in
+            switch notification {
+            case .drawerExteriorTapped:
+                print("drawerExteriorTapped")
+            default:
+                break
+            }
+        }
     }
 }
 
@@ -23,8 +38,8 @@ extension PresentedViewController: DrawerPresentable {
 
 extension PresentedViewController: DrawerAnimationParticipant {
     public var drawerAnimationActions: DrawerAnimationActions {
-        var actions = DrawerAnimationActions()
-        actions.prepare = { [weak self] info in
+        let prepareAction: DrawerAnimationActions.PrepareHandler = {
+            [weak self] info in
             switch (info.startDrawerState, info.endDrawerState) {
             case (.collapsed, .partiallyExpanded):
                 self?.presentedView.prepareCollapsedToPartiallyExpanded()
@@ -42,7 +57,9 @@ extension PresentedViewController: DrawerAnimationParticipant {
                 break
             }
         }
-        actions.animateAlong = { [weak self] info in
+
+        let animateAlongAction: DrawerAnimationActions.AnimateAlongHandler = {
+            [weak self] info in
             switch (info.startDrawerState, info.endDrawerState) {
             case (.collapsed, .partiallyExpanded):
                 self?.presentedView.animateAlongCollapsedToPartiallyExpanded()
@@ -60,7 +77,9 @@ extension PresentedViewController: DrawerAnimationParticipant {
                 break
             }
         }
-        actions.cleanup = { [weak self] info in
+
+        let cleanupAction: DrawerAnimationActions.CleanupHandler = {
+            [weak self] info in
             switch (info.startDrawerState, info.endDrawerState) {
             case (.collapsed, .partiallyExpanded):
                 self?.presentedView.cleanupCollapsedToPartiallyExpanded()
@@ -78,6 +97,9 @@ extension PresentedViewController: DrawerAnimationParticipant {
                 break
             }
         }
-        return actions
+
+        return DrawerAnimationActions(prepare: prepareAction,
+                                      animateAlong: animateAlongAction,
+                                      cleanup: cleanupAction)
     }
 }

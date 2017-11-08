@@ -5,6 +5,7 @@ extension PresentationController {
         guard let tapGesture = drawerFullExpansionTapGR else { return }
         let tapY = tapGesture.location(in: presentedView).y
         guard tapY < drawerPartialHeight else { return }
+        NotificationCenter.default.post(notification: DrawerNotification.drawerInteriorTapped)
         animateTransition(to: .fullyExpanded)
     }
 
@@ -12,6 +13,7 @@ extension PresentationController {
         guard let tapGesture = drawerDismissalTapGR else { return }
         let tapY = tapGesture.location(in: containerView).y
         guard tapY < currentDrawerY else { return }
+        NotificationCenter.default.post(notification: DrawerNotification.drawerExteriorTapped)
         tapGesture.isEnabled = false
         presentedViewController.dismiss(animated: true)
     }
