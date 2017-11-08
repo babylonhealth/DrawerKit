@@ -43,6 +43,7 @@ extension PresentationController {
     }
 
     override func presentationTransitionWillBegin() {
+        presentedViewController.view.layoutIfNeeded()
         containerView?.backgroundColor = .clear
         setupDrawerFullExpansionTapRecogniser()
         setupDrawerDismissalTapRecogniser()
