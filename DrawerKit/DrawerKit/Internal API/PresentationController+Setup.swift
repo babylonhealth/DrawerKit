@@ -91,7 +91,7 @@ extension PresentationController {
             handleView.widthAnchor.constraint(equalToConstant: handleConfig.size.width),
             handleView.heightAnchor.constraint(equalToConstant: handleConfig.size.height),
             handleView.centerXAnchor.constraint(equalTo: presentedView.centerXAnchor),
-            handleView.topAnchor.constraint(equalTo: presentedView.topAnchor, constant: 8)
+            handleView.topAnchor.constraint(equalTo: presentedView.topAnchor, constant: handleConfig.top)
             ])
     }
 
