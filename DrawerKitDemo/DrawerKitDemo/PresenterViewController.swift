@@ -42,6 +42,7 @@ private extension PresenterViewController {
         handleViewConfiguration.autoAnimatesDimming = true
         handleViewConfiguration.backgroundColor = .gray
         handleViewConfiguration.size = CGSize(width: 40, height: 6)
+        handleViewConfiguration.top = 8
         handleViewConfiguration.cornerRadius = .automatic
         configuration.handleViewConfiguration = handleViewConfiguration
 
