@@ -1,5 +1,9 @@
 # DrawerKit
 
+## v. 0.3.4
+
+- Adds a new configuration parameter for the handle view, namely, its vertical position with respect to the presented view's frame.
+
 ## v. 0.3.3
 
 - Fixes an issue where the presented view controller's view might not be laid out properly by the time the drawer's height is requested from it.
