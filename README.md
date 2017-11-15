@@ -157,6 +157,7 @@ extension PresenterViewController {
         handleViewConfiguration.autoAnimatesDimming = true
         handleViewConfiguration.backgroundColor = .gray
         handleViewConfiguration.size = CGSize(width: 40, height: 6)
+        handleViewConfiguration.top = 8
         handleViewConfiguration.cornerRadius = .automatic
         configuration.handleViewConfiguration = handleViewConfiguration
 
@@ -322,6 +323,12 @@ public struct HandleViewConfiguration {
     /// The handle view's bounding rectangle's size. The default value is
     /// `CGSize(width: 40, height: 6)`.
     public var size: CGSize
+
+    /// The handle view's vertical distance from the top of the drawer. In other words,
+    /// the constant to be used when setting up the layout constraint
+    /// `handleView.topAnchor.constraint(equalTo: presentedView.topAnchor, constant: top)`
+    /// The default value is 8 points.
+    public var top: CGFloat
 
     /// The handle view's corner radius. The default is `CornerRadius.automatic`, which
     /// results in a corner radius equal to half the handle view's height.
