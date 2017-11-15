@@ -36,6 +36,11 @@ Please do play with the demo app and try different configuration options because
 	</table>
 </p>
 
+## What's new in version 0.3.4?
+
+- Adds a new configuration parameter for the handle view, namely, its vertical position with
+respect to the presented view's frame.
+
 ## What's new in version 0.3.3?
 
 - Better support for concurrent animations: in previous versions, the actual presenting view

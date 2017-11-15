@@ -34,6 +34,12 @@ public struct HandleViewConfiguration {
     /// `CGSize(width: 40, height: 6)`.
     public var size: CGSize
 
+    /// The handle view's vertical distance from the top of the drawer. In other words,
+    /// the constant to be used when setting up the layout constraint
+    /// `handleView.topAnchor.constraint(equalTo: presentedView.topAnchor, constant: top)`
+    /// The default value is 8 points.
+    public var top: CGFloat
+
     /// The handle view's corner radius. The default is `CornerRadius.automatic`, which
     /// results in a corner radius equal to half the handle view's height.
     public var cornerRadius: CornerRadius
@@ -41,6 +47,7 @@ public struct HandleViewConfiguration {
     public init(autoAnimatesDimming: Bool = true,
                 backgroundColor: UIColor = .gray,
                 size: CGSize = CGSize(width: 40, height: 6),
+                top: CGFloat = 8,
                 cornerRadius: CornerRadius = .automatic) {
         self.autoAnimatesDimming = autoAnimatesDimming
 
@@ -57,6 +64,8 @@ public struct HandleViewConfiguration {
             self.size = validatedSize
         }
 
+        self.top = max(0, top)
+
         switch cornerRadius {
         case .automatic:
             self.cornerRadius = .automatic
@@ -70,6 +79,7 @@ extension HandleViewConfiguration: Equatable {
     public static func ==(lhs: HandleViewConfiguration, rhs: HandleViewConfiguration) -> Bool {
         return lhs.autoAnimatesDimming == rhs.autoAnimatesDimming
             && lhs.backgroundColor == rhs.backgroundColor
+            && lhs.top == rhs.top
             && lhs.size == rhs.size
             && lhs.cornerRadius == rhs.cornerRadius
     }
