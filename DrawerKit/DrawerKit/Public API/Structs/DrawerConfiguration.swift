@@ -5,14 +5,14 @@ import UIKit
 public struct DrawerConfiguration {
     public enum FullExpansionBehaviour: Equatable {
         case coversFullScreen
-        case dosNotCoverStatusBar
+        case doesNotCoverStatusBar
         case leavesCustomGap(gap: CGFloat)
 
         var drawerFullY: CGFloat {
             switch self {
             case .coversFullScreen:
                 return 0
-            case .dosNotCoverStatusBar:
+            case .doesNotCoverStatusBar:
                 return DrawerGeometry.statusBarHeight
             case let .leavesCustomGap(gap):
                 return gap
@@ -23,7 +23,7 @@ public struct DrawerConfiguration {
                               rhs: DrawerConfiguration.FullExpansionBehaviour) -> Bool {
             switch (lhs, rhs) {
             case (.coversFullScreen, .coversFullScreen),
-                 (.dosNotCoverStatusBar, .dosNotCoverStatusBar):
+                 (.doesNotCoverStatusBar, .doesNotCoverStatusBar):
                 return true
             case let (.leavesCustomGap(lhsGap), .leavesCustomGap(rhsGap)):
                 return lhsGap == rhsGap
@@ -156,7 +156,7 @@ public struct DrawerConfiguration {
         self.durationIsProportionalToDistanceTraveled = durationIsProportionalToDistanceTraveled
         self.timingCurveProvider = timingCurveProvider
         switch fullExpansionBehaviour {
-        case .coversFullScreen, .dosNotCoverStatusBar:
+        case .coversFullScreen, .doesNotCoverStatusBar:
             self.fullExpansionBehaviour = fullExpansionBehaviour
         case let .leavesCustomGap(gap):
             let validatedGap = max(0, gap)
