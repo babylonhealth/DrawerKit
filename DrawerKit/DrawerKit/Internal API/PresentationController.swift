@@ -21,7 +21,7 @@ final class PresentationController: UIPresentationController {
          inDebugMode: Bool = false) {
         self.configuration = configuration
         self.inDebugMode = inDebugMode
-        self.handleView = (configuration.hasHandleView ? UIView() : nil)
+        self.handleView = (configuration.handleViewConfiguration != nil ? UIView() : nil)
         self.presentingDrawerAnimationActions = presentingDrawerAnimationActions
         self.presentedDrawerAnimationActions = presentedDrawerAnimationActions
         super.init(presentedViewController: presentedVC, presenting: presentingVC)

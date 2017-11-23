@@ -67,11 +67,7 @@ extension DrawerAnimationInfo {
         return configuration.numberOfTapsForOutsideDrawerDismissal
     }
 
-    public var hasHandleView: Bool {
-        return configuration.hasHandleView
-    }
-
-    public var handleViewConfiguration: HandleViewConfiguration {
+    public var handleViewConfiguration: HandleViewConfiguration? {
         return configuration.handleViewConfiguration
     }
 }
