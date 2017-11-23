@@ -70,10 +70,10 @@ extension PresentationController {
     func setupHandleView() {
         guard
             let presentedView = self.presentedView,
-            let handleView = self.handleView
+            let handleView = self.handleView,
+            let handleConfig = configuration.handleViewConfiguration
             else { return }
 
-        let handleConfig = configuration.handleViewConfiguration
         handleView.translatesAutoresizingMaskIntoConstraints = false
         handleView.backgroundColor = handleConfig.backgroundColor
         handleView.layer.masksToBounds = true
