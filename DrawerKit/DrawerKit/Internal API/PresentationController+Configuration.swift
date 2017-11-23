@@ -61,11 +61,7 @@ extension PresentationController {
         return configuration.numberOfTapsForOutsideDrawerDismissal
     }
 
-    var hasHandleView: Bool {
-        return configuration.hasHandleView
-    }
-
-    var handleViewConfiguration: HandleViewConfiguration {
+    var handleViewConfiguration: HandleViewConfiguration? {
         return configuration.handleViewConfiguration
     }
 }

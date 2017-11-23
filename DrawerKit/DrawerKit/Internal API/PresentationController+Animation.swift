@@ -38,7 +38,7 @@ extension PresentationController {
                                              endingPositionY < startingPositionY)
 
         let endingHandleViewAlpha = handleViewAlpha(at: endingState)
-        let autoAnimatesDimming = configuration.handleViewConfiguration.autoAnimatesDimming
+        let autoAnimatesDimming = configuration.handleViewConfiguration?.autoAnimatesDimming ?? false
         if autoAnimatesDimming { self.handleView?.alpha = handleViewAlpha(at: startingState) }
 
         let presentingAnimationActions = self.presentingDrawerAnimationActions
