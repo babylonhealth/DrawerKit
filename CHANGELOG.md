@@ -1,5 +1,11 @@
 # DrawerKit
 
+## v. 0.4.0
+
+- Drawers can now have borders and shadows, all configurable.
+- Fixed a bug by which dragging the drawer all the way to the top would not execute the animation completion block.
+- Removed the configuration parameter `hasHandleView` since it can be inferred from the value of `handleViewConfiguration`, which is now an optional.
+
 ## v. 0.3.4
 
 - Adds a new configuration parameter for the handle view, namely, its vertical position with respect to the presented view's frame.
