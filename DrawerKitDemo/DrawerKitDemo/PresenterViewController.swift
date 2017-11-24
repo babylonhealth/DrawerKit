@@ -46,6 +46,12 @@ private extension PresenterViewController {
         handleViewConfiguration.cornerRadius = .automatic
         configuration.handleViewConfiguration = handleViewConfiguration
 
+        let drawerShadowConfiguration = DrawerShadowConfiguration(shadowOpacity: 0.25,
+                                                                  shadowRadius: 4,
+                                                                  shadowOffset: .zero,
+                                                                  shadowColor: .black)
+        configuration.drawerShadowConfiguration = drawerShadowConfiguration
+
         drawerDisplayController = DrawerDisplayController(presentingViewController: self,
                                                           presentedViewController: vc,
                                                           configuration: configuration,

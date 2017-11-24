@@ -64,4 +64,8 @@ extension PresentationController {
     var handleViewConfiguration: HandleViewConfiguration? {
         return configuration.handleViewConfiguration
     }
+
+    var drawerShadowConfiguration: DrawerShadowConfiguration? {
+        return configuration.drawerShadowConfiguration
+    }
 }

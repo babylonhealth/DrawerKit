@@ -79,8 +79,7 @@ extension PresentationController {
             let radius = min(max(newValue, 0), maximumCornerRadius)
             presentedView?.layer.cornerRadius = radius
             if #available(iOS 11.0, *) {
-                presentedView?.layer.maskedCorners =
-                    [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+                presentedView?.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             } else {
                 presentedView?.roundCorners([.topLeft, .topRight], radius: radius)
             }

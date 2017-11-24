@@ -133,6 +133,10 @@ public struct DrawerConfiguration {
     /// `HandleViewConfiguration()`.
     public var handleViewConfiguration: HandleViewConfiguration?
     
+    /// The configuration options for the drawer's shadow, should it be shown. Set this
+    /// property to `nil` so as not to have a drawer shadow. The default value is `nil`.
+    public var drawerShadowConfiguration: DrawerShadowConfiguration?
+
     public init(totalDurationInSeconds: TimeInterval = 0.4,
                 durationIsProportionalToDistanceTraveled: Bool = false,
                 timingCurveProvider: UITimingCurveProvider = UISpringTimingParameters(),
@@ -148,7 +152,8 @@ public struct DrawerConfiguration {
                 upperMarkGap: CGFloat = 40,
                 lowerMarkGap: CGFloat = 40,
                 maximumCornerRadius: CGFloat = 15,
-                handleViewConfiguration: HandleViewConfiguration? = HandleViewConfiguration()) {
+                handleViewConfiguration: HandleViewConfiguration? = HandleViewConfiguration(),
+                drawerShadowConfiguration: DrawerShadowConfiguration? = nil) {
         self.totalDurationInSeconds = (totalDurationInSeconds > 0 ? totalDurationInSeconds : 0.4)
         self.durationIsProportionalToDistanceTraveled = durationIsProportionalToDistanceTraveled
         self.timingCurveProvider = timingCurveProvider
@@ -172,6 +177,7 @@ public struct DrawerConfiguration {
         self.lowerMarkGap = max(0, lowerMarkGap)
         self.maximumCornerRadius = max(0, maximumCornerRadius)
         self.handleViewConfiguration = handleViewConfiguration
+        self.drawerShadowConfiguration = drawerShadowConfiguration
     }
 }
 
@@ -193,5 +199,6 @@ extension DrawerConfiguration: Equatable {
             && lhs.lowerMarkGap == rhs.lowerMarkGap
             && lhs.maximumCornerRadius == rhs.maximumCornerRadius
             && lhs.handleViewConfiguration == rhs.handleViewConfiguration
+            && lhs.drawerShadowConfiguration == rhs.drawerShadowConfiguration
     }
 }
