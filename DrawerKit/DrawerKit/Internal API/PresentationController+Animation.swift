@@ -2,8 +2,6 @@ import UIKit
 
 extension PresentationController {
     func animateTransition(to endingState: DrawerState) {
-        guard endingState != currentDrawerState else { return }
-
         let startingState = currentDrawerState
 
         let maxCornerRadius = maximumCornerRadius
