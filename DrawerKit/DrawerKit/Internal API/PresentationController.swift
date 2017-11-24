@@ -50,6 +50,7 @@ extension PresentationController {
         setupDrawerDragRecogniser()
         setupDebugHeightMarks()
         setupHandleView()
+        setupDrawerBorder()
         setupDrawerShadow()
         addCornerRadiusAnimationEnding(at: .partiallyExpanded)
         enableDrawerFullExpansionTapRecogniser(enabled: false)

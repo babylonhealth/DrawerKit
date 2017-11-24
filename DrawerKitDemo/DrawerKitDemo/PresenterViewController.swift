@@ -46,6 +46,11 @@ private extension PresenterViewController {
         handleViewConfiguration.cornerRadius = .automatic
         configuration.handleViewConfiguration = handleViewConfiguration
 
+        let borderColor = UIColor(red: 205.0/255.0, green: 206.0/255.0, blue: 210.0/255.0, alpha: 1)
+        let drawerBorderConfiguration = DrawerBorderConfiguration(borderThickness: 0.5,
+                                                                  borderColor: borderColor)
+        configuration.drawerBorderConfiguration = drawerBorderConfiguration
+
         let drawerShadowConfiguration = DrawerShadowConfiguration(shadowOpacity: 0.25,
                                                                   shadowRadius: 4,
                                                                   shadowOffset: .zero,

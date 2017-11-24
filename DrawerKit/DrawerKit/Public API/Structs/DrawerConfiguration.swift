@@ -132,7 +132,11 @@ public struct DrawerConfiguration {
     /// property to `nil` to hide the handle view. The default value is
     /// `HandleViewConfiguration()`.
     public var handleViewConfiguration: HandleViewConfiguration?
-    
+
+    /// The configuration options for the drawer's border, should it be shown. Set this
+    /// property to `nil` so as not to have a drawer border. The default value is `nil`.
+    public var drawerBorderConfiguration: DrawerBorderConfiguration?
+
     /// The configuration options for the drawer's shadow, should it be shown. Set this
     /// property to `nil` so as not to have a drawer shadow. The default value is `nil`.
     public var drawerShadowConfiguration: DrawerShadowConfiguration?
@@ -153,6 +157,7 @@ public struct DrawerConfiguration {
                 lowerMarkGap: CGFloat = 40,
                 maximumCornerRadius: CGFloat = 15,
                 handleViewConfiguration: HandleViewConfiguration? = HandleViewConfiguration(),
+                drawerBorderConfiguration: DrawerBorderConfiguration? = nil,
                 drawerShadowConfiguration: DrawerShadowConfiguration? = nil) {
         self.totalDurationInSeconds = (totalDurationInSeconds > 0 ? totalDurationInSeconds : 0.4)
         self.durationIsProportionalToDistanceTraveled = durationIsProportionalToDistanceTraveled
@@ -177,6 +182,7 @@ public struct DrawerConfiguration {
         self.lowerMarkGap = max(0, lowerMarkGap)
         self.maximumCornerRadius = max(0, maximumCornerRadius)
         self.handleViewConfiguration = handleViewConfiguration
+        self.drawerBorderConfiguration = drawerBorderConfiguration
         self.drawerShadowConfiguration = drawerShadowConfiguration
     }
 }
@@ -199,6 +205,7 @@ extension DrawerConfiguration: Equatable {
             && lhs.lowerMarkGap == rhs.lowerMarkGap
             && lhs.maximumCornerRadius == rhs.maximumCornerRadius
             && lhs.handleViewConfiguration == rhs.handleViewConfiguration
+            && lhs.drawerBorderConfiguration == rhs.drawerBorderConfiguration
             && lhs.drawerShadowConfiguration == rhs.drawerShadowConfiguration
     }
 }
