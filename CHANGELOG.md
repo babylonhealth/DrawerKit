@@ -5,7 +5,7 @@
 - Drawers can now have borders and shadows, all configurable.
 - Fixed a bug by which dragging the drawer all the way to the top would not execute the animation completion block.
 - Removed the configuration parameter `hasHandleView` since it can be inferred from the value of `handleViewConfiguration`, which is now an optional.
-- Fixed incorrect spelling in an enumeration case (`DrawerConfigurationFullExpansionBehaviour.doesNotCoverStatusBar`)
+- Fixed incorrect spelling in an enumeration case (`DrawerConfiguration.FullExpansionBehaviour.doesNotCoverStatusBar`)
 
 ## v. 0.3.4
 
