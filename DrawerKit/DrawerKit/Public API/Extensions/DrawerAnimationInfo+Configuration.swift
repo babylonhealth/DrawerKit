@@ -70,4 +70,8 @@ extension DrawerAnimationInfo {
     public var handleViewConfiguration: HandleViewConfiguration? {
         return configuration.handleViewConfiguration
     }
+
+    public var drawerShadowConfiguration: DrawerShadowConfiguration? {
+        return configuration.drawerShadowConfiguration
+    }
 }
