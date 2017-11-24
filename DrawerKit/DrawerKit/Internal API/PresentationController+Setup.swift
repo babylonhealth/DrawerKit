@@ -67,6 +67,13 @@ extension PresentationController {
 }
 
 extension PresentationController {
+    func setupDrawerBorder() {
+        if let drawerBorderConfig = configuration.drawerBorderConfiguration {
+            presentedView?.layer.borderWidth = drawerBorderConfig.borderThickness
+            presentedView?.layer.borderColor = drawerBorderConfig.borderColor?.cgColor
+        }
+    }
+
     func setupDrawerShadow() {
         if let drawerShadowConfig = configuration.drawerShadowConfiguration {
             presentedView?.layer.shadowColor = drawerShadowConfig.shadowColor?.cgColor

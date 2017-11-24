@@ -71,6 +71,10 @@ extension DrawerAnimationInfo {
         return configuration.handleViewConfiguration
     }
 
+    public var drawerBorderConfiguration: DrawerBorderConfiguration? {
+        return configuration.drawerBorderConfiguration
+    }
+
     public var drawerShadowConfiguration: DrawerShadowConfiguration? {
         return configuration.drawerShadowConfiguration
     }
