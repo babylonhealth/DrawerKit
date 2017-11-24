@@ -40,6 +40,7 @@ Please do play with the demo app and try different configuration options because
 
 - Drawers can now have borders and shadows, all configurable.
 - Fixed a bug by which dragging the drawer all the way to the top would not execute the animation completion block.
+- Fixed a reported [issue](https://github.com/Babylonpartners/DrawerKit/issues/31) by which safe area insets were misbehaving.
 - Removed the configuration parameter `hasHandleView` since it can be inferred from the value of `handleViewConfiguration`, which is now an optional.
 - Fixed incorrect spelling in an enumeration case (`DrawerConfiguration.FullExpansionBehaviour.doesNotCoverStatusBar`)
 
