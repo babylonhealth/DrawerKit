@@ -87,6 +87,7 @@ extension PresentationController {
         removeDrawerDragRecogniser()
         removeHandleView()
         presentedViewController.removeFromParentViewController()
+        intermediate.view.removeFromSuperview()
     }
 
     override func containerViewWillLayoutSubviews() {
