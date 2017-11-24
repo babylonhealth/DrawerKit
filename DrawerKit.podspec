@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name          = "DrawerKit"
-  s.version       = "0.3.4"
+  s.version       = "0.4.0"
   s.summary       = "An implementation of an interactive and animated view, similar to what you see in Apple Maps"
 
   s.description   = <<-DESC
