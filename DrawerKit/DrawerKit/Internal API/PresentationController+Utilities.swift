@@ -34,7 +34,6 @@ extension DrawerState {
     }
 }
 
-// For versions of iOS lower than  11.0
 extension UIView {
     func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: self.bounds,
