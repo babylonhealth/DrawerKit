@@ -36,6 +36,10 @@ Please do play with the demo app and try different configuration options because
 	</table>
 </p>
 
+## What's new in version 0.4.1?
+
+- Fixed a bug whereby the drawer's shadow might not respect the round nature of the drawer's upper corners.
+
 ## What's new in version 0.4.0?
 
 - Drawers can now have borders and shadows, all configurable.
