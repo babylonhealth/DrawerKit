@@ -46,16 +46,16 @@ private extension PresenterViewController {
         handleViewConfiguration.cornerRadius = .automatic
         configuration.handleViewConfiguration = handleViewConfiguration
 
-        let borderColor = UIColor(red: 205.0/255.0, green: 206.0/255.0, blue: 210.0/255.0, alpha: 1)
+        let borderColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
         let drawerBorderConfiguration = DrawerBorderConfiguration(borderThickness: 0.5,
                                                                   borderColor: borderColor)
-        configuration.drawerBorderConfiguration = drawerBorderConfiguration
+        configuration.drawerBorderConfiguration = drawerBorderConfiguration // default is nil
 
-        let drawerShadowConfiguration = DrawerShadowConfiguration(shadowOpacity: 0.25,
-                                                                  shadowRadius: 4,
+        let drawerShadowConfiguration = DrawerShadowConfiguration(shadowOpacity: 0.75,
+                                                                  shadowRadius: 10,
                                                                   shadowOffset: .zero,
-                                                                  shadowColor: .black)
-        configuration.drawerShadowConfiguration = drawerShadowConfiguration
+                                                                  shadowColor: .red)
+        configuration.drawerShadowConfiguration = drawerShadowConfiguration // default is nil
 
         drawerDisplayController = DrawerDisplayController(presentingViewController: self,
                                                           presentedViewController: vc,
