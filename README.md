@@ -36,63 +36,13 @@ Please do play with the demo app and try different configuration options because
 	</table>
 </p>
 
-## What's new in version 0.3.4?
+## What's new in version 0.4.0?
 
-- Adds a new configuration parameter for the handle view, namely, its vertical position with
-respect to the presented view's frame.
-
-## What's new in version 0.3.3?
-
-- Better support for concurrent animations: in previous versions, the actual presenting view
-controller wasn't necessarily what you'd think is the presenting view controller, which caused
-problems when trying to animate its view concurrently with the drawer animation. Now, although
-it's still the case that the presenting view controller may not be the view controller you think
-it is, the view controller that you think is the presenting view controller and which you add
-conformance to `DrawerAnimationParticipant` is the view controller whose animation closures get invoked.
-
-- Notifications: it's now possible to subscribe to notifications indicating when the drawer is
-tapped (both in its interior and in its exterior), when drawer transitions are about to start,
-and when they're completed.
-
-- A couple of small but important bug fixes.
-
-## What's new in version 0.3.0?
-
-Please note that v. `0.3.0` is not backwards-compatible with v. 0.2.
-
-- *Concurrent animations*: it's now possible for either or both view controllers (presenting and
-presented) to participate in the drawer animation so that their views can be animated while the
-drawer is moving up and down.
-
-- *Automatic display of a "handle view"*: it's now possible to have the drawer add a "gray bar" near
-its top. This bar, referred to as the "handle view", can be customised in its size, background color,
-and corner radius, and can be automatically dimmed as the drawer moves towards its collapsed or
-fully-expanded states. Or you can turn that off and throw your own.
-
-- *Support for not expanding to cover the entire screen*. It's now possible to select the behaviour of
-the drawer when it fully-expands itself. You may choose from covering the entire screen (the default),
-not covering the status bar, and leaving a gap at the top, of any desired size.
-
-- Partial transitions (collapsed to partially-expanded and partially-expanded to fully-expanded, and
-vice-versa) can now have durations that are equal to, or fractions of, the duration for a full-size
-transition (collapsed to fully-expanded, and vice-versa). This allows for transitions to have the same
-speed, if desired.
-
-## What's new in version 0.2.0?
-
-Please note that v. `0.2.0` is not backwards-compatible with v. 0.1.1.
-
-- The presenting view controller is no longer required to conform to `DrawerPresenting`. In fact,
-`DrawerPresenting` no longer exists. Instead, a new protocol was created to take its place,
-`DrawerCoordinating`, so that *any* object can conform to it and be responsible for vending the
-drawer display controller. Of course, the presenting view controller can still fulfil that
-responsibility but it no longer must do so.
-
-- Added **tap-to-expand**. Now, if the corresponding configuration boolean is turned on, tapping
-on the drawer when it's in its partially expanded state will trigger it to transition to its
-fully expanded state.
-
-- Added some under-the-hood improvements in preparation for adding upcoming new features.
+- Drawers can now have borders and shadows, all configurable.
+- Fixed a bug by which dragging the drawer all the way to the top would not execute the animation completion block.
+- Fixed a reported [issue](https://github.com/Babylonpartners/DrawerKit/issues/31) by which safe area insets were misbehaving.
+- Removed the configuration parameter `hasHandleView` since it can be inferred from the value of `handleViewConfiguration`, which is now an optional.
+- Fixed incorrect spelling in an enumeration case (`DrawerConfiguration.FullExpansionBehaviour.doesNotCoverStatusBar`)
 
 ## What version of iOS does it require or support?
 
@@ -152,7 +102,7 @@ extension PresenterViewController {
         configuration.upperMarkGap = 100 // default is 40
         configuration.lowerMarkGap =  80 // default is 40
         configuration.maximumCornerRadius = 15
-        configuration.hasHandleView = true
+
         var handleViewConfiguration = HandleViewConfiguration()
         handleViewConfiguration.autoAnimatesDimming = true
         handleViewConfiguration.backgroundColor = .gray
@@ -160,6 +110,17 @@ extension PresenterViewController {
         handleViewConfiguration.top = 8
         handleViewConfiguration.cornerRadius = .automatic
         configuration.handleViewConfiguration = handleViewConfiguration
+
+        let borderColor = UIColor(red: 205.0/255.0, green: 206.0/255.0, blue: 210.0/255.0, alpha: 1)
+        let drawerBorderConfiguration = DrawerBorderConfiguration(borderThickness: 0.5,
+                                                                  borderColor: borderColor)
+        configuration.drawerBorderConfiguration = drawerBorderConfiguration
+
+        let drawerShadowConfiguration = DrawerShadowConfiguration(shadowOpacity: 0.25,
+                                                                  shadowRadius: 4,
+                                                                  shadowOffset: .zero,
+                                                                  shadowColor: .black)
+        configuration.drawerShadowConfiguration = drawerShadowConfiguration
 
         drawerDisplayController = DrawerDisplayController(presentingViewController: self,
                                                           presentedViewController: vc,
@@ -293,12 +254,18 @@ __DrawerKit__ has a number of configurable properties, conveniently collected to
     /// corner animations from taking place. The default value is 15 points.
     public var maximumCornerRadius: CGFloat
 
-    /// Whether or not to automatically add a handle view to the presented content.
-    /// The default is `true`.
-    public var hasHandleView: Bool
+    /// The configuration options for the handle view, should it be shown. Set this
+    /// property to `nil` to hide the handle view. The default value is
+    /// `HandleViewConfiguration()`.
+    public var handleViewConfiguration: HandleViewConfiguration?
 
-    /// The configuration options for the handle view, should it be shown.
-    public var handleViewConfiguration: HandleViewConfiguration
+    /// The configuration options for the drawer's border, should it be shown. Set this
+    /// property to `nil` so as not to have a drawer border. The default value is `nil`.
+    public var drawerBorderConfiguration: DrawerBorderConfiguration?
+
+    /// The configuration options for the drawer's shadow, should it be shown. Set this
+    /// property to `nil` so as not to have a drawer shadow. The default value is `nil`.
+    public var drawerShadowConfiguration: DrawerShadowConfiguration?
 ```
 
 ```swift
@@ -333,6 +300,46 @@ public struct HandleViewConfiguration {
     /// The handle view's corner radius. The default is `CornerRadius.automatic`, which
     /// results in a corner radius equal to half the handle view's height.
     public var cornerRadius: CornerRadius
+}
+```
+
+```swift
+public struct DrawerBorderConfiguration {
+    /// The drawer's layer’s border thickness. The default value is 0,
+    /// so effectively the default is not to have any border at all.
+    public let borderThickness: CGFloat
+
+    /// The drawer's layer’s border's color. The default value is `nil`, so
+    /// effectively the default is not to have any border at all.
+    public let borderColor: UIColor?
+
+    public init(borderThickness: CGFloat = 0, borderColor: UIColor? = nil)
+}
+```
+
+```swift
+public struct DrawerShadowConfiguration {
+    /// The drawer's layer’s shadow's opacity. The default value is 0, so
+    /// effectively the default is not to have any shadow at all.
+    public let shadowOpacity: CGFloat
+
+    /// The blur radius (in points) used to render the drawer's layer’s shadow.
+    /// The default value is 0, so effectively the default is not to have any
+    /// shadow at all.
+    public let shadowRadius: CGFloat
+
+    /// The offset (in points) of the drawer's layer’s shadow. The default value is
+    /// `CGSize.zero`, so effectively the default is not to have any shadow at all.
+    public let shadowOffset: CGSize
+
+    /// The drawer's layer’s shadow's color. The default value is `nil`, so
+    /// effectively the default is not to have any shadow at all.
+    public let shadowColor: UIColor?
+
+    public init(shadowOpacity: CGFloat = 0,
+                shadowRadius: CGFloat = 0,
+                shadowOffset: CGSize = .zero,
+                shadowColor: UIColor? = nil)
 }
 ```
 
