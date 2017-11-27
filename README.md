@@ -24,6 +24,11 @@ Please do play with the demo app and try different configuration options because
 		<tr>
 			<td>
 				<a href="https://github.com/Babylonpartners/DrawerKit/">
+					<img src="drawers1.gif" alt="DrawerKit" width="288" height="514" />
+				</a>
+			</td>
+			<td>
+				<a href="https://github.com/Babylonpartners/DrawerKit/">
 					<img src="drawers2.gif" alt="DrawerKit" width="288" height="514" />
 				</a>
 			</td>
