@@ -24,6 +24,11 @@ Please do play with the demo app and try different configuration options because
 		<tr>
 			<td>
 				<a href="https://github.com/Babylonpartners/DrawerKit/">
+					<img src="drawers1.gif" alt="DrawerKit" width="288" height="514" />
+				</a>
+			</td>
+			<td>
+				<a href="https://github.com/Babylonpartners/DrawerKit/">
 					<img src="drawers2.gif" alt="DrawerKit" width="288" height="514" />
 				</a>
 			</td>
@@ -35,6 +40,12 @@ Please do play with the demo app and try different configuration options because
 		</tr>
 	</table>
 </p>
+
+## What's new in version 0.4.1?
+
+- Reverses the fix for the [issue](https://github.com/Babylonpartners/DrawerKit/issues/31) about safe areas.
+The fix broke other things and the issue will need to be re-opened.
+- Changes the minimum deployment target to 10.2.
 
 ## What's new in version 0.4.0?
 

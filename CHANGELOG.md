@@ -1,5 +1,10 @@
 # DrawerKit
 
+## v. 0.4.1
+
+- Reverses the fix for the [issue](https://github.com/Babylonpartners/DrawerKit/issues/31) about safe areas. The fix broke other things and the issue will need to be re-opened.
+- Changes the minimum deployment target to 10.2.
+
 ## v. 0.4.0
 
 - Drawers can now have borders and shadows, all configurable.
