@@ -21,11 +21,11 @@ private extension PresenterViewController {
         // what you need to configure differently. They're all listed here just so you
         // can see what can be configured. The values listed are the default ones,
         // except where indicated otherwise.
-        configuration.totalDurationInSeconds = 3 // default is 0.4
+        configuration.totalDurationInSeconds = 0.4
         configuration.durationIsProportionalToDistanceTraveled = false
         // default is UISpringTimingParameters()
         configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.8)
-        configuration.fullExpansionBehaviour = .leavesCustomGap(gap: 100) // default is .coversFullScreen
+        configuration.fullExpansionBehaviour = .coversFullScreen
         configuration.supportsPartialExpansion = true
         configuration.dismissesInStages = true
         configuration.isDrawerDraggable = true
