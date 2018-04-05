@@ -11,7 +11,12 @@ final class PresentationController: UIPresentationController {
     var drawerFullExpansionTapGR: UITapGestureRecognizer?
     var drawerDismissalTapGR: UITapGestureRecognizer?
     var drawerDragGR: UIPanGestureRecognizer?
-    var lastDrawerState: DrawerState = .collapsed
+    var lastDrawerState: DrawerState {
+        didSet {
+            drawerDismissalTapGR?.isEnabled = lastDrawerState == .partiallyExpanded
+            drawerFullExpansionTapGR?.isEnabled = lastDrawerState == .partiallyExpanded
+        }
+    }
 
     init(presentingVC: UIViewController?,
          presentingDrawerAnimationActions: DrawerAnimationActions,
@@ -24,6 +29,7 @@ final class PresentationController: UIPresentationController {
         self.handleView = (configuration.handleViewConfiguration != nil ? UIView() : nil)
         self.presentingDrawerAnimationActions = presentingDrawerAnimationActions
         self.presentedDrawerAnimationActions = presentedDrawerAnimationActions
+        self.lastDrawerState = configuration.supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded
         super.init(presentedViewController: presentedVC, presenting: presentingVC)
     }
 }
@@ -33,9 +39,8 @@ extension PresentationController {
         var frame: CGRect = .zero
         frame.size = size(forChildContentContainer: presentedViewController,
                           withParentContainerSize: containerViewSize)
-        let state: DrawerState = (supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
         let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
-        frame.origin.y = GeometryEvaluator.drawerPositionY(for: state,
+        frame.origin.y = GeometryEvaluator.drawerPositionY(for: lastDrawerState,
                                                            drawerPartialHeight: drawerPartialHeight,
                                                            containerViewHeight: containerViewHeight,
                                                            drawerFullY: drawerFullY)
