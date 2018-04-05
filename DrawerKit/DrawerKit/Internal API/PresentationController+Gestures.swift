@@ -23,23 +23,15 @@ extension PresentationController {
 
         switch panGesture.state {
         case .began:
-            lastDrawerState = GeometryEvaluator.drawerState(for: currentDrawerY,
-                                                            drawerPartialHeight: drawerPartialHeight,
-                                                            containerViewHeight: containerViewHeight,
-                                                            configuration: configuration,
-                                                            clampToNearest: true)
+            break
 
         case .changed:
-            lastDrawerState = GeometryEvaluator.drawerState(for: currentDrawerY,
-                                                            drawerPartialHeight: drawerPartialHeight,
-                                                            containerViewHeight: containerViewHeight,
-                                                            configuration: configuration,
-                                                            clampToNearest: true)
             currentDrawerY += panGesture.translation(in: view).y
+            targetDrawerState = currentDrawerState
             currentDrawerCornerRadius = cornerRadius(at: currentDrawerState)
             panGesture.setTranslation(.zero, in: view)
 
-        case .ended:
+        case .ended, .cancelled:
             let drawerSpeedY = panGesture.velocity(in: view).y / containerViewHeight
             let endingState = GeometryEvaluator.nextStateFrom(currentState: currentDrawerState,
                                                               speedY: drawerSpeedY,
@@ -47,9 +39,6 @@ extension PresentationController {
                                                               containerViewHeight: containerViewHeight,
                                                               configuration: configuration)
             animateTransition(to: endingState)
-
-        case .cancelled:
-            animateTransition(to: lastDrawerState)
 
         default:
             break
