@@ -22,6 +22,8 @@ class PresentedViewController: UIViewController {
             }
         }
     }
+
+    @IBAction func unwindFromModal(with segue: UIStoryboardSegue) {}
 }
 
 extension PresentedViewController: UIScrollViewDelegate {

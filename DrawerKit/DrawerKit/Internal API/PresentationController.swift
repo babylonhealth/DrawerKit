@@ -11,12 +11,17 @@ final class PresentationController: UIPresentationController {
     var drawerFullExpansionTapGR: UITapGestureRecognizer?
     var drawerDismissalTapGR: UITapGestureRecognizer?
     var drawerDragGR: UIPanGestureRecognizer?
-    var lastDrawerState: DrawerState {
+
+    /// The target state of the drawer. If no presentation animation is in
+    /// progress, the value should be equivalent to `currentDrawerState`.
+    var targetDrawerState: DrawerState {
         didSet {
-            drawerDismissalTapGR?.isEnabled = lastDrawerState == .partiallyExpanded
-            drawerFullExpansionTapGR?.isEnabled = lastDrawerState == .partiallyExpanded
+            drawerDismissalTapGR?.isEnabled = targetDrawerState == .partiallyExpanded
+            drawerFullExpansionTapGR?.isEnabled = targetDrawerState == .partiallyExpanded
         }
     }
+
+    var startingDrawerStateForDrag: DrawerState?
 
     init(presentingVC: UIViewController?,
          presentingDrawerAnimationActions: DrawerAnimationActions,
@@ -29,7 +34,8 @@ final class PresentationController: UIPresentationController {
         self.handleView = (configuration.handleViewConfiguration != nil ? UIView() : nil)
         self.presentingDrawerAnimationActions = presentingDrawerAnimationActions
         self.presentedDrawerAnimationActions = presentedDrawerAnimationActions
-        self.lastDrawerState = configuration.supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded
+        self.targetDrawerState = configuration.supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded
+
         super.init(presentedViewController: presentedVC, presenting: presentingVC)
     }
 }
@@ -40,7 +46,7 @@ extension PresentationController {
         frame.size = size(forChildContentContainer: presentedViewController,
                           withParentContainerSize: containerViewSize)
         let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
-        frame.origin.y = GeometryEvaluator.drawerPositionY(for: lastDrawerState,
+        frame.origin.y = GeometryEvaluator.drawerPositionY(for: targetDrawerState,
                                                            drawerPartialHeight: drawerPartialHeight,
                                                            containerViewHeight: containerViewHeight,
                                                            drawerFullY: drawerFullY)

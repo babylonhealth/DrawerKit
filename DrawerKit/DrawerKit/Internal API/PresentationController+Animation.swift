@@ -85,7 +85,7 @@ extension PresentationController {
                 self.currentDrawerCornerRadius = 0
             }
 
-            self.lastDrawerState = endingState
+            self.targetDrawerState = endingState
 
             AnimationSupport.clientCleanupViews(presentingDrawerAnimationActions: presentingAnimationActions,
                                                 presentedDrawerAnimationActions: presentedAnimationActions,
