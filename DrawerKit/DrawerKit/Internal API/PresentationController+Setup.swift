@@ -10,6 +10,10 @@ extension PresentationController {
                                                 action: #selector(handleDrawerFullExpansionTap))
         tapGesture.numberOfTouchesRequired = 1
         tapGesture.numberOfTapsRequired = numTapsRequired
+        tapGesture.cancelsTouchesInView = false
+        tapGesture.delaysTouchesBegan = false
+        tapGesture.delaysTouchesEnded = false
+        tapGesture.delegate = self
         presentedView?.addGestureRecognizer(tapGesture)
         drawerFullExpansionTapGR = tapGesture
     }
@@ -35,6 +39,10 @@ extension PresentationController {
                                                 action: #selector(handleDrawerDismissalTap))
         tapGesture.numberOfTouchesRequired = 1
         tapGesture.numberOfTapsRequired = numTapsRequired
+        tapGesture.cancelsTouchesInView = false
+        tapGesture.delaysTouchesBegan = false
+        tapGesture.delaysTouchesEnded = false
+        tapGesture.delegate = self
         containerView?.addGestureRecognizer(tapGesture)
         drawerDismissalTapGR = tapGesture
     }

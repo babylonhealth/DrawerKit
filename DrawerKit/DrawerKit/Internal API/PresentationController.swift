@@ -14,7 +14,12 @@ final class PresentationController: UIPresentationController {
 
     /// The target state of the drawer. If no presentation animation is in
     /// progress, the value should be equivalent to `currentDrawerState`.
-    var targetDrawerState: DrawerState
+    var targetDrawerState: DrawerState {
+        didSet {
+            drawerDismissalTapGR?.isEnabled = targetDrawerState == .partiallyExpanded
+            drawerFullExpansionTapGR?.isEnabled = targetDrawerState == .partiallyExpanded
+        }
+    }
 
     var startingDrawerStateForDrag: DrawerState?
 
@@ -29,9 +34,6 @@ final class PresentationController: UIPresentationController {
         self.handleView = (configuration.handleViewConfiguration != nil ? UIView() : nil)
         self.presentingDrawerAnimationActions = presentingDrawerAnimationActions
         self.presentedDrawerAnimationActions = presentedDrawerAnimationActions
-
-        // NOTE: Set the current drawer state to the target state of the initial
-        //       presentation animation.
         self.targetDrawerState = configuration.supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded
 
         super.init(presentedViewController: presentedVC, presenting: presentingVC)

@@ -52,3 +52,15 @@ extension PresentationController {
         }
     }
 }
+
+extension PresentationController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if let view = gestureRecognizer.view,
+           view.isDescendant(of: presentedViewController.view),
+           let subview = view.hitTest(touch.location(in: view), with: nil) {
+            return !(subview is UIControl)
+        } else {
+            return true
+        }
+    }
+}
