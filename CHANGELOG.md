@@ -1,5 +1,13 @@
 # DrawerKit
 
+## v. 0.5.0
+
+- DrawerKit now supports `overCurrentContext` and `overFullScreen` modal presentations over the drawer. (#56)
+
+- Fixed the issue of touches on the drawer being cancelled by the DrawerKit internal gesture recognizers. (#57)
+
+- `UIControl`s within the drawer are now interactive when the drawer is partially expanded. (#57)
+
 ## v. 0.4.1
 
 - Reverses the fix for the [issue](https://github.com/Babylonpartners/DrawerKit/issues/31) about safe areas. The fix broke other things and the issue will need to be re-opened.
