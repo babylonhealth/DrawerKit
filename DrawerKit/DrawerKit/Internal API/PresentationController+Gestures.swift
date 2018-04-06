@@ -23,7 +23,8 @@ extension PresentationController {
 
         switch panGesture.state {
         case .began:
-            break
+            startingDrawerStateForDrag = targetDrawerState
+            fallthrough
 
         case .changed:
             currentDrawerY += panGesture.translation(in: view).y
@@ -31,7 +32,7 @@ extension PresentationController {
             currentDrawerCornerRadius = cornerRadius(at: currentDrawerState)
             panGesture.setTranslation(.zero, in: view)
 
-        case .ended, .cancelled:
+        case .ended:
             let drawerSpeedY = panGesture.velocity(in: view).y / containerViewHeight
             let endingState = GeometryEvaluator.nextStateFrom(currentState: currentDrawerState,
                                                               speedY: drawerSpeedY,
@@ -39,6 +40,12 @@ extension PresentationController {
                                                               containerViewHeight: containerViewHeight,
                                                               configuration: configuration)
             animateTransition(to: endingState)
+
+        case .cancelled:
+            if let startingState = startingDrawerStateForDrag {
+                startingDrawerStateForDrag = nil
+                animateTransition(to: startingState)
+            }
 
         default:
             break

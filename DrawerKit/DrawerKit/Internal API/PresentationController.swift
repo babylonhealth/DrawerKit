@@ -16,6 +16,8 @@ final class PresentationController: UIPresentationController {
     /// progress, the value should be equivalent to `currentDrawerState`.
     var targetDrawerState: DrawerState
 
+    var startingDrawerStateForDrag: DrawerState?
+
     init(presentingVC: UIViewController?,
          presentingDrawerAnimationActions: DrawerAnimationActions,
          presentedVC: UIViewController,

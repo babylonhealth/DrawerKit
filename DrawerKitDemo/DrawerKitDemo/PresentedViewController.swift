@@ -23,9 +23,7 @@ class PresentedViewController: UIViewController {
         }
     }
 
-    @IBAction func unwindFromModal(with segue: UIStoryboardSegue) {
-        print("Unwound from the modal.")
-    }
+    @IBAction func unwindFromModal(with segue: UIStoryboardSegue) {}
 }
 
 extension PresentedViewController: UIScrollViewDelegate {
