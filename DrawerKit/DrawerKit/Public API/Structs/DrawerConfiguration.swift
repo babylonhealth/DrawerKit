@@ -100,6 +100,10 @@ public struct DrawerConfiguration {
     /// The default value is 1.
     public var numberOfTapsForOutsideDrawerDismissal: Int
 
+    /// Whether or not the drawer can be dismissed by swiping down anywhere
+    /// outside of it. The default value is `true`.
+    public var isDismissableByDownSwipeOutsideDrawer: Bool
+
     /// How fast one needs to "flick" the drawer up or down to make it ignore the
     /// partially expanded state. Flicking fast enough up always presents to full screen
     /// and flicking fast enough down always collapses the drawer. A typically good value
@@ -152,6 +156,7 @@ public struct DrawerConfiguration {
                 numberOfTapsForFullDrawerPresentation: Int = 1,
                 isDismissableByOutsideDrawerTaps: Bool = true,
                 numberOfTapsForOutsideDrawerDismissal: Int = 1,
+                isDismissableByDownSwipeOutsideDrawer: Bool = true,
                 flickSpeedThreshold: CGFloat = 3,
                 upperMarkGap: CGFloat = 40,
                 lowerMarkGap: CGFloat = 40,
@@ -177,6 +182,7 @@ public struct DrawerConfiguration {
         self.numberOfTapsForFullDrawerPresentation = max(0, numberOfTapsForFullDrawerPresentation)
         self.isDismissableByOutsideDrawerTaps = isDismissableByOutsideDrawerTaps
         self.numberOfTapsForOutsideDrawerDismissal = max(0, numberOfTapsForOutsideDrawerDismissal)
+        self.isDismissableByDownSwipeOutsideDrawer = isDismissableByDownSwipeOutsideDrawer
         self.flickSpeedThreshold = max(0, flickSpeedThreshold)
         self.upperMarkGap = max(0, upperMarkGap)
         self.lowerMarkGap = max(0, lowerMarkGap)

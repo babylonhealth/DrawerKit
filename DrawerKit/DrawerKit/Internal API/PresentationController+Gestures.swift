@@ -18,6 +18,10 @@ extension PresentationController {
         presentedViewController.dismiss(animated: true)
     }
 
+    @objc func handleDrawerDismissalSwipe(_ swipeGesture: UISwipeGestureRecognizer) {
+        animateTransition(to: .collapsed)
+    }
+
     @objc func handleDrawerDrag() {
         guard let panGesture = drawerDragGR, let view = panGesture.view else { return }
 

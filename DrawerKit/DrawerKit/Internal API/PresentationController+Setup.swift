@@ -59,6 +59,31 @@ extension PresentationController {
 }
 
 extension PresentationController {
+    func setupDrawerDismissalSwipeRecogniser() {
+        guard drawerDismissalSwipeGR == nil,
+              configuration.isDismissableByDownSwipeOutsideDrawer
+            else { return }
+
+        let swipeGesture = UISwipeGestureRecognizer(target: self,
+                                                    action: #selector(handleDrawerDismissalSwipe(_:)))
+        swipeGesture.numberOfTouchesRequired = 1
+        swipeGesture.direction = .down
+        containerView?.addGestureRecognizer(swipeGesture)
+        drawerDismissalSwipeGR = swipeGesture
+    }
+
+    func removeDrawerDismissalSwipeRecogniser() {
+        guard let swipeGesture = drawerDismissalSwipeGR else { return }
+        containerView?.removeGestureRecognizer(swipeGesture)
+        drawerDismissalSwipeGR = nil
+    }
+
+    func enableDrawerDismissalSwipeRecogniser(enabled: Bool) {
+        drawerDismissalSwipeGR?.isEnabled = enabled
+    }
+}
+
+extension PresentationController {
     func setupDrawerDragRecogniser() {
         guard drawerDragGR == nil && isDrawerDraggable else { return }
         let panGesture = UIPanGestureRecognizer(target: self,

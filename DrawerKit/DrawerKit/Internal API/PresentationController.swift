@@ -10,6 +10,7 @@ final class PresentationController: UIPresentationController {
 
     var drawerFullExpansionTapGR: UITapGestureRecognizer?
     var drawerDismissalTapGR: UITapGestureRecognizer?
+    var drawerDismissalSwipeGR: UISwipeGestureRecognizer?
     var drawerDragGR: UIPanGestureRecognizer?
 
     /// The target state of the drawer. If no presentation animation is in
@@ -18,6 +19,7 @@ final class PresentationController: UIPresentationController {
         didSet {
             drawerDismissalTapGR?.isEnabled = targetDrawerState == .partiallyExpanded
             drawerFullExpansionTapGR?.isEnabled = targetDrawerState == .partiallyExpanded
+            drawerDismissalSwipeGR?.isEnabled = targetDrawerState == .partiallyExpanded
         }
     }
 
@@ -58,6 +60,7 @@ extension PresentationController {
         containerView?.backgroundColor = .clear
         setupDrawerFullExpansionTapRecogniser()
         setupDrawerDismissalTapRecogniser()
+        setupDrawerDismissalSwipeRecogniser()
         setupDrawerDragRecogniser()
         setupDebugHeightMarks()
         setupHandleView()
@@ -82,6 +85,7 @@ extension PresentationController {
     override func dismissalTransitionDidEnd(_ completed: Bool) {
         removeDrawerFullExpansionTapRecogniser()
         removeDrawerDismissalTapRecogniser()
+        removeDrawerDismissalSwipeRecogniser()
         removeDrawerDragRecogniser()
         removeHandleView()
     }
