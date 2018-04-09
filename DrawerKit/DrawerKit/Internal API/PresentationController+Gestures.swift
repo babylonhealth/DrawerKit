@@ -15,6 +15,7 @@ extension PresentationController {
         guard tapY < currentDrawerY else { return }
         NotificationCenter.default.post(notification: DrawerNotification.drawerExteriorTapped)
         tapGesture.isEnabled = false
+        animateBlur(to: 1)
         presentedViewController.dismiss(animated: true)
     }
 
@@ -24,6 +25,8 @@ extension PresentationController {
         switch panGesture.state {
         case .began:
             startingDrawerStateForDrag = targetDrawerState
+            animationPosition = currentDrawerY
+            print("Begin \(currentDrawerY)")
             fallthrough
 
         case .changed:
@@ -31,6 +34,9 @@ extension PresentationController {
             targetDrawerState = currentDrawerState
             currentDrawerCornerRadius = cornerRadius(at: currentDrawerState)
             panGesture.setTranslation(.zero, in: view)
+            
+            let height = (currentDrawerY - animationPosition) / (view.frame.height - lowerMarkGap - animationPosition)
+            animateBlur(to: height)
 
         case .ended:
             let drawerSpeedY = panGesture.velocity(in: view).y / containerViewHeight
@@ -40,11 +46,13 @@ extension PresentationController {
                                                               containerViewHeight: containerViewHeight,
                                                               configuration: configuration)
             animateTransition(to: endingState)
-
+            let percent = CGFloat( (endingState != .collapsed) ? 1 : 0)
+            animateBlur(to: percent)
         case .cancelled:
             if let startingState = startingDrawerStateForDrag {
                 startingDrawerStateForDrag = nil
                 animateTransition(to: startingState)
+                animateBlur(to: 0)
             }
 
         default:

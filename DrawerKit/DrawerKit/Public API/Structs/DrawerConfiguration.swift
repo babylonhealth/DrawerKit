@@ -33,6 +33,15 @@ public struct DrawerConfiguration {
         }
     }
 
+    /// on/off background blur
+    public var isBlurOn: Bool = false
+    
+    ///Blur Radius
+    public var blurRadius: CGFloat = 3
+    
+    /// Background color
+    public var backgroundColor: UIColor = .clear
+    
     /// The total duration, in seconds, for the drawer to transition from its
     /// collapsed state to its fully-expanded state, or vice-versa. The default
     /// value is 0.4 seconds.

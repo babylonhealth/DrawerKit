@@ -16,7 +16,9 @@ private extension PresenterViewController {
 
         // you can provide the configuration values in the initialiser...
         var configuration = DrawerConfiguration(/* ..., ..., ..., */)
-
+        configuration.isBlurOn = true;
+        configuration.blurRadius = 2
+        configuration.backgroundColor = UIColor.init(white: 0, alpha: 0.5)
         // ... or after initialisation. All of these have default values so change only
         // what you need to configure differently. They're all listed here just so you
         // can see what can be configured. The values listed are the default ones,

@@ -1,6 +1,21 @@
 import UIKit
 
 extension PresentationController {
+    func animateBlur(to percent: CGFloat) {
+        let per = min(max(1 - percent, 0), 1)
+        if self.configuration.isBlurOn {
+            let blur = self.configuration.blurRadius * per
+            if let b = self.blurView{
+                var color = self.containerView?.backgroundColor
+                color = color?.withAlphaComponent(configuration.backgroundColor.cgColor.alpha * per)
+                UIView.animate(withDuration: 0.1) {
+                    b.setBlurRadius(radius: blur)
+                    self.containerView?.backgroundColor = color
+                }
+            }
+        }
+    }
+    
     func animateTransition(to endingState: DrawerState) {
         let startingState = currentDrawerState
 
@@ -23,7 +38,7 @@ extension PresentationController {
 
         var endingFrame = presentedViewFrame
         endingFrame.origin.y = endingPositionY
-
+        
         let geometry = AnimationSupport.makeGeometry(containerBounds: containerViewBounds,
                                                      startingFrame: startingFrame,
                                                      endingFrame: endingFrame,

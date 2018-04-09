@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		412BD4C6207AE71E00DBF6E1 /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412BD4C5207AE71E00DBF6E1 /* CustomBlurView.swift */; };
 		CB1B6DF31FC346CC006C1F89 /* DrawerShadowConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1B6DF21FC346CC006C1F89 /* DrawerShadowConfiguration.swift */; };
 		CB1B6E011FC8629B006C1F89 /* DrawerBorderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1B6E001FC8629B006C1F89 /* DrawerBorderConfiguration.swift */; };
 		CB2CB7941F8E934500AA152D /* DrawerPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB78D1F8E934500AA152D /* DrawerPresentable.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		412BD4C5207AE71E00DBF6E1 /* CustomBlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBlurView.swift; sourceTree = "<group>"; };
 		CB1B6DF21FC346CC006C1F89 /* DrawerShadowConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerShadowConfiguration.swift; sourceTree = "<group>"; };
 		CB1B6E001FC8629B006C1F89 /* DrawerBorderConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerBorderConfiguration.swift; sourceTree = "<group>"; };
 		CB2CB78D1F8E934500AA152D /* DrawerPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerPresentable.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		CB2CB7A11F8E963000AA152D /* Internal API */ = {
 			isa = PBXGroup;
 			children = (
+				412BD4C5207AE71E00DBF6E1 /* CustomBlurView.swift */,
 				CB2CB7AC1F8E9D9900AA152D /* DrawerDisplayController+Extensions.swift */,
 				CB2CB79B1F8E951900AA152D /* PresentationController.swift */,
 				CB9101C51F8F791A000EAC41 /* PresentationController+Configuration.swift */,
@@ -274,6 +277,7 @@
 				CB6F86B61F9C03F8000FA37A /* PresentationController+Setup.swift in Sources */,
 				CB1B6DF31FC346CC006C1F89 /* DrawerShadowConfiguration.swift in Sources */,
 				CB2CB7951F8E934500AA152D /* DrawerCoordinating.swift in Sources */,
+				412BD4C6207AE71E00DBF6E1 /* CustomBlurView.swift in Sources */,
 				CB2CB7AF1F8E9F4C00AA152D /* DrawerDisplayController+Configuration.swift in Sources */,
 				CB5AF8041F9BE037000B2DC9 /* DrawerAnimationInfo.swift in Sources */,
 				CB6F86BA1F9C05E6000FA37A /* PresentationController+Gestures.swift in Sources */,

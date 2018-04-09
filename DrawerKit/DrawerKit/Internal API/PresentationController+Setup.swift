@@ -1,4 +1,15 @@
 import UIKit
+extension PresentationController{
+    func setupBlur() {
+        if configuration.isBlurOn {
+            if let view = containerView, let blur = blurView {
+                blur.setBlurRadius(radius: configuration.blurRadius)
+                view.addSubview(blur)
+            }
+        }
+    }
+    
+}
 
 extension PresentationController {
     func setupDrawerFullExpansionTapRecogniser() {
