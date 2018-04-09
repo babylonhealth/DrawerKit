@@ -15,7 +15,7 @@ extension PresentationController {
         guard tapY < currentDrawerY else { return }
         NotificationCenter.default.post(notification: DrawerNotification.drawerExteriorTapped)
         tapGesture.isEnabled = false
-        animateBlur(to: 1)
+        animateBlur(to: 0)
         presentedViewController.dismiss(animated: true)
     }
     
@@ -59,7 +59,8 @@ extension PresentationController {
             if let startingState = startingDrawerStateForDrag {
                 startingDrawerStateForDrag = nil
                 animateTransition(to: startingState)
-                animateBlur(to: 0)
+                let percent = CGFloat( (startingState == .collapsed) ? 0 : 1)
+                animateBlur(to: percent)
             }
             
         default:
