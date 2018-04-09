@@ -2,7 +2,7 @@ import UIKit
 
 extension PresentationController {
     func animateBlur(to percent: CGFloat) {
-        let per = min(max(1 - percent, 0), 1)
+        let per = min(max(percent, 0), 1)
         if self.configuration.isBlurOn {
             let blur = self.configuration.blurRadius * per
             if let b = self.blurView{
