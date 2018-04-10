@@ -1,8 +1,39 @@
-extension PresentationController: UIScrollViewDelegate {
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        guard !scrollViewNeedsTransitionAsDragEnds else { return }
+final class PullToDismissManager: NSObject, UIScrollViewDelegate {
+    private(set) weak var delegate: UIScrollViewDelegate?
+    private weak var presentationController: PresentationController?
 
-        scrollStartDrawerState = currentDrawerState
+    var scrollStartDrawerState: DrawerState?
+    var scrollMaxTopInset: CGFloat = 0.0
+    var scrollEndVelocity: CGPoint?
+    var scrollViewIsDecelerating: Bool = false
+    var scrollViewNeedsTransitionAsDragEnds = false {
+        didSet {
+            presentationController?.gestureAvailabilityConditionsDidChange()
+        }
+    }
+
+    init(delegate: UIScrollViewDelegate?, presentationController: PresentationController) {
+        self.delegate = delegate
+        self.presentationController = presentationController
+    }
+
+    @objc override func conforms(to aProtocol: Protocol) -> Bool {
+        return super.conforms(to: aProtocol) || (delegate?.conforms(to: aProtocol) ?? false)
+    }
+
+    @objc override func responds(to aSelector: Selector!) -> Bool {
+        return super.responds(to: aSelector) || (delegate?.responds(to: aSelector) ?? false)
+    }
+
+    @objc override func forwardingTarget(for aSelector: Selector!) -> Any? {
+        return delegate
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        guard let presentationController = presentationController,
+              !scrollViewNeedsTransitionAsDragEnds else { return }
+
+        scrollStartDrawerState = presentationController.currentDrawerState
         scrollEndVelocity = nil
 
         // Record the maximum top content inset that has even been observed.
@@ -13,12 +44,14 @@ extension PresentationController: UIScrollViewDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard scrollView.isScrollEnabled,
+        guard let presentationController = presentationController,
+              scrollView.isScrollEnabled,
               !scrollViewNeedsTransitionAsDragEnds,
               !scrollViewIsDecelerating,
               scrollEndVelocity == nil
             else { return }
 
+        let currentDrawerState = presentationController.currentDrawerState
         let topInset = scrollView.topInset
         let negativeVerticalOffset = -(scrollView.contentOffset.y + topInset)
 
@@ -30,7 +63,7 @@ extension PresentationController: UIScrollViewDelegate {
             || currentDrawerState.isTransitioning
 
         if shouldOverrideScroll {
-            self.applyTranslationY(negativeVerticalOffset)
+            presentationController.applyTranslationY(negativeVerticalOffset)
             scrollView.contentOffset.y = -topInset
 
             // Detect and animate any top content inset change due to its parent
@@ -39,14 +72,15 @@ extension PresentationController: UIScrollViewDelegate {
             let delta = topInset - scrollView.topInset
 
             UIView.animate(withDuration: 0.1) {
-                self.applyTranslationY(max(delta, 0.0))
-                self.presentedViewController.view.layoutIfNeeded()
+                presentationController.applyTranslationY(max(delta, 0.0))
+                presentationController.presentedViewController.view.layoutIfNeeded()
             }
         }
     }
 
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if scrollStartDrawerState != currentDrawerState {
+        if let presentationController = presentationController,
+           scrollStartDrawerState != presentationController.currentDrawerState {
             scrollEndVelocity = velocity
             scrollViewNeedsTransitionAsDragEnds = true
             targetContentOffset.pointee = scrollView.contentOffset
@@ -61,22 +95,24 @@ extension PresentationController: UIScrollViewDelegate {
             scrollViewNeedsTransitionAsDragEnds = false
         }
 
-        guard let velocity = scrollEndVelocity, scrollViewNeedsTransitionAsDragEnds else {
+        guard let presentationController = presentationController,
+              let velocity = scrollEndVelocity,
+              scrollViewNeedsTransitionAsDragEnds else {
             cleanup()
             return
         }
 
-        let drawerSpeedY = -velocity.y / containerViewHeight
-        let endingState = GeometryEvaluator.nextStateFrom(currentState: currentDrawerState,
+        let drawerSpeedY = -velocity.y / presentationController.containerViewHeight
+        let endingState = GeometryEvaluator.nextStateFrom(currentState: presentationController.currentDrawerState,
                                                           speedY: drawerSpeedY,
-                                                          drawerPartialHeight: drawerPartialHeight,
-                                                          containerViewHeight: containerViewHeight,
-                                                          configuration: configuration)
+                                                          drawerPartialHeight: presentationController.drawerPartialHeight,
+                                                          containerViewHeight: presentationController.containerViewHeight,
+                                                          configuration: presentationController.configuration)
 
-        animateTransition(
+        presentationController.animateTransition(
             to: endingState,
             animateAlongside: {
-                self.presentedViewController.view.layoutIfNeeded()
+                presentationController.presentedViewController.view.layoutIfNeeded()
                 scrollView.contentOffset.y = -scrollView.topInset
                 scrollView.flashScrollIndicators()
             },
@@ -109,3 +145,4 @@ private extension UIScrollView {
         }
     }
 }
+

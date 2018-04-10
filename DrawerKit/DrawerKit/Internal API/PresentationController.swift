@@ -22,25 +22,21 @@ final class PresentationController: UIPresentationController {
 
     var startingDrawerStateForDrag: DrawerState?
 
+    var pullToDismissManager: PullToDismissManager?
     weak var scrollViewForPullToDismiss: UIScrollView? {
         didSet {
-            scrollViewForPullToDismiss?.delegate = nil
+            if let manager = pullToDismissManager {
+                scrollViewForPullToDismiss?.delegate = manager.delegate
+                pullToDismissManager = nil
+            }
 
             if let scrollView = scrollViewForPullToDismiss {
-                scrollView.delegate = self
+                pullToDismissManager = PullToDismissManager(delegate: scrollView.delegate,
+                                                            presentationController: self)
+                scrollView.delegate = pullToDismissManager
                 drawerDragGR?.require(toFail: scrollView.panGestureRecognizer)
             }
 
-            gestureAvailabilityConditionsDidChange()
-        }
-    }
-
-    var scrollStartDrawerState: DrawerState?
-    var scrollMaxTopInset: CGFloat = 0.0
-    var scrollEndVelocity: CGPoint?
-    var scrollViewIsDecelerating: Bool = false
-    var scrollViewNeedsTransitionAsDragEnds = false {
-        didSet {
             gestureAvailabilityConditionsDidChange()
         }
     }
@@ -65,12 +61,12 @@ final class PresentationController: UIPresentationController {
         drawerDismissalTapGR?.isEnabled = targetDrawerState == .partiallyExpanded
         drawerFullExpansionTapGR?.isEnabled = targetDrawerState == .partiallyExpanded
 
-        if let scrollView = scrollViewForPullToDismiss {
+        if let scrollView = scrollViewForPullToDismiss, let manager = pullToDismissManager {
             switch targetDrawerState {
             case .partiallyExpanded, .collapsed:
                 scrollView.isScrollEnabled = false
             case .transitioning, .fullyExpanded:
-                scrollView.isScrollEnabled = !scrollViewNeedsTransitionAsDragEnds
+                scrollView.isScrollEnabled = !manager.scrollViewNeedsTransitionAsDragEnds
             }
         }
     }
