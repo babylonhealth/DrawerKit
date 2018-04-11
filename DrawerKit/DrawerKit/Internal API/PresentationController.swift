@@ -23,13 +23,16 @@ final class PresentationController: UIPresentationController {
     var startingDrawerStateForDrag: DrawerState?
 
     var pullToDismissManager: PullToDismissManager?
+
     weak var scrollViewForPullToDismiss: UIScrollView? {
-        didSet {
+        willSet {
             if let manager = pullToDismissManager {
                 scrollViewForPullToDismiss?.delegate = manager.delegate
                 pullToDismissManager = nil
             }
+        }
 
+        didSet {
             if let scrollView = scrollViewForPullToDismiss {
                 pullToDismissManager = PullToDismissManager(delegate: scrollView.delegate,
                                                             presentationController: self)
