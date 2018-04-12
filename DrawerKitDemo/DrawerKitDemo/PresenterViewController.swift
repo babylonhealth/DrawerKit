@@ -12,7 +12,7 @@ class PresenterViewController: UIViewController, DrawerCoordinating {
 private extension PresenterViewController {
     func doModalPresentation() {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "presented")
-            as? PresentedViewController else { return }
+            as? PresentedNavigationController else { return }
 
         // you can provide the configuration values in the initialiser...
         var configuration = DrawerConfiguration(/* ..., ..., ..., */)

@@ -16,12 +16,33 @@ final class PresentationController: UIPresentationController {
     /// progress, the value should be equivalent to `currentDrawerState`.
     var targetDrawerState: DrawerState {
         didSet {
-            drawerDismissalTapGR?.isEnabled = targetDrawerState == .partiallyExpanded
-            drawerFullExpansionTapGR?.isEnabled = targetDrawerState == .partiallyExpanded
+            gestureAvailabilityConditionsDidChange()
         }
     }
 
     var startingDrawerStateForDrag: DrawerState?
+
+    var pullToDismissManager: PullToDismissManager?
+
+    weak var scrollViewForPullToDismiss: UIScrollView? {
+        willSet {
+            if let manager = pullToDismissManager {
+                scrollViewForPullToDismiss?.delegate = manager.delegate
+                pullToDismissManager = nil
+            }
+        }
+
+        didSet {
+            if let scrollView = scrollViewForPullToDismiss {
+                pullToDismissManager = PullToDismissManager(delegate: scrollView.delegate,
+                                                            presentationController: self)
+                scrollView.delegate = pullToDismissManager
+                drawerDragGR?.require(toFail: scrollView.panGestureRecognizer)
+            }
+
+            gestureAvailabilityConditionsDidChange()
+        }
+    }
 
     init(presentingVC: UIViewController?,
          presentingDrawerAnimationActions: DrawerAnimationActions,
@@ -37,6 +58,20 @@ final class PresentationController: UIPresentationController {
         self.targetDrawerState = configuration.supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded
 
         super.init(presentedViewController: presentedVC, presenting: presentingVC)
+    }
+
+    func gestureAvailabilityConditionsDidChange() {
+        drawerDismissalTapGR?.isEnabled = targetDrawerState == .partiallyExpanded
+        drawerFullExpansionTapGR?.isEnabled = targetDrawerState == .partiallyExpanded
+
+        if let scrollView = scrollViewForPullToDismiss, let manager = pullToDismissManager {
+            switch targetDrawerState {
+            case .partiallyExpanded, .collapsed:
+                scrollView.isScrollEnabled = false
+            case .transitioning, .fullyExpanded:
+                scrollView.isScrollEnabled = !manager.scrollViewNeedsTransitionAsDragEnds
+            }
+        }
     }
 }
 
@@ -54,6 +89,10 @@ extension PresentationController {
     }
 
     override func presentationTransitionWillBegin() {
+        // NOTE: `targetDrawerState.didSet` is not invoked within the
+        //        initializer.
+        gestureAvailabilityConditionsDidChange()
+
         presentedViewController.view.layoutIfNeeded()
         containerView?.backgroundColor = .clear
         setupDrawerFullExpansionTapRecogniser()
@@ -90,3 +129,5 @@ extension PresentationController {
         presentedView?.frame = frameOfPresentedViewInContainerView
     }
 }
+
+extension PresentationController: DrawerPresentationControlling {}

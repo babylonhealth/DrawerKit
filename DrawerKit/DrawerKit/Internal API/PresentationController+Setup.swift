@@ -60,7 +60,7 @@ extension PresentationController {
 
 extension PresentationController {
     func setupDrawerDragRecogniser() {
-        guard drawerDragGR == nil && isDrawerDraggable else { return }
+        guard drawerDragGR == nil, isDrawerDraggable else { return }
         let panGesture = UIPanGestureRecognizer(target: self,
                                                 action: #selector(handleDrawerDrag))
         presentedView?.addGestureRecognizer(panGesture)
