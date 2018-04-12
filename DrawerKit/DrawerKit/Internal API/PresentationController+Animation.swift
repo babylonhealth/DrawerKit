@@ -1,7 +1,7 @@
 import UIKit
 
 extension PresentationController {
-    func animateTransition(to endingState: DrawerState) {
+    func animateTransition(to endingState: DrawerState, animateAlongside: (() -> Void)? = nil, completion: (() -> Void)? = nil) {
         let startingState = currentDrawerState
 
         let maxCornerRadius = maximumCornerRadius
@@ -48,6 +48,8 @@ extension PresentationController {
                                             presentedDrawerAnimationActions: presentedAnimationActions,
                                             info)
 
+        targetDrawerState = endingState
+
         animator.addAnimations {
             self.currentDrawerY = endingPositionY
             if autoAnimatesDimming { self.handleView?.alpha = endingHandleViewAlpha }
@@ -55,6 +57,7 @@ extension PresentationController {
             AnimationSupport.clientAnimateAlong(presentingDrawerAnimationActions: presentingAnimationActions,
                                                 presentedDrawerAnimationActions: presentedAnimationActions,
                                                 info)
+            animateAlongside?()
         }
 
         animator.addCompletion { endingPosition in
@@ -85,12 +88,19 @@ extension PresentationController {
                 self.currentDrawerCornerRadius = 0
             }
 
-            self.targetDrawerState = endingState
+            if endingPosition != .end {
+                self.targetDrawerState = GeometryEvaluator.drawerState(for: self.currentDrawerY,
+                                                                       drawerPartialHeight: self.drawerPartialY,
+                                                                       containerViewHeight: self.containerViewHeight,
+                                                                       configuration: self.configuration)
+            }
 
             AnimationSupport.clientCleanupViews(presentingDrawerAnimationActions: presentingAnimationActions,
                                                 presentedDrawerAnimationActions: presentedAnimationActions,
                                                 endingPosition,
                                                 info)
+
+            completion?()
         }
 
         animator.startAnimation()

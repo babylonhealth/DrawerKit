@@ -1,7 +1,6 @@
 import UIKit
 
-class PresentedView: UIView {
-    @IBOutlet weak var titleLabel: UILabel!
+class PresentedView: UIScrollView {
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var dividerView: UIView!
@@ -10,13 +9,11 @@ class PresentedView: UIView {
 
 extension PresentedView {
     func prepareCollapsedToPartiallyExpanded() {
-        titleLabel.alpha = 0
         bodyLabel.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         dismissButton.alpha = 0
     }
 
     func animateAlongCollapsedToPartiallyExpanded() {
-        titleLabel.alpha = 1
         bodyLabel.transform = .identity
         dismissButton.alpha = 1
     }

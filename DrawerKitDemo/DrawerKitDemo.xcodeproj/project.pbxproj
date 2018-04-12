@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9AB81C482076E73800C7A595 /* PresentedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB81C472076E73800C7A595 /* PresentedNavigationController.swift */; };
 		CBBA2D3A1F8E807400E0137F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBA2D391F8E807400E0137F /* AppDelegate.swift */; };
 		CBBA2D411F8E807400E0137F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D3F1F8E807400E0137F /* Main.storyboard */; };
 		CBBA2D431F8E807400E0137F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBBA2D421F8E807400E0137F /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9AB81C472076E73800C7A595 /* PresentedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedNavigationController.swift; sourceTree = "<group>"; };
 		CBBA2D361F8E807400E0137F /* DrawerKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawerKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBBA2D391F8E807400E0137F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBBA2D401F8E807400E0137F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				CBBA2D391F8E807400E0137F /* AppDelegate.swift */,
 				CBBA2D6B1F8E83E300E0137F /* PresenterViewController.swift */,
 				CBBA2D6E1F8E83E300E0137F /* PresentedViewController.swift */,
+				9AB81C472076E73800C7A595 /* PresentedNavigationController.swift */,
 				CBBA2D6D1F8E83E300E0137F /* PresentedView.swift */,
 				CBBA2D421F8E807400E0137F /* Assets.xcassets */,
 				CBBA2D6A1F8E839200E0137F /* Storyboards */,
@@ -180,7 +183,7 @@
 				TargetAttributes = {
 					CBBA2D351F8E807300E0137F = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					D8AC28F41F965EFC0085F252 = {
 						CreatedOnToolsVersion = 9.0;
@@ -235,6 +238,7 @@
 			files = (
 				CBBA2D3A1F8E807400E0137F /* AppDelegate.swift in Sources */,
 				CBBA2D721F8E83E300E0137F /* PresentedViewController.swift in Sources */,
+				9AB81C482076E73800C7A595 /* PresentedNavigationController.swift in Sources */,
 				CBBA2D711F8E83E300E0137F /* PresentedView.swift in Sources */,
 				CBBA2D6F1F8E83E300E0137F /* PresenterViewController.swift in Sources */,
 			);
@@ -389,11 +393,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DrawerKitDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.babylonhealth.DrawerKitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.babylonpartners.DrawerKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -405,11 +410,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DrawerKitDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.babylonhealth.DrawerKitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.babylonpartners.DrawerKitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

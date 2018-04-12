@@ -3,7 +3,7 @@ import XCTest
 class DrawerKitDemoUITests: XCTestCase {
     
     var app: XCUIApplication!
-    let drawerY: CGFloat = 500.0
+    let transitionTimeout: TimeInterval = 1.0
     
     enum ElementState: String {
         case exists = "exists == true"
@@ -13,7 +13,7 @@ class DrawerKitDemoUITests: XCTestCase {
     fileprivate enum Identifiers {
         static let mainCanvas = "mainCanvas"
         static let closeButton = "drawerClose"
-        static let drawerTitle = "drawerTitle"
+        static let drawerDescription = "drawerDescription"
         static let drawerImage = "saturnImage"
     }
     
@@ -57,13 +57,13 @@ class DrawerKitDemoUITests: XCTestCase {
         let mainCanvase = app.buttons[Identifiers.mainCanvas]
         mainCanvase.tap()
         
-        let drawer = app.staticTexts[Identifiers.drawerTitle].firstMatch
+        let drawer = app.staticTexts[Identifiers.drawerDescription].firstMatch
         let start = drawer.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
         let end = mainCanvase.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.1))
         start.press(forDuration: 0.05, thenDragTo: end)
         XCTAssertTrue(isDrawerFullyOpen())
-        
-        drawer.swipeDown()
+
+        end.press(forDuration: 0.05, thenDragTo: start)
         XCTAssertFalse(isDrawerFullyOpen())
     }
     
@@ -71,7 +71,7 @@ class DrawerKitDemoUITests: XCTestCase {
         let mainCanvase = app.buttons[Identifiers.mainCanvas]
         mainCanvase.tap()
         
-        let drawer = app.staticTexts[Identifiers.drawerTitle]
+        let drawer = app.staticTexts[Identifiers.drawerDescription]
         drawer.swipeUp()
 
         let closeButton = app.buttons[Identifiers.closeButton]
@@ -81,8 +81,8 @@ class DrawerKitDemoUITests: XCTestCase {
     }
     
     private func isDrawerOpen() -> Bool {
-        let drawer = app.staticTexts[Identifiers.drawerTitle]
-        if tryWaitFor(element: drawer, withState: .exists) {
+        let drawer = app.staticTexts[Identifiers.drawerDescription]
+        if tryWaitFor(element: drawer, withState: .exists, waiting: transitionTimeout) {
             return drawer.isHittable
         } else {
             return false
@@ -91,8 +91,8 @@ class DrawerKitDemoUITests: XCTestCase {
     
     private func isDrawerFullyOpen() -> Bool {
         let image = app.images[Identifiers.drawerImage]
-        if tryWaitFor(element: image, withState: .exists) {
-            return app.images[Identifiers.drawerImage].frame.origin.y < drawerY
+        if tryWaitFor(element: image, withState: .exists, waiting: transitionTimeout) {
+            return app.images[Identifiers.drawerImage].frame.minY < app.frame.maxY
         } else {
             return false
         }

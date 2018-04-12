@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		654604CE207BD4BC00B72395 /* DrawerPresentationControlling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654604CD207BD4BC00B72395 /* DrawerPresentationControlling.swift */; };
+		9A158BC22076C92200FD4113 /* PresentationController+PullToDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A158BC12076C92200FD4113 /* PresentationController+PullToDismiss.swift */; };
 		CB1B6DF31FC346CC006C1F89 /* DrawerShadowConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1B6DF21FC346CC006C1F89 /* DrawerShadowConfiguration.swift */; };
 		CB1B6E011FC8629B006C1F89 /* DrawerBorderConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1B6E001FC8629B006C1F89 /* DrawerBorderConfiguration.swift */; };
 		CB2CB7941F8E934500AA152D /* DrawerPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2CB78D1F8E934500AA152D /* DrawerPresentable.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		654604CD207BD4BC00B72395 /* DrawerPresentationControlling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerPresentationControlling.swift; sourceTree = "<group>"; };
+		9A158BC12076C92200FD4113 /* PresentationController+PullToDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresentationController+PullToDismiss.swift"; sourceTree = "<group>"; };
 		CB1B6DF21FC346CC006C1F89 /* DrawerShadowConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerShadowConfiguration.swift; sourceTree = "<group>"; };
 		CB1B6E001FC8629B006C1F89 /* DrawerBorderConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerBorderConfiguration.swift; sourceTree = "<group>"; };
 		CB2CB78D1F8E934500AA152D /* DrawerPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerPresentable.swift; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 				CB6F86B51F9C03F8000FA37A /* PresentationController+Setup.swift */,
 				CB6F86B91F9C05E6000FA37A /* PresentationController+Gestures.swift */,
 				CB6F86B71F9C0539000FA37A /* PresentationController+Properties.swift */,
+				9A158BC12076C92200FD4113 /* PresentationController+PullToDismiss.swift */,
 				CB6F86BB1F9C06D6000FA37A /* PresentationController+Animation.swift */,
 				CB6F86B31F9C036D000FA37A /* PresentationController+Utilities.swift */,
 				CB619CEB1F8FFBAD0076E1DE /* InteractionController.swift */,
@@ -123,6 +128,7 @@
 				CB2CB78E1F8E934500AA152D /* DrawerCoordinating.swift */,
 				CB2CB78D1F8E934500AA152D /* DrawerPresentable.swift */,
 				CB5AF7FF1F9BDAC5000B2DC9 /* DrawerAnimationParticipant.swift */,
+				654604CD207BD4BC00B72395 /* DrawerPresentationControlling.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -267,6 +273,7 @@
 				CB619CEC1F8FFBAD0076E1DE /* InteractionController.swift in Sources */,
 				CB6F86B81F9C0539000FA37A /* PresentationController+Properties.swift in Sources */,
 				CB2CB7AD1F8E9D9900AA152D /* DrawerDisplayController+Extensions.swift in Sources */,
+				9A158BC22076C92200FD4113 /* PresentationController+PullToDismiss.swift in Sources */,
 				CB5AF8111F9BE95C000B2DC9 /* DrawerAnimationInfo+Configuration.swift in Sources */,
 				CB2CB79F1F8E951900AA152D /* AnimationController.swift in Sources */,
 				CBACF6B31F9C622300C15CA3 /* AnimationSupport.swift in Sources */,
@@ -288,6 +295,7 @@
 				CB6F86BC1F9C06D6000FA37A /* PresentationController+Animation.swift in Sources */,
 				CB9101C61F8F791A000EAC41 /* PresentationController+Configuration.swift in Sources */,
 				CB2CB79E1F8E951900AA152D /* PresentationController.swift in Sources */,
+				654604CE207BD4BC00B72395 /* DrawerPresentationControlling.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
