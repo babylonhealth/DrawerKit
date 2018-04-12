@@ -33,6 +33,18 @@ public struct DrawerConfiguration {
         }
     }
 
+    public enum CornerAnimationOption {
+        /// The corners would be at their maximum radius when the drawer is
+        /// partially expanded, and shrink as the drawer moves away in either
+        /// direction.
+        case maximumAtPartialY
+
+        /// The corners would be always shown below the status bar at their
+        /// maximum radius, and shrink only as the drawer moves into the frame
+        /// of the status bar towards the top screen edge.
+        case alwaysShowBelowStatusBar
+    }
+
     /// The total duration, in seconds, for the drawer to transition from its
     /// collapsed state to its fully-expanded state, or vice-versa. The default
     /// value is 0.4 seconds.
@@ -127,6 +139,10 @@ public struct DrawerConfiguration {
     /// corners, from 0 to the value of this property. Setting this to 0 prevents any
     /// corner animations from taking place. The default value is 15 points.
     public var maximumCornerRadius: CGFloat
+
+    /// How the drawer should animate its corner radius if specified. The
+    /// default value is `maximumAtPartialY`.
+    public var cornerAnimationOption: CornerAnimationOption
     
     /// The configuration options for the handle view, should it be shown. Set this
     /// property to `nil` to hide the handle view. The default value is
@@ -156,6 +172,7 @@ public struct DrawerConfiguration {
                 upperMarkGap: CGFloat = 40,
                 lowerMarkGap: CGFloat = 40,
                 maximumCornerRadius: CGFloat = 15,
+                cornerAnimationOption: CornerAnimationOption = .maximumAtPartialY,
                 handleViewConfiguration: HandleViewConfiguration? = HandleViewConfiguration(),
                 drawerBorderConfiguration: DrawerBorderConfiguration? = nil,
                 drawerShadowConfiguration: DrawerShadowConfiguration? = nil) {
@@ -181,6 +198,7 @@ public struct DrawerConfiguration {
         self.upperMarkGap = max(0, upperMarkGap)
         self.lowerMarkGap = max(0, lowerMarkGap)
         self.maximumCornerRadius = max(0, maximumCornerRadius)
+        self.cornerAnimationOption = cornerAnimationOption
         self.handleViewConfiguration = handleViewConfiguration
         self.drawerBorderConfiguration = drawerBorderConfiguration
         self.drawerShadowConfiguration = drawerShadowConfiguration
