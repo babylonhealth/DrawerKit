@@ -41,6 +41,23 @@ Please do play with the demo app and try different configuration options because
 	</table>
 </p>
 
+## What's new in version 0.6.0?
+
+## v. 0.6.0
+
+- DrawerKit now supports pull-to-dismiss driven by a `UIScrollView` inside the drawer content.
+
+  You may specify the `UIScrollView` to DrawerKit through its presentation controller:
+  ```swift
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    // Install `tableView` as the pull-to-dismiss participant.
+    drawerPresentationController?.scrollViewForPullToDismiss = tableView
+  }
+  ```
+- Drawer corners may now be configured in `DrawerConfiguration` to be always visible below the status bar.
+
 ## What's new in version 0.5.0?
 
 - DrawerKit now supports `overCurrentContext` and `overFullScreen` modal presentations over the drawer.
