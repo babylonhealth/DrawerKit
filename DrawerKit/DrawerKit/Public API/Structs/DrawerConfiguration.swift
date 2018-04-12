@@ -34,12 +34,12 @@ public struct DrawerConfiguration {
     }
 
     public enum CornerAnimationOption {
-        /// The corners would be at its maximum radius when the drawer is
+        /// The corners would be at their maximum radius when the drawer is
         /// partially expanded, and shrink as the drawer moves away in either
         /// direction.
         case maximumAtPartialY
 
-        /// The corners would be always shown below the status bar at its
+        /// The corners would be always shown below the status bar at their
         /// maximum radius, and shrink only as the drawer moves into the frame
         /// of the status bar towards the top screen edge.
         case alwaysShowBelowStatusBar
