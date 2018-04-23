@@ -82,6 +82,9 @@ public struct DrawerConfiguration {
     /// When `false`, the presentation is always to full screen and there is no
     /// partially expanded state. The default value is `true`.
     public var supportsPartialExpansion: Bool
+    
+    /// When `true`, collapsed drawer is never gets dismissed.
+    public var neverDismissCollapsedDrawer: Bool
 
     /// When `true`, dismissing the drawer from its fully expanded state can result
     /// in the drawer stopping at its partially expanded state. When `false`, the
@@ -165,6 +168,7 @@ public struct DrawerConfiguration {
                 dismissesInStages: Bool = true,
                 isDrawerDraggable: Bool = true,
                 isFullyPresentableByDrawerTaps: Bool = true,
+                neverDismissCollapsedDrawer: Bool = false,
                 numberOfTapsForFullDrawerPresentation: Int = 1,
                 isDismissableByOutsideDrawerTaps: Bool = true,
                 numberOfTapsForOutsideDrawerDismissal: Int = 1,
@@ -202,6 +206,7 @@ public struct DrawerConfiguration {
         self.handleViewConfiguration = handleViewConfiguration
         self.drawerBorderConfiguration = drawerBorderConfiguration
         self.drawerShadowConfiguration = drawerShadowConfiguration
+        self.neverDismissCollapsedDrawer = neverDismissCollapsedDrawer
     }
 }
 

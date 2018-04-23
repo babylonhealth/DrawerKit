@@ -5,6 +5,11 @@ struct GeometryEvaluator {
                                containerViewHeight: CGFloat) -> CGFloat {
         return min(max(drawerPartialHeight, 0), containerViewHeight)
     }
+    
+    static func drawerCollapsedH(drawerCollapsedHeight: CGFloat,
+                                 containerViewHeight: CGFloat) -> CGFloat {
+        return min(max(drawerCollapsedHeight, 0), containerViewHeight)
+    }
 
     static func drawerPartialY(drawerPartialHeight: CGFloat,
                                containerViewHeight: CGFloat) -> CGFloat {
@@ -89,11 +94,12 @@ extension GeometryEvaluator {
 
     static func drawerPositionY(for state: DrawerState,
                                 drawerPartialHeight: CGFloat,
+                                drawerCollapsedHeight: CGFloat,
                                 containerViewHeight: CGFloat,
                                 drawerFullY: CGFloat) -> CGFloat {
         switch state {
         case .collapsed:
-            return containerViewHeight
+            return containerViewHeight - drawerCollapsedHeight
         case .partiallyExpanded:
             return drawerPartialY(drawerPartialHeight: drawerPartialHeight,
                                   containerViewHeight: containerViewHeight)
@@ -107,6 +113,7 @@ extension GeometryEvaluator {
     static func nextStateFrom(currentState: DrawerState,
                               speedY: CGFloat,
                               drawerPartialHeight: CGFloat,
+                              drawerCollapsedHeight: CGFloat,
                               containerViewHeight: CGFloat,
                               configuration: DrawerConfiguration) -> DrawerState {
         let isNotMoving = (speedY == 0)
@@ -122,6 +129,7 @@ extension GeometryEvaluator {
 
         let positionY = drawerPositionY(for: currentState,
                                         drawerPartialHeight: drawerPartialHeight,
+                                        drawerCollapsedHeight: drawerCollapsedHeight,
                                         containerViewHeight: containerViewHeight,
                                         drawerFullY: drawerFullY)
 

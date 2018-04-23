@@ -106,6 +106,7 @@ final class PullToDismissManager: NSObject, UIScrollViewDelegate {
         let endingState = GeometryEvaluator.nextStateFrom(currentState: presentationController.currentDrawerState,
                                                           speedY: drawerSpeedY,
                                                           drawerPartialHeight: presentationController.drawerPartialHeight,
+                                                          drawerCollapsedHeight: presentationController.drawerCollapsedHeight,
                                                           containerViewHeight: presentationController.containerViewHeight,
                                                           configuration: presentationController.configuration)
 

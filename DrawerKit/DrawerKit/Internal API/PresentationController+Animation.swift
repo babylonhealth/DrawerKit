@@ -71,7 +71,9 @@ extension PresentationController {
                     (isEndingStateCollapsed && endingPosition == .end)
 
             if shouldDismiss {
-                self.presentedViewController.dismiss(animated: true)
+                if !self.configuration.neverDismissCollapsedDrawer {
+                    self.presentedViewController.dismiss(animated: true)
+                }
             }
 
             let isStartingStateCollapsedOrFullyExpanded =
@@ -163,12 +165,14 @@ extension PresentationController {
         let startingPositionY =
             GeometryEvaluator.drawerPositionY(for: startingState,
                                               drawerPartialHeight: drawerPartialHeight,
+                                              drawerCollapsedHeight: drawerCollapsedHeight,
                                               containerViewHeight: containerViewHeight,
                                               drawerFullY: drawerFullY)
 
         let endingPositionY =
             GeometryEvaluator.drawerPositionY(for: endingState,
                                               drawerPartialHeight: drawerPartialHeight,
+                                              drawerCollapsedHeight: drawerCollapsedHeight,
                                               containerViewHeight: containerViewHeight,
                                               drawerFullY: drawerFullY)
 

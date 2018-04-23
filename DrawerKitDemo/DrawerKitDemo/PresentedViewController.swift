@@ -38,6 +38,10 @@ extension PresentedViewController: DrawerPresentable {
             return view.dividerView.frame.origin.y + topLayoutGuide.length
         }
     }
+    
+    var heightOfCollapsedDrawer: CGFloat {
+        return 60
+    }
 }
 
 extension PresentedViewController: DrawerAnimationParticipant {
