@@ -50,9 +50,7 @@ private extension InteractionController {
             if isPresentation {
                 presentingVC.present(presentedVC, animated: true)
             } else {
-                //if !configuration.neverDismissCollapsedDrawer {
-                    presentedVC.dismiss(animated: true)
-                //}
+                presentedVC.dismiss(animated: true)
             }
 
         case .changed:
