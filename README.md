@@ -19,6 +19,8 @@ that limitation.
 Please do play with the demo app and try different configuration options because there are so many ways to configure
 `DrawerKit` that the gif below is at most a pathetic representation of everything that the library can do.
 
+[Saturn image attribution](https://apod.nasa.gov/apod/ap080609.html)
+
 <p align="center">
 	<table>
 		<tr>
