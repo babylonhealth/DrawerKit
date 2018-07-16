@@ -16,7 +16,7 @@ extension PresentationController {
         NotificationCenter.default.post(notification: DrawerNotification.drawerExteriorTapped)
         tapGesture.isEnabled = false
         
-        if !configuration.neverDismissCollapsedDrawer {
+        if configuration.canDismissCollapsedDrawer {
             presentedViewController.dismiss(animated: true)
         }
     }

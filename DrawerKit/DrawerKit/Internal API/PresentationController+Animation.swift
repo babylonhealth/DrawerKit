@@ -67,13 +67,12 @@ extension PresentationController {
             let isEndingStateCollapsed = (endingState == .collapsed)
 
             let shouldDismiss =
-                (isStartingStateCollapsed && endingPosition == .start) ||
-                    (isEndingStateCollapsed && endingPosition == .end)
+                self.configuration.canDismissCollapsedDrawer &&
+                ((isStartingStateCollapsed && endingPosition == .start) ||
+                    (isEndingStateCollapsed && endingPosition == .end))
 
             if shouldDismiss {
-                if !self.configuration.neverDismissCollapsedDrawer {
-                    self.presentedViewController.dismiss(animated: true)
-                }
+                self.presentedViewController.dismiss(animated: true)
             }
 
             let isStartingStateCollapsedOrFullyExpanded =

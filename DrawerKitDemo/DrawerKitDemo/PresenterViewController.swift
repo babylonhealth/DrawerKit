@@ -37,7 +37,7 @@ private extension PresenterViewController {
         configuration.upperMarkGap = 100 // default is 40
         configuration.lowerMarkGap =  80 // default is 40
         configuration.maximumCornerRadius = 15
-        configuration.neverDismissCollapsedDrawer = true
+        configuration.canDismissCollapsedDrawer = true
 
         var handleViewConfiguration = HandleViewConfiguration()
         handleViewConfiguration.autoAnimatesDimming = true

@@ -83,8 +83,8 @@ public struct DrawerConfiguration {
     /// partially expanded state. The default value is `true`.
     public var supportsPartialExpansion: Bool
     
-    /// When `true`, collapsed drawer is never gets dismissed.
-    public var neverDismissCollapsedDrawer: Bool
+    /// When `false`, collapsed drawer is never dismissed.
+    public var canDismissCollapsedDrawer: Bool
 
     /// When `true`, dismissing the drawer from its fully expanded state can result
     /// in the drawer stopping at its partially expanded state. When `false`, the
@@ -168,7 +168,7 @@ public struct DrawerConfiguration {
                 dismissesInStages: Bool = true,
                 isDrawerDraggable: Bool = true,
                 isFullyPresentableByDrawerTaps: Bool = true,
-                neverDismissCollapsedDrawer: Bool = false,
+                canDismissCollapsedDrawer: Bool = true,
                 numberOfTapsForFullDrawerPresentation: Int = 1,
                 isDismissableByOutsideDrawerTaps: Bool = true,
                 numberOfTapsForOutsideDrawerDismissal: Int = 1,
@@ -206,7 +206,7 @@ public struct DrawerConfiguration {
         self.handleViewConfiguration = handleViewConfiguration
         self.drawerBorderConfiguration = drawerBorderConfiguration
         self.drawerShadowConfiguration = drawerShadowConfiguration
-        self.neverDismissCollapsedDrawer = neverDismissCollapsedDrawer
+        self.canDismissCollapsedDrawer = canDismissCollapsedDrawer
     }
 }
 
@@ -230,5 +230,6 @@ extension DrawerConfiguration: Equatable {
             && lhs.handleViewConfiguration == rhs.handleViewConfiguration
             && lhs.drawerBorderConfiguration == rhs.drawerBorderConfiguration
             && lhs.drawerShadowConfiguration == rhs.drawerShadowConfiguration
+            && lhs.canDismissCollapsedDrawer == rhs.canDismissCollapsedDrawer
     }
 }

@@ -8,6 +8,6 @@ public protocol DrawerPresentable: class {
     var heightOfPartiallyExpandedDrawer: CGFloat { get }
     
     /// The height at which the drawer should be presented when it's in its
-    /// collapsed expanded state. If negative, its value is clamped to zero.
+    /// collapsed state. If negative, its value is clamped to zero.
     var heightOfCollapsedDrawer: CGFloat { get }
 }
