@@ -188,3 +188,4 @@ backboneLocalizationBuilder
 fastlane/README.md
 fastlane/report.xml
 vendor/
+IDEWorkspaceChecks.plist
