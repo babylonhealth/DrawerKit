@@ -70,7 +70,7 @@ extension PresentationController {
                 (isStartingStateCollapsed && endingPosition == .start) ||
                     (isEndingStateCollapsed && endingPosition == .end)
 
-            if shouldDismiss {
+            if shouldDismiss && self.drawerCollapsedHeight <= 0 {
                 self.presentedViewController.dismiss(animated: true)
             }
 
