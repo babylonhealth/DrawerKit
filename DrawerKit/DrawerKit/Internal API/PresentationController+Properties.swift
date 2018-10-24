@@ -76,17 +76,26 @@ extension PresentationController {
         }
 
         set {
-            let radius = min(max(newValue, 0), maximumCornerRadius)
-            presentedView?.layer.cornerRadius = radius
-            presentedView?.layer.masksToBounds = true
-            if #available(iOS 11.0, *) {
-                presentedView?.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            let update = {
+                let radius = min(max(newValue, 0), self.maximumCornerRadius)
+                self.presentedView?.layer.cornerRadius = radius
+                self.presentedView?.layer.masksToBounds = true
+                if #available(iOS 11.0, *) {
+                    self.presentedView?.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+                }
+            }
+            if self.configuration.cornerAnimationOption == .none {
+                UIView.performWithoutAnimation(update)
+            } else {
+                update()
             }
         }
     }
 
     func cornerRadius(at state: DrawerState) -> CGFloat {
         switch configuration.cornerAnimationOption {
+        case .none:
+            return maximumCornerRadius
         case .maximumAtPartialY:
             return maximumCornerRadius * triangularValue(at: state)
         case .alwaysShowBelowStatusBar:

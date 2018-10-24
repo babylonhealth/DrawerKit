@@ -43,6 +43,9 @@ public struct DrawerConfiguration {
         /// maximum radius, and shrink only as the drawer moves into the frame
         /// of the status bar towards the top screen edge.
         case alwaysShowBelowStatusBar
+
+        /// Do not animate corner radius
+        case none
     }
 
     /// The total duration, in seconds, for the drawer to transition from its
