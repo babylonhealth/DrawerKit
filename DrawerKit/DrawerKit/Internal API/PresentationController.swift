@@ -55,7 +55,7 @@ final class PresentationController: UIPresentationController {
         self.handleView = (configuration.handleViewConfiguration != nil ? UIView() : nil)
         self.presentingDrawerAnimationActions = presentingDrawerAnimationActions
         self.presentedDrawerAnimationActions = presentedDrawerAnimationActions
-        self.targetDrawerState = configuration.supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded
+        self.targetDrawerState = configuration.initialState ?? (configuration.supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
 
         super.init(presentedViewController: presentedVC, presenting: presentingVC)
     }

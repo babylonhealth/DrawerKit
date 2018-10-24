@@ -45,6 +45,10 @@ public struct DrawerConfiguration {
         case alwaysShowBelowStatusBar
     }
 
+    /// Intial state of presented drawer. Default is `nil`, If `nil` then
+    /// state will be computed based on `supportsPartialExpansion` flag.
+    public var initialState: DrawerState?
+
     /// The total duration, in seconds, for the drawer to transition from its
     /// collapsed state to its fully-expanded state, or vice-versa. The default
     /// value is 0.4 seconds.
@@ -157,7 +161,8 @@ public struct DrawerConfiguration {
     /// property to `nil` so as not to have a drawer shadow. The default value is `nil`.
     public var drawerShadowConfiguration: DrawerShadowConfiguration?
 
-    public init(totalDurationInSeconds: TimeInterval = 0.4,
+    public init(initialState: DrawerState? = nil,
+                totalDurationInSeconds: TimeInterval = 0.4,
                 durationIsProportionalToDistanceTraveled: Bool = false,
                 timingCurveProvider: UITimingCurveProvider = UISpringTimingParameters(),
                 fullExpansionBehaviour: FullExpansionBehaviour = .coversFullScreen,
@@ -176,6 +181,7 @@ public struct DrawerConfiguration {
                 handleViewConfiguration: HandleViewConfiguration? = HandleViewConfiguration(),
                 drawerBorderConfiguration: DrawerBorderConfiguration? = nil,
                 drawerShadowConfiguration: DrawerShadowConfiguration? = nil) {
+        self.initialState = initialState
         self.totalDurationInSeconds = (totalDurationInSeconds > 0 ? totalDurationInSeconds : 0.4)
         self.durationIsProportionalToDistanceTraveled = durationIsProportionalToDistanceTraveled
         self.timingCurveProvider = timingCurveProvider
