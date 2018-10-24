@@ -1,6 +1,29 @@
 import UIKit
 
 extension PresentationController {
+    func setupPresentationContainerView() {
+        guard self.presentationContainerView == nil else { return }
+
+        let presentationContainerView = PresentationContainerView()
+        presentationContainerView.touchDelegate = self
+        presentationContainerView.backgroundColor = .clear
+        presentationContainerView.frame = containerView?.superview?.frame ?? .zero
+        presentationContainerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+        if let containerView = containerView {
+            containerView.superview?.addSubview(presentationContainerView)
+            presentationContainerView.addSubview(containerView)
+        }
+
+        self.presentationContainerView = presentationContainerView
+    }
+
+    func removePresentationContainerView() {
+        presentationContainerView.removeFromSuperview()
+    }
+}
+
+extension PresentationController {
     func setupDrawerFullExpansionTapRecogniser() {
         guard drawerFullExpansionTapGR == nil else { return }
         let isFullyPresentable = isFullyPresentableByDrawerTaps

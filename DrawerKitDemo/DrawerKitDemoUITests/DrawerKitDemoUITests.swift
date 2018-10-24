@@ -79,6 +79,35 @@ class DrawerKitDemoUITests: XCTestCase {
         XCTAssertFalse(isDrawerOpen())
         XCTAssertFalse(isDrawerFullyOpen())
     }
+
+    func testTouchesPassthrough() {
+        let mainCanvase = app.buttons[Identifiers.mainCanvas]
+        mainCanvase.doubleTap()
+
+        let alertButton = app.buttons["Alert"]
+        let alert = app.alerts["Alert"]
+
+        XCTAssertTrue(alertButton.isHittable)
+        alertButton.tap()
+
+        XCTAssertTrue(alert.exists)
+        alert.buttons.firstMatch.tap()
+
+        let drawer = app.staticTexts[Identifiers.drawerDescription].firstMatch
+        let start = drawer.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        let end = mainCanvase.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.1))
+        start.press(forDuration: 0.05, thenDragTo: end)
+
+        XCTAssertFalse(alertButton.isHittable)
+
+        end.press(forDuration: 0.05, thenDragTo: start)
+
+        XCTAssertTrue(alertButton.isHittable)
+        alertButton.tap()
+
+        XCTAssertTrue(alert.exists)
+        alert.buttons.firstMatch.tap()
+    }
     
     private func isDrawerOpen() -> Bool {
         let drawer = app.staticTexts[Identifiers.drawerDescription]

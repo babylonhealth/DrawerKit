@@ -5,6 +5,8 @@ final class PresentationController: UIPresentationController {
     let inDebugMode: Bool
     let handleView: UIView?
 
+    var presentationContainerView: PresentationContainerView!
+
     let presentingDrawerAnimationActions: DrawerAnimationActions
     let presentedDrawerAnimationActions: DrawerAnimationActions
 
@@ -75,7 +77,26 @@ final class PresentationController: UIPresentationController {
     }
 }
 
+extension PresentationController: PresentationContainerViewDelegate {
+    func view(_ view: PresentationContainerView, shouldPassthroughTouchAt point: CGPoint) -> Bool {
+        guard let presentedView = presentedView else { return false }
+        return !presentedView.bounds.contains(presentedView.convert(point, from: view))
+    }
+
+    func view(_ view: PresentationContainerView, forTouchAt point: CGPoint) -> UIView? {
+        switch currentDrawerState {
+        case .fullyExpanded where configuration.passthroughTouchesInStates.contains(.fullyExpanded),
+             .partiallyExpanded where configuration.passthroughTouchesInStates.contains(.partiallyExpanded),
+             .collapsed where configuration.passthroughTouchesInStates.contains(.collapsed):
+            return presentingViewController.view
+        default:
+            return containerView
+        }
+    }
+}
+
 extension PresentationController {
+
     override var frameOfPresentedViewInContainerView: CGRect {
         var frame: CGRect = .zero
         frame.size = size(forChildContentContainer: presentedViewController,
@@ -89,6 +110,8 @@ extension PresentationController {
     }
 
     override func presentationTransitionWillBegin() {
+        setupPresentationContainerView()
+
         // NOTE: `targetDrawerState.didSet` is not invoked within the
         //        initializer.
         gestureAvailabilityConditionsDidChange()
@@ -119,6 +142,7 @@ extension PresentationController {
     }
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
+        removePresentationContainerView()
         removeDrawerFullExpansionTapRecogniser()
         removeDrawerDismissalTapRecogniser()
         removeDrawerDragRecogniser()

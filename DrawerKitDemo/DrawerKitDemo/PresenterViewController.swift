@@ -5,12 +5,22 @@ class PresenterViewController: UIViewController, DrawerCoordinating {
     /* strong */ var drawerDisplayController: DrawerDisplayController?
 
     @IBAction func presentButtonTapped() {
-        doModalPresentation()
+        doModalPresentation(passthrough: false)
+    }
+
+    @IBAction func presentButtonDoubleTapped() {
+        doModalPresentation(passthrough: true)
+    }
+
+    @IBAction func alertButtonTapped() {
+        let alert = UIAlertController(title: "Alert", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
+        self.presentedViewController?.present(alert, animated: true, completion: nil)
     }
 }
 
 private extension PresenterViewController {
-    func doModalPresentation() {
+    func doModalPresentation(passthrough: Bool) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "presented")
             as? PresentedNavigationController else { return }
 
@@ -25,7 +35,7 @@ private extension PresenterViewController {
         configuration.durationIsProportionalToDistanceTraveled = false
         // default is UISpringTimingParameters()
         configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.8)
-        configuration.fullExpansionBehaviour = .coversFullScreen
+        configuration.fullExpansionBehaviour = .leavesCustomGap(gap: 150)
         configuration.supportsPartialExpansion = true
         configuration.dismissesInStages = true
         configuration.isDrawerDraggable = true
@@ -37,6 +47,7 @@ private extension PresenterViewController {
         configuration.upperMarkGap = 100 // default is 40
         configuration.lowerMarkGap =  80 // default is 40
         configuration.maximumCornerRadius = 15
+        configuration.passthroughTouchesInStates = passthrough ? [.collapsed, .partiallyExpanded] : []
 
         var handleViewConfiguration = HandleViewConfiguration()
         handleViewConfiguration.autoAnimatesDimming = true
