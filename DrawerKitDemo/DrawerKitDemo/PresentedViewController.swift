@@ -29,6 +29,11 @@ class PresentedViewController: UIViewController {
 extension PresentedViewController: UIScrollViewDelegate {}
 
 extension PresentedViewController: DrawerPresentable {
+
+    var heightOfCollapsedDrawer: CGFloat {
+        return 100
+    }
+
     var heightOfPartiallyExpandedDrawer: CGFloat {
         guard let view = self.view as? PresentedView else { return 0 }
 

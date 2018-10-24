@@ -162,12 +162,14 @@ extension PresentationController {
         let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         let startingPositionY =
             GeometryEvaluator.drawerPositionY(for: startingState,
+                                              drawerCollapsedHeight: drawerCollapsedHeight,
                                               drawerPartialHeight: drawerPartialHeight,
                                               containerViewHeight: containerViewHeight,
                                               drawerFullY: drawerFullY)
 
         let endingPositionY =
             GeometryEvaluator.drawerPositionY(for: endingState,
+                                              drawerCollapsedHeight: drawerCollapsedHeight,
                                               drawerPartialHeight: drawerPartialHeight,
                                               containerViewHeight: containerViewHeight,
                                               drawerFullY: drawerFullY)

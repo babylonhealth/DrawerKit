@@ -13,6 +13,18 @@ struct GeometryEvaluator {
         return containerViewHeight - partialH
     }
 
+    static func drawerCollapsedH(drawerCollapsedHeight: CGFloat,
+                               containerViewHeight: CGFloat) -> CGFloat {
+        return min(max(drawerCollapsedHeight, 0), containerViewHeight)
+    }
+
+    static func drawerCollapsedY(drawerCollapsedHeight: CGFloat,
+                               containerViewHeight: CGFloat) -> CGFloat {
+        let collapsedH = drawerCollapsedH(drawerCollapsedHeight: drawerCollapsedHeight,
+                                          containerViewHeight: containerViewHeight)
+        return containerViewHeight - collapsedH
+    }
+
     static func upperMarkY(drawerPartialHeight: CGFloat,
                            containerViewHeight: CGFloat,
                            configuration: DrawerConfiguration) -> CGFloat {
@@ -88,12 +100,14 @@ extension GeometryEvaluator {
     }
 
     static func drawerPositionY(for state: DrawerState,
+                                drawerCollapsedHeight: CGFloat,
                                 drawerPartialHeight: CGFloat,
                                 containerViewHeight: CGFloat,
                                 drawerFullY: CGFloat) -> CGFloat {
         switch state {
         case .collapsed:
-            return containerViewHeight
+            return drawerCollapsedY(drawerCollapsedHeight: drawerCollapsedHeight,
+                                    containerViewHeight: containerViewHeight)
         case .partiallyExpanded:
             return drawerPartialY(drawerPartialHeight: drawerPartialHeight,
                                   containerViewHeight: containerViewHeight)
@@ -106,6 +120,7 @@ extension GeometryEvaluator {
 
     static func nextStateFrom(currentState: DrawerState,
                               speedY: CGFloat,
+                              drawerCollapsedHeight: CGFloat,
                               drawerPartialHeight: CGFloat,
                               containerViewHeight: CGFloat,
                               configuration: DrawerConfiguration) -> DrawerState {
@@ -121,6 +136,7 @@ extension GeometryEvaluator {
         let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
 
         let positionY = drawerPositionY(for: currentState,
+                                        drawerCollapsedHeight: drawerCollapsedHeight,
                                         drawerPartialHeight: drawerPartialHeight,
                                         containerViewHeight: containerViewHeight,
                                         drawerFullY: drawerFullY)

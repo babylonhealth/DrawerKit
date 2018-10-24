@@ -34,6 +34,7 @@ extension PresentationController {
             let drawerSpeedY = panGesture.velocity(in: view).y / containerViewHeight
             let endingState = GeometryEvaluator.nextStateFrom(currentState: currentDrawerState,
                                                               speedY: drawerSpeedY,
+                                                              drawerCollapsedHeight: drawerCollapsedHeight,
                                                               drawerPartialHeight: drawerPartialHeight,
                                                               containerViewHeight: containerViewHeight,
                                                               configuration: configuration)
