@@ -63,26 +63,26 @@ extension PresentationController {
         animator.addCompletion { endingPosition in
             if autoAnimatesDimming { self.handleView?.alpha = endingHandleViewAlpha }
 
-            let isStartingStateCollapsed = (startingState == .dismissed)
-            let isEndingStateCollapsed = (endingState == .dismissed)
+            let isStartingStateDismissed = (startingState == .dismissed)
+            let isEndingStateDismissed = (endingState == .dismissed)
 
             let shouldDismiss =
-                (isStartingStateCollapsed && endingPosition == .start) ||
-                    (isEndingStateCollapsed && endingPosition == .end)
+                (isStartingStateDismissed && endingPosition == .start) ||
+                    (isEndingStateDismissed && endingPosition == .end)
 
-            if shouldDismiss && self.drawerCollapsedHeight <= 0 {
+            if shouldDismiss {
                 self.presentedViewController.dismiss(animated: true)
             }
 
-            let isStartingStateCollapsedOrFullyExpanded =
+            let isStartingStateDismissedOrFullyExpanded =
                 (startingState == .dismissed || startingState == .fullyExpanded)
 
-            let isEndingStateCollapsedOrFullyExpanded =
+            let isEndingStateDismissedOrFullyExpanded =
                 (endingState == .dismissed || endingState == .fullyExpanded)
 
             let shouldSetCornerRadiusToZero =
-                (isEndingStateCollapsedOrFullyExpanded && endingPosition == .end) ||
-                (isStartingStateCollapsedOrFullyExpanded && endingPosition == .start)
+                (isStartingStateDismissedOrFullyExpanded && endingPosition == .end) ||
+                (isEndingStateDismissedOrFullyExpanded && endingPosition == .start)
 
             if maxCornerRadius != 0 && shouldSetCornerRadiusToZero {
                 self.currentDrawerCornerRadius = 0
@@ -125,17 +125,17 @@ extension PresentationController {
             self.currentDrawerCornerRadius = endingCornerRadius
         }
 
-        let isStartingStateCollapsedOrFullyExpanded =
+        let isStartingStateDismissedOrFullyExpanded =
             (startingState == .dismissed || startingState == .fullyExpanded)
 
-        let isEndingStateCollapsedOrFullyExpanded =
+        let isEndingStateDismissedOrFullyExpanded =
             (endingState == .dismissed || endingState == .fullyExpanded)
 
-        if isStartingStateCollapsedOrFullyExpanded || isEndingStateCollapsedOrFullyExpanded {
+        if isStartingStateDismissedOrFullyExpanded || isEndingStateDismissedOrFullyExpanded {
             animator.addCompletion { endingPosition in
                 let shouldSetCornerRadiusToZero =
-                    (isEndingStateCollapsedOrFullyExpanded && endingPosition == .end) ||
-                    (isStartingStateCollapsedOrFullyExpanded && endingPosition == .start)
+                    (isEndingStateDismissedOrFullyExpanded && endingPosition == .end) ||
+                    (isStartingStateDismissedOrFullyExpanded && endingPosition == .start)
                 if shouldSetCornerRadiusToZero {
                     self.currentDrawerCornerRadius = 0
                 }

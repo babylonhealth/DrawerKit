@@ -28,7 +28,7 @@ private extension PresenterViewController {
         configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.8)
         configuration.fullExpansionBehaviour = .coversFullScreen
         configuration.supportsPartialExpansion = true
-        configuration.dismissesInStages = false
+        configuration.dismissesInStages = true
         configuration.isDrawerDraggable = true
         configuration.isFullyPresentableByDrawerTaps = true
         configuration.numberOfTapsForFullDrawerPresentation = 1

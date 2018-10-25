@@ -15,7 +15,7 @@ extension PresentationController {
         guard tapY < currentDrawerY else { return }
         NotificationCenter.default.post(notification: DrawerNotification.drawerExteriorTapped)
         tapGesture.isEnabled = false
-        animateTransition(to: .collapsed)
+        animateTransition(to: .dismissed)
     }
 
     @objc func handleDrawerDrag() {
