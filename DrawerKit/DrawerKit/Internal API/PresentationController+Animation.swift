@@ -84,7 +84,9 @@ extension PresentationController {
                 (isStartingStateDismissedOrFullyExpanded && endingPosition == .end) ||
                 (isEndingStateDismissedOrFullyExpanded && endingPosition == .start)
 
-            if maxCornerRadius != 0 && shouldSetCornerRadiusToZero {
+            if maxCornerRadius != 0
+                && shouldSetCornerRadiusToZero
+                && self.configuration.cornerAnimationOption != .none {
                 self.currentDrawerCornerRadius = 0
             }
 
@@ -136,7 +138,7 @@ extension PresentationController {
                 let shouldSetCornerRadiusToZero =
                     (isEndingStateDismissedOrFullyExpanded && endingPosition == .end) ||
                     (isStartingStateDismissedOrFullyExpanded && endingPosition == .start)
-                if shouldSetCornerRadiusToZero {
+                if shouldSetCornerRadiusToZero && self.configuration.cornerAnimationOption != .none {
                     self.currentDrawerCornerRadius = 0
                 }
             }
