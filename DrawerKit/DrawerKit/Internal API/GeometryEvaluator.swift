@@ -79,7 +79,7 @@ extension GeometryEvaluator {
                             clampToNearest: Bool = false) -> DrawerState {
         let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         if smallerThanOrEqual(positionY, drawerFullY) { return .fullyExpanded }
-        if greaterThanOrEqual(positionY, containerViewHeight) { return .collapsed }
+        if greaterThanOrEqual(positionY, containerViewHeight) { return .dismissed }
 
         let partialY = drawerPartialY(drawerPartialHeight: drawerPartialHeight,
                                       containerViewHeight: containerViewHeight)
@@ -105,7 +105,7 @@ extension GeometryEvaluator {
                                 containerViewHeight: CGFloat,
                                 drawerFullY: CGFloat) -> CGFloat {
         switch state {
-        case .collapsed:
+        case .dismissed:
             return drawerCollapsedY(drawerCollapsedHeight: drawerCollapsedHeight,
                                     containerViewHeight: containerViewHeight)
         case .partiallyExpanded:
@@ -158,25 +158,25 @@ extension GeometryEvaluator {
         // === RETURN LOGIC STARTS HERE === //
 
         if isMovingUpQuickly { return .fullyExpanded }
-        if isMovingDownQuickly { return .collapsed }
+        if isMovingDownQuickly { return .dismissed }
 
         if isAboveUpperMark {
             if isMovingUp || isNotMoving {
                 return .fullyExpanded
             } else { // isMovingDown
                 let inStages = supportsPartialExpansion && dismissesInStages
-                return inStages ? .partiallyExpanded : .collapsed
+                return inStages ? .partiallyExpanded : .dismissed
             }
         }
 
         if isAboveLowerMark {
             if isMovingDown {
-                return .collapsed
+                return .dismissed
             } else { // isMovingUp || isNotMoving
                 return (supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
             }
         }
 
-        return .collapsed
+        return .dismissed
     }
 }

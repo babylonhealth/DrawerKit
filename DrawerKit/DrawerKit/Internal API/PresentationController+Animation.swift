@@ -63,8 +63,8 @@ extension PresentationController {
         animator.addCompletion { endingPosition in
             if autoAnimatesDimming { self.handleView?.alpha = endingHandleViewAlpha }
 
-            let isStartingStateCollapsed = (startingState == .collapsed)
-            let isEndingStateCollapsed = (endingState == .collapsed)
+            let isStartingStateCollapsed = (startingState == .dismissed)
+            let isEndingStateCollapsed = (endingState == .dismissed)
 
             let shouldDismiss =
                 (isStartingStateCollapsed && endingPosition == .start) ||
@@ -75,10 +75,10 @@ extension PresentationController {
             }
 
             let isStartingStateCollapsedOrFullyExpanded =
-                (startingState == .collapsed || startingState == .fullyExpanded)
+                (startingState == .dismissed || startingState == .fullyExpanded)
 
             let isEndingStateCollapsedOrFullyExpanded =
-                (endingState == .collapsed || endingState == .fullyExpanded)
+                (endingState == .dismissed || endingState == .fullyExpanded)
 
             let shouldSetCornerRadiusToZero =
                 (isEndingStateCollapsedOrFullyExpanded && endingPosition == .end) ||
@@ -126,10 +126,10 @@ extension PresentationController {
         }
 
         let isStartingStateCollapsedOrFullyExpanded =
-            (startingState == .collapsed || startingState == .fullyExpanded)
+            (startingState == .dismissed || startingState == .fullyExpanded)
 
         let isEndingStateCollapsedOrFullyExpanded =
-            (endingState == .collapsed || endingState == .fullyExpanded)
+            (endingState == .dismissed || endingState == .fullyExpanded)
 
         if isStartingStateCollapsedOrFullyExpanded || isEndingStateCollapsedOrFullyExpanded {
             animator.addCompletion { endingPosition in

@@ -50,13 +50,13 @@ extension PresentedViewController: DrawerAnimationParticipant {
         let prepareAction: DrawerAnimationActions.PrepareHandler = {
             [weak self] info in
             switch (info.startDrawerState, info.endDrawerState) {
-            case (.collapsed, .partiallyExpanded):
+            case (.dismissed, .partiallyExpanded):
                 self?.presentedView.prepareCollapsedToPartiallyExpanded()
-            case (.partiallyExpanded, .collapsed):
+            case (.partiallyExpanded, .dismissed):
                 self?.presentedView.preparePartiallyExpandedToCollapsed()
-            case (.collapsed, .fullyExpanded):
+            case (.dismissed, .fullyExpanded):
                 self?.presentedView.prepareCollapsedToFullyExpanded()
-            case (.fullyExpanded, .collapsed):
+            case (.fullyExpanded, .dismissed):
                 self?.presentedView.prepareFullyExpandedToCollapsed()
             case (.partiallyExpanded, .fullyExpanded):
                 self?.presentedView.preparePartiallyExpandedToFullyExpanded()
@@ -70,13 +70,13 @@ extension PresentedViewController: DrawerAnimationParticipant {
         let animateAlongAction: DrawerAnimationActions.AnimateAlongHandler = {
             [weak self] info in
             switch (info.startDrawerState, info.endDrawerState) {
-            case (.collapsed, .partiallyExpanded):
+            case (.dismissed, .partiallyExpanded):
                 self?.presentedView.animateAlongCollapsedToPartiallyExpanded()
-            case (.partiallyExpanded, .collapsed):
+            case (.partiallyExpanded, .dismissed):
                 self?.presentedView.animateAlongPartiallyExpandedToCollapsed()
-            case (.collapsed, .fullyExpanded):
+            case (.dismissed, .fullyExpanded):
                 self?.presentedView.animateAlongCollapsedToFullyExpanded()
-            case (.fullyExpanded, .collapsed):
+            case (.fullyExpanded, .dismissed):
                 self?.presentedView.animateAlongFullyExpandedToCollapsed()
             case (.partiallyExpanded, .fullyExpanded):
                 self?.presentedView.animateAlongPartiallyExpandedToFullyExpanded()
@@ -90,13 +90,13 @@ extension PresentedViewController: DrawerAnimationParticipant {
         let cleanupAction: DrawerAnimationActions.CleanupHandler = {
             [weak self] info in
             switch (info.startDrawerState, info.endDrawerState) {
-            case (.collapsed, .partiallyExpanded):
+            case (.dismissed, .partiallyExpanded):
                 self?.presentedView.cleanupCollapsedToPartiallyExpanded()
-            case (.partiallyExpanded, .collapsed):
+            case (.partiallyExpanded, .dismissed):
                 self?.presentedView.cleanupPartiallyExpandedToCollapsed()
-            case (.collapsed, .fullyExpanded):
+            case (.dismissed, .fullyExpanded):
                 self?.presentedView.cleanupCollapsedToFullyExpanded()
-            case (.fullyExpanded, .collapsed):
+            case (.fullyExpanded, .dismissed):
                 self?.presentedView.cleanupFullyExpandedToCollapsed()
             case (.partiallyExpanded, .fullyExpanded):
                 self?.presentedView.cleanupPartiallyExpandedToFullyExpanded()

@@ -66,7 +66,7 @@ final class PresentationController: UIPresentationController {
 
         if let scrollView = scrollViewForPullToDismiss, let manager = pullToDismissManager {
             switch targetDrawerState {
-            case .partiallyExpanded, .collapsed:
+            case .partiallyExpanded, .dismissed:
                 scrollView.isScrollEnabled = false
             case .transitioning, .fullyExpanded:
                 scrollView.isScrollEnabled = !manager.scrollViewNeedsTransitionAsDragEnds
@@ -114,7 +114,7 @@ extension PresentationController {
     }
 
     override func dismissalTransitionWillBegin() {
-        addCornerRadiusAnimationEnding(at: .collapsed)
+        addCornerRadiusAnimationEnding(at: .dismissed)
         enableDrawerFullExpansionTapRecogniser(enabled: false)
         enableDrawerDismissalTapRecogniser(enabled: false)
     }
