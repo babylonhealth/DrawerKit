@@ -106,6 +106,8 @@ extension GeometryEvaluator {
                                 drawerFullY: CGFloat) -> CGFloat {
         switch state {
         case .dismissed:
+            return containerViewHeight
+        case .collapsed:
             return drawerCollapsedY(drawerCollapsedHeight: drawerCollapsedHeight,
                                     containerViewHeight: containerViewHeight)
         case .partiallyExpanded:
@@ -158,25 +160,29 @@ extension GeometryEvaluator {
         // === RETURN LOGIC STARTS HERE === //
 
         if isMovingUpQuickly { return .fullyExpanded }
-        if isMovingDownQuickly { return .dismissed }
+        if isMovingDownQuickly { return finalState(drawerCollapsedHeight: drawerCollapsedHeight, configuration: configuration) }
 
         if isAboveUpperMark {
             if isMovingUp || isNotMoving {
                 return .fullyExpanded
             } else { // isMovingDown
                 let inStages = supportsPartialExpansion && dismissesInStages
-                return inStages ? .partiallyExpanded : .dismissed
+                return inStages ? .partiallyExpanded : finalState(drawerCollapsedHeight: drawerCollapsedHeight, configuration: configuration)
             }
         }
 
         if isAboveLowerMark {
             if isMovingDown {
-                return .dismissed
+                return finalState(drawerCollapsedHeight: drawerCollapsedHeight, configuration: configuration)
             } else { // isMovingUp || isNotMoving
                 return (supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
             }
         }
 
-        return .dismissed
+        return finalState(drawerCollapsedHeight: drawerCollapsedHeight, configuration: configuration)
+    }
+
+    private static func finalState(drawerCollapsedHeight: CGFloat, configuration: DrawerConfiguration) -> DrawerState {
+        return drawerCollapsedHeight > 0 && configuration.dismissesInStages ? .collapsed : .dismissed
     }
 }

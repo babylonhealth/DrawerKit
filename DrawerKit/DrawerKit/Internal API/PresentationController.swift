@@ -66,7 +66,7 @@ final class PresentationController: UIPresentationController {
 
         if let scrollView = scrollViewForPullToDismiss, let manager = pullToDismissManager {
             switch targetDrawerState {
-            case .partiallyExpanded, .dismissed:
+            case .partiallyExpanded, .dismissed, .collapsed:
                 scrollView.isScrollEnabled = false
             case .transitioning, .fullyExpanded:
                 scrollView.isScrollEnabled = !manager.scrollViewNeedsTransitionAsDragEnds

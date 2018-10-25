@@ -4,6 +4,7 @@ import UIKit
 
 public enum DrawerState: Equatable { // the implementation of Equatable is internal
     case dismissed
+    case collapsed
     case partiallyExpanded
     case fullyExpanded
     case transitioning(currentDrawerY: CGFloat)
