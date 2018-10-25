@@ -19,6 +19,8 @@ extension PresentationController {
     }
 
     func removePresentationContainerView() {
+        // the containerView is removed by UIKit when dismissal end
+        // so it's not necessary to restore it in it's superview
         presentationContainerView.removeFromSuperview()
     }
 }
