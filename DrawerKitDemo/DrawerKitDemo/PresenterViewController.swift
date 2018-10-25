@@ -47,6 +47,7 @@ private extension PresenterViewController {
         configuration.upperMarkGap = 100 // default is 40
         configuration.lowerMarkGap =  80 // default is 40
         configuration.maximumCornerRadius = 15
+        configuration.cornerAnimationOption = .none
         configuration.passthroughTouchesInStates = passthrough ? [.collapsed, .partiallyExpanded] : []
 
         var handleViewConfiguration = HandleViewConfiguration()
