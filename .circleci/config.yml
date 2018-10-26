@@ -1,0 +1,18 @@
+version: 2
+
+jobs:
+  build:
+    macos:
+      xcode: "10.0.0"
+    steps:
+      - checkout
+      - run: set -o pipefail && xcodebuild CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY= PROVISIONING_PROFILE= -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=latest,name=iPhone 7' -workspace DrawerKit.xcworkspace -scheme "DrawerKitDemo" clean build test | xcpretty -c 
+      - run: set -o pipefail && xcodebuild CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY= PROVISIONING_PROFILE= -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=11.2,name=iPhone 7' -workspace DrawerKit.xcworkspace -scheme "DrawerKitDemo" clean build test | xcpretty -c 
+      - run: pod lib lint
+      - run: carthage build --no-skip-current --cache-builds
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - build
