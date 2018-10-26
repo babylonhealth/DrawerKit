@@ -57,7 +57,7 @@ final class PresentationController: UIPresentationController {
         self.handleView = (configuration.handleViewConfiguration != nil ? UIView() : nil)
         self.presentingDrawerAnimationActions = presentingDrawerAnimationActions
         self.presentedDrawerAnimationActions = presentedDrawerAnimationActions
-        self.targetDrawerState = configuration.supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded
+        self.targetDrawerState = configuration.initialState ?? (configuration.supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
 
         super.init(presentedViewController: presentedVC, presenting: presentingVC)
     }
@@ -68,7 +68,7 @@ final class PresentationController: UIPresentationController {
 
         if let scrollView = scrollViewForPullToDismiss, let manager = pullToDismissManager {
             switch targetDrawerState {
-            case .partiallyExpanded, .collapsed:
+            case .partiallyExpanded, .dismissed, .collapsed:
                 scrollView.isScrollEnabled = false
             case .transitioning, .fullyExpanded:
                 scrollView.isScrollEnabled = !manager.scrollViewNeedsTransitionAsDragEnds
@@ -103,6 +103,7 @@ extension PresentationController {
                           withParentContainerSize: containerViewSize)
         let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         frame.origin.y = GeometryEvaluator.drawerPositionY(for: targetDrawerState,
+                                                           drawerCollapsedHeight: drawerCollapsedHeight,
                                                            drawerPartialHeight: drawerPartialHeight,
                                                            containerViewHeight: containerViewHeight,
                                                            drawerFullY: drawerFullY)
@@ -136,7 +137,7 @@ extension PresentationController {
     }
 
     override func dismissalTransitionWillBegin() {
-        addCornerRadiusAnimationEnding(at: .collapsed)
+        addCornerRadiusAnimationEnding(at: .dismissed)
         enableDrawerFullExpansionTapRecogniser(enabled: false)
         enableDrawerDismissalTapRecogniser(enabled: false)
     }

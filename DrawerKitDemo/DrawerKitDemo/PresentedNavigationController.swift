@@ -17,6 +17,10 @@ extension PresentedNavigationController: DrawerAnimationParticipant {
 }
 
 extension PresentedNavigationController: DrawerPresentable {
+    var heightOfCollapsedDrawer: CGFloat {
+        return (topViewController as? DrawerPresentable)?.heightOfCollapsedDrawer ?? 0.0
+    }
+
     var heightOfPartiallyExpandedDrawer: CGFloat {
         return (topViewController as? DrawerPresentable)?.heightOfPartiallyExpandedDrawer ?? 0.0
     }

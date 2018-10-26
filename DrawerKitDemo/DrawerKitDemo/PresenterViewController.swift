@@ -31,6 +31,7 @@ private extension PresenterViewController {
         // what you need to configure differently. They're all listed here just so you
         // can see what can be configured. The values listed are the default ones,
         // except where indicated otherwise.
+//        configuration.initialState = .collapsed
         configuration.totalDurationInSeconds = 0.4
         configuration.durationIsProportionalToDistanceTraveled = false
         // default is UISpringTimingParameters()

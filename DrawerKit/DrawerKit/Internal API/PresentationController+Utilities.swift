@@ -22,7 +22,7 @@ func greaterThanOrEqual(_ lhs: CGFloat, _ rhs: CGFloat) -> Bool {
 extension DrawerState {
     public static func ==(lhs: DrawerState, rhs: DrawerState) -> Bool {
         switch (lhs, rhs) {
-        case (.collapsed, .collapsed),
+        case (.dismissed, .dismissed),
              (.partiallyExpanded, .partiallyExpanded),
              (.fullyExpanded, .fullyExpanded):
             return true
