@@ -22,7 +22,7 @@ public struct HandleViewConfiguration {
     }
 
     /// Whether or not to automatically dim the handle view as the drawer approaches
-    /// its collapsed or fully expanded states. The default is `true`. Set it to `false`
+    /// its dismissed or fully expanded states. The default is `true`. Set it to `false`
     /// when configuring the drawer not to cover the full screen so that the handle view
     /// is always visible in that case.
     public var autoAnimatesDimming: Bool

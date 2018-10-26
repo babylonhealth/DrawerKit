@@ -63,26 +63,26 @@ extension PresentationController {
         animator.addCompletion { endingPosition in
             if autoAnimatesDimming { self.handleView?.alpha = endingHandleViewAlpha }
 
-            let isStartingStateCollapsed = (startingState == .collapsed)
-            let isEndingStateCollapsed = (endingState == .collapsed)
+            let isStartingStateDismissed = (startingState == .dismissed)
+            let isEndingStateDismissed = (endingState == .dismissed)
 
             let shouldDismiss =
-                (isStartingStateCollapsed && endingPosition == .start) ||
-                    (isEndingStateCollapsed && endingPosition == .end)
+                (isStartingStateDismissed && endingPosition == .start) ||
+                    (isEndingStateDismissed && endingPosition == .end)
 
             if shouldDismiss {
                 self.presentedViewController.dismiss(animated: true)
             }
 
-            let isStartingStateCollapsedOrFullyExpanded =
-                (startingState == .collapsed || startingState == .fullyExpanded)
+            let isStartingStateDismissedOrFullyExpanded =
+                (startingState == .dismissed || startingState == .fullyExpanded)
 
-            let isEndingStateCollapsedOrFullyExpanded =
-                (endingState == .collapsed || endingState == .fullyExpanded)
+            let isEndingStateDismissedOrFullyExpanded =
+                (endingState == .dismissed || endingState == .fullyExpanded)
 
             let shouldSetCornerRadiusToZero =
-                (isEndingStateCollapsedOrFullyExpanded && endingPosition == .end) ||
-                (isStartingStateCollapsedOrFullyExpanded && endingPosition == .start)
+                (isStartingStateDismissedOrFullyExpanded && endingPosition == .end) ||
+                (isEndingStateDismissedOrFullyExpanded && endingPosition == .start)
 
             if maxCornerRadius != 0
                 && shouldSetCornerRadiusToZero
@@ -127,17 +127,17 @@ extension PresentationController {
             self.currentDrawerCornerRadius = endingCornerRadius
         }
 
-        let isStartingStateCollapsedOrFullyExpanded =
-            (startingState == .collapsed || startingState == .fullyExpanded)
+        let isStartingStateDismissedOrFullyExpanded =
+            (startingState == .dismissed || startingState == .fullyExpanded)
 
-        let isEndingStateCollapsedOrFullyExpanded =
-            (endingState == .collapsed || endingState == .fullyExpanded)
+        let isEndingStateDismissedOrFullyExpanded =
+            (endingState == .dismissed || endingState == .fullyExpanded)
 
-        if isStartingStateCollapsedOrFullyExpanded || isEndingStateCollapsedOrFullyExpanded {
+        if isStartingStateDismissedOrFullyExpanded || isEndingStateDismissedOrFullyExpanded {
             animator.addCompletion { endingPosition in
                 let shouldSetCornerRadiusToZero =
-                    (isEndingStateCollapsedOrFullyExpanded && endingPosition == .end) ||
-                    (isStartingStateCollapsedOrFullyExpanded && endingPosition == .start)
+                    (isEndingStateDismissedOrFullyExpanded && endingPosition == .end) ||
+                    (isStartingStateDismissedOrFullyExpanded && endingPosition == .start)
                 if shouldSetCornerRadiusToZero && self.configuration.cornerAnimationOption != .none {
                     self.currentDrawerCornerRadius = 0
                 }
@@ -164,12 +164,14 @@ extension PresentationController {
         let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         let startingPositionY =
             GeometryEvaluator.drawerPositionY(for: startingState,
+                                              drawerCollapsedHeight: drawerCollapsedHeight,
                                               drawerPartialHeight: drawerPartialHeight,
                                               containerViewHeight: containerViewHeight,
                                               drawerFullY: drawerFullY)
 
         let endingPositionY =
             GeometryEvaluator.drawerPositionY(for: endingState,
+                                              drawerCollapsedHeight: drawerCollapsedHeight,
                                               drawerPartialHeight: drawerPartialHeight,
                                               containerViewHeight: containerViewHeight,
                                               drawerFullY: drawerFullY)

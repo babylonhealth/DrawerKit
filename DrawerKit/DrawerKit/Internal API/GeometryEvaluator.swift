@@ -3,7 +3,7 @@ import UIKit
 struct GeometryEvaluator {
     static func drawerPartialH(drawerPartialHeight: CGFloat,
                                containerViewHeight: CGFloat) -> CGFloat {
-        return min(max(drawerPartialHeight, 0), containerViewHeight)
+        return min(max(0, drawerPartialHeight), containerViewHeight)
     }
 
     static func drawerPartialY(drawerPartialHeight: CGFloat,
@@ -11,6 +11,18 @@ struct GeometryEvaluator {
         let partialH = drawerPartialH(drawerPartialHeight: drawerPartialHeight,
                                       containerViewHeight: containerViewHeight)
         return containerViewHeight - partialH
+    }
+
+    static func drawerCollapsedH(drawerCollapsedHeight: CGFloat,
+                               containerViewHeight: CGFloat) -> CGFloat {
+        return min(max(0, drawerCollapsedHeight), containerViewHeight)
+    }
+
+    static func drawerCollapsedY(drawerCollapsedHeight: CGFloat,
+                               containerViewHeight: CGFloat) -> CGFloat {
+        let collapsedH = drawerCollapsedH(drawerCollapsedHeight: drawerCollapsedHeight,
+                                          containerViewHeight: containerViewHeight)
+        return containerViewHeight - collapsedH
     }
 
     static func upperMarkY(drawerPartialHeight: CGFloat,
@@ -67,7 +79,7 @@ extension GeometryEvaluator {
                             clampToNearest: Bool = false) -> DrawerState {
         let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         if smallerThanOrEqual(positionY, drawerFullY) { return .fullyExpanded }
-        if greaterThanOrEqual(positionY, containerViewHeight) { return .collapsed }
+        if greaterThanOrEqual(positionY, containerViewHeight) { return .dismissed }
 
         let partialY = drawerPartialY(drawerPartialHeight: drawerPartialHeight,
                                       containerViewHeight: containerViewHeight)
@@ -88,12 +100,16 @@ extension GeometryEvaluator {
     }
 
     static func drawerPositionY(for state: DrawerState,
+                                drawerCollapsedHeight: CGFloat,
                                 drawerPartialHeight: CGFloat,
                                 containerViewHeight: CGFloat,
                                 drawerFullY: CGFloat) -> CGFloat {
         switch state {
-        case .collapsed:
+        case .dismissed:
             return containerViewHeight
+        case .collapsed:
+            return drawerCollapsedY(drawerCollapsedHeight: drawerCollapsedHeight,
+                                    containerViewHeight: containerViewHeight)
         case .partiallyExpanded:
             return drawerPartialY(drawerPartialHeight: drawerPartialHeight,
                                   containerViewHeight: containerViewHeight)
@@ -106,6 +122,7 @@ extension GeometryEvaluator {
 
     static func nextStateFrom(currentState: DrawerState,
                               speedY: CGFloat,
+                              drawerCollapsedHeight: CGFloat,
                               drawerPartialHeight: CGFloat,
                               containerViewHeight: CGFloat,
                               configuration: DrawerConfiguration) -> DrawerState {
@@ -121,6 +138,7 @@ extension GeometryEvaluator {
         let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
 
         let positionY = drawerPositionY(for: currentState,
+                                        drawerCollapsedHeight: drawerCollapsedHeight,
                                         drawerPartialHeight: drawerPartialHeight,
                                         containerViewHeight: containerViewHeight,
                                         drawerFullY: drawerFullY)
@@ -142,25 +160,29 @@ extension GeometryEvaluator {
         // === RETURN LOGIC STARTS HERE === //
 
         if isMovingUpQuickly { return .fullyExpanded }
-        if isMovingDownQuickly { return .collapsed }
+        if isMovingDownQuickly { return finalState(drawerCollapsedHeight: drawerCollapsedHeight, configuration: configuration) }
 
         if isAboveUpperMark {
             if isMovingUp || isNotMoving {
                 return .fullyExpanded
             } else { // isMovingDown
                 let inStages = supportsPartialExpansion && dismissesInStages
-                return inStages ? .partiallyExpanded : .collapsed
+                return inStages ? .partiallyExpanded : finalState(drawerCollapsedHeight: drawerCollapsedHeight, configuration: configuration)
             }
         }
 
         if isAboveLowerMark {
             if isMovingDown {
-                return .collapsed
+                return finalState(drawerCollapsedHeight: drawerCollapsedHeight, configuration: configuration)
             } else { // isMovingUp || isNotMoving
                 return (supportsPartialExpansion ? .partiallyExpanded : .fullyExpanded)
             }
         }
 
-        return .collapsed
+        return finalState(drawerCollapsedHeight: drawerCollapsedHeight, configuration: configuration)
+    }
+
+    private static func finalState(drawerCollapsedHeight: CGFloat, configuration: DrawerConfiguration) -> DrawerState {
+        return drawerCollapsedHeight > 0 && configuration.dismissesInStages ? .collapsed : .dismissed
     }
 }
