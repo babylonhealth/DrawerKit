@@ -32,7 +32,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqC-oY-NTg">
-                                <rect key="frame" x="0.0" y="90" width="375" height="487"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <accessibility key="accessibilityConfiguration" identifier="mainCanvas"/>
                                 <gestureRecognizers/>
                                 <state key="normal">
@@ -41,31 +41,18 @@
                                 <connections>
                                     <action selector="presentButtonTapped" destination="uBw-Sr-LpF" eventType="touchUpInside" id="ROy-A5-vzk"/>
                                     <outletCollection property="gestureRecognizers" destination="biI-9V-ig5" appends="YES" id="vSE-Uj-jCd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mT6-dc-gM1">
-                                <rect key="frame" x="171" y="60" width="33" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="M9V-Oy-TbX"/>
-                                </constraints>
-                                <state key="normal" title="Alert">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="alertButtonTapped" destination="uBw-Sr-LpF" eventType="touchUpInside" id="4Et-YI-7sK"/>
+                                    <outletCollection property="gestureRecognizers" destination="HER-mx-HJG" appends="YES" id="8lM-f4-epj"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.24548156692070328" green="0.44175364460593769" blue="0.61927218264248707" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="zqC-oY-NTg" firstAttribute="top" secondItem="mT6-dc-gM1" secondAttribute="bottom" id="7p9-ir-jZ2"/>
-                            <constraint firstItem="mT6-dc-gM1" firstAttribute="centerX" secondItem="kpO-ML-Q54" secondAttribute="centerX" id="BJG-Mf-P1w"/>
                             <constraint firstItem="E1R-4Q-Kln" firstAttribute="centerY" secondItem="kpO-ML-Q54" secondAttribute="centerY" id="Zhb-3P-Akq"/>
                             <constraint firstItem="E1R-4Q-Kln" firstAttribute="centerX" secondItem="kpO-ML-Q54" secondAttribute="centerX" id="chs-2Y-Dg5"/>
-                            <constraint firstItem="zqC-oY-NTg" firstAttribute="centerY" secondItem="kpO-ML-Q54" secondAttribute="centerY" id="g9w-F7-JVk"/>
-                            <constraint firstItem="mT6-dc-gM1" firstAttribute="top" secondItem="eUk-bQ-xyb" secondAttribute="bottom" constant="40" id="jNZ-yF-aZ0"/>
                             <constraint firstAttribute="trailing" secondItem="zqC-oY-NTg" secondAttribute="trailing" id="jxk-gc-Uqa"/>
                             <constraint firstItem="zqC-oY-NTg" firstAttribute="leading" secondItem="kpO-ML-Q54" secondAttribute="leading" id="rnK-kU-a7Q"/>
+                            <constraint firstItem="zqC-oY-NTg" firstAttribute="top" secondItem="eUk-bQ-xyb" secondAttribute="bottom" id="wYF-b9-gqO"/>
+                            <constraint firstItem="ZsS-x3-G2B" firstAttribute="top" secondItem="zqC-oY-NTg" secondAttribute="bottom" id="zoo-za-lxb"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -75,6 +62,11 @@
                         <action selector="presentButtonDoubleTapped" destination="uBw-Sr-LpF" id="kiH-5x-R81"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="HER-mx-HJG">
+                    <connections>
+                        <action selector="alertButtonTapped" destination="uBw-Sr-LpF" id="LdR-GM-qDt"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-5634.3999999999996" y="-3600.4497751124441"/>
         </scene>

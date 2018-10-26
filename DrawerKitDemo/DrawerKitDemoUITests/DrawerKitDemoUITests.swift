@@ -3,7 +3,7 @@ import XCTest
 class DrawerKitDemoUITests: XCTestCase {
     
     var app: XCUIApplication!
-    let transitionTimeout: TimeInterval = 1.0
+    let transitionTimeout: TimeInterval = 2.0
     
     enum ElementState: String {
         case exists = "exists == true"
@@ -83,29 +83,17 @@ class DrawerKitDemoUITests: XCTestCase {
     func testTouchesPassthrough() {
         let mainCanvas = app.buttons[Identifiers.mainCanvas]
         mainCanvas.doubleTap()
+        XCTAssertTrue(isDrawerOpen())
 
-        let alertButton = app.buttons["Alert"]
         let alert = app.alerts["Alert"]
 
-        XCTAssertTrue(alertButton.isHittable)
-        alertButton.tap()
+        if #available(iOS 12, *) {
+            mainCanvas.press(forDuration: 1)
+        } else {
+            app.press(forDuration: 1)
+        }
 
-        XCTAssertTrue(alert.exists)
-        alert.buttons.firstMatch.tap()
-
-        let drawer = app.staticTexts[Identifiers.drawerDescription].firstMatch
-        let start = drawer.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
-        let end = mainCanvas.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.1))
-        start.press(forDuration: 0.05, thenDragTo: end)
-
-        XCTAssertFalse(alertButton.isHittable)
-
-        end.press(forDuration: 0.05, thenDragTo: start)
-
-        XCTAssertTrue(alertButton.isHittable)
-        alertButton.tap()
-
-        XCTAssertTrue(alert.exists)
+        XCTAssertTrue(tryWaitFor(element: alert, withState: .exists))
         alert.buttons.firstMatch.tap()
     }
     

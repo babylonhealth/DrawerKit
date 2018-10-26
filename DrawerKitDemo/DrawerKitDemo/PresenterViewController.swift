@@ -15,7 +15,7 @@ class PresenterViewController: UIViewController, DrawerCoordinating {
     @IBAction func alertButtonTapped() {
         let alert = UIAlertController(title: "Alert", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
-        self.presentedViewController?.present(alert, animated: true, completion: nil)
+        (self.presentedViewController ?? self).present(alert, animated: true, completion: nil)
     }
 }
 
@@ -36,7 +36,7 @@ private extension PresenterViewController {
         configuration.durationIsProportionalToDistanceTraveled = false
         // default is UISpringTimingParameters()
         configuration.timingCurveProvider = UISpringTimingParameters(dampingRatio: 0.8)
-        configuration.fullExpansionBehaviour = .leavesCustomGap(gap: 150)
+        configuration.fullExpansionBehaviour = .coversFullScreen
         configuration.supportsPartialExpansion = true
         configuration.dismissesInStages = true
         configuration.isDrawerDraggable = true
