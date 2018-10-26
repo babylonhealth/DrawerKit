@@ -3,7 +3,7 @@ import UIKit
 struct GeometryEvaluator {
     static func drawerPartialH(drawerPartialHeight: CGFloat,
                                containerViewHeight: CGFloat) -> CGFloat {
-        return min(max(drawerPartialHeight, 0), containerViewHeight)
+        return min(max(0, drawerPartialHeight), containerViewHeight)
     }
 
     static func drawerPartialY(drawerPartialHeight: CGFloat,
@@ -15,7 +15,7 @@ struct GeometryEvaluator {
 
     static func drawerCollapsedH(drawerCollapsedHeight: CGFloat,
                                containerViewHeight: CGFloat) -> CGFloat {
-        return min(max(drawerCollapsedHeight, 0), containerViewHeight)
+        return min(max(0, drawerCollapsedHeight), containerViewHeight)
     }
 
     static func drawerCollapsedY(drawerCollapsedHeight: CGFloat,
