@@ -164,6 +164,10 @@ public struct DrawerConfiguration {
     /// property to `nil` so as not to have a drawer shadow. The default value is `nil`.
     public var drawerShadowConfiguration: DrawerShadowConfiguration?
 
+    /// In what states touches should be passed through to the presenting view.
+    /// By default touches will not be passed through only in `fullyExpanded` state.
+    public var passthroughTouchesInStates: PassthroughOptions
+
     public init(initialState: DrawerState? = nil,
                 totalDurationInSeconds: TimeInterval = 0.4,
                 durationIsProportionalToDistanceTraveled: Bool = false,
@@ -183,7 +187,8 @@ public struct DrawerConfiguration {
                 cornerAnimationOption: CornerAnimationOption = .maximumAtPartialY,
                 handleViewConfiguration: HandleViewConfiguration? = HandleViewConfiguration(),
                 drawerBorderConfiguration: DrawerBorderConfiguration? = nil,
-                drawerShadowConfiguration: DrawerShadowConfiguration? = nil) {
+                drawerShadowConfiguration: DrawerShadowConfiguration? = nil,
+                passthroughTouchesInStates: PassthroughOptions = [.collapsed, .partiallyExpanded]) {
         self.initialState = initialState
         self.totalDurationInSeconds = (totalDurationInSeconds > 0 ? totalDurationInSeconds : 0.4)
         self.durationIsProportionalToDistanceTraveled = durationIsProportionalToDistanceTraveled
@@ -211,6 +216,7 @@ public struct DrawerConfiguration {
         self.handleViewConfiguration = handleViewConfiguration
         self.drawerBorderConfiguration = drawerBorderConfiguration
         self.drawerShadowConfiguration = drawerShadowConfiguration
+        self.passthroughTouchesInStates = passthroughTouchesInStates
     }
 }
 

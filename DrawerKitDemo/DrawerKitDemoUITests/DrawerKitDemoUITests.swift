@@ -3,7 +3,7 @@ import XCTest
 class DrawerKitDemoUITests: XCTestCase {
     
     var app: XCUIApplication!
-    let transitionTimeout: TimeInterval = 1.0
+    let transitionTimeout: TimeInterval = 2.0
     
     enum ElementState: String {
         case exists = "exists == true"
@@ -31,9 +31,9 @@ class DrawerKitDemoUITests: XCTestCase {
     }
     
     func testClickAnywhereToClose() {
-        let mainCanvase = app.buttons[Identifiers.mainCanvas]
+        let mainCanvas = app.buttons[Identifiers.mainCanvas]
         XCTAssertFalse(isDrawerOpen())
-        mainCanvase.tap()
+        mainCanvas.tap()
         XCTAssertTrue(isDrawerOpen())
         XCTAssertFalse(isDrawerFullyOpen())
         
@@ -42,9 +42,9 @@ class DrawerKitDemoUITests: XCTestCase {
     }
     
     func testClickButtonToClose() {
-        let mainCanvase = app.buttons[Identifiers.mainCanvas]
+        let mainCanvas = app.buttons[Identifiers.mainCanvas]
         XCTAssertFalse(isDrawerOpen())
-        mainCanvase.tap()
+        mainCanvas.tap()
         XCTAssertTrue(isDrawerOpen())
         XCTAssertFalse(isDrawerFullyOpen())
         
@@ -54,12 +54,12 @@ class DrawerKitDemoUITests: XCTestCase {
     }
     
     func testOpenDrawerAndClose() {
-        let mainCanvase = app.buttons[Identifiers.mainCanvas]
-        mainCanvase.tap()
+        let mainCanvas = app.buttons[Identifiers.mainCanvas]
+        mainCanvas.tap()
         
         let drawer = app.staticTexts[Identifiers.drawerDescription].firstMatch
         let start = drawer.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
-        let end = mainCanvase.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.1))
+        let end = mainCanvas.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.1))
         start.press(forDuration: 0.05, thenDragTo: end)
         XCTAssertTrue(isDrawerFullyOpen())
 
@@ -68,8 +68,8 @@ class DrawerKitDemoUITests: XCTestCase {
     }
     
     func testCloseFullyOpenDrawer() {
-        let mainCanvase = app.buttons[Identifiers.mainCanvas]
-        mainCanvase.tap()
+        let mainCanvas = app.buttons[Identifiers.mainCanvas]
+        mainCanvas.tap()
         
         let drawer = app.staticTexts[Identifiers.drawerDescription]
         drawer.swipeUp()
@@ -78,6 +78,23 @@ class DrawerKitDemoUITests: XCTestCase {
         closeButton.tap()
         XCTAssertFalse(isDrawerOpen())
         XCTAssertFalse(isDrawerFullyOpen())
+    }
+
+    func testTouchesPassthrough() {
+        let mainCanvas = app.buttons[Identifiers.mainCanvas]
+        mainCanvas.doubleTap()
+        XCTAssertTrue(isDrawerOpen())
+
+        let alert = app.alerts["Alert"]
+
+        if #available(iOS 12, *) {
+            mainCanvas.press(forDuration: 1)
+        } else {
+            app.press(forDuration: 1)
+        }
+
+        XCTAssertTrue(tryWaitFor(element: alert, withState: .exists))
+        alert.buttons.firstMatch.tap()
     }
     
     private func isDrawerOpen() -> Bool {
