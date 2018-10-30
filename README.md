@@ -43,43 +43,6 @@ Please do play with the demo app and try different configuration options because
 	</table>
 </p>
 
-## What's new in version 0.6.0?
-
-## v. 0.6.0
-
-- DrawerKit now supports pull-to-dismiss driven by a `UIScrollView` inside the drawer content.
-
-  You may specify the `UIScrollView` to DrawerKit through its presentation controller:
-  ```swift
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-
-    // Install `tableView` as the pull-to-dismiss participant.
-    drawerPresentationController?.scrollViewForPullToDismiss = tableView
-  }
-  ```
-- Drawer corners may now be configured in `DrawerConfiguration` to be always visible below the status bar.
-
-## What's new in version 0.5.0?
-
-- DrawerKit now supports `overCurrentContext` and `overFullScreen` modal presentations over the drawer.
-- Fixed the issue of touches on the drawer being cancelled by the DrawerKit internal gesture recognizers.
-- `UIControl`s within the drawer are now interactive when the drawer is partially expanded.
-
-## What's new in version 0.4.1?
-
-- Reverses the fix for the [issue](https://github.com/Babylonpartners/DrawerKit/issues/31) about safe areas.
-The fix broke other things and the issue will need to be re-opened.
-- Changes the minimum deployment target to 10.2.
-
-## What's new in version 0.4.0?
-
-- Drawers can now have borders and shadows, all configurable.
-- Fixed a bug by which dragging the drawer all the way to the top would not execute the animation completion block.
-- Fixed a reported [issue](https://github.com/Babylonpartners/DrawerKit/issues/31) by which safe area insets were misbehaving.
-- Removed the configuration parameter `hasHandleView` since it can be inferred from the value of `handleViewConfiguration`, which is now an optional.
-- Fixed incorrect spelling in an enumeration case (`DrawerConfiguration.FullExpansionBehaviour.doesNotCoverStatusBar`)
-
 ## What version of iOS does it require or support?
 
 __DrawerKit__ is compatible with iOS 10 and above.
