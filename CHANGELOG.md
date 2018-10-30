@@ -1,5 +1,17 @@
 # DrawerKit
 
+## v. 0.7.0
+
+- DrawerKit now supports interactions with presenting view. By default presenting view will receive touch events when drawer is in `collapsed` or `partiallyExpanded` state. This can be configured via new `passthroughTouchesInStates` configuration.
+
+- Drawer corner radius animation can now be disabled.
+
+- Drawer has new `dismissed` state in which the presented view controller will be dismissed. 
+
+- It's possible to make drawer visible on screen in `collapsed` state via new property `heightOfCollapsedDrawer` in `DrawerPresentable` protocol.
+
+- Drawer can be presented in particular initial state via new `initialState` configuration.
+
 ## v. 0.6.0
 
 - DrawerKit now supports pull-to-dismiss driven by a `UIScrollView` inside the drawer content. (#58)
