@@ -102,6 +102,11 @@ public protocol DrawerPresentable: class {
     /// The height at which the drawer must be presented when it's in its
     /// partially expanded state. If negative, its value is clamped to zero.
     var heightOfPartiallyExpandedDrawer: CGFloat { get }
+
+    /// The height at which the drawer must be presented when it's in its
+    /// collapsed state. If negative, its value is clamped to zero.
+    /// Default implementation returns 0.
+    var heightOfCollapsedDrawer: CGFloat { get }
 }
 ```
 
@@ -195,15 +200,19 @@ __DrawerKit__ has a number of configurable properties, conveniently collected to
 `DrawerConfiguration`. Here's a list of all the currently supported configuration options:
 
 ```swift
+    /// Intial state of presented drawer. Default is `nil`, If `nil` then
+    /// state will be computed based on `supportsPartialExpansion` flag.
+    public var initialState: DrawerState?
+
     /// The total duration, in seconds, for the drawer to transition from its
-    /// collapsed state to its fully-expanded state, or vice-versa. The default
+    /// dismissed state to its fully-expanded state, or vice-versa. The default
     /// value is 0.4 seconds.
     public var totalDurationInSeconds: TimeInterval
 
-    /// When the drawer transitions between its collapsed and partially-expanded
+    /// When the drawer transitions between its dismissed and partially-expanded
     /// states, or between its partially-expanded and its fully-expanded states, in
     /// either direction, the distance traveled by the drawer is some fraction of
-    /// the total distance traveled between the collapsed and fully-expanded states.
+    /// the total distance traveled between the dismissed and fully-expanded states.
     /// You have a choice between having those fractional transitions take the same
     /// amount of time as the full transition, and having them take a time that is
     /// a fraction of the total time, where the fraction used is the fraction of
@@ -235,11 +244,11 @@ __DrawerKit__ has a number of configurable properties, conveniently collected to
 
     /// When `true`, dismissing the drawer from its fully expanded state can result
     /// in the drawer stopping at its partially expanded state. When `false`, the
-    /// dismissal is always straight to the collapsed state. Note that
+    /// dismissal is always straight to the dismissed state. Note that
     /// `supportsPartialExpansion` being `false` implies `dismissesInStages` being
     /// `false` as well but you can have `supportsPartialExpansion == true` and
     /// `dismissesInStages == false`, which would result in presentations to the
-    /// partially expanded state but all dismissals would be straight to the collapsed
+    /// partially expanded state but all dismissals would be straight to the dismissed
     /// state. The default value is `true`.
     public var dismissesInStages: Bool
 
@@ -290,6 +299,10 @@ __DrawerKit__ has a number of configurable properties, conveniently collected to
     /// corner animations from taking place. The default value is 15 points.
     public var maximumCornerRadius: CGFloat
 
+    /// How the drawer should animate its corner radius if specified. The
+    /// default value is `maximumAtPartialY`.
+    public var cornerAnimationOption: CornerAnimationOption
+
     /// The configuration options for the handle view, should it be shown. Set this
     /// property to `nil` to hide the handle view. The default value is
     /// `HandleViewConfiguration()`.
@@ -302,6 +315,10 @@ __DrawerKit__ has a number of configurable properties, conveniently collected to
     /// The configuration options for the drawer's shadow, should it be shown. Set this
     /// property to `nil` so as not to have a drawer shadow. The default value is `nil`.
     public var drawerShadowConfiguration: DrawerShadowConfiguration?
+
+    /// In what states touches should be passed through to the presenting view.
+    /// By default touches will not be passed through only in `fullyExpanded` state.
+    public var passthroughTouchesInStates: PassthroughOptions
 ```
 
 ```swift
