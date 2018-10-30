@@ -2,7 +2,7 @@
 
 ## v. 0.7.0
 
-- DrawerKit now supports interactions with presenting view. By default presenting view will receive touch events when drawer is in `collapsed` or `partiallyExpanded` state. This can be configured via new `passthroughTouchesInStates` configuration.
+- DrawerKit now supports interactions with the presenting view. By default, the presenting view will receive touch events when the drawer is in the `collapsed` or `partiallyExpanded` state. This can be configured via the new `passthroughTouchesInStates` configuration.
 
 - Drawer corner radius animation can now be disabled.
 
