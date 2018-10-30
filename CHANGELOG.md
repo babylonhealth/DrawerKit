@@ -8,7 +8,7 @@
 
 - DrawerKit now has a new state, `dismissed`, to differentiate between being `collapsed` (to a particular non-zero height) and being actually dismissed. 
 
-- It's possible to make drawer visible on screen in `collapsed` state via new property `heightOfCollapsedDrawer` in `DrawerPresentable` protocol.
+- It's possible to make the drawer visible on screen when in the `collapsed` state, via the new property `heightOfCollapsedDrawer` in the `DrawerPresentable` protocol.
 
 - Drawer can be presented in particular initial state via new `initialState` configuration.
 
