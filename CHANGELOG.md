@@ -6,7 +6,7 @@
 
 - Drawer corner radius animation can now be disabled.
 
-- Drawer has new `dismissed` state in which the presented view controller will be dismissed. 
+- DrawerKit now has a new state, `dismissed`, to differentiate between being `collapsed` (to a particular non-zero height) and being actually dismissed. 
 
 - It's possible to make drawer visible on screen in `collapsed` state via new property `heightOfCollapsedDrawer` in `DrawerPresentable` protocol.
 
