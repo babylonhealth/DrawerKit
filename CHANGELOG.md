@@ -10,7 +10,7 @@
 
 - It's possible to make the drawer visible on screen when in the `collapsed` state, via the new property `heightOfCollapsedDrawer` in the `DrawerPresentable` protocol.
 
-- Drawer can be presented in particular initial state via new `initialState` configuration.
+- The drawer can now be presented in a particular initial state, via the new `initialState` configuration.
 
 ## v. 0.6.0
 
