@@ -52,6 +52,7 @@ extension PresentationController {
     var currentDrawerState: DrawerState {
         get {
             return GeometryEvaluator.drawerState(for: currentDrawerY,
+                                                 drawerCollapsedHeight: drawerCollapsedHeight,
                                                  drawerPartialHeight: drawerPartialHeight,
                                                  containerViewHeight: containerViewHeight,
                                                  configuration: configuration)
