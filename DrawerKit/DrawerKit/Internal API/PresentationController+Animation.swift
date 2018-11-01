@@ -92,6 +92,7 @@ extension PresentationController {
 
             if endingPosition != .end {
                 self.targetDrawerState = GeometryEvaluator.drawerState(for: self.currentDrawerY,
+                                                                       drawerCollapsedHeight: self.drawerCollapsedHeight,
                                                                        drawerPartialHeight: self.drawerPartialY,
                                                                        containerViewHeight: self.containerViewHeight,
                                                                        configuration: self.configuration)

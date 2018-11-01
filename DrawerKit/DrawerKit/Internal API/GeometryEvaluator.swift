@@ -73,6 +73,7 @@ struct GeometryEvaluator {
 
 extension GeometryEvaluator {
     static func drawerState(for positionY: CGFloat,
+                            drawerCollapsedHeight: CGFloat,
                             drawerPartialHeight: CGFloat,
                             containerViewHeight: CGFloat,
                             configuration: DrawerConfiguration,
@@ -85,12 +86,17 @@ extension GeometryEvaluator {
                                       containerViewHeight: containerViewHeight)
         if equal(positionY, partialY) { return .partiallyExpanded }
 
+        let collapsedY = drawerCollapsedY(drawerCollapsedHeight: drawerCollapsedHeight,
+                                          containerViewHeight: containerViewHeight)
+        if equal(positionY, collapsedY) { return .collapsed }
+
         if clampToNearest {
             let posY = clamped(positionY,
                                drawerPartialHeight: drawerPartialHeight,
                                containerViewHeight: containerViewHeight,
                                configuration: configuration)
             return drawerState(for: posY,
+                               drawerCollapsedHeight: drawerCollapsedHeight,
                                drawerPartialHeight: drawerPartialHeight,
                                containerViewHeight: containerViewHeight,
                                configuration: configuration)

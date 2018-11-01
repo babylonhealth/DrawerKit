@@ -1,5 +1,9 @@
 # DrawerKit
 
+## Master
+
+- Fixed calculation of current state when `heightOfCollapsedDrawer` is greater than 0.
+
 ## v. 0.7.0
 
 - DrawerKit now supports interactions with the presenting view. By default, the presenting view will receive touch events when the drawer is in the `collapsed` or `partiallyExpanded` state. This can be configured via the new `passthroughTouchesInStates` configuration.
