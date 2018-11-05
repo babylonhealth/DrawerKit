@@ -3,6 +3,7 @@
 ## Master
 
 - Fixed calculation of current state when `heightOfCollapsedDrawer` is greater than 0.
+- Fixed settings drawer shadow and corner radius at the same time.
 - Fixed `Equality` implementation of `DrawerState`
 - Allow expanding by tap from `collapsed` state
 

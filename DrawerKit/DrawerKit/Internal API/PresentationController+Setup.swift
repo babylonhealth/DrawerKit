@@ -109,10 +109,10 @@ extension PresentationController {
 
     func setupDrawerShadow() {
         if let drawerShadowConfig = configuration.drawerShadowConfiguration {
-            presentedView?.layer.shadowColor = drawerShadowConfig.shadowColor?.cgColor
-            presentedView?.layer.shadowOpacity = Float(drawerShadowConfig.shadowOpacity)
-            presentedView?.layer.shadowRadius = drawerShadowConfig.shadowRadius
-            presentedView?.layer.shadowOffset = drawerShadowConfig.shadowOffset
+            containerView?.layer.shadowColor = drawerShadowConfig.shadowColor?.cgColor
+            containerView?.layer.shadowOpacity = Float(drawerShadowConfig.shadowOpacity)
+            containerView?.layer.shadowRadius = drawerShadowConfig.shadowRadius
+            containerView?.layer.shadowOffset = drawerShadowConfig.shadowOffset
         }
     }
 }
