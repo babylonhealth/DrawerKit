@@ -3,6 +3,8 @@
 ## Master
 
 - Fixed calculation of current state when `heightOfCollapsedDrawer` is greater than 0.
+- Fixed `Equality` implementation of `DrawerState`
+- Allow expanding by tap from `collapsed` state
 
 ## v. 0.7.0
 
