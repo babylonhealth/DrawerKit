@@ -13,6 +13,22 @@ public protocol DrawerPresentationControlling: class {
     ///
     /// - note: The drawer presentation controller does not retain the view.
     var scrollViewForPullToDismiss: UIScrollView? { get set }
+
+    /// Changes the state of the drawer.
+    /// - parameters:
+    ///   - state: the new drawer state. Passing `.dismissed` value will dismiss the presented view controller.
+    ///            It's not allowed to pass `.transitioning` state, passing it will result in `fatalError`.
+    ///
+    ///   - animated: whether the state change should be animated, default is `true`.
+    ///
+    ///   - completion: a closure to be called when the state transition finishes, default is `nil`.
+    func setDrawerState(_ state: DrawerState, animated: Bool, completion: (() -> Void)?)
+}
+
+extension DrawerPresentationControlling {
+    public func setDrawerState(_ state: DrawerState, animated: Bool = true) {
+        setDrawerState(state, animated: animated, completion: nil)
+    }
 }
 
 extension UIViewController {

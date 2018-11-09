@@ -155,4 +155,15 @@ extension PresentationController {
     }
 }
 
-extension PresentationController: DrawerPresentationControlling {}
+extension PresentationController: DrawerPresentationControlling {
+    public func setDrawerState(_ state: DrawerState, animated: Bool, completion: (() -> Void)?) {
+        switch state {
+        case .transitioning:
+            fatalError("`transitioning` state is not allowed")
+        case .dismissed:
+            presentedViewController.dismiss(animated: animated, completion: completion)
+        default:
+            animateTransition(to: state, animateAlongside: nil, completion: completion)
+        }
+    }
+}
