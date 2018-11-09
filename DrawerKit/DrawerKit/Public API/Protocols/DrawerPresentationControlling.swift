@@ -33,6 +33,9 @@ extension DrawerPresentationControlling {
 
 extension UIViewController {
     public var drawerPresentationController: DrawerPresentationControlling? {
-        return presentationController as? DrawerPresentationControlling
+        guard let controller = presentationController as? DrawerPresentationControlling else {
+            return navigationController?.drawerPresentationController
+        }
+        return controller
     }
 }
