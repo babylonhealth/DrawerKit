@@ -4,8 +4,10 @@
 
 - Fixed calculation of current state when `heightOfCollapsedDrawer` is greater than 0.
 - Fixed settings drawer shadow and corner radius at the same time.
-- Fixed `Equality` implementation of `DrawerState`
-- Allow expanding by tap from `collapsed` state
+- Fixed `Equality` implementation of `DrawerState`.
+- Allow expanding by tap from `collapsed` state.
+- Added method in `DrawerPresentationControlling` to change drawer state programmatically.
+- `drawerPresentationController` will return correct value when presented view controller is embedded into `UINavigationController`. 
 
 ## v. 0.7.0
 
