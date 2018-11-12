@@ -6,7 +6,7 @@ class PresentedViewController: UIViewController {
 
     @IBOutlet weak var presentedView: PresentedView!
     @IBAction func dismissButtonTapped() {
-        drawerPresentationController?.setDrawerState(.partiallyExpanded)
+        dismiss(animated: true)
     }
 
     override func viewDidLoad() {
