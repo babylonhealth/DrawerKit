@@ -19,15 +19,17 @@ public protocol DrawerPresentationControlling: class {
     ///   - state: the new drawer state. Passing `.dismissed` value will dismiss the presented view controller.
     ///            It's not allowed to pass `.transitioning` state, passing it will result in `fatalError`.
     ///
+    ///   - animateAlongside: closure to perform alongside transition, default is `nil`.
+    ///
     ///   - animated: whether the state change should be animated, default is `true`.
     ///
     ///   - completion: a closure to be called when the state transition finishes, default is `nil`.
-    func setDrawerState(_ state: DrawerState, animated: Bool, completion: (() -> Void)?)
+    func setDrawerState(_ state: DrawerState, animated: Bool, animateAlongside: (() -> Void)?, completion: (() -> Void)?)
 }
 
 extension DrawerPresentationControlling {
-    public func setDrawerState(_ state: DrawerState, animated: Bool = true) {
-        setDrawerState(state, animated: animated, completion: nil)
+    public func setDrawerState(_ state: DrawerState, animateAlongside: (() -> Void)? = nil, animated: Bool = true) {
+        setDrawerState(state, animated: animated, animateAlongside: animateAlongside, completion: nil)
     }
 }
 
