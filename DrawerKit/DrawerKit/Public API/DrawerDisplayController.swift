@@ -13,7 +13,7 @@ public final class DrawerDisplayController: NSObject {
     public let configuration: DrawerConfiguration
 
     weak var presentingVC: UIViewController?
-    /* strong */ var presentedVC: (UIViewController & DrawerPresentable)
+    weak var presentedVC: (UIViewController & DrawerPresentable)!
 
     let presentingDrawerAnimationActions: DrawerAnimationActions
     let presentedDrawerAnimationActions: DrawerAnimationActions
