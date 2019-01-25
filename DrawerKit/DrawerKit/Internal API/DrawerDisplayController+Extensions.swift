@@ -32,7 +32,11 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
 
     public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         if #available(iOS 11.0, *) {
-            guard isDrawerDraggable, let presentingVC = presentingVC else { return nil }
+            guard
+                isDrawerDraggable,
+                let presentingVC = presentingVC,
+                let presentedVC = presentedVC
+            else { return nil }
             return InteractionController(isPresentation: true,
                                          presentingVC: presentingVC,
                                          presentedVC: presentedVC)
@@ -48,7 +52,11 @@ extension DrawerDisplayController: UIViewControllerTransitioningDelegate {
 
     public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         if #available(iOS 11.0, *) {
-            guard isDrawerDraggable, let presentingVC = presentingVC else { return nil }
+            guard
+                isDrawerDraggable,
+                let presentingVC = presentingVC,
+                let presentedVC = presentedVC
+            else { return nil }
             return InteractionController(isPresentation: false,
                                          presentingVC: presentingVC,
                                          presentedVC: presentedVC)
