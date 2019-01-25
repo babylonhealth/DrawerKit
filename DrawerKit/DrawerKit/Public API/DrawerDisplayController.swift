@@ -12,8 +12,8 @@ public final class DrawerDisplayController: NSObject {
     /// The collection of configurable parameters dictating how the drawer works.
     public let configuration: DrawerConfiguration
 
-    weak var presentingVC: UIViewController?
-    weak var presentedVC: (UIViewController & DrawerPresentable)!
+    weak private(set) var presentingVC: UIViewController?
+    weak private(set) var presentedVC: (UIViewController & DrawerPresentable)?
 
     let presentingDrawerAnimationActions: DrawerAnimationActions
     let presentedDrawerAnimationActions: DrawerAnimationActions
