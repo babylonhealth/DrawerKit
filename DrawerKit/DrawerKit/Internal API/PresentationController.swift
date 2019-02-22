@@ -63,7 +63,10 @@ final class PresentationController: UIPresentationController {
     }
 
     func gestureAvailabilityConditionsDidChange() {
-        drawerDismissalTapGR?.isEnabled = targetDrawerState == .partiallyExpanded
+        drawerDismissalTapGR?.isEnabled =
+            targetDrawerState == .partiallyExpanded ||
+            targetDrawerState == .fullyExpanded ||
+            targetDrawerState == .collapsed
         drawerFullExpansionTapGR?.isEnabled = (targetDrawerState == .partiallyExpanded || targetDrawerState == .collapsed)
 
         if let scrollView = scrollViewForPullToDismiss, let manager = pullToDismissManager {
