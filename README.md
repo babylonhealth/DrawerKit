@@ -9,12 +9,7 @@
 [![License](https://img.shields.io/cocoapods/l/DrawerKit.svg?style=flat)](http://cocoapods.org/pods/DrawerKit)
 
 ## What is DrawerKit?
-__DrawerKit__ is a custom view controller presentation mimicking the kind of behaviour you see in the Apple Maps app.
-It lets any view controller modally present another arbitrary view controller in such a way that the presented content
-is only partially shown at first, then allowing the user to interact with it by showing more or less of that content
-until it's fully presented or fully dismissed. It's *not* (yet) a complete implementation of the behaviour you see in
-the Maps app simply because our specific needs dictated something else. We intend to continue working on it to address
-that limitation.
+__DrawerKit__ is a custom view controller presentation mimicking the kind of behaviour in the Apple Maps app. It lets any view controller modally present another arbitrary view controller. Hence, content is partially shown at first, then more or less content will show by user interaction until it's fully presented or dismissed. It's not (yet) a complete implementation because our needs dictated something else. We intend to continue working on it to address that limitation.
 
 Please do play with the demo app and try different configuration options because there are so many ways to configure
 `DrawerKit` that the gif below is at most a pathetic representation of everything that the library can do.
