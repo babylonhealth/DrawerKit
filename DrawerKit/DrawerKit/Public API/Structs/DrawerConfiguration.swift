@@ -113,6 +113,10 @@ public struct DrawerConfiguration {
 
     /// Whether or not the drawer can be dismissed by tapping anywhere outside of it.
     /// The default value is `true`.
+    ///
+    /// **NOTE:** this only works for states where taps are *not* being passed through
+    /// to the presenting view, as the gesture recognizer for these taps is on the
+    /// drawer container view. See the `passthroughTouchesInStates` property.
     public var isDismissableByOutsideDrawerTaps: Bool
 
     /// How many taps are required for dismissing the drawer by tapping outside of it.
@@ -166,6 +170,9 @@ public struct DrawerConfiguration {
 
     /// In what states touches should be passed through to the presenting view.
     /// By default touches will not be passed through only in `fullyExpanded` state.
+    ///
+    /// **NOTE:** the functionality of `isDismissableByOutsideDrawerTaps` is affected
+    /// by how these options are configured.
     public var passthroughTouchesInStates: PassthroughOptions
 
     public init(initialState: DrawerState? = nil,
