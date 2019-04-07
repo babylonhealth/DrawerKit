@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F24F6C0225A5D11001DBE9C /* DrawerBackgroundConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F24F6BF225A5D11001DBE9C /* DrawerBackgroundConfiguration.swift */; };
 		654604CE207BD4BC00B72395 /* DrawerPresentationControlling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654604CD207BD4BC00B72395 /* DrawerPresentationControlling.swift */; };
 		9A158BC22076C92200FD4113 /* PresentationController+PullToDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A158BC12076C92200FD4113 /* PresentationController+PullToDismiss.swift */; };
 		B5D4058C21811B77000B3349 /* PresentationContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D4058B21811B77000B3349 /* PresentationContainerView.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F24F6BF225A5D11001DBE9C /* DrawerBackgroundConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerBackgroundConfiguration.swift; sourceTree = "<group>"; };
 		654604CD207BD4BC00B72395 /* DrawerPresentationControlling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerPresentationControlling.swift; sourceTree = "<group>"; };
 		9A158BC12076C92200FD4113 /* PresentationController+PullToDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PresentationController+PullToDismiss.swift"; sourceTree = "<group>"; };
 		B5D4058B21811B77000B3349 /* PresentationContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationContainerView.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				CBB9A9761FA8DC04008253CB /* HandleViewConfiguration.swift */,
 				CB1B6E001FC8629B006C1F89 /* DrawerBorderConfiguration.swift */,
 				CB1B6DF21FC346CC006C1F89 /* DrawerShadowConfiguration.swift */,
+				1F24F6BF225A5D11001DBE9C /* DrawerBackgroundConfiguration.swift */,
 				CB5AF8011F9BDF29000B2DC9 /* DrawerAnimationActions.swift */,
 				CB5AF8031F9BE037000B2DC9 /* DrawerAnimationInfo.swift */,
 				CB5AF8051F9BE0E3000B2DC9 /* DrawerGeometry.swift */,
@@ -292,6 +295,7 @@
 				CB2CB7971F8E934500AA152D /* DrawerConfiguration.swift in Sources */,
 				CB3CAFBE1FB248B000AD28A1 /* DrawerNotifications.swift in Sources */,
 				CBFA36F21F9C4004006847BB /* GeometryEvaluator.swift in Sources */,
+				1F24F6C0225A5D11001DBE9C /* DrawerBackgroundConfiguration.swift in Sources */,
 				CB6F86B41F9C036D000FA37A /* PresentationController+Utilities.swift in Sources */,
 				CB1B6E011FC8629B006C1F89 /* DrawerBorderConfiguration.swift in Sources */,
 				CB5AF8141F9BEA91000B2DC9 /* DrawerAnimationInfo+Geometry.swift in Sources */,

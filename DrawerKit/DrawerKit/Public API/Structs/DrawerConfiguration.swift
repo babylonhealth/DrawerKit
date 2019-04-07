@@ -175,6 +175,8 @@ public struct DrawerConfiguration {
     /// by how these options are configured.
     public var passthroughTouchesInStates: PassthroughOptions
 
+    public var drawerBackgroundConfiguration: DrawerBackgroundConfiguration?
+
     public init(initialState: DrawerState? = nil,
                 totalDurationInSeconds: TimeInterval = 0.4,
                 durationIsProportionalToDistanceTraveled: Bool = false,
@@ -195,6 +197,7 @@ public struct DrawerConfiguration {
                 handleViewConfiguration: HandleViewConfiguration? = HandleViewConfiguration(),
                 drawerBorderConfiguration: DrawerBorderConfiguration? = nil,
                 drawerShadowConfiguration: DrawerShadowConfiguration? = nil,
+                drawerBackgroundConfiguration: DrawerBackgroundConfiguration? = nil,
                 passthroughTouchesInStates: PassthroughOptions = [.collapsed, .partiallyExpanded]) {
         self.initialState = initialState
         self.totalDurationInSeconds = (totalDurationInSeconds > 0 ? totalDurationInSeconds : 0.4)
@@ -223,6 +226,7 @@ public struct DrawerConfiguration {
         self.handleViewConfiguration = handleViewConfiguration
         self.drawerBorderConfiguration = drawerBorderConfiguration
         self.drawerShadowConfiguration = drawerShadowConfiguration
+        self.drawerBackgroundConfiguration = drawerBackgroundConfiguration
         self.passthroughTouchesInStates = passthroughTouchesInStates
     }
 }

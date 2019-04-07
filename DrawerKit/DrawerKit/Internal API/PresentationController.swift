@@ -7,6 +7,8 @@ final class PresentationController: UIPresentationController {
 
     var presentationContainerView: PresentationContainerView!
 
+    var backgroundView: UIView?
+
     let presentingDrawerAnimationActions: DrawerAnimationActions
     let presentedDrawerAnimationActions: DrawerAnimationActions
 
@@ -116,6 +118,8 @@ extension PresentationController {
     override func presentationTransitionWillBegin() {
         setupPresentationContainerView()
 
+        setupBackgroundView()
+
         // NOTE: `targetDrawerState.didSet` is not invoked within the
         //        initializer.
         gestureAvailabilityConditionsDidChange()
@@ -147,6 +151,7 @@ extension PresentationController {
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
         removePresentationContainerView()
+        removeBackgroundView()
         removeDrawerFullExpansionTapRecogniser()
         removeDrawerDismissalTapRecogniser()
         removeDrawerDragRecogniser()

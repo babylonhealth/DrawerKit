@@ -87,6 +87,10 @@ extension AnimationController: UIViewControllerAnimatedTransitioning {
             AnimationSupport.clientAnimateAlong(presentingDrawerAnimationActions: presentingAnimationActions,
                                                 presentedDrawerAnimationActions: presentedAnimationActions,
                                                 info)
+
+            if let presentationController = presentedVC.presentationController as? PresentationController {
+                presentationController.currentDrawerY = finalFrame.origin.y
+            }
         }
 
         animator.addCompletion { endingPosition in
