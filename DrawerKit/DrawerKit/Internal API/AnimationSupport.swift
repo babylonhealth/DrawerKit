@@ -52,7 +52,7 @@ struct AnimationSupport {
     static func clientPrepareViews(presentingDrawerAnimationActions: DrawerAnimationActions,
                                    presentedDrawerAnimationActions: DrawerAnimationActions,
                                    _ info: DrawerAnimationInfo) {
-        NotificationCenter.default.post(notification: DrawerNotification.transitionWillStart(info: info))
+        NotificationCenter.default.post(DrawerNotifications.TransitionWillStart(info: info))
         presentingDrawerAnimationActions.prepare?(info)
         presentedDrawerAnimationActions.prepare?(info)
     }
@@ -72,6 +72,6 @@ struct AnimationSupport {
         endInfo.endPosition = endingPosition
         presentingDrawerAnimationActions.cleanup?(info)
         presentedDrawerAnimationActions.cleanup?(info)
-        NotificationCenter.default.post(notification: DrawerNotification.transitionDidFinish(info: info))
+        NotificationCenter.default.post(DrawerNotifications.TransitionDidFinish(info: info))
     }
 }

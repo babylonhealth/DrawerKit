@@ -2,7 +2,7 @@ import UIKit
 import DrawerKit
 
 class PresentedViewController: UIViewController {
-    private var notificationToken: NotificationToken!
+    private var notificationTokens: [NotificationToken] = []
 
     @IBOutlet weak var presentedView: PresentedView!
     @IBAction func dismissButtonTapped() {
@@ -11,16 +11,26 @@ class PresentedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.notificationToken = NotificationCenter.default
-            .addObserver(name: DrawerNotification.drawerExteriorTappedNotification) {
-            (notification: DrawerNotification, object: Any?) in
-            switch notification {
-            case .drawerExteriorTapped:
-                print("drawerExteriorTapped")
-            default:
-                break
-            }
-        }
+
+        let notificationTokens = [
+            NotificationCenter.default
+                .addObserver(DrawerNotifications.TransitionWillStart.self) { notification in
+                    print("transitionWillStart, isPresenting = \(notification.info.isPresenting)")
+                },
+            NotificationCenter.default
+                .addObserver(DrawerNotifications.TransitionDidFinish.self) { notification in
+                    print("transitionDidFinish, isPresenting = \(notification.info.isPresenting)")
+                },
+            NotificationCenter.default
+                .addObserver(DrawerNotifications.DrawerInteriorTapped.self) { notification in
+                    print("drawerInteriorTapped")
+                },
+            NotificationCenter.default
+                .addObserver(DrawerNotifications.DrawerExteriorTapped.self) { notification in
+                    print("drawerExteriorTapped")
+                }
+        ]
+        self.notificationTokens.append(contentsOf: notificationTokens)
     }
 
     @IBAction func unwindFromModal(with segue: UIStoryboardSegue) {}
