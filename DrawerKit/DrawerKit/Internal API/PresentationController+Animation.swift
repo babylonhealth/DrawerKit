@@ -91,11 +91,14 @@ extension PresentationController {
             }
 
             if endingPosition != .end {
-                self.targetDrawerState = GeometryEvaluator.drawerState(for: self.currentDrawerY,
-                                                                       drawerCollapsedHeight: self.drawerCollapsedHeight,
-                                                                       drawerPartialHeight: self.drawerPartialY,
-                                                                       containerViewHeight: self.containerViewHeight,
-                                                                       configuration: self.configuration)
+                self.targetDrawerState = GeometryEvaluator.drawerState(
+                    for: self.currentDrawerY,
+                    drawerFullY: self.drawerFullY,
+                    drawerCollapsedHeight: self.drawerCollapsedHeight,
+                    drawerPartialHeight: self.drawerPartialY,
+                    containerViewHeight: self.containerViewHeight,
+                    configuration: self.configuration
+                )
             }
 
             AnimationSupport.clientCleanupViews(presentingDrawerAnimationActions: presentingAnimationActions,
@@ -110,7 +113,6 @@ extension PresentationController {
     }
 
     func addCornerRadiusAnimationEnding(at endingState: DrawerState) {
-        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         guard maximumCornerRadius != 0
             && drawerPartialY != drawerFullY
             && endingState != currentDrawerState
@@ -162,7 +164,6 @@ extension PresentationController {
 
     private func positionsY(startingState: DrawerState,
                             endingState: DrawerState) -> (starting: CGFloat, ending: CGFloat) {
-        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         let startingPositionY =
             GeometryEvaluator.drawerPositionY(for: startingState,
                                               drawerCollapsedHeight: drawerCollapsedHeight,

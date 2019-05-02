@@ -25,10 +25,12 @@ struct GeometryEvaluator {
         return containerViewHeight - collapsedH
     }
 
-    static func upperMarkY(drawerPartialHeight: CGFloat,
-                           containerViewHeight: CGFloat,
-                           configuration: DrawerConfiguration) -> CGFloat {
-        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
+    static func upperMarkY(
+        drawerFullY: CGFloat,
+        drawerPartialHeight: CGFloat,
+        containerViewHeight: CGFloat,
+        configuration: DrawerConfiguration
+    ) -> CGFloat {
         let partialY = drawerPartialY(drawerPartialHeight: drawerPartialHeight,
                                       containerViewHeight: containerViewHeight)
         return max(partialY - configuration.upperMarkGap, drawerFullY)
@@ -43,11 +45,12 @@ struct GeometryEvaluator {
     }
 
     static func clamped(_ positionY: CGFloat,
+                        drawerFullY: CGFloat,
                         drawerPartialHeight: CGFloat,
                         containerViewHeight: CGFloat,
                         configuration: DrawerConfiguration) -> CGFloat {
-        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
-        let upperY = upperMarkY(drawerPartialHeight: drawerPartialHeight,
+        let upperY = upperMarkY(drawerFullY: drawerFullY,
+                                drawerPartialHeight: drawerPartialHeight,
                                 containerViewHeight: containerViewHeight,
                                 configuration: configuration)
         if smallerThanOrEqual(positionY, upperY) {
@@ -73,12 +76,12 @@ struct GeometryEvaluator {
 
 extension GeometryEvaluator {
     static func drawerState(for positionY: CGFloat,
+                            drawerFullY: CGFloat,
                             drawerCollapsedHeight: CGFloat,
                             drawerPartialHeight: CGFloat,
                             containerViewHeight: CGFloat,
                             configuration: DrawerConfiguration,
                             clampToNearest: Bool = false) -> DrawerState {
-        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
         if smallerThanOrEqual(positionY, drawerFullY) { return .fullyExpanded }
         if greaterThanOrEqual(positionY, containerViewHeight) { return .dismissed }
 
@@ -92,10 +95,12 @@ extension GeometryEvaluator {
 
         if clampToNearest {
             let posY = clamped(positionY,
+                               drawerFullY: drawerFullY,
                                drawerPartialHeight: drawerPartialHeight,
                                containerViewHeight: containerViewHeight,
                                configuration: configuration)
             return drawerState(for: posY,
+                               drawerFullY: drawerFullY,
                                drawerCollapsedHeight: drawerCollapsedHeight,
                                drawerPartialHeight: drawerPartialHeight,
                                containerViewHeight: containerViewHeight,
@@ -128,6 +133,7 @@ extension GeometryEvaluator {
 
     static func nextStateFrom(currentState: DrawerState,
                               speedY: CGFloat,
+                              drawerFullY: CGFloat,
                               drawerCollapsedHeight: CGFloat,
                               drawerPartialHeight: CGFloat,
                               containerViewHeight: CGFloat,
@@ -141,15 +147,14 @@ extension GeometryEvaluator {
         let isMovingUpQuickly = isMovingUp && isMovingQuickly
         let isMovingDownQuickly = isMovingDown && isMovingQuickly
 
-        let drawerFullY = configuration.fullExpansionBehaviour.drawerFullY
-
         let positionY = drawerPositionY(for: currentState,
                                         drawerCollapsedHeight: drawerCollapsedHeight,
                                         drawerPartialHeight: drawerPartialHeight,
                                         containerViewHeight: containerViewHeight,
                                         drawerFullY: drawerFullY)
 
-        let upperY = upperMarkY(drawerPartialHeight: drawerPartialHeight,
+        let upperY = upperMarkY(drawerFullY: drawerFullY,
+                                drawerPartialHeight: drawerPartialHeight,
                                 containerViewHeight: containerViewHeight,
                                 configuration: configuration)
 
