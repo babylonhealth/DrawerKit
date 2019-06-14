@@ -82,7 +82,9 @@ public struct DrawerConfiguration {
 
     /// Whether the drawer expands to cover the entire screen, the entire screen minus
     /// the status bar, or the entire screen minus a custom gap. The default is to cover
-    /// the full screen.
+    /// the full screen. If presented view controller conforms to the DrawerPresentable
+    /// the value that it returns from `fullExpansionBehaviour` will be used instead,
+    /// unless it is `nil`.
     public var fullExpansionBehaviour: FullExpansionBehaviour
 
     /// When `true`, the drawer is presented first in its partially expanded state.

@@ -34,6 +34,10 @@ extension PresentedViewController: DrawerPresentable {
 //        return 100
 //    }
 
+//    var fullExpansionBehaviour: DrawerConfiguration.FullExpansionBehaviour? {
+//        return .leavesCustomGap(gap: 100)
+//    }
+
     var heightOfPartiallyExpandedDrawer: CGFloat {
         guard let view = self.view as? PresentedView else { return 0 }
 

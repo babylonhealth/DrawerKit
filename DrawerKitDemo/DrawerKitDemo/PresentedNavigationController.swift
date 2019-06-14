@@ -24,6 +24,10 @@ extension PresentedNavigationController: DrawerPresentable {
     var heightOfPartiallyExpandedDrawer: CGFloat {
         return (topViewController as? DrawerPresentable)?.heightOfPartiallyExpandedDrawer ?? 0.0
     }
+
+    var fullExpansionBehaviour: DrawerConfiguration.FullExpansionBehaviour? {
+        return (topViewController as? DrawerPresentable)?.fullExpansionBehaviour
+    }
 }
 
 extension PresentedNavigationController: UINavigationControllerDelegate {
