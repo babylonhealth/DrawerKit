@@ -8,7 +8,7 @@ public struct DrawerConfiguration {
         case doesNotCoverStatusBar
         case leavesCustomGap(gap: CGFloat)
 
-        var drawerFullY: CGFloat {
+        public var drawerFullY: CGFloat {
             switch self {
             case .coversFullScreen:
                 return 0
